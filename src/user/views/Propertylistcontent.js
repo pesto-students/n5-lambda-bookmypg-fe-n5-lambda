@@ -8,6 +8,7 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Rating from "../components/rating";
+import Pagination from "../components/pagination";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -85,7 +86,7 @@ export default function Album() {
     <React.Fragment>
       <Grid container spacing={2}>
         {cards.map((card) => (
-          <Grid item xs={12} spacing={1}>
+          <Grid item xs={12} spacing={1} key={card}>
             <Card className={classes.root}>
               <Box>
                 <CardMedia
@@ -111,7 +112,7 @@ export default function Album() {
               </div>
               <div className={classes.heroButtons}>
                 <Grid container spacing={2} justifyContent="center">
-                  <Box>
+                  <Box style={{ display: "flex", flexDirection: "column" }}>
                     <Button
                       variant="contained"
                       color="secondary"
@@ -133,6 +134,9 @@ export default function Album() {
           </Grid>
         ))}
       </Grid>
+      <Box my={2} display="flex" justifyContent="center">
+        <Pagination />
+      </Box>
     </React.Fragment>
   );
 }

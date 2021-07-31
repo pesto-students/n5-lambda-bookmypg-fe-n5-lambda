@@ -9,10 +9,8 @@ import Box from "@material-ui/core/Box";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
+      {"N5 Team Lambda © "}
+
       {new Date().getFullYear()}
       {"."}
     </Typography>

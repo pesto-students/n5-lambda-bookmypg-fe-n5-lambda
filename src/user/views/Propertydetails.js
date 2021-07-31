@@ -1,16 +1,12 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import { MuiThemeProvider } from "@material-ui/core/styles";
+import { MuiThemeProvider, makeStyles } from "@material-ui/core/styles";
 import Propertycontent from "./Propertycontent";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Theme from "../theme/theme";
 
 const useStyles = makeStyles({
-  section: {
-    //padding: "70px 0",
-  },
   title: {
     marginBottom: "50px",
     marginTop: "30px",
