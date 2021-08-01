@@ -14,21 +14,23 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import React, { useState, useEffect } from "react";
 import { Link as RouterLink, useHistory } from "react-router-dom";
+import { GoogleLoginButton } from "react-social-login-buttons";
 import firebase from "firebase/app";
 import "firebase/auth";
+import { useAuth } from "../../contexts/AuthContext";
 
 const headersData = [
   {
     label: "Home",
-    href: "/listings",
+    href: "/",
   },
   {
     label: "About us",
-    href: "/account",
+    href: "/about",
   },
   {
     label: "Contact us",
-    href: "/logout",
+    href: "/contact",
   },
 ];
 
@@ -71,7 +73,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function Header() {
+export default function Header(props) {
   const {
     header,
     logo,
@@ -113,13 +115,19 @@ export default function Header() {
     setOpen(true);
   };
 
+  const handleLogout = () => {
+    props.setLoggedUser("");
+  };
+
   const handleClose = () => {
     setOpen(false);
   };
 
   const handleLogin = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
-    await firebase.auth().signInWithPopup(provider);
+    const response = await firebase.auth().signInWithPopup(provider);
+    props.setLoggedUser(response.user);
+    console.log("USER", response.user._lat);
     setOpen(false);
     history.push("/");
   };
@@ -130,18 +138,33 @@ export default function Header() {
         {femmecubatorLogo}
         <div>
           {getMenuButtons()}
-          <Button
-            style={{
-              color: "inherit",
-              fontFamily: "Open Sans, sans-serif",
-              fontWeight: 700,
-              size: "18px",
-              marginLeft: "38px",
-            }}
-            onClick={LoginPopup}
-          >
-            {"Login"}
-          </Button>
+          {props.loggedUser == "" ? (
+            <Button
+              style={{
+                color: "inherit",
+                fontFamily: "Open Sans, sans-serif",
+                fontWeight: 700,
+                size: "18px",
+                marginLeft: "38px",
+              }}
+              onClick={LoginPopup}
+            >
+              {"Login"}
+            </Button>
+          ) : (
+            <Button
+              style={{
+                color: "inherit",
+                fontFamily: "Open Sans, sans-serif",
+                fontWeight: 700,
+                size: "18px",
+                marginLeft: "38px",
+              }}
+              onClick={handleLogout}
+            >
+              {"Logout"}
+            </Button>
+          )}
         </div>
       </Toolbar>
     );
@@ -175,18 +198,33 @@ export default function Header() {
           }}
         >
           <div className={drawerContainer}>{getDrawerChoices()}</div>
-          <Button
-            style={{
-              marginLeft: "-30px",
-              textTransform: "none",
-              fontFamily: "Open Sans, sans-serif",
-              fontWeight: 800,
-              size: "30px",
-            }}
-            onClick={LoginPopup}
-          >
-            Login
-          </Button>
+          {props.loggedUser == "" ? (
+            <Button
+              style={{
+                marginLeft: "-30px",
+                textTransform: "none",
+                fontFamily: "Open Sans, sans-serif",
+                fontWeight: 800,
+                size: "30px",
+              }}
+              onClick={LoginPopup}
+            >
+              Login
+            </Button>
+          ) : (
+            <Button
+              style={{
+                marginLeft: "-30px",
+                textTransform: "none",
+                fontFamily: "Open Sans, sans-serif",
+                fontWeight: 800,
+                size: "30px",
+              }}
+              onClick={handleLogout}
+            >
+              Logout
+            </Button>
+          )}
         </Drawer>
 
         <div>{femmecubatorLogo}</div>
@@ -274,14 +312,16 @@ export default function Header() {
             Please login to your account
           </DialogTitle>
           <div className={button}>
-            <Button
-              variant="contained"
-              color="secondary"
+            <GoogleLoginButton
+              text="Sign In with Google"
+              style={{
+                width: "230px",
+                height: "35px",
+                justifyContent: "center",
+                textAlign: "center",
+              }}
               onClick={handleLogin}
-              className={buttonmargin}
-            >
-              Signin with Google
-            </Button>
+            />
             <Button
               variant="contained"
               color="secondary"
