@@ -1,16 +1,20 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-import { useTheme, makeStyles } from "@material-ui/core/styles";
+import { useTheme } from "@material-ui/core/styles";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import Rating from "../components/rating";
 import Schedulevisit from "./Schedulevisit";
 import Bookproperty from "./Bookproperty";
-import Similarproperties from "../components/similarproperties";
 
 const MyCollection = [
   {
@@ -46,6 +50,17 @@ const useStyles = makeStyles((theme) => ({
   },
   heroButtons: {
     marginTop: theme.spacing(4),
+    "&:hover": {
+      color: "#40a9ff",
+      opacity: 1,
+    },
+    "&$selected": {
+      color: "#1890ff",
+      fontWeight: theme.typography.fontWeightMedium,
+    },
+    "&:focus": {
+      color: "#40a9ff",
+    },
   },
   cardGrid: {
     paddingTop: theme.spacing(10),
@@ -67,6 +82,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(6),
   },
 }));
+
+const cards = [1, 2, 3, 4];
 
 export default function Album() {
   const classes = useStyles();
@@ -209,7 +226,7 @@ export default function Album() {
       <Container
         className={classes.cardGrid}
         maxWidth="md"
-        style={{ borderTop: "1px solid rgba(0, 0, 0, 0.12)" }}
+        style={{ borderTop: `1px solid rgba(0, 0, 0, 0.12)` }}
       >
         <Typography
           component="h1"
@@ -219,8 +236,31 @@ export default function Album() {
         >
           Similar results
         </Typography>
-
-        <Similarproperties />
+        {/* End hero unit */}
+        <Grid container spacing={5}>
+          {cards.map((card) => (
+            <Grid item key={card} xs={12} sm={6} md={3}>
+              <Card className={classes.card}>
+                <CardMedia
+                  className={classes.cardMedia}
+                  image="images/Hostel Images/test.jpg"
+                  title="Image title"
+                />
+                <CardContent className={classes.cardContent}>
+                  <Typography gutterBottom variant="h6" component="h2">
+                    Zolo House 1
+                  </Typography>
+                  <Typography>Ratings: 4</Typography>
+                </CardContent>
+                <CardActions>
+                  <Button size="small" color="primary">
+                    More Details
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
       </Container>
     </React.Fragment>
   );

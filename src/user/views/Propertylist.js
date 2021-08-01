@@ -1,42 +1,46 @@
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Header from '../components/header';
-import Footer from '../components/footer';
-import { MuiThemeProvider, makeStyles } from '@material-ui/core/styles';
-import Propertylistcontent from './Propertylistnew';
-import Theme from '../theme/theme';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import Header from "../components/header";
+import Footer from "../components/footer";
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import Propertylistcontent from "./Propertylistnew";
+import Theme from "../theme/theme";
 
 const useStyles = makeStyles({
+  section: {
+    //padding: "70px 0",
+  },
   title: {
-    marginBottom: '50px',
-    marginTop: '30px',
-    minHeight: '32px',
-    textDecoration: 'none',
-    textAlign: 'center',
+    marginBottom: "50px",
+    marginTop: "30px",
+    minHeight: "32px",
+    textDecoration: "none",
+    textAlign: "center",
   },
   description: {
-    color: '#999',
-    textAlign: 'center',
+    color: "#999",
+    textAlign: "center",
   },
   textCenter: {
-    textAlign: 'center',
+    textAlign: "center",
   },
   textArea: {
-    marginRight: '15px',
-    marginLeft: '15px',
+    marginRight: "15px",
+    marginLeft: "15px",
   },
   spacin: {
-    marginRight: '50px',
-    marginLeft: '25px',
-    marginTop: '15px',
-    marginBottom: '15px',
-    padding: '20px 0px',
+    marginRight: "50px",
+    marginLeft: "25px",
+    marginTop: "15px",
+    marginBottom: "15px",
+    padding: "20px 0px",
   },
   spacinlocation: {
-    marginRight: '50px',
-    marginLeft: '25px',
-    marginTop: '15px',
-    marginBottom: '15px',
+    marginRight: "50px",
+    marginLeft: "25px",
+    marginTop: "15px",
+    marginBottom: "15px",
   },
 });
 

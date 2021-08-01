@@ -1,32 +1,32 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
-import Hidden from '@material-ui/core/Hidden';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Propertylistcontent from './Propertylistcontent';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+import React from "react";
+import PropTypes from "prop-types";
+import AppBar from "@material-ui/core/AppBar";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Divider from "@material-ui/core/Divider";
+import Drawer from "@material-ui/core/Drawer";
+import Hidden from "@material-ui/core/Hidden";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import Propertylistcontent from "./Propertylistcontent";
+import FormLabel from "@material-ui/core/FormLabel";
+import FormControl from "@material-ui/core/FormControl";
+import FormGroup from "@material-ui/core/FormGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
 
 const drawerWidth = 240;
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: "flex",
 
-    marginTop: '80px',
+    marginTop: "80px",
   },
   drawer: {
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       width: drawerWidth,
       flexShrink: 0,
     },
@@ -35,33 +35,33 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
   },
   appBar: {
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
-    marginTop: '60px',
-    backgroundColor: 'white',
-    color: 'black',
+    marginTop: "60px",
+    backgroundColor: "white",
+    color: "black",
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
+    [theme.breakpoints.up("sm")]: {
+      display: "none",
     },
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
-    marginTop: '60px',
+    marginTop: "60px",
   },
   content: {
     flexGrow: 1,
-    flexDirection: 'column',
+    flexDirection: "column",
     padding: theme.spacing(3),
   },
   searchbox: {
-    height: '25px',
+    height: "25px",
   },
 }));
 
@@ -76,11 +76,11 @@ function ResponsiveDrawer(props) {
     antoine: false,
   });
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
   const { gilad, jason, antoine } = state;
-  const error = [gilad, jason, antoine].filter(v => v).length !== 2;
+  const error = [gilad, jason, antoine].filter((v) => v).length !== 2;
   console.log(error);
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -97,9 +97,8 @@ function ResponsiveDrawer(props) {
       <FormControl component="fieldset" className={classes.formControl}>
         <FormLabel component="legend">Gender</FormLabel>
         <FormGroup>
-          {['Male', 'Female', 'Other'].map((text, index) => (
+          {["Male", "Female", "Other"].map((text, index) => (
             <FormControlLabel
-              key="Gender"
               control={
                 <Checkbox
                   checked={gilad}
@@ -107,7 +106,7 @@ function ResponsiveDrawer(props) {
                   name="gilad"
                 />
               }
-              label={<span style={{ fontSize: '14px' }}>{text}</span>}
+              label={<span style={{ fontSize: "14px" }}>{text}</span>}
             />
           ))}
         </FormGroup>
@@ -118,14 +117,13 @@ function ResponsiveDrawer(props) {
         <FormLabel component="legend">Ratings</FormLabel>
         <FormGroup>
           {[
-            'Highest Rated',
-            'Most Reviewed',
-            '5 Stars',
-            '4 Stars',
-            '3 Stars',
+            "Highest Rated",
+            "Most Reviewed",
+            "5 Stars",
+            "4 Stars",
+            "3 Stars",
           ].map((text, index) => (
             <FormControlLabel
-              key="Ratings"
               control={
                 <Checkbox
                   checked={gilad}
@@ -133,7 +131,7 @@ function ResponsiveDrawer(props) {
                   name="gilad"
                 />
               }
-              label={<span style={{ fontSize: '14px' }}>{text}</span>}
+              label={<span style={{ fontSize: "14px" }}>{text}</span>}
             />
           ))}
         </FormGroup>
@@ -143,9 +141,8 @@ function ResponsiveDrawer(props) {
       <FormControl component="fieldset" className={classes.formControl}>
         <FormLabel component="legend">Location</FormLabel>
         <FormGroup>
-          {['Mumbai', 'Delhi', 'Chennai'].map((text, index) => (
+          {["Mumbai", "Delhi", "Chennai"].map((text, index) => (
             <FormControlLabel
-              key="Location"
               control={
                 <Checkbox
                   checked={gilad}
@@ -153,7 +150,7 @@ function ResponsiveDrawer(props) {
                   name="gilad"
                 />
               }
-              label={<span style={{ fontSize: '14px' }}>{text}</span>}
+              label={<span style={{ fontSize: "14px" }}>{text}</span>}
             />
           ))}
         </FormGroup>
@@ -163,9 +160,8 @@ function ResponsiveDrawer(props) {
       <FormControl component="fieldset" className={classes.formControl}>
         <FormLabel component="legend">Monthly rent</FormLabel>
         <FormGroup>
-          {['>15000', '10000-15000', '<10000'].map((text, index) => (
+          {[">15000", "10000-15000", "<10000"].map((text, index) => (
             <FormControlLabel
-              key="Rent"
               control={
                 <Checkbox
                   checked={gilad}
@@ -173,7 +169,7 @@ function ResponsiveDrawer(props) {
                   name="gilad"
                 />
               }
-              label={<span style={{ fontSize: '14px' }}>{text}</span>}
+              label={<span style={{ fontSize: "14px" }}>{text}</span>}
             />
           ))}
         </FormGroup>
@@ -183,10 +179,9 @@ function ResponsiveDrawer(props) {
       <FormControl component="fieldset" className={classes.formControl}>
         <FormLabel component="legend">Amenitiest</FormLabel>
         <FormGroup>
-          {['Airconditioner', 'Washing machine', 'Veg food', 'Nonveg food'].map(
+          {["Airconditioner", "Washing machine", "Veg food", "Nonveg food"].map(
             (text, index) => (
               <FormControlLabel
-                key="Amenitiest"
                 control={
                   <Checkbox
                     checked={gilad}
@@ -194,9 +189,9 @@ function ResponsiveDrawer(props) {
                     name="gilad"
                   />
                 }
-                label={<span style={{ fontSize: '14px' }}>{text}</span>}
+                label={<span style={{ fontSize: "14px" }}>{text}</span>}
               />
-            ),
+            )
           )}
         </FormGroup>
       </FormControl>
@@ -220,7 +215,8 @@ function ResponsiveDrawer(props) {
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
-              className={classes.menuButton}>
+              className={classes.menuButton}
+            >
               <MenuIcon />
             </IconButton>
             <TextField id="standard-basic" label="Search" />
@@ -232,7 +228,7 @@ function ResponsiveDrawer(props) {
             <Drawer
               container={container}
               variant="temporary"
-              anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+              anchor={theme.direction === "rtl" ? "right" : "left"}
               open={mobileOpen}
               onClose={handleDrawerToggle}
               classes={{
@@ -240,7 +236,8 @@ function ResponsiveDrawer(props) {
               }}
               ModalProps={{
                 keepMounted: true, // Better open performance on mobile.
-              }}>
+              }}
+            >
               {drawer}
             </Drawer>
           </Hidden>
@@ -250,7 +247,8 @@ function ResponsiveDrawer(props) {
                 paper: classes.drawerPaper,
               }}
               variant="permanent"
-              open>
+              open
+            >
               {drawer}
             </Drawer>
           </Hidden>
