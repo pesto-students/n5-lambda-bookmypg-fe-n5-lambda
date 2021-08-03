@@ -18,6 +18,7 @@ import ImageListItem from "@material-ui/core/ImageListItem";
 import { useHistory } from "react-router-dom";
 import PropertiesSelector from "./PropertiesSelector";
 import propertiesActions from "../../redux-store/actions/propertiesActions";
+import Similarproperties from "../components/similarproperties";
 
 const useStylesselect = makeStyles((theme) => ({
   formControl: {
@@ -35,15 +36,17 @@ const useStyles = makeStyles((theme) => ({
   },
   heroContent: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
+    padding: theme.spacing(6, 0, 4),
     paddingTop: "100px",
+    maxWidth: "600px",
   },
   heroButtons: {
     marginTop: theme.spacing(4),
   },
   cardGrid: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4),
+    maxWidth: "1400px",
   },
   card: {
     height: "100%",
@@ -60,11 +63,12 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
   },
+  topPadding: {
+    marginTop: "80px",
+  },
 }));
 
-const cards = [1, 2, 3, 4];
-
-export function Album(props) {
+export default function Album(props) {
   const classes = useStyles();
 
   const classesselect = useStylesselect();
@@ -72,9 +76,9 @@ export function Album(props) {
   const [location, setLocation] = React.useState("");
   const history = useHistory();
 
-  useEffect(() => {
+  /*useEffect(() => {
     props.getProperties();
-  }, []);
+  }, []);*/
 
   const handleChange = (event) => {
     setLocation(event.target.value);
@@ -82,44 +86,17 @@ export function Album(props) {
   };
   return (
     <React.Fragment>
-      <Container maxWidth="sm" component="main" className={classes.heroContent}>
-        <Typography
-          component="h1"
-          variant="h5"
-          align="center"
-          color="textPrimary"
-          gutterBottom
-        >
-          Search property at your location
-        </Typography>
-        <Grid container spacing={2} justifyContent="center">
-          <FormControl variant="outlined" className={classesselect.formControl}>
-            <InputLabel id="demo-simple-select-outlined-label">
-              Location
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-outlined-label"
-              id="demo-simple-select-outlined"
-              value={location}
-              onChange={handleChange}
-              label="Location"
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={10}>Mumbai</MenuItem>
-              <MenuItem value={20}>Chennai</MenuItem>
-              <MenuItem value={30}>Delhi</MenuItem>
-            </Select>
-          </FormControl>
-        </Grid>
-      </Container>
       <Container className={classes.cardGrid} maxWidth="md">
-        <Typography component="h1" variant="h6" color="secondary" gutterBottom>
-          Who are we?
-        </Typography>
-        <Grid container spacing={4}>
+        <Grid container spacing={4} className={classes.topPadding}>
           <Grid item xs={12} sm={6}>
+            <Typography
+              component="h1"
+              variant="h5"
+              color="primary"
+              gutterBottom
+            >
+              Who are we?
+            </Typography>
             <Typography
               component="h1"
               variant="h6"
@@ -129,7 +106,8 @@ export function Album(props) {
             >
               This platform is to facilitate both a property owner to share his
               property details and Paying Guest to find suitable property with
-              one-click hassle-free payments.
+              one-click hassle-free payments.This platform is to facilitate both
+              a property owner to share.
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -144,7 +122,7 @@ export function Album(props) {
       <Container
         className={classes.cardGrid}
         maxWidth="md"
-        style={{ borderTop: `1px solid rgba(0, 0, 0, 0.12)` }}
+        style={{ borderTop: "1px solid rgba(0, 0, 0, 0.12)" }}
       >
         <Grid container spacing={4}>
           <Grid item xs={12} sm={6}>
@@ -157,8 +135,8 @@ export function Album(props) {
           <Grid item xs={12} sm={6}>
             <Typography
               component="h1"
-              variant="h6"
-              color="secondary"
+              variant="h5"
+              color="primary"
               gutterBottom
             >
               What are we aiming at?
@@ -182,7 +160,7 @@ export function Album(props) {
       <Container
         className={classes.cardGrid}
         maxWidth="md"
-        style={{ borderTop: `1px solid rgba(0, 0, 0, 0.12)` }}
+        style={{ borderTop: "1px solid rgba(0, 0, 0, 0.12)" }}
       >
         <Typography
           component="h1"
@@ -192,37 +170,13 @@ export function Album(props) {
         >
           Popular properties
         </Typography>
-        {/* End hero unit */}
-        <Grid container spacing={5}>
-          {cards.map((card) => (
-            <Grid item key={card} xs={12} sm={6} md={3}>
-              <Card className={classes.card}>
-                <CardMedia
-                  className={classes.cardMedia}
-                  image="images/Hostel Images/test.jpg"
-                  title="Image title"
-                />
-                <CardContent className={classes.cardContent}>
-                  <Typography gutterBottom variant="h6" component="h2">
-                    Zolo House 1
-                  </Typography>
-                  <Typography>Ratings: 4</Typography>
-                </CardContent>
-                <CardActions>
-                  <Button size="small" color="primary">
-                    More Details
-                  </Button>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
+        <Similarproperties />
       </Container>
     </React.Fragment>
   );
 }
 
-const mapStateToProps = (state) => {
+/*const mapStateToProps = (state) => {
   const propertiesSelector = PropertiesSelector(state.properties);
 
   return {
@@ -237,3 +191,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Album);
+*/

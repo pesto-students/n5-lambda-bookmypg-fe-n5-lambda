@@ -12,6 +12,10 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 import React, { useState, useEffect } from "react";
 import { Link as RouterLink } from "react-router-dom";
+import FormControl from "@material-ui/core/FormControl";
+import Grid from "@material-ui/core/Grid";
+import Container from "@material-ui/core/Container";
+import NativeSelect from "@material-ui/core/NativeSelect";
 import Login from "../views/Login";
 
 const headersData = [
@@ -29,25 +33,35 @@ const headersData = [
   },
 ];
 
+const locationItems = [
+  {
+    id: "0",
+    name: "None",
+  },
+  {
+    id: "1",
+    name: "Delhi",
+  },
+  {
+    id: "2",
+    name: "Mumbai",
+  },
+  {
+    id: "3",
+    name: "Chennai",
+  },
+];
+
 const useStyles = makeStyles(() => ({
   header: {
     backgroundColor: "#616161",
-    paddingRight: "79px",
-
-    paddingLeft: "118px",
-    "@media (max-width: 900px)": {
-      paddingLeft: 0,
-    },
   },
   logo: {
-    fontFamily: "Work Sans, sans-serif",
-    fontWeight: 600,
     color: "#FFFEFE",
     textAlign: "left",
   },
   menuButton: {
-    fontFamily: "Open Sans, sans-serif",
-    fontWeight: 700,
+    textTransform: "none",
     size: "18px",
     marginLeft: "38px",
   },
@@ -60,6 +74,19 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+const useStylesselect = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(2),
+    minWidth: "80%",
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+  heroContent: {
+    width: "250px",
+  },
+}));
+
 export default function Header(props) {
   const { header, logo, menuButton, toolbar, drawerContainer } = useStyles();
 
@@ -68,8 +95,14 @@ export default function Header(props) {
     drawerOpen: false,
   });
 
-  // const [anchorEl, setAnchorEl] = React.useState(null);
-  // const [openDialogName, setOpenDialog] = React.useState(null);
+  const classes = useStyles();
+
+  const classesselect = useStylesselect();
+
+  const [location, setLocation] = React.useState("");
+  const handleChange = (event) => {
+    setLocation(event.target.value);
+  };
 
   const { mobileView, drawerOpen } = state;
 
@@ -93,6 +126,7 @@ export default function Header(props) {
     return (
       <Toolbar className={toolbar}>
         {femmecubatorLogo}
+        <div className={classesselect.heroContent}>{searchBar}</div>
         <div>
           {getMenuButtons()}
           <Login
@@ -139,32 +173,12 @@ export default function Header(props) {
         </Drawer>
 
         <div>{femmecubatorLogo}</div>
+        <div className={classesselect.heroContent}>{searchBar}</div>
       </Toolbar>
     );
   };
 
   const getDrawerChoices = () => {
-    /* const handleClick = (event) => {
-      setAnchorEl(event.currentTarget);
-    };
-
-  const handleClose = () => {
-      setAnchorEl(null);
-    };
-
-    const openTermsDialog = () => {
-      setOpenDialog("TERMS");
-      handleClose();
-    };
-
-    const openPrivacyDialog = () => {
-      setOpenDialog("PRIVACY");
-      handleClose();
-    };
-    const closeDialog = () => {
-      setOpenDialog(null);
-    }; */
-
     return headersData.map(({ label, href }) => {
       return (
         <Link
@@ -186,6 +200,29 @@ export default function Header(props) {
     <Typography variant="h6" component="h1" className={logo}>
       BookMyPG
     </Typography>
+  );
+
+  const searchBar = (
+    <Container maxWidth="sm" component="main">
+      <Grid container spacing={2} justifyContent="center">
+        <FormControl className={classes.formControl}>
+          <NativeSelect
+            className={classes.selectEmpty}
+            value={location}
+            name="Location"
+            onChange={handleChange}
+            inputProps={{ "aria-label": "location" }}
+          >
+            <option value="" disabled>
+              Search Location
+            </option>
+            {locationItems.map((location) => (
+              <option value={location.id}>{location.name}</option>
+            ))}
+          </NativeSelect>
+        </FormControl>
+      </Grid>
+    </Container>
   );
 
   const getMenuButtons = () => {

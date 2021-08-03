@@ -11,6 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   button: {
     justifyContent: "center",
+    margin: 10,
   },
 }));
 

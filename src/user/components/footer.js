@@ -8,11 +8,9 @@ import Box from "@material-ui/core/Box";
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
+    <Typography variant="body2" color="primary" align="center">
+      {"N5 Team Lambda © "}
+
       {new Date().getFullYear()}
       {"."}
     </Typography>
@@ -87,6 +85,7 @@ const useStyles = makeStyles((theme) => ({
       paddingTop: theme.spacing(6),
       paddingBottom: theme.spacing(6),
     },
+    maxWidth: "960px",
   },
 }));
 
