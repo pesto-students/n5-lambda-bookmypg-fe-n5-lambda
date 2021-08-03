@@ -5,7 +5,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import InputLabel from "@material-ui/core/InputLabel";
+import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
@@ -22,6 +22,7 @@ import Grid from "@material-ui/core/Grid";
 const useStyles = makeStyles((theme) => ({
   button: {
     justifyContent: "center",
+    margin: 10,
   },
 }));
 
@@ -41,9 +42,7 @@ export default function FormDialog() {
   const handleChange = (event) => {
     setValue(event.target.value);
   };
-  const [selectedDate, setSelectedDate] = React.useState(
-    new Date("2014-08-18T21:11:54")
-  );
+  const [selectedDate, setSelectedDate] = React.useState(new Date());
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -60,33 +59,39 @@ export default function FormDialog() {
         aria-labelledby="form-dialog-title"
         className={classes.dialogbutton}
       >
-        <DialogTitle id="form-dialog-title">Schedule visit</DialogTitle>
+        <DialogTitle id="form-dialog-title">Book Property</DialogTitle>
         <DialogContent>
           <DialogContentText>
             Please provide your details here:
           </DialogContentText>
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <Grid container>
-              <KeyboardDatePicker
-                disableToolbar
-                variant="inline"
-                format="MM/dd/yyyy"
-                margin="normal"
-                id="date-picker-inline"
-                label="When you want to move in?"
-                value={selectedDate}
-                onChange={handleDateChange}
-                KeyboardButtonProps={{
-                  "aria-label": "change date",
-                }}
-                disablePast={true}
-              />
-            </Grid>
-          </MuiPickersUtilsProvider>
-          <InputLabel fullwidth>Rent: INR 15000</InputLabel>
-
           <FormControl component="fieldset">
-            <FormLabel component="legend">Payment options</FormLabel>
+            <FormLabel component="legend"></FormLabel>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <Grid container>
+                <KeyboardDatePicker
+                  disableToolbar
+                  variant="inline"
+                  format="MM/dd/yyyy"
+                  margin="normal"
+                  id="date-picker-inline"
+                  label="When you want to move in?"
+                  value={selectedDate}
+                  onChange={handleDateChange}
+                  KeyboardButtonProps={{
+                    "aria-label": "change date",
+                  }}
+                  disablePast={true}
+                />
+              </Grid>
+            </MuiPickersUtilsProvider>
+
+            <TextField
+              disabled
+              id="standard-disabled"
+              label="Rent"
+              defaultValue="INR 15000"
+              fullwidth
+            />
             <RadioGroup
               aria-label="gender"
               name="payment"

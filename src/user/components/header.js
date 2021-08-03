@@ -23,6 +23,8 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import NativeSelect from "@material-ui/core/NativeSelect";
 
 const headersData = [
   {
@@ -290,21 +292,21 @@ export default function Header(props) {
   const searchBar = (
     <Container maxWidth="sm" component="main">
       <Grid container spacing={2} justifyContent="center">
-        <FormControl variant="outlined" className={classesselect.formControl}>
-          <InputLabel id="demo-simple-select-outlined-label">
-            Search Location
-          </InputLabel>
-          <Select
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
+        <FormControl className={classes.formControl}>
+          <NativeSelect
+            className={classes.selectEmpty}
             value={location}
+            name="Location"
             onChange={handleChange}
-            label="Location"
+            inputProps={{ "aria-label": "location" }}
           >
+            <option value="" disabled>
+              Search Location
+            </option>
             {locationItems.map((location) => (
-              <MenuItem value={location.id}>{location.name}</MenuItem>
+              <option value={location.id}>{location.name}</option>
             ))}
-          </Select>
+          </NativeSelect>
         </FormControl>
       </Grid>
     </Container>
