@@ -1,12 +1,15 @@
-import { AppBar, makeStyles, Button } from "@material-ui/core";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { makeStyles, Button } from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import React, { useState, useEffect } from "react";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import { GoogleLoginButton } from "react-social-login-buttons";
 import firebase from "firebase/app";
 import "firebase/auth";
 import { useAuth } from "../../contexts/AuthContext";
+import UserSelector from "../components/UserSelector";
+import userActions from "../../redux-store/actions/userActions";
 
 const useStyles = makeStyles(() => ({
   button: {
@@ -19,7 +22,8 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function Login(props) {
+export function Login(props) {
+  console.log("user====>", props.user);
   const { button, buttonmargin } = useStyles();
   const [open, setOpen] = React.useState(false);
   const history = useHistory();
@@ -40,6 +44,7 @@ export default function Login(props) {
     const provider = new firebase.auth.GoogleAuthProvider();
     const response = await firebase.auth().signInWithPopup(provider);
     props.setLoggedUser(response.user);
+    props.userSubmitted(response.user);
     console.log("USER", response.user._lat);
     setOpen(false);
     history.push("/");
@@ -48,31 +53,29 @@ export default function Login(props) {
   const openPopup = () => {
     return (
       <>
-        {props.loggedUser == "" ? (
+        {props.user && Object.keys(props.user).length !== 0 ? (
           <Button
             style={{
               color: "inherit",
-              fontFamily: "Open Sans, sans-serif",
-              fontWeight: 700,
-              size: "18px",
-              marginLeft: "38px",
-            }}
-            onClick={LoginPopup}
-          >
-            {"Login"}
-          </Button>
-        ) : (
-          <Button
-            style={{
-              color: "inherit",
-              fontFamily: "Open Sans, sans-serif",
-              fontWeight: 700,
+              textTransform: "none",
               size: "18px",
               marginLeft: "38px",
             }}
             onClick={handleLogout}
           >
             {"Logout"}
+          </Button>
+        ) : (
+          <Button
+            style={{
+              color: "inherit",
+              textTransform: "none",
+              size: "18px",
+              marginLeft: "38px",
+            }}
+            onClick={LoginPopup}
+          >
+            {"Login"}
           </Button>
         )}
       </>
@@ -114,3 +117,19 @@ export default function Login(props) {
     </>
   );
 }
+
+const mapStateToProps = (state) => {
+  const userSelector = UserSelector(state.user);
+
+  return {
+    user: userSelector.getUserData().data,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    userSubmitted: (payload) => dispatch(userActions.userSubmitted(payload)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

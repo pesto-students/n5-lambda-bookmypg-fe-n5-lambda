@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import React, { useState, useEffect } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useHistory } from "react-router-dom";
 import FormControl from "@material-ui/core/FormControl";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
@@ -96,12 +96,13 @@ export default function Header(props) {
   });
 
   const classes = useStyles();
-
+  const history = useHistory();
   const classesselect = useStylesselect();
 
   const [location, setLocation] = React.useState("");
   const handleChange = (event) => {
     setLocation(event.target.value);
+    history.push("/propertylist");
   };
 
   const { mobileView, drawerOpen } = state;
