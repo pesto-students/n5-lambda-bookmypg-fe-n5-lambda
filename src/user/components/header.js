@@ -11,19 +11,27 @@ import {
   DialogContent,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
 import React, { useState, useEffect } from "react";
 import { Link as RouterLink, useHistory } from "react-router-dom";
+import { GoogleLoginButton } from "react-social-login-buttons";
+import firebase from "firebase/app";
+import "firebase/auth";
+import { useAuth } from "../../contexts/AuthContext";
 import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
+import FormHelperText from "@material-ui/core/FormHelperText";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import EmailIcon from "@material-ui/icons/Email";
-import Login from "../views/Login";
 
 const headersData = [
   {
@@ -93,20 +101,15 @@ const useStyles = makeStyles(() => ({
     marginTop: 10,
     textTransform: "none",
   },
-  paper: { height: "70%", width: "65%" },
+  paper: { height: "80%", width: "70%" },
 
   root: {
-    background:
-      "linear-gradient(to right top, #141314, #1a1a1a, #202020, #262627, #2d2d2d, #2f2f2f, #313132, #333334, #313132, #2f2f30, #2e2d2e, #2c2b2c);",
+    background: "linear-gradient(to bottom, #232526, #414345)",
   },
   titleStyle: {
     width: "70%",
     textAlign: "center",
-    marginTop: "10px",
-  },
-  descriptionStyle: {
-    width: "70%",
-    textAlign: "center",
+    marginTop: "50px",
   },
   imageStyle: {
     width: "40%",
@@ -131,21 +134,29 @@ const useStylesselect = makeStyles((theme) => ({
 }));
 
 export default function Header(props) {
-  const { header, logo, menuButton, toolbar, drawerContainer } = useStyles();
-
+  const {
+    header,
+    logo,
+    menuButton,
+    toolbar,
+    drawerContainer,
+    button,
+    buttonmargin,
+  } = useStyles();
+  const [open, setOpen] = React.useState(false);
+  const history = useHistory();
   const [state, setState] = useState({
     mobileView: false,
     drawerOpen: false,
   });
 
   const classes = useStyles();
-  const history = useHistory();
+
   const classesselect = useStylesselect();
 
   const [location, setLocation] = React.useState("");
   const handleChange = (event) => {
     setLocation(event.target.value);
-    history.push("/propertylist");
   };
 
   const { mobileView, drawerOpen } = state;
@@ -166,6 +177,27 @@ export default function Header(props) {
     };
   }, []);
 
+  const LoginPopup = () => {
+    setOpen(true);
+  };
+
+  const handleLogout = () => {
+    props.setLoggedUser("");
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleLogin = async () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    const response = await firebase.auth().signInWithPopup(provider);
+    props.setLoggedUser(response.user);
+    console.log("USER", response.user._lat);
+    setOpen(false);
+    history.push("/");
+  };
+
   const displayDesktop = () => {
     return (
       <Toolbar className={toolbar}>
@@ -173,10 +205,30 @@ export default function Header(props) {
         <div className={classesselect.heroContent}>{searchBar}</div>
         <div>
           {getMenuButtons()}
-          <Login
-            loggedUser={props.loggedUser}
-            setLoggedUser={props.setLoggedUser}
-          />
+          {props.loggedUser == "" ? (
+            <Button
+              key={"Login"}
+              {...{
+                color: "inherit",
+                className: menuButton,
+              }}
+              onClick={LoginPopup}
+            >
+              {"Login"}
+            </Button>
+          ) : (
+            <Button
+              key={"Logout"}
+              {...{
+                color: "inherit",
+
+                className: menuButton,
+              }}
+              onClick={handleLogout}
+            >
+              {"Logout"}
+            </Button>
+          )}
         </div>
       </Toolbar>
     );
@@ -209,11 +261,32 @@ export default function Header(props) {
             onClose: handleDrawerClose,
           }}
         >
-          <div className={drawerContainer}>{getDrawerChoices()}</div>
-          <Login
-            loggedUser={props.loggedUser}
-            setLoggedUser={props.setLoggedUser}
-          />
+          <div className={drawerContainer}>
+            {getDrawerChoices()}
+            {props.loggedUser == "" ? (
+              <Link
+                key={"Login"}
+                {...{
+                  color: "inherit",
+                  style: { textDecoration: "none" },
+                }}
+                onClick={LoginPopup}
+              >
+                <MenuItem>{"Login"}</MenuItem>
+              </Link>
+            ) : (
+              <Link
+                key={"Logout"}
+                {...{
+                  color: "inherit",
+                  style: { textDecoration: "none" },
+                }}
+                onClick={handleLogout}
+              >
+                <MenuItem>{"Logout"}</MenuItem>
+              </Link>
+            )}
+          </div>
         </Drawer>
 
         <div>{femmecubatorLogo}</div>
@@ -418,11 +491,10 @@ export default function Header(props) {
                       variant="body2"
                       color="secondary.contrastText"
                       gutterBottom
-                      className={classes.descriptionStyle}
+                      className={classes.titleStyle}
                     >
                       Be the member of BookMyPG for the exclusive facilities
-                      like to book your property, monthly rent payments, share
-                      your reviews, register yor complaints and much more.
+                      like book your property <br /> to BookMyPG
                     </Typography>
                   </Box>
                 </Grid>
