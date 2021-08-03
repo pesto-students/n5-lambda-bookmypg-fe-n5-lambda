@@ -10,14 +10,9 @@ import {
   MenuItem,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import React, { useState, useEffect } from "react";
-import { Link as RouterLink, useHistory } from "react-router-dom";
-import { GoogleLoginButton } from "react-social-login-buttons";
-import firebase from "firebase/app";
-import "firebase/auth";
-import { useAuth } from "../../contexts/AuthContext";
+import { Link as RouterLink } from "react-router-dom";
+import Login from "../views/Login";
 
 const headersData = [
   {
@@ -63,28 +58,11 @@ const useStyles = makeStyles(() => ({
   drawerContainer: {
     padding: "20px 30px",
   },
-  button: {
-    justifyContent: "center",
-    display: "grid",
-    padding: "18px",
-  },
-  buttonmargin: {
-    marginTop: 10,
-  },
 }));
 
 export default function Header(props) {
-  const {
-    header,
-    logo,
-    menuButton,
-    toolbar,
-    drawerContainer,
-    button,
-    buttonmargin,
-  } = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const history = useHistory();
+  const { header, logo, menuButton, toolbar, drawerContainer } = useStyles();
+
   const [state, setState] = useState({
     mobileView: false,
     drawerOpen: false,
@@ -111,60 +89,16 @@ export default function Header(props) {
     };
   }, []);
 
-  const LoginPopup = () => {
-    setOpen(true);
-  };
-
-  const handleLogout = () => {
-    props.setLoggedUser("");
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleLogin = async () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    const response = await firebase.auth().signInWithPopup(provider);
-    props.setLoggedUser(response.user);
-    console.log("USER", response.user._lat);
-    setOpen(false);
-    history.push("/");
-  };
-
   const displayDesktop = () => {
     return (
       <Toolbar className={toolbar}>
         {femmecubatorLogo}
         <div>
           {getMenuButtons()}
-          {props.loggedUser == "" ? (
-            <Button
-              style={{
-                color: "inherit",
-                fontFamily: "Open Sans, sans-serif",
-                fontWeight: 700,
-                size: "18px",
-                marginLeft: "38px",
-              }}
-              onClick={LoginPopup}
-            >
-              {"Login"}
-            </Button>
-          ) : (
-            <Button
-              style={{
-                color: "inherit",
-                fontFamily: "Open Sans, sans-serif",
-                fontWeight: 700,
-                size: "18px",
-                marginLeft: "38px",
-              }}
-              onClick={handleLogout}
-            >
-              {"Logout"}
-            </Button>
-          )}
+          <Login
+            loggedUser={props.loggedUser}
+            setLoggedUser={props.setLoggedUser}
+          />
         </div>
       </Toolbar>
     );
@@ -198,33 +132,10 @@ export default function Header(props) {
           }}
         >
           <div className={drawerContainer}>{getDrawerChoices()}</div>
-          {props.loggedUser == "" ? (
-            <Button
-              style={{
-                marginLeft: "-30px",
-                textTransform: "none",
-                fontFamily: "Open Sans, sans-serif",
-                fontWeight: 800,
-                size: "30px",
-              }}
-              onClick={LoginPopup}
-            >
-              Login
-            </Button>
-          ) : (
-            <Button
-              style={{
-                marginLeft: "-30px",
-                textTransform: "none",
-                fontFamily: "Open Sans, sans-serif",
-                fontWeight: 800,
-                size: "30px",
-              }}
-              onClick={handleLogout}
-            >
-              Logout
-            </Button>
-          )}
+          <Login
+            loggedUser={props.loggedUser}
+            setLoggedUser={props.setLoggedUser}
+          />
         </Drawer>
 
         <div>{femmecubatorLogo}</div>
@@ -302,37 +213,6 @@ export default function Header(props) {
           {mobileView ? displayMobile() : displayDesktop()}
         </AppBar>
       </header>
-      <div>
-        <Dialog
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="form-dialog-title"
-        >
-          <DialogTitle id="form-dialog-title">
-            Please login to your account
-          </DialogTitle>
-          <div className={button}>
-            <GoogleLoginButton
-              text="Sign In with Google"
-              style={{
-                width: "230px",
-                height: "35px",
-                justifyContent: "center",
-                textAlign: "center",
-              }}
-              onClick={handleLogin}
-            />
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={handleClose}
-              className={buttonmargin}
-            >
-              Cancel
-            </Button>
-          </div>
-        </Dialog>
-      </div>
     </>
   );
 }

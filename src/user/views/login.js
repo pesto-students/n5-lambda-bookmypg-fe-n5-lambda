@@ -1,20 +1,14 @@
-import React from "react";
-import Button from "@material-ui/core/Button";
+import { AppBar, makeStyles, Button } from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import React, { useState, useEffect } from "react";
+import { Link as RouterLink, useHistory } from "react-router-dom";
 import { GoogleLoginButton } from "react-social-login-buttons";
 import firebase from "firebase/app";
 import "firebase/auth";
-import { useHistory } from "react-router-dom";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import FormControl from "@material-ui/core/FormControl";
-import { makeStyles } from "@material-ui/core/styles";
-import Theme from "../theme/theme.js";
-import { MuiThemeProvider } from "@material-ui/core/styles";
+import { useAuth } from "../../contexts/AuthContext";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   button: {
     justifyContent: "center",
     display: "grid",
@@ -25,62 +19,98 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FormDialog(props) {
+export default function Login(props) {
+  const { button, buttonmargin } = useStyles();
   const [open, setOpen] = React.useState(false);
-  console.log(open);
   const history = useHistory();
 
-  /*const handleClickOpen = () => {
+  const LoginPopup = () => {
     setOpen(true);
-  };*/
-  const classes = new useStyles();
+  };
+
+  const handleLogout = () => {
+    props.setLoggedUser("");
+  };
 
   const handleClose = () => {
     setOpen(false);
-    history.push("/");
   };
 
   const handleLogin = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
-    await firebase.auth().signInWithPopup(provider);
+    const response = await firebase.auth().signInWithPopup(provider);
+    props.setLoggedUser(response.user);
+    console.log("USER", response.user._lat);
     setOpen(false);
     history.push("/");
   };
 
+  const openPopup = () => {
+    return (
+      <>
+        {props.loggedUser == "" ? (
+          <Button
+            style={{
+              color: "inherit",
+              fontFamily: "Open Sans, sans-serif",
+              fontWeight: 700,
+              size: "18px",
+              marginLeft: "38px",
+            }}
+            onClick={LoginPopup}
+          >
+            {"Login"}
+          </Button>
+        ) : (
+          <Button
+            style={{
+              color: "inherit",
+              fontFamily: "Open Sans, sans-serif",
+              fontWeight: 700,
+              size: "18px",
+              marginLeft: "38px",
+            }}
+            onClick={handleLogout}
+          >
+            {"Logout"}
+          </Button>
+        )}
+      </>
+    );
+  };
+
   return (
-    <MuiThemeProvider theme={Theme}>
-      <div>
-        <Dialog
-          open={true}
-          onClose={handleClose}
-          aria-labelledby="form-dialog-title"
-        >
-          <DialogTitle id="form-dialog-title">
-            Login to your account
-          </DialogTitle>
-          <DialogContent></DialogContent>
-          <DialogActions>
-            <div className={classes.button}>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={handleLogin}
-                className={classes.buttonmargin}
-              >
-                Singin with Google
-              </Button>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={handleClose}
-                className={classes.buttonmargin}
-              >
-                Cancel
-              </Button>
-            </div>
-          </DialogActions>
-        </Dialog>
-      </div>
-    </MuiThemeProvider>
+    <>
+      {openPopup()}
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle id="form-dialog-title">
+          Please login to your account
+        </DialogTitle>
+        <div className={button}>
+          <GoogleLoginButton
+            text="Sign In with Google"
+            style={{
+              width: "230px",
+              height: "35px",
+              justifyContent: "center",
+              textAlign: "center",
+            }}
+            onClick={handleLogin}
+          />
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={handleClose}
+            className={buttonmargin}
+          >
+            Cancel
+          </Button>
+        </div>
+      </Dialog>
+    </>
   );
 }
