@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Homepage from "./user/views/Homepage";
 import Propertydetails from "./user/views/Propertydetails";
 import Propertylist from "./user/views/Propertylist";
-import Login from "./user/views/login";
+import Login from "./user/views/Login";
 import { Provider } from "react-redux";
 import { store } from "./redux-store/Store";
 
