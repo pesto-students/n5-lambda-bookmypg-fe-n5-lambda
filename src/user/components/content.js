@@ -44,8 +44,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(4),
   },
   cardGrid: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8),
     maxWidth: "1400px",
   },
   card: {
@@ -162,15 +162,7 @@ export default function Album(props) {
         maxWidth="md"
         style={{ borderTop: "1px solid rgba(0, 0, 0, 0.12)" }}
       >
-        <Typography
-          component="h1"
-          variant="h6"
-          color="textPrimary"
-          gutterBottom
-        >
-          Popular properties
-        </Typography>
-        <Similarproperties />
+        <Similarproperties title={"Popular properties"} />
       </Container>
     </React.Fragment>
   );

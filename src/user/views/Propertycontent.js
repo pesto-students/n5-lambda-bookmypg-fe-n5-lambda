@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -15,6 +15,20 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import Rating from "../components/rating";
 import Schedulevisit from "./Schedulevisit";
 import Bookproperty from "./Bookproperty";
+import Similarproperties from "../components/similarproperties";
+import HomeIcon from "@material-ui/icons/Home";
+import PaymentIcon from "@material-ui/icons/Payment";
+import DescriptionIcon from "@material-ui/icons/Description";
+import Lightbox from "react-image-lightbox";
+import "react-image-lightbox/style.css";
+import ModalImage from "react-modal-image";
+import Dialog from "@material-ui/core/Dialog";
+import Box from "@material-ui/core/Box";
+import Cardrating from "../components/cardratings";
+import Link from "@material-ui/core/Link";
+import Amenities from "../components/amenities";
+
+const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
 
 const MyCollection = [
   {
@@ -38,6 +52,52 @@ const MyCollection = [
     imgPath: "images/Hostel Images/test6.jpg",
   },
 ];
+
+const reviews = [
+  {
+    rating: "4",
+    description: "Awesome Property",
+    user: "abcdef",
+    createdon: "12/7/2021",
+  },
+  {
+    rating: "4",
+    description: "Awesome Property",
+    user: "abcdef",
+    createdon: "12/7/2021",
+  },
+  {
+    rating: "4",
+    description: "Awesome Property",
+    user: "abcdef",
+    createdon: "12/7/2021",
+  },
+];
+
+const data = {
+  propertyname: "Zolo House 1",
+  description:
+    "3 BHK Sharing Rooms for Men in Sion, Mumbai Fully Furnished, with Parking",
+  address: "Antop Avenue, sion main road, sion (east), Mumbai - 400 022.",
+  rent: "15,000",
+  owner: "Mr. Agarwal",
+  ratings: 4,
+  numrating: 10,
+  amenities: [
+    {
+      name: "Television",
+      logo: "https://bookmypg-photos.s3.us-east-2.amazonaws.com/amenity-logos/television-24.png",
+    },
+    {
+      name: "Refrigerator",
+      logo: "https://bookmypg-photos.s3.us-east-2.amazonaws.com/amenity-logos/refrigerator-5.png",
+    },
+    {
+      name: "Washing Machine",
+      logo: "",
+    },
+  ],
+};
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -65,6 +125,7 @@ const useStyles = makeStyles((theme) => ({
   cardGrid: {
     paddingTop: theme.spacing(10),
     paddingBottom: theme.spacing(8),
+    maxWidth: "1400px",
   },
   card: {
     height: "100%",
@@ -81,6 +142,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
   },
+  iconText: {
+    margin: "0px",
+  },
+  dialogStyle: { maxWidth: "800px" },
 }));
 
 const cards = [1, 2, 3, 4];
@@ -89,24 +154,29 @@ export default function Album() {
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
-
+  const myRef = useRef(null);
+  const executeScroll = () => scrollToRef(myRef);
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
+  const [imgdialog, openImagedialog] = React.useState(false);
 
+  const handleShowDialog = () => {
+    openImagedialog(!imgdialog);
+    console.log("cliked");
+  };
   const maxSteps = MyCollection.length;
   return (
     <React.Fragment>
       <Container className={classes.cardGrid} maxWidth="md">
-        {/* End hero unit */}
         <Grid container spacing={4}>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={5}>
             <div
               style={{
-                maxWidth: 400,
+                maxWidth: "500px",
                 flexGrow: 1,
               }}
             >
@@ -115,12 +185,31 @@ export default function Album() {
                 alt={MyCollection[activeStep].label}
                 style={{
                   height: 255,
-                  width: "100%",
-                  maxWidth: 400,
+                  width: "500px",
+                  maxWidth: "100%",
                   display: "block",
                   overflow: "hidden",
                 }}
+                onClick={handleShowDialog}
               />
+              {imgdialog && (
+                <Dialog
+                  style={{
+                    position: "fixed",
+                    display: "block",
+                  }}
+                  open
+                  onClick={handleShowDialog}
+                  classes={{ paper: classes.dialogStyle }}
+                >
+                  <img
+                    src={MyCollection[activeStep].imgPath}
+                    alt={MyCollection[activeStep].label}
+                    onClick={handleShowDialog}
+                    alt="no image"
+                  />
+                </Dialog>
+              )}
               <MobileStepper
                 variant="dots"
                 steps={maxSteps}
@@ -156,22 +245,23 @@ export default function Album() {
                 }
               />
             </div>
-            <Rating value={4} number={10} />
-            <div className={classes.heroButtons}>
-              <Grid container spacing={2} justifyContent="center">
-                <Grid item>
-                  <Bookproperty />
-                </Grid>
-                <Grid item>
-                  <Schedulevisit />
-                </Grid>
-              </Grid>
-            </div>
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <Typography component="h1" variant="h6" color="primary" paragraph>
-              Zolo House 1
-            </Typography>
+          <Grid item xs={12} sm={7}>
+            <div>
+              <Typography component="h1" variant="h6" color="primary" paragraph>
+                {data.propertyname}
+
+                <Typography
+                  style={{ display: "contents" }}
+                  variant="caption"
+                  display="block"
+                  gutterBottom
+                  color="secondary"
+                >
+                  &nbsp;&nbsp;by&nbsp;{data.owner}
+                </Typography>
+              </Typography>
+            </div>
             <Typography
               component="h1"
               variant="body1"
@@ -179,8 +269,7 @@ export default function Album() {
               paragraph
               align="justify"
             >
-              Description: 3 BHK Sharing Rooms for Men in Sion, Mumbai Fully
-              Furnished, with Parking
+              {data.description}
             </Typography>
             <Typography
               component="h1"
@@ -191,76 +280,79 @@ export default function Album() {
             >
               Amenities
             </Typography>
-            <Typography
-              component="h1"
-              variant="body1"
-              color="secondary"
-              paragraph
-              align="justify"
-            >
-              Address: Antop Avenue, sion main road, sion (east), Mumbai - 400
-              022.
-            </Typography>
-            <Typography
-              component="h1"
-              variant="body1"
-              color="secondary"
-              paragraph
-              align="justify"
-            >
-              Rent: ₹15,000/ month
-            </Typography>
-            <Typography
-              component="h1"
-              variant="body1"
-              color="secondary"
-              paragraph
-              align="justify"
-            >
-              Owner name: Mr. Agarwal
-            </Typography>
+            <Amenities data={data.amenities} />
+            <Grid container alignItems="center" spacing={2}>
+              <Grid item>
+                <HomeIcon />
+              </Grid>
+              <Grid item>
+                <Typography
+                  component="h1"
+                  variant="body1"
+                  color="secondary"
+                  align="justify"
+                  display="block"
+                  className={classes.iconText}
+                >
+                  {data.address}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid container alignItems="center" spacing={2}>
+              <Grid item>
+                <PaymentIcon />
+              </Grid>
+              <Grid item>
+                <Typography
+                  component="h1"
+                  variant="body1"
+                  color="secondary"
+                  paragraph
+                  align="justify"
+                  className={classes.iconText}
+                >
+                  ₹&nbsp;{data.rent}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid container alignItems="center" spacing={2}>
+              <Box textAlign="center" display="flex" flexDirection="column">
+                <div>
+                  <Box
+                    borderColor="transparent"
+                    textAlign="center"
+                    display="flex"
+                  >
+                    <Link
+                      key={"reviews"}
+                      {...{
+                        color: "blue",
+                      }}
+                      onClick={executeScroll}
+                    >
+                      <Rating
+                        name="read-only"
+                        value={data.ratings}
+                        number={data.numrating}
+                        readOnly
+                      />
+                    </Link>
+                  </Box>
+                </div>
+              </Box>
+              <Box textAlign="center" display="flex">
+                <div style={{ paddingLeft: "5px" }}>
+                  <Bookproperty />
+                </div>
+                <div style={{ paddingLeft: "5px" }}>
+                  <Schedulevisit />
+                </div>
+              </Box>
+            </Grid>
           </Grid>
         </Grid>
-      </Container>
-
-      <Container
-        className={classes.cardGrid}
-        maxWidth="md"
-        style={{ borderTop: `1px solid rgba(0, 0, 0, 0.12)` }}
-      >
-        <Typography
-          component="h1"
-          variant="h6"
-          color="textPrimary"
-          gutterBottom
-        >
-          Similar results
-        </Typography>
-        {/* End hero unit */}
-        <Grid container spacing={5}>
-          {cards.map((card) => (
-            <Grid item key={card} xs={12} sm={6} md={3}>
-              <Card className={classes.card}>
-                <CardMedia
-                  className={classes.cardMedia}
-                  image="images/Hostel Images/test.jpg"
-                  title="Image title"
-                />
-                <CardContent className={classes.cardContent}>
-                  <Typography gutterBottom variant="h6" component="h2">
-                    Zolo House 1
-                  </Typography>
-                  <Typography>Ratings: 4</Typography>
-                </CardContent>
-                <CardActions>
-                  <Button size="small" color="primary">
-                    More Details
-                  </Button>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
+        <Similarproperties title={"Similar properties"} />
+        <div ref={myRef}>I wanna be seen</div>
       </Container>
     </React.Fragment>
   );

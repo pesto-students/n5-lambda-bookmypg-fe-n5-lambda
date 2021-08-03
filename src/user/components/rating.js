@@ -6,7 +6,7 @@ import Box from "@material-ui/core/Box";
 export default function SimpleRating(props) {
   return (
     <div>
-      <Box component="fieldset" borderColor="transparent" textAlign="center">
+      <Box borderColor="transparent" textAlign="center" display="flex">
         <Rating name="read-only" value={props.value} readOnly />
         <Typography component="legend" color="secondary">
           {props.number} Reviews

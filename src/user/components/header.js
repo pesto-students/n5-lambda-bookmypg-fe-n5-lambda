@@ -8,6 +8,7 @@ import {
   Drawer,
   Link,
   MenuItem,
+  DialogContent,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import Dialog from "@material-ui/core/Dialog";
@@ -22,9 +23,15 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import NativeSelect from "@material-ui/core/NativeSelect";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import TwitterIcon from "@material-ui/icons/Twitter";
+import EmailIcon from "@material-ui/icons/Email";
 
 const headersData = [
   {
@@ -64,6 +71,11 @@ const useStyles = makeStyles(() => ({
   header: {
     backgroundColor: "#616161",
   },
+  responsivegrid: {
+    display: "flex",
+    height: "100%",
+    overflow: "hidden",
+  },
   logo: {
     color: "#FFFEFE",
     textAlign: "left",
@@ -87,6 +99,29 @@ const useStyles = makeStyles(() => ({
   },
   buttonmargin: {
     marginTop: 10,
+    textTransform: "none",
+  },
+  paper: { height: "70%", width: "65%" },
+
+  root: {
+    background:
+      "linear-gradient(to right top, #141314, #1a1a1a, #202020, #262627, #2d2d2d, #2f2f2f, #313132, #333334, #313132, #2f2f30, #2e2d2e, #2c2b2c);",
+  },
+  titleStyle: {
+    width: "70%",
+    textAlign: "center",
+    marginTop: "10px",
+  },
+  descriptionStyle: {
+    width: "70%",
+    textAlign: "center",
+  },
+  imageStyle: {
+    width: "40%",
+  },
+  boxStyle: {
+    display: "flex",
+    flexDirection: "column",
   },
 }));
 
@@ -337,37 +372,211 @@ export default function Header(props) {
           {mobileView ? displayMobile() : displayDesktop()}
         </AppBar>
       </header>
-      <div>
-        <Dialog
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="form-dialog-title"
-        >
-          <DialogTitle id="form-dialog-title">
-            Please login to your account
-          </DialogTitle>
-          <div className={button}>
-            <GoogleLoginButton
-              text="Sign In with Google"
-              style={{
-                width: "230px",
-                height: "35px",
-                justifyContent: "center",
-                textAlign: "center",
-              }}
-              onClick={handleLogin}
-            />
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={handleClose}
-              className={buttonmargin}
-            >
-              Cancel
-            </Button>
-          </div>
-        </Dialog>
-      </div>
+      {mobileView ? (
+        <div>
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="form-dialog-title"
+            fullWidth={true}
+            maxWidth="lg"
+            classes={{ paper: classes.paper }}
+          >
+            <DialogContent style={{ padding: "0px" }}>
+              <Grid className={classes.responsivegrid}>
+                <Grid
+                  item
+                  xs={12}
+                  style={{ "justify-content": "center", display: "flex" }}
+                >
+                  <Box
+                    p={2}
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    textAlign="center"
+                  >
+                    <div className={button}>
+                      <Typography
+                        component="h1"
+                        variant="h6"
+                        color="secondary.contrastText"
+                        gutterBottom
+                      >
+                        Login to your Account
+                      </Typography>
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={handleLogin}
+                        className={buttonmargin}
+                      >
+                        Signin with Google
+                      </Button>
+                      <Typography
+                        variant="body2"
+                        gutterBottom
+                        color="primary"
+                        style={{ marginTop: "20px" }}
+                      >
+                        By continuing, you agree to BookMyPG's
+                        <Link href="#" gutterBottom>
+                          &nbsp;Conditions&nbsp;
+                        </Link>
+                        <br />
+                        of Use and Privacy Notice
+                      </Typography>
+                      <div
+                        color="secondary"
+                        gutterBottom
+                        style={{
+                          marginTop: "40px",
+                          alignContent: "center",
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "center",
+                          textAlign: "center",
+                        }}
+                      >
+                        <div style={{ marginTop: "20px" }}></div>
+                        <Typography color="secondary.contrastText">
+                          Connect with us via
+                        </Typography>
+                        <div justifyContent="center">
+                          <FacebookIcon fontSize="large" />
+                          <TwitterIcon fontSize="large" />
+                          <EmailIcon fontSize="large" />
+                        </div>
+                      </div>
+                    </div>
+                  </Box>
+                </Grid>
+              </Grid>
+            </DialogContent>
+          </Dialog>
+        </div>
+      ) : (
+        <div>
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="form-dialog-title"
+            fullWidth={true}
+            maxWidth="lg"
+            classes={{ paper: classes.paper }}
+          >
+            <DialogContent style={{ padding: "0px" }}>
+              <Grid className={classes.responsivegrid}>
+                <Grid item xs={12} sm={6} className={classes.root}>
+                  <Box
+                    color="primary.contrastText"
+                    height="100%"
+                    p={2}
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    className={classes.boxStyle}
+                  >
+                    <img
+                      src="BookMyPG-Logo.jpg"
+                      alt="No image available"
+                      className={classes.imageStyle}
+                    />
+                    <Typography
+                      component="paragraph"
+                      variant="h6"
+                      color="secondary.contrastText"
+                      gutterBottom
+                      className={classes.titleStyle}
+                    >
+                      Get exclusive access <br /> to BookMyPG
+                    </Typography>
+                    <Typography
+                      component="paragraph"
+                      variant="body2"
+                      color="secondary.contrastText"
+                      gutterBottom
+                      className={classes.descriptionStyle}
+                    >
+                      Be the member of BookMyPG for the exclusive facilities
+                      like to book your property, monthly rent payments, share
+                      your reviews, register yor complaints and much more.
+                    </Typography>
+                  </Box>
+                </Grid>
+                <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  style={{ "justify-content": "center", display: "flex" }}
+                >
+                  <Box
+                    p={2}
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    textAlign="center"
+                  >
+                    <div className={button}>
+                      <Typography
+                        component="h1"
+                        variant="h6"
+                        color="secondary.contrastText"
+                        gutterBottom
+                      >
+                        Login to your Account
+                      </Typography>
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={handleLogin}
+                        className={buttonmargin}
+                      >
+                        Signin with Google
+                      </Button>
+                      <Typography
+                        variant="body2"
+                        gutterBottom
+                        color="primary"
+                        style={{ marginTop: "20px" }}
+                      >
+                        By continuing, you agree to BookMyPG's
+                        <Link href="#" gutterBottom>
+                          &nbsp;Conditions&nbsp;
+                        </Link>
+                        <br />
+                        of Use and Privacy Notice
+                      </Typography>
+                      <div
+                        color="secondary"
+                        gutterBottom
+                        style={{
+                          marginTop: "40px",
+                          alignContent: "center",
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "center",
+                          textAlign: "center",
+                        }}
+                      >
+                        <div style={{ marginTop: "20px" }}></div>
+                        <Typography color="secondary.contrastText">
+                          Connect with us via
+                        </Typography>
+                        <div justifyContent="center">
+                          <FacebookIcon fontSize="large" />
+                          <TwitterIcon fontSize="large" />
+                          <EmailIcon fontSize="large" />
+                        </div>
+                      </div>
+                    </div>
+                  </Box>
+                </Grid>
+              </Grid>
+            </DialogContent>
+          </Dialog>
+        </div>
+      )}
     </>
   );
 }
