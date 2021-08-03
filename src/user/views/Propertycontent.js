@@ -280,7 +280,7 @@ export default function Album() {
             >
               Amenities
             </Typography>
-            <Amenities data={data.amenities} />
+
             <Grid container alignItems="center" spacing={2}>
               <Grid item>
                 <HomeIcon />
@@ -352,7 +352,7 @@ export default function Album() {
           </Grid>
         </Grid>
         <Similarproperties title={"Similar properties"} />
-        <div ref={myRef}>I wanna be seen</div>
+        <div ref={myRef}></div>
       </Container>
     </React.Fragment>
   );
