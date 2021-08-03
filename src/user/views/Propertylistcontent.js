@@ -11,7 +11,7 @@ import { makeStyles, responsiveFontSizes } from "@material-ui/core/styles";
 import Rating from "../components/rating";
 import PropertiesSelector from "../components/PropertiesSelector";
 import propertiesActions from "../../redux-store/actions/propertiesActions";
-import getImages from "../../aws";
+//import getImages from "../../aws";
 
 const config = require("../../config.json");
 

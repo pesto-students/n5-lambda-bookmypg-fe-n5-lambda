@@ -18,6 +18,11 @@ import { GoogleLoginButton } from "react-social-login-buttons";
 import firebase from "firebase/app";
 import "firebase/auth";
 import { useAuth } from "../../contexts/AuthContext";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
+import Grid from "@material-ui/core/Grid";
+import Container from "@material-ui/core/Container";
 
 const headersData = [
   {
@@ -34,25 +39,35 @@ const headersData = [
   },
 ];
 
+const locationItems = [
+  {
+    id: "0",
+    name: "None",
+  },
+  {
+    id: "1",
+    name: "Delhi",
+  },
+  {
+    id: "2",
+    name: "Mumbai",
+  },
+  {
+    id: "3",
+    name: "Chennai",
+  },
+];
+
 const useStyles = makeStyles(() => ({
   header: {
     backgroundColor: "#616161",
-    paddingRight: "79px",
-
-    paddingLeft: "118px",
-    "@media (max-width: 900px)": {
-      paddingLeft: 0,
-    },
   },
   logo: {
-    fontFamily: "Work Sans, sans-serif",
-    fontWeight: 600,
     color: "#FFFEFE",
     textAlign: "left",
   },
   menuButton: {
-    fontFamily: "Open Sans, sans-serif",
-    fontWeight: 700,
+    textTransform: "none",
     size: "18px",
     marginLeft: "38px",
   },
@@ -73,6 +88,19 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+const useStylesselect = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(2),
+    minWidth: "80%",
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+  heroContent: {
+    width: "250px",
+  },
+}));
+
 export default function Header(props) {
   const {
     header,
@@ -90,8 +118,14 @@ export default function Header(props) {
     drawerOpen: false,
   });
 
-  // const [anchorEl, setAnchorEl] = React.useState(null);
-  // const [openDialogName, setOpenDialog] = React.useState(null);
+  const classes = useStyles();
+
+  const classesselect = useStylesselect();
+
+  const [location, setLocation] = React.useState("");
+  const handleChange = (event) => {
+    setLocation(event.target.value);
+  };
 
   const { mobileView, drawerOpen } = state;
 
@@ -136,16 +170,15 @@ export default function Header(props) {
     return (
       <Toolbar className={toolbar}>
         {femmecubatorLogo}
+        <div className={classesselect.heroContent}>{searchBar}</div>
         <div>
           {getMenuButtons()}
           {props.loggedUser == "" ? (
             <Button
-              style={{
+              key={"Login"}
+              {...{
                 color: "inherit",
-                fontFamily: "Open Sans, sans-serif",
-                fontWeight: 700,
-                size: "18px",
-                marginLeft: "38px",
+                className: menuButton,
               }}
               onClick={LoginPopup}
             >
@@ -153,12 +186,11 @@ export default function Header(props) {
             </Button>
           ) : (
             <Button
-              style={{
+              key={"Logout"}
+              {...{
                 color: "inherit",
-                fontFamily: "Open Sans, sans-serif",
-                fontWeight: 700,
-                size: "18px",
-                marginLeft: "38px",
+
+                className: menuButton,
               }}
               onClick={handleLogout}
             >
@@ -197,63 +229,41 @@ export default function Header(props) {
             onClose: handleDrawerClose,
           }}
         >
-          <div className={drawerContainer}>{getDrawerChoices()}</div>
-          {props.loggedUser == "" ? (
-            <Button
-              style={{
-                marginLeft: "-30px",
-                textTransform: "none",
-                fontFamily: "Open Sans, sans-serif",
-                fontWeight: 800,
-                size: "30px",
-              }}
-              onClick={LoginPopup}
-            >
-              Login
-            </Button>
-          ) : (
-            <Button
-              style={{
-                marginLeft: "-30px",
-                textTransform: "none",
-                fontFamily: "Open Sans, sans-serif",
-                fontWeight: 800,
-                size: "30px",
-              }}
-              onClick={handleLogout}
-            >
-              Logout
-            </Button>
-          )}
+          <div className={drawerContainer}>
+            {getDrawerChoices()}
+            {props.loggedUser == "" ? (
+              <Link
+                key={"Login"}
+                {...{
+                  color: "inherit",
+                  style: { textDecoration: "none" },
+                }}
+                onClick={LoginPopup}
+              >
+                <MenuItem>{"Login"}</MenuItem>
+              </Link>
+            ) : (
+              <Link
+                key={"Logout"}
+                {...{
+                  color: "inherit",
+                  style: { textDecoration: "none" },
+                }}
+                onClick={handleLogout}
+              >
+                <MenuItem>{"Logout"}</MenuItem>
+              </Link>
+            )}
+          </div>
         </Drawer>
 
         <div>{femmecubatorLogo}</div>
+        <div className={classesselect.heroContent}>{searchBar}</div>
       </Toolbar>
     );
   };
 
   const getDrawerChoices = () => {
-    /* const handleClick = (event) => {
-      setAnchorEl(event.currentTarget);
-    };
-
-  const handleClose = () => {
-      setAnchorEl(null);
-    };
-
-    const openTermsDialog = () => {
-      setOpenDialog("TERMS");
-      handleClose();
-    };
-
-    const openPrivacyDialog = () => {
-      setOpenDialog("PRIVACY");
-      handleClose();
-    };
-    const closeDialog = () => {
-      setOpenDialog(null);
-    }; */
-
     return headersData.map(({ label, href }) => {
       return (
         <Link
@@ -275,6 +285,29 @@ export default function Header(props) {
     <Typography variant="h6" component="h1" className={logo}>
       BookMyPG
     </Typography>
+  );
+
+  const searchBar = (
+    <Container maxWidth="sm" component="main">
+      <Grid container spacing={2} justifyContent="center">
+        <FormControl variant="outlined" className={classesselect.formControl}>
+          <InputLabel id="demo-simple-select-outlined-label">
+            Search Location
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-outlined-label"
+            id="demo-simple-select-outlined"
+            value={location}
+            onChange={handleChange}
+            label="Location"
+          >
+            {locationItems.map((location) => (
+              <MenuItem value={location.id}>{location.name}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Grid>
+    </Container>
   );
 
   const getMenuButtons = () => {

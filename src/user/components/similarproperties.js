@@ -7,6 +7,9 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
+import IconButton from "@material-ui/core/IconButton";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -39,6 +42,32 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
   },
+  iconbuttons: {
+    display: "flex",
+  },
+  icons: {
+    [theme.breakpoints.down("md")]: {
+      transform: "rotate(90deg)",
+    },
+    [theme.breakpoints.up("md")]: {
+      transform: "rotate(0deg)",
+    },
+    [theme.breakpoints.up("lg")]: {
+      transform: "rotate(0deg)",
+    },
+  },
+  responsivegrid: {
+    display: "flex",
+    [theme.breakpoints.down("md")]: {
+      flexDirection: "column",
+    },
+    [theme.breakpoints.up("md")]: {
+      flexDirection: "row",
+    },
+    [theme.breakpoints.up("lg")]: {
+      flexDirection: "row",
+    },
+  },
 }));
 
 const cards = [1, 2, 3, 4];
@@ -57,44 +86,58 @@ export default function Album() {
 
   return (
     <React.Fragment>
-      <Grid container spacing={5}>
-        {cards.map((card) => (
-          <Grid item key={card} xs={12} sm={6} md={3}>
-            <Card className={classes.card}>
-              <CardMedia
-                className={classes.cardMedia}
-                image="images/Hostel Images/test.jpg"
-                title="Image title"
-              />
-              <CardContent className={classes.cardContent}>
-                <Typography gutterBottom variant="h6" component="h2">
-                  Zolo House 1
-                </Typography>
-                <Typography>Ratings: 4</Typography>
-              </CardContent>
-              <CardActions>
-                <Button size="small" color="primary">
-                  More Details
-                </Button>
-              </CardActions>
-            </Card>
-          </Grid>
-        ))}
+      <Grid className={classes.responsivegrid}>
+        <IconButton
+          color="primary"
+          aria-label="upload picture"
+          disabled={activeStep === 0}
+          onClick={handleBack}
+          className={classes.icons}
+        >
+          <NavigateBeforeIcon />
+        </IconButton>
+        <Grid container spacing={5}>
+          {cards.map((card) => (
+            <Grid item key={card} xs={12} sm={6} md={3}>
+              <Card className={classes.card}>
+                <CardMedia
+                  className={classes.cardMedia}
+                  image="images/Hostel Images/test.jpg"
+                  title="Image title"
+                />
+                <CardContent className={classes.cardContent}>
+                  <Typography gutterBottom variant="h6" component="h2">
+                    Zolo House 1
+                  </Typography>
+                  <Typography>Ratings: 4</Typography>
+                </CardContent>
+                <CardActions>
+                  <Button
+                    size="small"
+                    color="primary"
+                    style={{
+                      textTransform: "none",
+                    }}
+                  >
+                    More Details
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+        <IconButton
+          color="primary"
+          aria-label="upload picture"
+          component="span"
+          component="span"
+          disabled={activeStep === 16}
+          onClick={handleNext}
+          className={classes.icons}
+        >
+          <NavigateNextIcon />
+        </IconButton>
       </Grid>
-      <Button
-        disabled={activeStep === 0}
-        onClick={handleBack}
-        className={classes.backButton}
-      >
-        Back
-      </Button>
-      <Button
-        disabled={activeStep === 16}
-        onClick={handleNext}
-        className={classes.backButton}
-      >
-        Next
-      </Button>
     </React.Fragment>
   );
 }
