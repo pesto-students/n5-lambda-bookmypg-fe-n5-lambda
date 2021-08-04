@@ -13,6 +13,7 @@ import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import IconButton from "@material-ui/core/IconButton";
 import Rating from "../components/rating";
 import Cardrating from "../components/cardratings";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -88,6 +89,7 @@ const data = {
 export default function Album(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+  const history = useHistory();
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 4);
@@ -95,6 +97,10 @@ export default function Album(props) {
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 4);
+  };
+
+  const handleChange = () => {
+    history.push("/propertydetails");
   };
 
   return (
@@ -143,6 +149,7 @@ export default function Album(props) {
                       style={{
                         textTransform: "none",
                       }}
+                      onClick={handleChange}
                     >
                       More Details
                     </Button>

@@ -8,7 +8,9 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, responsiveFontSizes } from "@material-ui/core/styles";
+import { useHistory } from "react-router-dom";
 import Rating from "../components/rating";
+
 import PropertiesSelector from "../components/PropertiesSelector";
 import propertiesActions from "../../redux-store/actions/propertiesActions";
 //import getImages from "../../aws";
@@ -80,6 +82,8 @@ const cards = [1, 2, 3, 4];
 export function PropertyListContent(props) {
   const classes = useStyles();
 
+  const history = useHistory();
+
   // useEffect(async () => {
   //   try {
   //     aws.config.setPromisesDependency();
@@ -106,6 +110,10 @@ export function PropertyListContent(props) {
   //     console.log("Error loading images from s3", ex);
   //   }
   // }, []);
+
+  const handleChange = () => {
+    history.push("/propertydetails");
+  };
 
   console.log("PROPERTIES", props.properties);
   return (
@@ -150,6 +158,7 @@ export function PropertyListContent(props) {
                           variant="contained"
                           color="secondary"
                           style={{ margin: "10px" }}
+                          onClick={handleChange}
                         >
                           More Details
                         </Button>
