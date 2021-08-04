@@ -64,7 +64,7 @@ export default function FormDialog() {
       <Button variant="contained" color="secondary" onClick={handleClickOpen}>
         Book Property
       </Button>
-      {/* <CheckoutWithStripe email={email} rent={rent} /> */}
+      {/* <CheckoutWithStripe rent={rent} /> */}
       <Dialog
         open={open}
         onClose={handleClose}
