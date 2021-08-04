@@ -146,6 +146,10 @@ const useStyles = makeStyles((theme) => ({
     margin: "0px",
   },
   dialogStyle: { maxWidth: "800px" },
+  amenitiesBox: {
+    paddingTop: "20px",
+    paddingTop: "20px",
+  },
 }));
 
 const cards = [1, 2, 3, 4];
@@ -262,25 +266,23 @@ export default function Album() {
                 </Typography>
               </Typography>
             </div>
-            <Typography
-              component="h1"
-              variant="body1"
-              color="secondary"
-              paragraph
-              align="justify"
-            >
-              {data.description}
-            </Typography>
-            <Typography
-              component="h1"
-              variant="body1"
-              color="secondary"
-              paragraph
-              align="justify"
-            >
-              Amenities
-            </Typography>
-
+            <Grid container alignItems="center" spacing={2}>
+              <Grid item>
+                <DescriptionIcon />
+              </Grid>
+              <Grid item>
+                <Typography
+                  component="h1"
+                  variant="body1"
+                  color="secondary"
+                  align="justify"
+                  display="block"
+                  className={classes.iconText}
+                >
+                  {data.description}
+                </Typography>
+              </Grid>
+            </Grid>
             <Grid container alignItems="center" spacing={2}>
               <Grid item>
                 <HomeIcon />
@@ -315,6 +317,27 @@ export default function Album() {
                 </Typography>
               </Grid>
             </Grid>
+            <Grid
+              container
+              alignItems="center"
+              spacing={2}
+              class={classes.amenitiesBox}
+            >
+              <Grid item></Grid>
+              <Grid item>
+                <Typography
+                  component="h1"
+                  variant="body1"
+                  color="secondary"
+                  paragraph
+                  align="justify"
+                >
+                  Amenities
+                </Typography>
+              </Grid>
+              <Amenities />
+            </Grid>
+
             <Grid container alignItems="center" spacing={2}>
               <Box textAlign="center" display="flex" flexDirection="column">
                 <div>

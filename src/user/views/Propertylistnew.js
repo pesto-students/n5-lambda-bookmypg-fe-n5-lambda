@@ -17,12 +17,18 @@ import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import Select from "@material-ui/core/Select";
+import Button from "@material-ui/core/Button";
+import Menu from "@material-ui/core/Menu";
+import SortIcon from "@material-ui/icons/Sort";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-
     marginTop: "80px",
   },
   drawer: {
@@ -31,8 +37,12 @@ const useStyles = makeStyles((theme) => ({
       flexShrink: 0,
     },
   },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
   formControl: {
     margin: theme.spacing(1),
+    width: "150px",
   },
   appBar: {
     [theme.breakpoints.up("sm")]: {
@@ -42,6 +52,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "60px",
     backgroundColor: "white",
     color: "black",
+  },
+  searchsortButtons: {
+    justifyContent: "flex-end",
+    display: "flex",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -75,6 +89,15 @@ function ResponsiveDrawer(props) {
     jason: false,
     antoine: false,
   });
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
@@ -219,7 +242,28 @@ function ResponsiveDrawer(props) {
             >
               <MenuIcon />
             </IconButton>
-            <TextField id="standard-basic" label="Search" />
+            <div className={classes.searchsortButtons}>
+              <TextField id="standard-basic" label="Search by name" />
+              <div>
+                <IconButton
+                  aria-controls="simple-menu"
+                  aria-haspopup="true"
+                  onClick={handleClick}
+                >
+                  <SortIcon />
+                </IconButton>
+                <Menu
+                  id="simple-menu"
+                  anchorEl={anchorEl}
+                  keepMounted
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
+                >
+                  <MenuItem onClick={handleClose}>Price low to high</MenuItem>
+                  <MenuItem onClick={handleClose}>Price high to low</MenuItem>
+                </Menu>
+              </div>
+            </div>
           </Toolbar>
         </AppBar>
         <nav className={classes.drawer} aria-label="mailbox folders">

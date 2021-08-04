@@ -153,8 +153,8 @@ export default function Header(props) {
   const classes = useStyles();
 
   const classesselect = useStylesselect();
-
   const [location, setLocation] = React.useState("");
+
   const handleChange = (event) => {
     setLocation(event.target.value);
   };
@@ -322,21 +322,28 @@ export default function Header(props) {
   const searchBar = (
     <Container maxWidth="sm" component="main">
       <Grid container spacing={2} justifyContent="center">
-        <FormControl className={classes.formControl}>
-          <NativeSelect
-            className={classes.selectEmpty}
+        <FormControl
+          variant="outlined"
+          className={classes.formControl}
+          style={{ width: "400px" }}
+        >
+          <InputLabel id="demo-simple-select-outlined-label">
+            Location
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-outlined-label"
+            id="demo-simple-select-outlined"
             value={location}
-            name="Location"
             onChange={handleChange}
-            inputProps={{ "aria-label": "location" }}
+            label="Location"
           >
-            <option value="" disabled>
-              Search Location
-            </option>
-            {locationItems.map((location) => (
-              <option value={location.id}>{location.name}</option>
-            ))}
-          </NativeSelect>
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={10}>Delhi</MenuItem>
+            <MenuItem value={20}>Mumbai</MenuItem>
+            <MenuItem value={30}>Chennai</MenuItem>
+          </Select>
         </FormControl>
       </Grid>
     </Container>

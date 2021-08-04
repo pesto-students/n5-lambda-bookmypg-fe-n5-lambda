@@ -27,18 +27,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "100px",
   },
   heroButtons: {
-    marginTop: theme.spacing(4),
-    "&:hover": {
-      color: "#40a9ff",
-      opacity: 1,
-    },
-    "&$selected": {
-      color: "#1890ff",
-      fontWeight: theme.typography.fontWeightMedium,
-    },
-    "&:focus": {
-      color: "#40a9ff",
-    },
+    paddingTop: "70px",
   },
   cardGrid: {
     paddingTop: theme.spacing(10),
@@ -46,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   card: {
-    height: "500px",
+    height: "350px",
     display: "flex",
     flexDirection: "column",
   },
@@ -63,18 +52,20 @@ const useStyles = makeStyles((theme) => ({
 
   root: {
     display: "flex",
-    padding: "20px",
+    padding: "10px",
   },
   details: {
     display: "flex",
     flexDirection: "column",
+    width: "50%",
   },
   content: {
     flex: "1 0 auto",
+    paddingLeft: "24px",
   },
   cover: {
-    width: 151,
-    height: 150,
+    width: 351,
+    height: 210,
   },
   controls: {
     display: "flex",
@@ -122,18 +113,19 @@ export function PropertyListContent(props) {
       <Grid container spacing={2}>
         {cards.map((card) => (
           <Grid item xs={12} spacing={1}>
-            <Card className={classes.root}>
+            <Card className={classes.root} style={{ height: "230px" }}>
               <Box>
                 <CardMedia
                   className={classes.cover}
                   image="images/Hostel Images/test.jpg"
                   title="Image title"
                 />
-
-                <Rating value={4} number={10} />
               </Box>
               <div className={classes.details}>
-                <CardContent className={classes.content}>
+                <CardContent
+                  className={classes.content}
+                  style={{ padding: 0, paddingLeft: "20px" }}
+                >
                   <Typography component="h5" variant="h5">
                     Zolo House 1
                   </Typography>
@@ -141,30 +133,33 @@ export function PropertyListContent(props) {
                     1 Private room in Studio for rent in Sion, Mumbai
                   </Typography>
                   <Typography variant="subtitle1" color="textSecondary">
-                    ₹15,000/month
+                    ₹15,000
                   </Typography>
+
+                  <div className={classes.heroButtons}>
+                    <Grid container spacing={2}>
+                      <Box>
+                        <Button
+                          variant="contained"
+                          color="secondary"
+                          style={{ margin: "10px" }}
+                        >
+                          Schedule Visit
+                        </Button>
+                        <Button
+                          variant="contained"
+                          color="secondary"
+                          style={{ margin: "10px" }}
+                        >
+                          More Details
+                        </Button>
+                      </Box>
+                    </Grid>
+                  </div>
                 </CardContent>
               </div>
-              <div className={classes.heroButtons}>
-                <Grid container spacing={2} justifyContent="center">
-                  <Box>
-                    <Button
-                      variant="contained"
-                      color="secondary"
-                      style={{ margin: "10px" }}
-                    >
-                      Schedule Visit
-                    </Button>
-                    <Button
-                      variant="contained"
-                      color="secondary"
-                      style={{ margin: "10px" }}
-                    >
-                      More Details
-                    </Button>
-                  </Box>
-                </Grid>
-              </div>
+
+              <Rating value={4} number={10} />
             </Card>
           </Grid>
         ))}
