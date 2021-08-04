@@ -19,6 +19,8 @@ import {
 import DateFnsUtils from "@date-io/date-fns";
 import Grid from "@material-ui/core/Grid";
 
+import CheckoutWithStripe from "../views/CheckoutWithStripe";
+
 const useStyles = makeStyles((theme) => ({
   button: {
     justifyContent: "center",
@@ -30,6 +32,9 @@ export default function FormDialog() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
+  const [email, setEmail] = React.useState("");
+  const [rent, setRent] = React.useState(15000.0);
+  const [stripeOpen, setStripeOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -48,11 +53,18 @@ export default function FormDialog() {
     setSelectedDate(date);
   };
 
+  const handlePayment = () => {
+    if (value === "Pay Online") {
+      setStripeOpen(true);
+    }
+  };
+
   return (
     <div>
       <Button variant="contained" color="secondary" onClick={handleClickOpen}>
         Book Property
       </Button>
+      {/* <CheckoutWithStripe email={email} rent={rent} /> */}
       <Dialog
         open={open}
         onClose={handleClose}
@@ -66,6 +78,13 @@ export default function FormDialog() {
           </DialogContentText>
           <FormControl component="fieldset">
             <FormLabel component="legend"></FormLabel>
+            <TextField
+              id="standard-disabled"
+              label="Email"
+              value={email}
+              fullwidth
+              onChange={(e) => setEmail(e.target.value)}
+            />
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <Grid container>
                 <KeyboardDatePicker
@@ -89,8 +108,9 @@ export default function FormDialog() {
               disabled
               id="standard-disabled"
               label="Rent"
-              defaultValue="INR 15000"
+              value={rent}
               fullwidth
+              onChange={(e) => setRent(e.target.value)}
             />
             <RadioGroup
               aria-label="gender"
@@ -112,11 +132,12 @@ export default function FormDialog() {
             </RadioGroup>
           </FormControl>
         </DialogContent>
+
         <DialogActions className={classes.button}>
-          <Button variant="contained" color="secondary">
+          <Button variant="contained" color="secondary" onClick={handlePayment}>
             Submit
           </Button>
-          <Button variant="contained" color="secondary">
+          <Button variant="contained" color="secondary" onClick={handleClose}>
             Cancel
           </Button>
         </DialogActions>
