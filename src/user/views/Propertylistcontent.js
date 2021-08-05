@@ -169,7 +169,9 @@ export function PropertyListContent(props) {
                               color="secondary"
                               style={{ margin: "10px", textTransform: "none" }}
                               onClick={() =>
-                                history.push(`/propertydetails/${property._id}`)
+                                history.push(
+                                  `/property-details/${property._id}`
+                                )
                               }
                             >
                               More Details
@@ -247,7 +249,9 @@ export function PropertyListContent(props) {
                               color="secondary"
                               style={{ margin: "10px", textTransform: "none" }}
                               onClick={() =>
-                                history.push(`/propertydetails/${property._id}`)
+                                history.push(
+                                  `/property-details/${property._id}`
+                                )
                               }
                             >
                               More Details

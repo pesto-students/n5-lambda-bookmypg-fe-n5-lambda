@@ -79,7 +79,7 @@ export default function Album() {
   };
 
   const handleMoreDetails = () => {
-    history.push("/propertydetails");
+    history.push("/property-details");
   };
 
   return (

@@ -168,7 +168,7 @@ export default function Album(props) {
                       color="ContainedSecondary"
                       style={{ textTransform: "none" }}
                       onClick={() =>
-                        history.push(`/propertydetails/${property._id}`)
+                        history.push(`/property-details/${property._id}`)
                       }
                     >
                       More Details

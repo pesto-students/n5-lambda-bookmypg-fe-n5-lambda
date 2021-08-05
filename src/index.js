@@ -9,8 +9,8 @@ import Propertylist from "./user/views/Propertylist";
 import Login from "./user/views/login";
 import { Provider } from "react-redux";
 import { store } from "./redux-store/Store";
-import Ownerhomepage from "./owner/pages/Homepage";
-import Ownertenants from "./owner/pages/Tenants";
+import OwnerHomepage from "./owner/pages/Homepage";
+import OwnerTenants from "./owner/pages/Tenants";
 
 const hist = createBrowserHistory();
 
@@ -18,10 +18,10 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter history={hist}>
       <Switch>
-        <Route exact path="/propertydetails/:id" component={Propertydetails} />
-        <Route path="/propertylist" component={Propertylist} />
-        <Route path="/ownerhomepage" component={Ownerhomepage} />
-        <Route path="/Ownertenants" component={Ownertenants} />
+        <Route exact path="/property-details/:id" component={Propertydetails} />
+        <Route path="/property-list" component={Propertylist} />
+        <Route path="/owner-home" component={OwnerHomepage} />
+        <Route path="/tenants-list" component={OwnerTenants} />
         <Route path="/" component={Homepage} />
       </Switch>
     </BrowserRouter>
