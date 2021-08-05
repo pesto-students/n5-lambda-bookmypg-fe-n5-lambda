@@ -168,6 +168,7 @@ export default function Header(props) {
 
   const handleChange = (event) => {
     setLocation(event.target.value);
+    history.push("/propertylist");
   };
 
   const { mobileView, drawerOpen } = state;
@@ -338,7 +339,10 @@ export default function Header(props) {
           className={classes.formControl}
           style={{ width: "400px" }}
         >
-          <InputLabel id="demo-simple-select-outlined-label">
+          <InputLabel
+            id="demo-simple-select-outlined-label"
+            style={{ color: "inherit" }}
+          >
             Location
           </InputLabel>
           <Select
@@ -347,6 +351,7 @@ export default function Header(props) {
             value={location}
             onChange={handleChange}
             label="Location"
+            style={{ color: "inherit" }}
           >
             <MenuItem value="">
               <em>None</em>

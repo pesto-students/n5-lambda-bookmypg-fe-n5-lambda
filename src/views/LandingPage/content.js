@@ -21,6 +21,7 @@ import Select from "@material-ui/core/Select";
 import ImageList from "@material-ui/core/ImageList";
 import ImageListItem from "@material-ui/core/ImageListItem";
 import ChevronRight from "@material-ui/icons/ChevronRight";
+import { useHistory } from "react-router-dom";
 
 const useStylesselect = makeStyles((theme) => ({
   formControl: {
@@ -71,11 +72,16 @@ export default function Album() {
   const classes = useStyles();
 
   const classesselect = useStylesselect();
-
+  const history = useHistory();
   const [location, setLocation] = React.useState("");
   const handleChange = (event) => {
     setLocation(event.target.value);
   };
+
+  const handleMoreDetails = () => {
+    history.push("/propertydetails");
+  };
+
   return (
     <React.Fragment>
       <Container maxWidth="sm" component="main" className={classes.heroContent}>
@@ -213,7 +219,11 @@ export default function Album() {
                   <Typography>Ratings: 4</Typography>
                 </CardContent>
                 <CardActions>
-                  <Button size="small" color="primary">
+                  <Button
+                    size="small"
+                    color="primary"
+                    onClick={handleMoreDetails}
+                  >
                     More Details
                   </Button>
                 </CardActions>

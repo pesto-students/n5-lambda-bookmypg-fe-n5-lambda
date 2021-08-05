@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
-    marginTop: "60px",
+    marginTop: "65px",
     backgroundColor: "white",
     color: "black",
   },
@@ -71,9 +71,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "60px",
   },
   content: {
-    flexGrow: 1,
-    flexDirection: "column",
-    padding: theme.spacing(3),
+    [theme.breakpoints.up("sm")]: {
+      marginLeft: drawerWidth,
+      width: `calc(100% - ${drawerWidth}px)`,
+    },
+    marginTop: "40px",
   },
   searchbox: {
     height: "25px",
@@ -155,7 +157,7 @@ function ResponsiveDrawer(props) {
         <CssBaseline />
 
         <AppBar className={classes.appBar}>
-          <Toolbar>
+          {/* <Toolbar>
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -165,7 +167,7 @@ function ResponsiveDrawer(props) {
             >
               <MenuIcon />
             </IconButton>
-          </Toolbar>
+          </Toolbar>*/}
         </AppBar>
         <nav className={classes.drawer} aria-label="mailbox folders">
           {/* The implementation can be swapped with js to avoid SEO duplication of links. */}

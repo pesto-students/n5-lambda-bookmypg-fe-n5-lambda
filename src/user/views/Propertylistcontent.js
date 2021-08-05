@@ -8,7 +8,9 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, responsiveFontSizes } from "@material-ui/core/styles";
+import { useHistory } from "react-router-dom";
 import Rating from "../components/rating";
+
 import PropertiesSelector from "../components/PropertiesSelector";
 import propertiesActions from "../../redux-store/actions/propertiesActions";
 import Pagination from "../components/pagination";
@@ -182,7 +184,6 @@ export function PropertyListContent(props) {
               </Card>
             </Grid>
           ))}
-
           <Grid item xs={12} spacing={1}>
             <Pagination />
           </Grid>
@@ -190,6 +191,41 @@ export function PropertyListContent(props) {
       </React.Fragment>
     );
   };
+  const history = useHistory();
+
+  // useEffect(async () => {
+  //   try {
+  //     aws.config.setPromisesDependency();
+  //     aws.config.update({
+  //       accessKeyId: config.accessKeyId,
+  //       secretAccessKey: config.secretAccessKey,
+  //       region: config.region,
+  //     });
+
+  //     const s3 = new aws.S3();
+  //     const file = await s3
+  //       .listObjects({
+  //         Bucket: "bookmypg-photos",
+  //         // Key: "property-photos/610524e745e8de3ac8d1aa5b/House-pic1.jpg",
+  //       })
+  //       .promise();
+  //     const response = {
+  //       data: file.Body,
+  //       mimetype: file.ContentType,
+  //     };
+  //     console.log("response s3", response);
+  //     return response;
+  //   } catch (ex) {
+  //     console.log("Error loading images from s3", ex);
+  //   }
+  // }, []);
+
+  const handleChange = () => {
+    history.push("/propertydetails");
+  };
+
+  console.log("PROPERTIES", props.properties);
+
   const displayMobile = () => {
     return (
       <React.Fragment>
@@ -280,7 +316,6 @@ export function PropertyListContent(props) {
     </>
   );
 }
-
 const mapStateToProps = (state) => {
   const propertiesSelector = PropertiesSelector(state.properties);
 
