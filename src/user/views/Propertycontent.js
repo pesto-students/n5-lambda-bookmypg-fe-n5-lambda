@@ -28,31 +28,9 @@ import Cardrating from "../components/cardratings";
 import Link from "@material-ui/core/Link";
 import Amenities from "../components/amenities";
 import Reviews from "../components/displayreviews";
+import { S3_BUCKET_URL } from "../../constant";
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
-
-const MyCollection = [
-  {
-    label: "First Picture",
-    imgPath: "images/Hostel Images/test.jpg",
-  },
-  {
-    label: "Second Picture",
-    imgPath: "images/Hostel Images/test2.jpg",
-  },
-  {
-    label: "Third Picture",
-    imgPath: "images/Hostel Images/test3.jpg",
-  },
-  {
-    label: "Fourth Picture",
-    imgPath: "images/Hostel Images/test5.jpg",
-  },
-  {
-    label: "Fifth Picture",
-    imgPath: "images/Hostel Images/test6.jpg",
-  },
-];
 
 const reviews = [
   {
@@ -155,7 +133,7 @@ const useStyles = makeStyles((theme) => ({
 
 const cards = [1, 2, 3, 4];
 
-export default function Album() {
+export default function Album(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -171,23 +149,22 @@ export default function Album() {
 
   const handleShowDialog = () => {
     openImagedialog(!imgdialog);
-    console.log("cliked");
   };
+
+  const property = props.property;
+
+  const MyCollection = property.photos.map((photo) => {
+    return { label: photo, imgPath: `${S3_BUCKET_URL}/${photo}` };
+  });
+
   const maxSteps = MyCollection.length;
   return (
     <React.Fragment>
       <Container className={classes.cardGrid} maxWidth="md">
-        <Grid container spacing={4}>
-          <Grid item xs={12} sm={5}>
-            <div
-              style={{
-                maxWidth: "500px",
-                flexGrow: 1,
-              }}
-            >
-              <img
-                src={MyCollection[activeStep].imgPath}
-                alt={MyCollection[activeStep].label}
+        {property && (
+          <Grid container spacing={4}>
+            <Grid item xs={12} sm={5}>
+              <div
                 style={{
                   height: 355,
                   width: "700px",
@@ -195,189 +172,203 @@ export default function Album() {
                   display: "block",
                   overflow: "hidden",
                 }}
-                onClick={handleShowDialog}
-              />
-              {imgdialog && (
-                <Dialog
+              >
+                <img
+                  src={MyCollection[activeStep].imgPath}
+                  alt={MyCollection[activeStep].label}
                   style={{
-                    position: "fixed",
+                    height: 255,
+                    width: "500px",
+                    maxWidth: "100%",
                     display: "block",
+                    overflow: "hidden",
+                    cursor: "pointer",
                   }}
-                  open
                   onClick={handleShowDialog}
-                  classes={{ paper: classes.dialogStyle }}
-                >
-                  <img
-                    src={MyCollection[activeStep].imgPath}
-                    alt={MyCollection[activeStep].label}
+                />
+                {imgdialog && (
+                  <Dialog
+                    style={{
+                      position: "fixed",
+                      display: "block",
+                    }}
+                    open
                     onClick={handleShowDialog}
-                    alt="no image"
-                  />
-                </Dialog>
-              )}
-              <MobileStepper
-                variant="dots"
-                steps={maxSteps}
-                position="static"
-                activeStep={activeStep}
-                nextButton={
-                  <Button
-                    size="small"
-                    onClick={handleNext}
-                    disabled={activeStep === maxSteps - 1}
+                    classes={{ paper: classes.dialogStyle }}
                   >
-                    Next
-                    {theme.direction === "rtl" ? (
-                      <KeyboardArrowLeft />
-                    ) : (
-                      <KeyboardArrowRight />
-                    )}
-                  </Button>
-                }
-                backButton={
-                  <Button
-                    size="small"
-                    onClick={handleBack}
-                    disabled={activeStep === 0}
-                  >
-                    {theme.direction === "rtl" ? (
-                      <KeyboardArrowRight />
-                    ) : (
-                      <KeyboardArrowLeft />
-                    )}
-                    Back
-                  </Button>
-                }
-              />
-            </div>
-          </Grid>
-          <Grid item xs={12} sm={7}>
-            <div>
-              <Typography component="h1" variant="h6" color="primary" paragraph>
-                {data.propertyname}
-
-                <Typography
-                  style={{ display: "contents" }}
-                  variant="caption"
-                  display="block"
-                  gutterBottom
-                  color="secondary"
-                >
-                  &nbsp;&nbsp;by&nbsp;{data.owner}
-                </Typography>
-              </Typography>
-            </div>
-            <Grid container alignItems="center" spacing={2}>
-              <Grid item>
-                <DescriptionIcon />
-              </Grid>
-              <Grid item>
-                <Typography
-                  component="h1"
-                  variant="body1"
-                  color="secondary"
-                  align="justify"
-                  display="block"
-                  className={classes.iconText}
-                >
-                  {data.description}
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid container alignItems="center" spacing={2}>
-              <Grid item>
-                <HomeIcon />
-              </Grid>
-              <Grid item>
-                <Typography
-                  component="h1"
-                  variant="body1"
-                  color="secondary"
-                  align="justify"
-                  display="block"
-                  className={classes.iconText}
-                >
-                  {data.address}
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid container alignItems="center" spacing={2}>
-              <Grid item>
-                <PaymentIcon />
-              </Grid>
-              <Grid item>
-                <Typography
-                  component="h1"
-                  variant="body1"
-                  color="secondary"
-                  paragraph
-                  align="justify"
-                  className={classes.iconText}
-                >
-                  ₹&nbsp;{data.rent}
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid
-              container
-              alignItems="center"
-              spacing={2}
-              class={classes.amenitiesBox}
-            >
-              <Grid item>
-                <Typography
-                  component="h1"
-                  variant="body1"
-                  color="secondary"
-                  paragraph
-                  align="justify"
-                >
-                  Amenities
-                </Typography>
-              </Grid>
-              <Amenities />
-            </Grid>
-
-            <Grid
-              container
-              alignItems="center"
-              spacing={2}
-              style={{ paddingTop: "20px", justifyContent: "space-around" }}
-            >
-              <Grid item xl={12} sm={6} md={3}>
-                <div>
-                  <Box
-                    borderColor="transparent"
-                    textAlign="center"
-                    display="flex"
-                  >
-                    <Link
-                      key={"reviews"}
-                      {...{
-                        color: "blue",
-                      }}
-                      onClick={executeScroll}
+                    <img
+                      src={MyCollection[activeStep].imgPath}
+                      alt={MyCollection[activeStep].label}
+                      onClick={handleShowDialog}
+                      alt="no image"
+                    />
+                  </Dialog>
+                )}
+                <MobileStepper
+                  variant="dots"
+                  steps={maxSteps}
+                  position="static"
+                  activeStep={activeStep}
+                  nextButton={
+                    <Button
+                      size="small"
+                      onClick={handleNext}
+                      disabled={activeStep === maxSteps - 1}
                     >
-                      <Rating
-                        name="read-only"
-                        value={data.ratings}
-                        number={data.numrating}
-                        readOnly
-                      />
-                    </Link>
-                  </Box>
-                </div>
+                      Next
+                      {theme.direction === "rtl" ? (
+                        <KeyboardArrowLeft />
+                      ) : (
+                        <KeyboardArrowRight />
+                      )}
+                    </Button>
+                  }
+                  backButton={
+                    <Button
+                      size="small"
+                      onClick={handleBack}
+                      disabled={activeStep === 0}
+                    >
+                      {theme.direction === "rtl" ? (
+                        <KeyboardArrowRight />
+                      ) : (
+                        <KeyboardArrowLeft />
+                      )}
+                      Back
+                    </Button>
+                  }
+                />
+              </div>
+            </Grid>
+            <Grid item xs={12} sm={7}>
+              <div>
+                <Typography
+                  component="h1"
+                  variant="h6"
+                  color="primary"
+                  paragraph
+                >
+                  {property.name}
+
+                  <Typography
+                    style={{ display: "contents" }}
+                    variant="caption"
+                    display="block"
+                    gutterBottom
+                    color="secondary"
+                  >
+                    &nbsp;&nbsp;by&nbsp;
+                    {property.owner.firstName + " " + property.owner.lastName}
+                  </Typography>
+                </Typography>
+              </div>
+              <Grid container alignItems="center" spacing={2}>
+                <Grid item>
+                  <DescriptionIcon />
+                </Grid>
+                <Grid item>
+                  <Typography
+                    component="h1"
+                    variant="body1"
+                    color="secondary"
+                    align="justify"
+                    display="block"
+                    className={classes.iconText}
+                  >
+                    {property.description}
+                  </Typography>
+                </Grid>
+              </Grid>
+              <Grid container alignItems="center" spacing={2}>
+                <Grid item>
+                  <HomeIcon />
+                </Grid>
+                <Grid item>
+                  <Typography
+                    component="h1"
+                    variant="body1"
+                    color="secondary"
+                    align="justify"
+                    display="block"
+                    className={classes.iconText}
+                  >
+                    {property.address}
+                  </Typography>
+                </Grid>
+              </Grid>
+              <Grid container alignItems="center" spacing={2}>
+                <Grid item>
+                  <PaymentIcon />
+                </Grid>
+                <Grid item>
+                  <Typography
+                    component="h1"
+                    variant="body1"
+                    color="secondary"
+                    paragraph
+                    align="justify"
+                    className={classes.iconText}
+                  >
+                    ₹&nbsp;{property.rent}
+                  </Typography>
+                </Grid>
+              </Grid>
+              <Grid
+                container
+                alignItems="center"
+                spacing={2}
+                class={classes.amenitiesBox}
+              >
+                <Grid item></Grid>
+                <Grid item>
+                  <Typography
+                    component="h1"
+                    variant="body1"
+                    color="secondary"
+                    paragraph
+                    align="justify"
+                  >
+                    Amenities
+                  </Typography>
+                </Grid>
+                <Amenities amenities={property.amenities} />
               </Grid>
 
-              <Grid item xl={12} sm={6} md={3}>
-                <Bookproperty />
-              </Grid>
-              <Grid item xl={12} sm={6} md={3}>
-                <Schedulevisit />
+              <Grid container alignItems="center" spacing={2}>
+                <Grid item xl={12} sm={6} md={3}>
+                  <div>
+                    <Box
+                      borderColor="transparent"
+                      textAlign="center"
+                      display="flex"
+                    >
+                      <Link
+                        key={"reviews"}
+                        {...{
+                          color: "blue",
+                        }}
+                        onClick={executeScroll}
+                      >
+                        <Rating
+                          name="read-only"
+                          value={data.ratings}
+                          number={property.numreviews || 0}
+                          readOnly
+                        />
+                      </Link>
+                    </Box>
+                  </div>
+                </Grid>
+                <Grid item xl={12} sm={6} md={3}>
+                  <Bookproperty />
+                </Grid>
+                <Grid item xl={12} sm={6} md={3}>
+                  <Schedulevisit />
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
-        </Grid>
+        )}
         <Grid
           item
           xs={12}
@@ -386,7 +377,10 @@ export default function Album() {
             borderTop: "1px solid rgba(0, 0, 0, 0.12)",
           }}
         >
-          <Similarproperties title={"Similar properties"} />
+          <Similarproperties
+            title={"Similar properties"}
+            properties={props.properties}
+          />
         </Grid>
         <div ref={myRef}></div>
         <Grid

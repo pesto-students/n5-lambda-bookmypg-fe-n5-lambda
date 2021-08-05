@@ -4,7 +4,7 @@ import StripeCheckout from "react-stripe-checkout";
 export default function CheckoutWithStripe(props) {
   const onToken = async (token) => {
     token.amount = props.rent;
-    await fetch("http://localhost:4000/api/stripe/", {
+    await fetch("http://localhost:4000/api/payment/", {
       method: "POST",
       body: JSON.stringify(token),
       headers: {

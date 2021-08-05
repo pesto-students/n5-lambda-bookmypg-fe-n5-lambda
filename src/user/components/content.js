@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Album(props) {
+export function Album(props) {
   const classes = useStyles();
 
   const classesselect = useStylesselect();
@@ -76,14 +76,16 @@ export default function Album(props) {
   const [location, setLocation] = React.useState("");
   const history = useHistory();
 
-  /*useEffect(() => {
-    props.getProperties();
-  }, []);*/
+  useEffect(() => {
+    props.resetProperties();
+  }, []);
 
-  const handleChange = (event) => {
-    setLocation(event.target.value);
-    history.push("/propertylist");
-  };
+  useEffect(() => {
+    props.getProperties();
+  }, []);
+
+  console.log("PROPERTIES", props.properties);
+
   return (
     <React.Fragment>
       <Container className={classes.cardGrid} maxWidth="md">
@@ -162,25 +164,28 @@ export default function Album(props) {
         maxWidth="md"
         style={{ borderTop: "1px solid rgba(0, 0, 0, 0.12)" }}
       >
-        <Similarproperties title={"Popular properties"} />
+        <Similarproperties
+          title={"Popular properties"}
+          properties={props.properties}
+        />
       </Container>
     </React.Fragment>
   );
 }
 
-/*const mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   const propertiesSelector = PropertiesSelector(state.properties);
 
   return {
-    properties: propertiesSelector.getPropertiesData(),
+    properties: propertiesSelector.getPropertiesData().data,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getProperties: () => dispatch(propertiesActions.getProperties()),
+    resetProperties: () => dispatch(propertiesActions.resetState()),
   };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Album);
-*/

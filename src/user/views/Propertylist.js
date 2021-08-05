@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import Propertylistcontent from "./Propertylistnew";
+import Propertylistcontent from "./PropertyFilters";
 import Theme from "../theme/theme";
 
 const useStyles = makeStyles({

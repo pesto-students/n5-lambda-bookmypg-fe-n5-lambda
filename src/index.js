@@ -18,7 +18,7 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter history={hist}>
       <Switch>
-        <Route path="/propertydetails" component={Propertydetails} />
+        <Route exact path="/propertydetails/:id" component={Propertydetails} />
         <Route path="/propertylist" component={Propertylist} />
         <Route path="/ownerhomepage" component={Ownerhomepage} />
         <Route path="/Ownertenants" component={Ownertenants} />

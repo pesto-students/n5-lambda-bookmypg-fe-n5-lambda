@@ -3,6 +3,7 @@ import {
   GET_PROPERTIES_REQUEST_MADE,
   GET_PROPERTIES_REQUEST_RESOLVED,
   GET_PROPERTIES_REQUEST_FAILED,
+  RESET_PROPERTIES_STATE,
 } from "../../constant";
 
 export default {
@@ -13,4 +14,6 @@ export default {
 
   getPropetiesFailed: (payload) =>
     action(GET_PROPERTIES_REQUEST_FAILED, payload),
+
+  resetState: (payload) => action(RESET_PROPERTIES_STATE, payload),
 };

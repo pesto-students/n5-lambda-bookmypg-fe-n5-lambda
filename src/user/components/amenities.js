@@ -16,6 +16,8 @@ import Container from "@material-ui/core/Container";
 import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
 
+import { S3_BUCKET_URL } from "../../constant";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -27,44 +29,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function CenteredGrid(props) {
-  const amenity = [
-    {
-      name: "Television",
-      logo: "images/Hostel Images/television-24.png",
-    },
-    {
-      name: "Refrigerator",
-      logo: "images/Hostel Images/refrigerator-5.png",
-    },
-    {
-      name: "Washing Machine",
-      logo: "images/Hostel Images/washing-machine.png",
-    },
-    {
-      name: "Wifi",
-      logo: "images/Hostel Images/television-24.png",
-    },
-    {
-      name: "Veg food",
-      logo: "images/Hostel Images/refrigerator-5.png",
-    },
-    {
-      name: "Study desk",
-      logo: "images/Hostel Images/washing-machine.png",
-    },
-    {
-      name: "Sofa",
-      logo: "images/Hostel Images/television-24.png",
-    },
-    {
-      name: "Microwave",
-      logo: "images/Hostel Images/refrigerator-5.png",
-    },
-    {
-      name: "Geyser",
-      logo: "images/Hostel Images/washing-machine.png",
-    },
-  ];
   const classes = useStyles();
   return (
     <React.Fragment>
@@ -76,27 +40,28 @@ export default function CenteredGrid(props) {
           paddingTop: "10px",
         }}
       >
-        {amenity.map((a) => (
-          <Grid item xs={4}>
-            <Box display="flex" p={1} pt={0}>
-              <img
-                src={a.logo}
-                style={{ width: "30px" }}
-                alt="No image available"
-              />
+        {props.amenities &&
+          props.amenities.length &&
+          props.amenities.map((amenity) => (
+            <Grid item xs={6}>
+              <Box display="flex" p={2} pt={0}>
+                <img
+                  src={`${S3_BUCKET_URL}/${amenity.logo}`}
+                  style={{ width: "30px" }}
+                  alt="No image available"
+                />
 
-              <Typography
-                component="h1"
-                variant="body1"
-                color="secondary"
-                align="justify"
-                style={{ paddingLeft: "5px" }}
-              >
-                {a.name}
-              </Typography>
-            </Box>
-          </Grid>
-        ))}
+                <Typography
+                  component="h1"
+                  variant="body1"
+                  color="secondary"
+                  align="justify"
+                >
+                  {amenity.name}
+                </Typography>
+              </Box>
+            </Grid>
+          ))}
       </Grid>
     </React.Fragment>
   );
