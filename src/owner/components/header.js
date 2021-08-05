@@ -36,10 +36,6 @@ import CloseIcon from "@material-ui/icons/Close";
 
 const headersData = [
   {
-    label: "Home",
-    href: "/",
-  },
-  {
     label: "About us",
     href: "/about",
   },
@@ -49,22 +45,22 @@ const headersData = [
   },
 ];
 
-const locationItems = [
+const responsiveHeaderData = [
   {
-    id: "0",
-    name: "None",
+    label: "Home",
+    href: "/home",
   },
   {
-    id: "1",
-    name: "Delhi",
+    label: "My Properties",
+    href: "/myproperties",
   },
   {
-    id: "2",
-    name: "Mumbai",
+    label: "Tenants",
+    href: "/ownertenants",
   },
   {
-    id: "3",
-    name: "Chennai",
+    label: "Complaints",
+    href: "/complaints",
   },
 ];
 
@@ -213,7 +209,7 @@ export default function Header(props) {
     return (
       <Toolbar className={toolbar}>
         {femmecubatorLogo}
-        <div className={classesselect.heroContent}>{searchBar}</div>
+
         <div>
           {getMenuButtons()}
           {props.loggedUser == "" ? (
@@ -273,7 +269,7 @@ export default function Header(props) {
           }}
         >
           <div className={drawerContainer}>
-            {getDrawerChoices()}
+            {getrespDrawerChoices()}
             {props.loggedUser == "" ? (
               <Link
                 key={"Login"}
@@ -301,7 +297,6 @@ export default function Header(props) {
         </Drawer>
 
         <div>{femmecubatorLogo}</div>
-        <div className={classesselect.heroContent}>{searchBar}</div>
       </Toolbar>
     );
   };
@@ -323,41 +318,28 @@ export default function Header(props) {
       );
     });
   };
+  const getrespDrawerChoices = () => {
+    return responsiveHeaderData.map(({ label, href }) => {
+      return (
+        <Link
+          key={label}
+          {...{
+            component: RouterLink,
+            to: href,
+            color: "inherit",
+            style: { textDecoration: "none" },
+          }}
+        >
+          <MenuItem>{label}</MenuItem>
+        </Link>
+      );
+    });
+  };
 
   const femmecubatorLogo = (
     <Typography variant="h6" component="h1" className={logo}>
       BookMyPG
     </Typography>
-  );
-
-  const searchBar = (
-    <Container maxWidth="sm" component="main">
-      <Grid container spacing={2} justifyContent="center">
-        <FormControl
-          variant="outlined"
-          className={classes.formControl}
-          style={{ width: "400px" }}
-        >
-          <InputLabel id="demo-simple-select-outlined-label">
-            Location
-          </InputLabel>
-          <Select
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            value={location}
-            onChange={handleChange}
-            label="Location"
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Delhi</MenuItem>
-            <MenuItem value={20}>Mumbai</MenuItem>
-            <MenuItem value={30}>Chennai</MenuItem>
-          </Select>
-        </FormControl>
-      </Grid>
-    </Container>
   );
 
   const getMenuButtons = () => {

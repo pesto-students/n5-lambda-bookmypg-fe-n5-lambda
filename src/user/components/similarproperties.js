@@ -13,6 +13,7 @@ import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import IconButton from "@material-ui/core/IconButton";
 import Rating from "../components/rating";
 import Cardrating from "../components/cardratings";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -34,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     display: "flex",
     flexDirection: "column",
+    padding: "10px",
   },
   cardMedia: {
     paddingTop: "56.25%", // 16:9
@@ -61,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
   },
   responsivegrid: {
     display: "flex",
+    marginTop: "25px",
     [theme.breakpoints.down("md")]: {
       flexDirection: "column",
     },
@@ -124,30 +127,39 @@ export default function Album(props) {
                   title="Image title"
                 />
                 <CardContent className={classes.cardContent}>
-                  <Typography gutterBottom variant="h6" component="h2">
-                    {data.propertyname}
-                  </Typography>
-                  <Typography gutterBottom variant="subtitle2">
-                    {data.location}
-                  </Typography>
+                  <div
+                    style={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Typography gutterBottom variant="h6" component="h2">
+                      {data.propertyname}
+                    </Typography>
+                    <Typography gutterBottom variant="caption">
+                      <LocationOnIcon />
+                      {data.location}
+                    </Typography>
+                  </div>
                   <Typography gutterBottom variant="body2">
                     {data.description}
                   </Typography>
                 </CardContent>
-                <Box textAlign="center" display="flex" pt={1} pl={3}>
+                <div
+                  style={{
+                    display: "flex",
+                    paddingBottom: "10px",
+                    justifyContent: "space-between",
+                  }}
+                >
                   <Cardrating value={data.rating} number={data.numratings} />
 
-                  <CardActions>
-                    <Button
-                      size="small"
-                      style={{
-                        textTransform: "none",
-                      }}
-                    >
-                      More Details
-                    </Button>
-                  </CardActions>
-                </Box>
+                  <Button
+                    size="small"
+                    variant="contained"
+                    color="ContainedSecondary"
+                    style={{ textTransform: "none" }}
+                  >
+                    More Details
+                  </Button>
+                </div>
               </Card>
             </Grid>
           ))}

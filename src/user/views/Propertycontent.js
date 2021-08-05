@@ -27,6 +27,7 @@ import Box from "@material-ui/core/Box";
 import Cardrating from "../components/cardratings";
 import Link from "@material-ui/core/Link";
 import Amenities from "../components/amenities";
+import Reviews from "../components/displayreviews";
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
 
@@ -188,8 +189,8 @@ export default function Album() {
                 src={MyCollection[activeStep].imgPath}
                 alt={MyCollection[activeStep].label}
                 style={{
-                  height: 255,
-                  width: "500px",
+                  height: 355,
+                  width: "700px",
                   maxWidth: "100%",
                   display: "block",
                   overflow: "hidden",
@@ -323,7 +324,6 @@ export default function Album() {
               spacing={2}
               class={classes.amenitiesBox}
             >
-              <Grid item></Grid>
               <Grid item>
                 <Typography
                   component="h1"
@@ -338,8 +338,13 @@ export default function Album() {
               <Amenities />
             </Grid>
 
-            <Grid container alignItems="center" spacing={2}>
-              <Box textAlign="center" display="flex" flexDirection="column">
+            <Grid
+              container
+              alignItems="center"
+              spacing={2}
+              style={{ paddingTop: "20px", justifyContent: "space-around" }}
+            >
+              <Grid item xl={12} sm={6} md={3}>
                 <div>
                   <Box
                     borderColor="transparent"
@@ -362,20 +367,38 @@ export default function Album() {
                     </Link>
                   </Box>
                 </div>
-              </Box>
-              <Box textAlign="center" display="flex">
-                <div style={{ paddingLeft: "5px" }}>
-                  <Bookproperty />
-                </div>
-                <div style={{ paddingLeft: "5px" }}>
-                  <Schedulevisit />
-                </div>
-              </Box>
+              </Grid>
+
+              <Grid item xl={12} sm={6} md={3}>
+                <Bookproperty />
+              </Grid>
+              <Grid item xl={12} sm={6} md={3}>
+                <Schedulevisit />
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
-        <Similarproperties title={"Similar properties"} />
+        <Grid
+          item
+          xs={12}
+          style={{
+            marginTop: "35px",
+            borderTop: "1px solid rgba(0, 0, 0, 0.12)",
+          }}
+        >
+          <Similarproperties title={"Similar properties"} />
+        </Grid>
         <div ref={myRef}></div>
+        <Grid
+          item
+          xs={12}
+          style={{
+            marginTop: "35px",
+            borderTop: "1px solid rgba(0, 0, 0, 0.12)",
+          }}
+        >
+          <Reviews />
+        </Grid>
       </Container>
     </React.Fragment>
   );

@@ -40,14 +40,45 @@ export default function CenteredGrid(props) {
       name: "Washing Machine",
       logo: "images/Hostel Images/washing-machine.png",
     },
+    {
+      name: "Wifi",
+      logo: "images/Hostel Images/television-24.png",
+    },
+    {
+      name: "Veg food",
+      logo: "images/Hostel Images/refrigerator-5.png",
+    },
+    {
+      name: "Study desk",
+      logo: "images/Hostel Images/washing-machine.png",
+    },
+    {
+      name: "Sofa",
+      logo: "images/Hostel Images/television-24.png",
+    },
+    {
+      name: "Microwave",
+      logo: "images/Hostel Images/refrigerator-5.png",
+    },
+    {
+      name: "Geyser",
+      logo: "images/Hostel Images/washing-machine.png",
+    },
   ];
   const classes = useStyles();
   return (
     <React.Fragment>
-      <Grid container spacing={24}>
+      <Grid
+        container
+        style={{
+          border: "1px solid rgba(0, 0, 0, 0.12)",
+          borderRadius: "10px",
+          paddingTop: "10px",
+        }}
+      >
         {amenity.map((a) => (
-          <Grid item xs={6}>
-            <Box display="flex" p={2} pt={0}>
+          <Grid item xs={4}>
+            <Box display="flex" p={1} pt={0}>
               <img
                 src={a.logo}
                 style={{ width: "30px" }}
@@ -59,6 +90,7 @@ export default function CenteredGrid(props) {
                 variant="body1"
                 color="secondary"
                 align="justify"
+                style={{ paddingLeft: "5px" }}
               >
                 {a.name}
               </Typography>

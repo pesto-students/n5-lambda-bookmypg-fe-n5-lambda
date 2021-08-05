@@ -20,12 +20,7 @@ export default function SimpleRating(props) {
         flexDirection="column"
         paddingLeft="10px"
       >
-        <Rating
-          name="read-only"
-          value={props.value}
-          fontSize="1.0rem"
-          readOnly
-        />
+        <Rating name="read-only" value={props.value} size="small" readOnly />
         <Typography variant="body2" color="secondary">
           {props.number} Reviews
         </Typography>

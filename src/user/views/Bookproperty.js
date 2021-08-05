@@ -18,11 +18,33 @@ import {
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import CloseIcon from "@material-ui/icons/Close";
+import Box from "@material-ui/core/Box";
+import IconButton from "@material-ui/core/IconButton";
+import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
 
 const useStyles = makeStyles((theme) => ({
   button: {
-    justifyContent: "center",
     margin: 10,
+  },
+  dialogTitle: {
+    alignSelf: "center",
+    padding: "0px",
+  },
+  dialogBox: {
+    width: "calc(478px + 0.5vw)",
+  },
+  formAlign: {
+    alignSelf: "center",
+  },
+  dateComponentSize: {
+    width: "calc(278px + 0.5vw)",
+  },
+  imgStyle: {
+    width: "80px",
+    alignContent: "center",
+    paddingLeft: "30px",
   },
 }));
 
@@ -57,13 +79,33 @@ export default function FormDialog() {
         open={open}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
-        className={classes.dialogbutton}
+        PaperProps={{
+          style: {
+            width: "calc(478px + 0.5vw)",
+          },
+        }}
       >
-        <DialogTitle id="form-dialog-title">Book Property</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Please provide your details here:
-          </DialogContentText>
+        <Box display="flex" alignItems="flex-start">
+          <Box flexGrow={1}></Box>
+          <Box>
+            <IconButton onClick={handleClose}>
+              <CloseIcon />
+            </IconButton>
+          </Box>
+        </Box>
+        <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
+          <div>
+            <Typography component="h1" variant="h6" color="primary" paragraph>
+              Book Property
+            </Typography>
+            <img
+              src="Bookproperty.jpg"
+              alt="No image available"
+              className={classes.imgStyle}
+            />
+          </div>
+        </DialogTitle>
+        <DialogContent className={classes.formAlign}>
           <FormControl component="fieldset">
             <FormLabel component="legend"></FormLabel>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -81,17 +123,27 @@ export default function FormDialog() {
                     "aria-label": "change date",
                   }}
                   disablePast={true}
+                  className={classes.dateComponentSize}
                 />
               </Grid>
             </MuiPickersUtilsProvider>
-
-            <TextField
-              disabled
-              id="standard-disabled"
-              label="Rent"
-              defaultValue="INR 15000"
-              fullwidth
-            />
+            <div style={{ display: "flex" }}>
+              <TextField
+                disabled
+                id="standard-disabled"
+                label="Rent"
+                defaultValue="₹&nbsp;15000"
+                fullwidth
+                InputProps={{
+                  endAdornment: (
+                    <MonetizationOnIcon
+                      style={{ paddingRight: "10px", color: "grey" }}
+                    />
+                  ),
+                }}
+                style={{ width: "280px" }}
+              />
+            </div>
             <RadioGroup
               aria-label="gender"
               name="payment"

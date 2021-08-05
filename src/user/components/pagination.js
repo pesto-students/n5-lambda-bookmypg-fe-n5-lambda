@@ -4,9 +4,10 @@ import Pagination from "@material-ui/lab/Pagination";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    "& > * + *": {
+    "& > *": {
       marginTop: theme.spacing(2),
-      margin: "auto",
+      justifyContent: "center",
+      display: "flex",
     },
   },
 }));
