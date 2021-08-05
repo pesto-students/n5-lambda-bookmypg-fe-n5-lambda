@@ -42,7 +42,7 @@ const Tabledata = [
   },
 ];
 
-export default function Tablefile() {
+export default function Tablecomponent() {
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
@@ -57,126 +57,41 @@ export default function Tablefile() {
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
-  return (
-    <div className="Table">
-      <ResponsiveDrawer>
-        <Grid container justify={"center"}>
-          <Grid
-            item
-            xs={12}
-            md={10}
-            style={{ padding: "8px", textAlign: "center" }}
-          >
-            <Typography component="h1" variant="h5">
-              Tenants List
-            </Typography>
-            <Grid container justify={"space-between"}>
-              <Grid
-                item
-                xs={12}
-                md={4}
-                style={{
-                  padding: "18px",
-                  paddingLeft: "0px",
-                  textAlign: "center",
-                }}
-              >
-                <TextField
-                  id="standard-basic"
-                  label="Search by name"
-                  style={{ width: "300px" }}
-                />
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                md={6}
-                style={{
-                  padding: "8px",
-                  textAlign: "center",
-                  display: "flex",
-                }}
-              >
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <KeyboardDatePicker
-                    disableToolbar
-                    variant="inline"
-                    format="MM/dd/yyyy"
-                    margin="normal"
-                    id="date-picker-inline"
-                    label="From Date:"
-                    value={selectedDate}
-                    onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                      "aria-label": "change date",
-                    }}
-                    disablePast={true}
-                  />
-                </MuiPickersUtilsProvider>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <KeyboardDatePicker
-                    disableToolbar
-                    variant="inline"
-                    format="MM/dd/yyyy"
-                    margin="normal"
-                    id="date-picker-inline"
-                    label="To Date:"
-                    value={selectedDate}
-                    onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                      "aria-label": "change date",
-                    }}
-                    disablePast={true}
-                    style={{ marginLeft: "10px" }}
-                  />
-                </MuiPickersUtilsProvider>
-              </Grid>
-            </Grid>
 
-            <Paper style={{ overflowX: "auto" }}>
-              <Table style={{ minWidth: "340px" }}>
-                <TableHead style={{ backgroundColor: "grey" }}>
-                  <TableRow>
-                    <TableCell>Name</TableCell>
-                    <TableCell>Email</TableCell>
-                    <TableCell>Phone</TableCell>
-                    <TableCell>Property</TableCell>
-                    <TableCell>Move-in Date</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {Tabledata.map((data) => (
-                    <TableRow>
-                      <TableCell>
-                        <Link href="#" onClick={preventDefault}>
-                          {data.name}
-                        </Link>
-                        <Switch
-                          checked={state.checkedA}
-                          onChange={handleChange}
-                          name="checkedA"
-                          inputProps={{ "aria-label": "secondary checkbox" }}
-                        />
-                      </TableCell>
-                      <TableCell>{data.email}</TableCell>
-                      <TableCell>{data.phone}</TableCell>
-                      <TableCell>{data.property}</TableCell>
-                      <TableCell>{data.moveindate}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </Paper>
-          </Grid>
-          <TablePagination
-            rowsPerPageOptions={[5, 10]}
-            component="div"
-            count="1"
-            rowsPerPage="10"
-            page="1"
-          />
-        </Grid>
-      </ResponsiveDrawer>
-    </div>
+  return (
+    <Paper style={{ overflowX: "auto" }}>
+      <Table style={{ minWidth: "340px" }}>
+        <TableHead style={{ backgroundColor: "grey" }}>
+          <TableRow>
+            <TableCell>Name</TableCell>
+            <TableCell>Email</TableCell>
+            <TableCell>Phone</TableCell>
+            <TableCell>Property</TableCell>
+            <TableCell>Move-in Date</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {Tabledata.map((data) => (
+            <TableRow>
+              <TableCell>
+                <Link href="#" onClick={preventDefault}>
+                  {data.name}
+                </Link>
+                <Switch
+                  checked={state.checkedA}
+                  onChange={handleChange}
+                  name="checkedA"
+                  inputProps={{ "aria-label": "secondary checkbox" }}
+                />
+              </TableCell>
+              <TableCell>{data.email}</TableCell>
+              <TableCell>{data.phone}</TableCell>
+              <TableCell>{data.property}</TableCell>
+              <TableCell>{data.moveindate}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </Paper>
   );
 }
