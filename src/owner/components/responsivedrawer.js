@@ -34,7 +34,7 @@ const headersData = [
   },
   {
     label: "Tenants",
-    href: "/ownertenants",
+    href: "/tenants-list",
   },
   {
     label: "Complaints",
