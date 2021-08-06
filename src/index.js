@@ -7,6 +7,8 @@ import Homepage from "./user/views/Homepage";
 import Propertydetails from "./user/views/Propertydetails";
 import Propertylist from "./user/views/Propertylist";
 import Login from "./user/views/login";
+import Userpaymenthistory from "./views/Userprofile/Userpaymenthistory";
+import Myprofile from "../src/views/Userprofile/Myprofile";
 import { Provider } from "react-redux";
 import { store } from "./redux-store/Store";
 import OwnerHomepage from "./owner/pages/Homepage";
@@ -22,6 +24,8 @@ ReactDOM.render(
         <Route path="/property-list" component={Propertylist} />
         <Route path="/owner-home" component={OwnerHomepage} />
         <Route path="/tenants-list" component={OwnerTenants} />
+        <Route path="/myprofile" component={Myprofile} />
+        <Route path="/paymenthistory" component={Userpaymenthistory} />
         <Route path="/" component={Homepage} />
       </Switch>
     </BrowserRouter>
