@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   },
   responsivegrid: {
     display: "flex",
-    marginTop: "25px",
+    marginTop: "15px",
     [theme.breakpoints.down("md")]: {
       flexDirection: "column",
     },
@@ -118,7 +118,7 @@ export default function Album(props) {
           disabled={activeStep === 0}
           onClick={handleBack}
           className={classes.icons}
-          style={{ backgroundColor: "transparent" }}
+          style={{ backgroundColor: "transparent", padding: "0px" }}
           disableRipple
         >
           <NavigateBeforeIcon />

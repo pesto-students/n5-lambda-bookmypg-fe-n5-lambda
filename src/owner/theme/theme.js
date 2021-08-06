@@ -61,11 +61,13 @@ const theme = createTheme({
           color: "#fff",
         },
       },
+
       MuiTableCell: {
         head: {
           fontWeight: 500,
           fontSize: "0.85rem",
           lineHeight: "normal",
+          backgroundColor: "#616161",
         },
         root: {
           padding: "4px 16px 4px 24px",

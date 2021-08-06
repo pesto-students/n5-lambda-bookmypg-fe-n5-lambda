@@ -5,40 +5,37 @@ import TableHead from "@material-ui/core/TableHead/TableHead";
 import TableRow from "@material-ui/core/TableRow/TableRow";
 import TableCell from "@material-ui/core/TableCell/TableCell";
 import TableBody from "@material-ui/core/TableBody/TableBody";
-import Paper from "@material-ui/core/Paper/Paper";
-import ResponsiveDrawer from "./responsivedrawer";
-import Grid from "@material-ui/core/Grid/Grid";
-import Link from "@material-ui/core/Link";
-import TablePagination from "@material-ui/core/TablePagination";
+import Paper from "@material-ui/core/Paper";
 import Switch from "@material-ui/core/Switch";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
+import ArrowDropUpIcon from "@material-ui/icons/ArrowUpward";
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDownward";
+import Theme from "../theme/theme";
+import Viewcomplaint from "../components/viewcomplaint";
+
 const Tabledata = [
   {
     name: "abc",
     email: "abc@gmail.com",
     phone: "123",
     property: "abc",
-    moveindate: "12/07/2021",
+    complaintdate: "12/07/2021",
+    status: "Pending",
   },
   {
     name: "def",
     email: "abc@gmail.com",
     phone: "123",
     property: "abc",
-    moveindate: "12/07/2021",
+    complaintdate: "12/07/2021",
+    status: "Pending",
   },
   {
     name: "pqr",
     email: "abc@gmail.com",
     phone: "123",
     property: "abc",
-    moveindate: "12/07/2021",
+    complaintdate: "12/07/2021",
+    status: "Pending",
   },
 ];
 
@@ -61,33 +58,53 @@ export default function Tablecomponent() {
   return (
     <Paper style={{ overflowX: "auto" }}>
       <Table style={{ minWidth: "340px" }}>
-        <TableHead style={{ backgroundColor: "grey" }}>
+        <TableHead
+          style={{
+            backgroundColor: Theme.palette.secondary.main,
+          }}
+        >
           <TableRow>
-            <TableCell>Name</TableCell>
+            <TableCell>Tenant Name</TableCell>
             <TableCell>Email</TableCell>
             <TableCell>Phone</TableCell>
             <TableCell>Property</TableCell>
-            <TableCell>Move-in Date</TableCell>
+            <TableCell>
+              Complaint Date
+              <div style={{ display: "inline-grid", marginLeft: "5px" }}>
+                <ArrowDropUpIcon style={{ transform: "scale(0.7)" }} />
+                <ArrowDropDownIcon style={{ transform: "scale(0.7)" }} />
+              </div>
+            </TableCell>
+            <TableCell>Complaint</TableCell>
+            <TableCell>Status</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {Tabledata.map((data) => (
             <TableRow>
-              <TableCell>
-                <Link href="#" onClick={preventDefault}>
-                  {data.name}
-                </Link>
-                <Switch
-                  checked={state.checkedA}
-                  onChange={handleChange}
-                  name="checkedA"
-                  inputProps={{ "aria-label": "secondary checkbox" }}
-                />
-              </TableCell>
+              <TableCell>{data.name}</TableCell>
               <TableCell>{data.email}</TableCell>
               <TableCell>{data.phone}</TableCell>
               <TableCell>{data.property}</TableCell>
-              <TableCell>{data.moveindate}</TableCell>
+              <TableCell>{data.complaintdate}</TableCell>
+              <TableCell>
+                <div
+                  style={{
+                    display: "flex",
+                    marginLeft: "5px",
+                    alignItems: "center",
+                  }}
+                >
+                  <Viewcomplaint />
+                  <Switch
+                    checked={state.checkedA}
+                    onChange={handleChange}
+                    name="checkedA"
+                    inputProps={{ "aria-label": "secondary checkbox" }}
+                  />
+                </div>
+              </TableCell>
+              <TableCell>{data.status}</TableCell>
             </TableRow>
           ))}
         </TableBody>

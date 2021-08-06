@@ -1,16 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import Table from "@material-ui/core/Table/Table";
-import TableHead from "@material-ui/core/TableHead/TableHead";
-import TableRow from "@material-ui/core/TableRow/TableRow";
-import TableCell from "@material-ui/core/TableCell/TableCell";
-import TableBody from "@material-ui/core/TableBody/TableBody";
-import Paper from "@material-ui/core/Paper/Paper";
 import ResponsiveDrawer from "./responsivedrawer";
 import Grid from "@material-ui/core/Grid/Grid";
-import Link from "@material-ui/core/Link";
-import TablePagination from "@material-ui/core/TablePagination";
-import Switch from "@material-ui/core/Switch";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import {
@@ -18,9 +8,9 @@ import {
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
-import Tablecomponent from "./table";
+import Tablecomponent from "./complainttable";
 
-import Pagination from "../components/pagination";
+import Pagination from "./pagination";
 
 export default function Tenantcontent() {
   const [state, setState] = React.useState({
@@ -48,7 +38,7 @@ export default function Tenantcontent() {
             style={{ padding: "8px", textAlign: "center" }}
           >
             <Typography component="h1" variant="h5">
-              Tenants List
+              Complaint List
             </Typography>
             <Grid container justify={"space-between"}>
               <Grid

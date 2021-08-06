@@ -10,7 +10,10 @@ import Login from "./user/views/login";
 import { Provider } from "react-redux";
 import { store } from "./redux-store/Store";
 import Ownerhomepage from "./owner/pages/Homepage";
-import Ownertenants from "./owner/pages/Tenants";
+import Ownertenantlist from "./owner/pages/Tenantlist";
+import Ownerpropertylist from "./owner/pages/Propertylist";
+import Ownercomplaintlist from "./owner/pages/Complaintlist";
+import Mypropertydetails from "./user/views/Mypropertydetails";
 
 const hist = createBrowserHistory();
 
@@ -21,7 +24,10 @@ ReactDOM.render(
         <Route path="/propertydetails" component={Propertydetails} />
         <Route path="/propertylist" component={Propertylist} />
         <Route path="/ownerhomepage" component={Ownerhomepage} />
-        <Route path="/Ownertenants" component={Ownertenants} />
+        <Route path="/ownertenantlist" component={Ownertenantlist} />
+        <Route path="/ownerpropertylist" component={Ownerpropertylist} />
+        <Route path="/ownercomplaintlist" component={Ownercomplaintlist} />
+        <Route path="/mypropertydetails" component={Mypropertydetails} />
         <Route path="/" component={Homepage} />
       </Switch>
     </BrowserRouter>

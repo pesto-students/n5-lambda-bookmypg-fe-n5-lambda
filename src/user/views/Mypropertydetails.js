@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import Header from "../components/header";
-import Content from "../components/content";
+import Content from "../components/mypropertiescontent";
 import Footer from "../components/footer";
 import Theme from "../theme/theme";
 

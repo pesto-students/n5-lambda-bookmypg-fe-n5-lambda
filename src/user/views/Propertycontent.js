@@ -1,9 +1,5 @@
 import React, { useRef } from "react";
 import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
@@ -19,12 +15,12 @@ import Similarproperties from "../components/similarproperties";
 import HomeIcon from "@material-ui/icons/Home";
 import PaymentIcon from "@material-ui/icons/Payment";
 import DescriptionIcon from "@material-ui/icons/Description";
-import Lightbox from "react-image-lightbox";
+
 import "react-image-lightbox/style.css";
-import ModalImage from "react-modal-image";
+
 import Dialog from "@material-ui/core/Dialog";
 import Box from "@material-ui/core/Box";
-import Cardrating from "../components/cardratings";
+
 import Link from "@material-ui/core/Link";
 import Amenities from "../components/amenities";
 import Reviews from "../components/displayreviews";

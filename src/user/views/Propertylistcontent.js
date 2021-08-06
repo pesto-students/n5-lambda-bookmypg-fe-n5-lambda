@@ -10,7 +10,6 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles, responsiveFontSizes } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import Rating from "../components/rating";
-
 import PropertiesSelector from "../components/PropertiesSelector";
 import propertiesActions from "../../redux-store/actions/propertiesActions";
 import Pagination from "../components/pagination";

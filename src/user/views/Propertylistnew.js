@@ -17,11 +17,7 @@ import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import Select from "@material-ui/core/Select";
-import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import SortIcon from "@material-ui/icons/Sort";
 
@@ -64,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
+  //toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
     marginTop: "60px",
@@ -73,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     flexDirection: "column",
     padding: theme.spacing(3),
+    paddingTop: "70px",
   },
   searchbox: {
     height: "25px",
@@ -139,13 +136,7 @@ function ResponsiveDrawer(props) {
       <FormControl component="fieldset" className={classes.formControl}>
         <FormLabel component="legend">Ratings</FormLabel>
         <FormGroup>
-          {[
-            "Highest Rated",
-            "Most Reviewed",
-            "5 Stars",
-            "4 Stars",
-            "3 Stars",
-          ].map((text, index) => (
+          {["5 Stars", "4 Stars", "3 Stars"].map((text, index) => (
             <FormControlLabel
               control={
                 <Checkbox
@@ -160,26 +151,6 @@ function ResponsiveDrawer(props) {
         </FormGroup>
       </FormControl>
       <Divider />
-
-      <FormControl component="fieldset" className={classes.formControl}>
-        <FormLabel component="legend">Location</FormLabel>
-        <FormGroup>
-          {["Mumbai", "Delhi", "Chennai"].map((text, index) => (
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={gilad}
-                  onChange={handleChange}
-                  name="gilad"
-                />
-              }
-              label={<span style={{ fontSize: "14px" }}>{text}</span>}
-            />
-          ))}
-        </FormGroup>
-      </FormControl>
-      <Divider />
-
       <FormControl component="fieldset" className={classes.formControl}>
         <FormLabel component="legend">Monthly rent</FormLabel>
         <FormGroup>
@@ -197,29 +168,6 @@ function ResponsiveDrawer(props) {
           ))}
         </FormGroup>
       </FormControl>
-      <Divider />
-
-      <FormControl component="fieldset" className={classes.formControl}>
-        <FormLabel component="legend">Amenitiest</FormLabel>
-        <FormGroup>
-          {["Airconditioner", "Washing machine", "Veg food", "Nonveg food"].map(
-            (text, index) => (
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={gilad}
-                    onChange={handleChange}
-                    name="gilad"
-                  />
-                }
-                label={<span style={{ fontSize: "14px" }}>{text}</span>}
-              />
-            )
-          )}
-        </FormGroup>
-      </FormControl>
-      <Divider />
-      <Divider />
     </div>
   );
 
@@ -243,7 +191,6 @@ function ResponsiveDrawer(props) {
               <MenuIcon />
             </IconButton>
             <div className={classes.searchsortButtons}>
-              <TextField id="standard-basic" label="Search by name" />
               <div>
                 <IconButton
                   aria-controls="simple-menu"

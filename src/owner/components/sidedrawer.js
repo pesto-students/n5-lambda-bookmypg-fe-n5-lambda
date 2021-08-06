@@ -85,19 +85,19 @@ const useStyles = makeStyles((theme) => ({
 const headersData = [
   {
     label: "Home",
-    href: "/home",
+    href: "/ownerhomepage",
   },
   {
     label: "My Properties",
-    href: "/myproperties",
+    href: "/ownerpropertylist",
   },
   {
     label: "Tenants",
-    href: "/ownertenants",
+    href: "/ownertenantlist",
   },
   {
     label: "Complaints",
-    href: "/complaints",
+    href: "/ownercomplaintlist",
   },
 ];
 

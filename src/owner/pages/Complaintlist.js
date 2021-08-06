@@ -1,8 +1,7 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import Header from "../components/header";
-import Content from "../components/content";
+import Content from "../components/complaintlistcontent";
 import Footer from "../components/footer";
 import Theme from "../theme/theme";
 
@@ -14,7 +13,6 @@ export default function HomePage() {
       <MuiThemeProvider theme={Theme}>
         <Header loggedUser={loggedUser} setLoggedUser={setLoggedUser} />
         <Content />
-
         <Footer />
       </MuiThemeProvider>
     </div>
