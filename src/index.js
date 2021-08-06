@@ -2,23 +2,27 @@ import reportWebVitals from "./reportWebVitals";
 import React from "react";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
-import { Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Homepage from "./user/views/Homepage";
+import Propertydetails from "./user/views/Propertydetails";
+import Propertylist from "./user/views/Propertylist";
+import Login from "./user/views/login";
+import { Provider } from "react-redux";
+import { store } from "./redux-store/Store";
 
-// pages for this product
-import LandingPage from "./views/LandingPage/Homepage";
-import Propertydetails from "./views/LandingPage/Propertydetails";
-import Login from "./views/LandingPage/login";
-
-var hist = createBrowserHistory();
+const hist = createBrowserHistory();
 
 ReactDOM.render(
-  <Router history={hist}>
-    <Switch>
-      <Route path="/propertydetails" component={Propertydetails} />
-      <Route path="/login" component={Login} />
-      <Route path="/" component={LandingPage} />
-    </Switch>
-  </Router>,
+  <Provider store={store}>
+    <BrowserRouter history={hist}>
+      <Switch>
+        <Route path="/propertydetails" component={Propertydetails} />
+        <Route path="/propertylist" component={Propertylist} />
+        <Route path="/login" component={Login} />
+        <Route path="/" component={Homepage} />
+      </Switch>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById("root")
 );
 // If you want to start measuring performance in your app, pass a function
