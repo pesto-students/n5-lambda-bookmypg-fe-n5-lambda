@@ -80,6 +80,7 @@ const useStyles = makeStyles(() => ({
   logo: {
     color: "#FFFEFE",
     textAlign: "left",
+    cursor: "pointer",
   },
   menuButton: {
     textTransform: "none",
@@ -168,7 +169,7 @@ export default function Header(props) {
 
   const handleChange = (event) => {
     setLocation(event.target.value);
-    history.push("/propertylist");
+    history.push("/property-list");
   };
 
   const { mobileView, drawerOpen } = state;
@@ -326,7 +327,12 @@ export default function Header(props) {
   };
 
   const femmecubatorLogo = (
-    <Typography variant="h6" component="h1" className={logo}>
+    <Typography
+      variant="h6"
+      component="h1"
+      className={logo}
+      onClick={() => history.push("/")}
+    >
       BookMyPG
     </Typography>
   );

@@ -13,10 +13,7 @@ import Rating from "../components/rating";
 import PropertiesSelector from "../components/PropertiesSelector";
 import propertiesActions from "../../redux-store/actions/propertiesActions";
 import Pagination from "../components/pagination";
-
-const config = require("../../config.json");
-
-const aws = require("aws-sdk");
+import { S3_BUCKET_URL } from "../../constant";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -101,8 +98,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3, 4];
-
 export function PropertyListContent(props) {
   const classes = useStyles();
 
@@ -131,58 +126,69 @@ export function PropertyListContent(props) {
     return (
       <React.Fragment>
         <Grid container spacing={2}>
-          {cards.map((card) => (
-            <Grid item xs={12} spacing={1}>
-              <Card className={classes.root} style={{ height: "230px" }}>
-                <Box>
-                  <CardMedia
-                    className={classes.cover}
-                    image="images/Hostel Images/test.jpg"
-                    title="Image title"
+          {props.properties &&
+            props.properties.length &&
+            props.properties.map((property) => (
+              <Grid item xs={12} spacing={1}>
+                <Card className={classes.root} style={{ height: "230px" }}>
+                  <Box>
+                    <CardMedia
+                      className={classes.cover}
+                      image={`${S3_BUCKET_URL}/${property.photos[0]}`}
+                      title={property.photos[0]}
+                    />
+                  </Box>
+                  <div className={classes.details}>
+                    <CardContent
+                      className={classes.content}
+                      style={{ padding: 0, paddingLeft: "20px" }}
+                    >
+                      <Typography component="h5" variant="h5">
+                        {property.name}
+                      </Typography>
+                      <Typography variant="subtitle1" color="textSecondary">
+                        {property.description}
+                      </Typography>
+                      <Typography variant="subtitle1" color="textSecondary">
+                        ₹{property.rent}
+                      </Typography>
+
+                      <div className={classes.heroButtons}>
+                        <Grid container spacing={2}>
+                          <Box>
+                            <Button
+                              variant="contained"
+                              color="secondary"
+                              style={{ margin: "10px", textTransform: "none" }}
+                            >
+                              Schedule Visit
+                            </Button>
+                            <Button
+                              variant="contained"
+                              color="secondary"
+                              style={{ margin: "10px", textTransform: "none" }}
+                              onClick={() =>
+                                history.push(
+                                  `/property-details/${property._id}`
+                                )
+                              }
+                            >
+                              More Details
+                            </Button>
+                          </Box>
+                        </Grid>
+                      </div>
+                    </CardContent>
+                  </div>
+
+                  <Rating
+                    value={4}
+                    number={property.numreviews || 0}
+                    mobileView={true}
                   />
-                </Box>
-                <div className={classes.details}>
-                  <CardContent
-                    className={classes.content}
-                    style={{ padding: 0, paddingLeft: "20px" }}
-                  >
-                    <Typography component="h5" variant="h5">
-                      Zolo House 1
-                    </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
-                      1 Private room in Studio for rent in Sion, Mumbai
-                    </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
-                      ₹15,000
-                    </Typography>
-
-                    <div className={classes.heroButtons}>
-                      <Grid container spacing={2}>
-                        <Box>
-                          <Button
-                            variant="contained"
-                            color="secondary"
-                            style={{ margin: "10px", textTransform: "none" }}
-                          >
-                            Schedule Visit
-                          </Button>
-                          <Button
-                            variant="contained"
-                            color="secondary"
-                            style={{ margin: "10px", textTransform: "none" }}
-                          >
-                            More Details
-                          </Button>
-                        </Box>
-                      </Grid>
-                    </div>
-                  </CardContent>
-                </div>
-
-                <Rating value={4} number={10} mobileView={true} />
-              </Card>
-            </Grid>
-          ))}
+                </Card>
+              </Grid>
+            ))}
           <Grid item xs={12} spacing={1}>
             <Pagination />
           </Grid>
@@ -192,117 +198,94 @@ export function PropertyListContent(props) {
   };
   const history = useHistory();
 
-  // useEffect(async () => {
-  //   try {
-  //     aws.config.setPromisesDependency();
-  //     aws.config.update({
-  //       accessKeyId: config.accessKeyId,
-  //       secretAccessKey: config.secretAccessKey,
-  //       region: config.region,
-  //     });
-
-  //     const s3 = new aws.S3();
-  //     const file = await s3
-  //       .listObjects({
-  //         Bucket: "bookmypg-photos",
-  //         // Key: "property-photos/610524e745e8de3ac8d1aa5b/House-pic1.jpg",
-  //       })
-  //       .promise();
-  //     const response = {
-  //       data: file.Body,
-  //       mimetype: file.ContentType,
-  //     };
-  //     console.log("response s3", response);
-  //     return response;
-  //   } catch (ex) {
-  //     console.log("Error loading images from s3", ex);
-  //   }
-  // }, []);
-
-  const handleChange = () => {
-    history.push("/propertydetails");
-  };
-
-  console.log("PROPERTIES", props.properties);
-
   const displayMobile = () => {
     return (
       <React.Fragment>
         <Grid container spacing={5}>
-          {cards.map((card) => (
-            <Grid item>
-              <Card className={classes.card}>
-                <CardMedia
-                  className={classes.cardMedia}
-                  image="images/Hostel Images/test.jpg"
-                  title="Image title"
-                />
-                <div className={classes.detailsMobile}>
-                  <CardContent
-                    className={classes.content}
-                    style={{ padding: 0, paddingLeft: "20px" }}
-                  >
-                    <Grid>
-                      <Typography component="h5" variant="h5">
-                        Zolo House 1
-                      </Typography>
-                      <Typography
-                        variant="subtitle1"
-                        color="textSecondary"
-                        style={{ wordWrap: "break-word" }}
-                      >
-                        1 Private room in Studio for rent in Sion, Mumbaib
-                        zjhchcshc xhcuhc zxchzuxhc zuxhcuzhxzhckjhzxckjh z
-                      </Typography>
-                      <Typography variant="subtitle1" color="textSecondary">
-                        ₹15,000
-                      </Typography>
-                    </Grid>
-
-                    <div className={classes.heroButtonsMobile}>
-                      <Grid container spacing={2}>
-                        <Box className={classes.buttonAlign}>
-                          <Button
-                            variant="contained"
-                            color="secondary"
-                            style={{ margin: "10px", textTransform: "none" }}
-                          >
-                            Schedule Visit
-                          </Button>
-                          <Button
-                            variant="contained"
-                            color="secondary"
-                            style={{ margin: "10px", textTransform: "none" }}
-                          >
-                            More Details
-                          </Button>
-                        </Box>
-                      </Grid>
-                    </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        paddingBottom: "10px",
-                        paddingTop: "20px",
-                        justifyContent: "space-evenly",
-                      }}
+          {props.properties &&
+            props.properties.length &&
+            props.properties.map((property) => (
+              <Grid item>
+                <Card className={classes.card}>
+                  <CardMedia
+                    className={classes.cardMedia}
+                    image="images/Hostel Images/test.jpg"
+                    title="Image title"
+                  />
+                  <div className={classes.detailsMobile}>
+                    <CardContent
+                      className={classes.content}
+                      style={{ padding: 0, paddingLeft: "20px" }}
                     >
-                      <Rating value={4} number={10} />
+                      <Grid>
+                        <Typography component="h5" variant="h5">
+                          {property.name}
+                        </Typography>
+                        <Typography
+                          variant="subtitle1"
+                          color="textSecondary"
+                          style={{ wordWrap: "break-word" }}
+                        >
+                          {property.description}
+                        </Typography>
+                        <Typography variant="subtitle1" color="textSecondary">
+                          ₹{property.rent}
+                        </Typography>
+                      </Grid>
 
-                      <Button
-                        size="small"
-                        variant="contained"
-                        color="ContainedSecondary"
-                        style={{ textTransform: "none" }}
+                      <div className={classes.heroButtonsMobile}>
+                        <Grid container spacing={2}>
+                          <Box className={classes.buttonAlign}>
+                            <Button
+                              variant="contained"
+                              color="secondary"
+                              style={{ margin: "10px", textTransform: "none" }}
+                            >
+                              Schedule Visit
+                            </Button>
+                            <Button
+                              variant="contained"
+                              color="secondary"
+                              style={{ margin: "10px", textTransform: "none" }}
+                              onClick={() =>
+                                history.push(
+                                  `/property-details/${property._id}`
+                                )
+                              }
+                            >
+                              More Details
+                            </Button>
+                          </Box>
+                        </Grid>
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          paddingBottom: "10px",
+                          paddingTop: "20px",
+                          justifyContent: "space-evenly",
+                        }}
                       >
-                        More Details
-                      </Button>
-                    </div>
-                  </CardContent>
-                </div>
-              </Card>
-            </Grid>
-          ))}
+                        <Rating
+                          value={4}
+                          number={10}
+                          number={property.numreviews || 0}
+                        />
+
+                        <Button
+                          size="small"
+                          variant="contained"
+                          color="ContainedSecondary"
+                          style={{ textTransform: "none" }}
+                        >
+                          More Details
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </div>
+                </Card>
+              </Grid>
+            ))}
         </Grid>
         <Pagination />
       </React.Fragment>
@@ -319,7 +302,7 @@ const mapStateToProps = (state) => {
   const propertiesSelector = PropertiesSelector(state.properties);
 
   return {
-    properties: propertiesSelector.getPropertiesData(),
+    properties: propertiesSelector.getPropertiesData().data,
   };
 };
 
