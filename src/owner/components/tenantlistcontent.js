@@ -22,7 +22,7 @@ import DateFnsUtils from "@date-io/date-fns";
 import Tablecomponent from "./tenanttable";
 
 import Pagination from "./pagination";
-import TenantssSelector from "./TenantssSelector";
+import TenantsSelector from "./TenantsSelector";
 import tenantsActions from "../../redux-store/actions/tenantsActions";
 
 export function Tenantcontent(props) {
@@ -144,7 +144,7 @@ export function Tenantcontent(props) {
 }
 
 const mapStateToProps = (state) => {
-  const tenantsSelector = TenantssSelector(state.tenants);
+  const tenantsSelector = TenantsSelector(state.tenants);
 
   return {
     tenants: tenantsSelector.getTenantsData().data,
