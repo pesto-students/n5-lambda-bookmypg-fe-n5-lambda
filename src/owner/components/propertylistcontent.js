@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import ReactDOM from "react-dom";
 import Table from "@material-ui/core/Table/Table";
 import TableHead from "@material-ui/core/TableHead/TableHead";
@@ -21,8 +22,10 @@ import DateFnsUtils from "@date-io/date-fns";
 import Tablecomponent from "./propertytable";
 import Pagination from "./pagination";
 import Addproperty from "./addproperty";
+import PropertiesSelector from "../../user/components/PropertiesSelector";
+import propertiesActions from "../../redux-store/actions/propertiesActions";
 
-export default function Tenantcontent() {
+export function PropertyListContent(props) {
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
@@ -33,6 +36,14 @@ export default function Tenantcontent() {
   };
 
   const [selectedDate, setSelectedDate] = React.useState(new Date());
+
+  useEffect(() => {
+    props.resetProperties();
+  }, []);
+
+  useEffect(() => {
+    props.getProperties();
+  }, []);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -81,7 +92,7 @@ export default function Tenantcontent() {
                 <Addproperty />
               </Grid>
             </Grid>
-            <Tablecomponent />
+            <Tablecomponent properties={props.properties} />
           </Grid>
           <Pagination />
         </Grid>
@@ -89,3 +100,24 @@ export default function Tenantcontent() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  const propertiesSelector = PropertiesSelector(state.properties);
+
+  return {
+    properties: propertiesSelector.getPropertiesData().data,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getProperties: () => dispatch(propertiesActions.getProperties()),
+    // updateProperty: (id) => dispatch(propertiesActions.updateProperty(id)),
+    resetProperties: () => dispatch(propertiesActions.resetState()),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PropertyListContent);

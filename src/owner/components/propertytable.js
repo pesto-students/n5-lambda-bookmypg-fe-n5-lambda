@@ -40,7 +40,7 @@ const Tabledata = [
   },
 ];
 
-export default function Tablecomponent() {
+export default function Tablecomponent(props) {
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
@@ -59,6 +59,8 @@ export default function Tablecomponent() {
     <Ratetenant />;
   };
 
+  const properties = props.properties;
+
   return (
     <Paper style={{ overflowX: "auto" }}>
       <Table style={{ minWidth: "340px" }}>
@@ -71,22 +73,22 @@ export default function Tablecomponent() {
             <TableCell align="center">Name</TableCell>
             <TableCell align="center">Location</TableCell>
             <TableCell align="center">Address</TableCell>
-            <TableCell align="center">Pincode</TableCell>
             <TableCell align="center">Free Beds</TableCell>
             <TableCell align="center">Registered Date</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {Tabledata.map((data) => (
-            <TableRow>
-              <TableCell align="center">{data.name}</TableCell>
-              <TableCell align="center">{data.location}</TableCell>
-              <TableCell align="center">{data.address}</TableCell>
-              <TableCell align="center">{data.pincode}</TableCell>
-              <TableCell align="center">{data.freebeds}</TableCell>
-              <TableCell align="center">{data.created}</TableCell>
-            </TableRow>
-          ))}
+          {properties &&
+            properties.length &&
+            properties.map((property) => (
+              <TableRow>
+                <TableCell align="center">{property.name}</TableCell>
+                <TableCell align="center">{property.location.name}</TableCell>
+                <TableCell align="center">{property.address}</TableCell>
+                <TableCell align="center">{property.totalbeds}</TableCell>
+                <TableCell align="center">{property.createdAt}</TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </Paper>
