@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import ResponsiveDrawer from "./responsivedrawer";
 import Grid from "@material-ui/core/Grid/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -11,8 +12,10 @@ import DateFnsUtils from "@date-io/date-fns";
 import Tablecomponent from "./complainttable";
 
 import Pagination from "./pagination";
+import ComplaintsSelector from "./ComplaintsSelector";
+import complainsActions from "../../redux-store/actions/complaintsActions";
 
-export default function Tenantcontent() {
+export function ComplaintsContent(props) {
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
@@ -23,6 +26,14 @@ export default function Tenantcontent() {
   };
 
   const [selectedDate, setSelectedDate] = React.useState(new Date());
+
+  useEffect(() => {
+    props.resetComplaints();
+  }, []);
+
+  useEffect(() => {
+    props.getComplaints();
+  }, []);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -102,7 +113,7 @@ export default function Tenantcontent() {
                 </MuiPickersUtilsProvider>
               </Grid>
             </Grid>
-            <Tablecomponent />
+            <Tablecomponent complaints={props.complaints} />
           </Grid>
           <Pagination />
         </Grid>
@@ -110,3 +121,21 @@ export default function Tenantcontent() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  const complaintsSelector = ComplaintsSelector(state.complaints);
+
+  return {
+    complaints: complaintsSelector.getComplaintsData().data,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getComplaints: () => dispatch(complainsActions.getComplaints()),
+    // updateComplaint: (id) => dispatch(complainsActions.updateComplaint(id)),
+    resetComplaints: () => dispatch(complainsActions.resetState()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ComplaintsContent);

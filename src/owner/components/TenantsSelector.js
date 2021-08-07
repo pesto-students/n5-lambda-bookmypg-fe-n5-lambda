@@ -5,7 +5,7 @@ export const TenantsSelector = (state) => ({
         state && state.tenants && state.tenants.data ? state.tenants.data : {},
     };
   },
-  getuserRequestState: () => {
+  getTenantsRequestState: () => {
     return state.getTenantsRequestState || {};
   },
 });

@@ -39,7 +39,7 @@ const Tabledata = [
   },
 ];
 
-export default function Tablecomponent() {
+export default function Tablecomponent(props) {
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
@@ -50,6 +50,8 @@ export default function Tablecomponent() {
   };
 
   const [selectedDate, setSelectedDate] = React.useState(new Date());
+
+  const complaints = props.complaints;
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -74,33 +76,39 @@ export default function Tablecomponent() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {Tabledata.map((data) => (
-            <TableRow>
-              <TableCell align="center">{data.name}</TableCell>
-              <TableCell align="center">{data.email}</TableCell>
-              <TableCell align="center">{data.phone}</TableCell>
-              <TableCell align="center">{data.property}</TableCell>
-              <TableCell align="center">{data.complaintdate}</TableCell>
-              <TableCell align="center">
-                <div
-                  style={{
-                    display: "flex",
-                    marginLeft: "5px",
-                    alignItems: "center",
-                  }}
-                >
-                  <Viewcomplaint />
-                  <Switch
-                    checked={state.checkedA}
-                    onChange={handleChange}
-                    name="checkedA"
-                    inputProps={{ "aria-label": "secondary checkbox" }}
-                  />
-                </div>
-              </TableCell>
-              <TableCell align="center">{data.status}</TableCell>
-            </TableRow>
-          ))}
+          {complaints &&
+            complaints.length &&
+            complaints.map((complaint) => (
+              <TableRow>
+                <TableCell align="center">
+                  {complaint.raisedby.firstName +
+                    " " +
+                    complaint.raisedby.lastName}
+                </TableCell>
+                <TableCell align="center">{complaint.raisedby.email}</TableCell>
+                <TableCell align="center">{complaint.raisedby.phone}</TableCell>
+                <TableCell align="center">{complaint.property.name}</TableCell>
+                <TableCell align="center">{complaint.createdAt}</TableCell>
+                <TableCell align="center">
+                  <div
+                    style={{
+                      display: "flex",
+                      marginLeft: "5px",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Viewcomplaint />
+                    {/* <Switch
+                      checked={state.checkedA}
+                      onChange={handleChange}
+                      name="checkedA"
+                      inputProps={{ "aria-label": "secondary checkbox" }}
+                    /> */}
+                  </div>
+                </TableCell>
+                <TableCell align="center">{complaint.status}</TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </Paper>

@@ -88,7 +88,7 @@ export default function Tablecomponent(props) {
                     }}
                   >
                     <Ratetenant
-                      value={tenant.firstName + "" + tenant.lastName}
+                      value={tenant.firstName + " " + tenant.lastName}
                     />
                     <Switch
                       checked={tenant.isactive}
@@ -103,7 +103,7 @@ export default function Tablecomponent(props) {
                 <TableCell align="center">{tenant.email}</TableCell>
                 <TableCell align="center">{"+91 " + tenant.phone}</TableCell>
                 <TableCell align="center">{tenant.property.name}</TableCell>
-                <TableCell align="center">{tenant.onboardAt}</TableCell>
+                <TableCell align="center">{tenant.onboardedAt}</TableCell>
               </TableRow>
             ))}
         </TableBody>
