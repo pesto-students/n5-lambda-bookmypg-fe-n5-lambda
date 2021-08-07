@@ -37,7 +37,7 @@ const Tabledata = [
   },
 ];
 
-export default function Tablecomponent() {
+export default function Tablecomponent(props) {
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
@@ -48,6 +48,8 @@ export default function Tablecomponent() {
   };
 
   const [selectedDate, setSelectedDate] = React.useState(new Date());
+
+  const tenants = props.tenants;
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -65,45 +67,45 @@ export default function Tablecomponent() {
           }}
         >
           <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell>Email</TableCell>
-            <TableCell>Phone</TableCell>
-            <TableCell>Property</TableCell>
-            <TableCell>
-              Move-in Date
-              <div style={{ display: "inline-grid", marginLeft: "5px" }}>
-                <ArrowDropUpIcon style={{ transform: "scale(0.7)" }} />
-                <ArrowDropDownIcon style={{ transform: "scale(0.7)" }} />
-              </div>
-            </TableCell>
+            <TableCell align="center">Name</TableCell>
+            <TableCell align="center">Email</TableCell>
+            <TableCell align="center">Phone</TableCell>
+            <TableCell align="center">Property</TableCell>
+            <TableCell align="center">Onboard Date</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {Tabledata.map((data) => (
-            <TableRow>
-              <TableCell>
-                <div
-                  style={{
-                    display: "flex",
-                    marginLeft: "5px",
-                    alignItems: "center",
-                  }}
-                >
-                  <Ratetenant value={data.name} />
-                  <Switch
-                    checked={state.checkedA}
-                    onChange={handleChange}
-                    name="checkedA"
-                    inputProps={{ "aria-label": "secondary checkbox" }}
-                  />
-                </div>
-              </TableCell>
-              <TableCell>{data.email}</TableCell>
-              <TableCell>{data.phone}</TableCell>
-              <TableCell>{data.property}</TableCell>
-              <TableCell>{data.moveindate}</TableCell>
-            </TableRow>
-          ))}
+          {tenants &&
+            tenants.length &&
+            tenants.map((tenant) => (
+              <TableRow>
+                <TableCell align="center">
+                  <div
+                    style={{
+                      display: "flex",
+                      marginLeft: "5px",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Ratetenant
+                      value={tenant.firstName + "" + tenant.lastName}
+                    />
+                    <Switch
+                      checked={tenant.isactive}
+                      onChange={() =>
+                        tenant.isactive && props.updateTenant(tenant._id)
+                      }
+                      name="checkedA"
+                      inputProps={{ "aria-label": "secondary checkbox" }}
+                    />
+                  </div>
+                </TableCell>
+                <TableCell align="center">{tenant.email}</TableCell>
+                <TableCell align="center">{"+91 " + tenant.phone}</TableCell>
+                <TableCell align="center">{tenant.property.name}</TableCell>
+                <TableCell align="center">{tenant.onboardAt}</TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </Paper>

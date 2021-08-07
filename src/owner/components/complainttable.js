@@ -64,30 +64,24 @@ export default function Tablecomponent() {
           }}
         >
           <TableRow>
-            <TableCell>Tenant Name</TableCell>
-            <TableCell>Email</TableCell>
-            <TableCell>Phone</TableCell>
-            <TableCell>Property</TableCell>
-            <TableCell>
-              Complaint Date
-              <div style={{ display: "inline-grid", marginLeft: "5px" }}>
-                <ArrowDropUpIcon style={{ transform: "scale(0.7)" }} />
-                <ArrowDropDownIcon style={{ transform: "scale(0.7)" }} />
-              </div>
-            </TableCell>
-            <TableCell>Complaint</TableCell>
-            <TableCell>Status</TableCell>
+            <TableCell align="center">Tenant Name</TableCell>
+            <TableCell align="center">Email</TableCell>
+            <TableCell align="center">Phone</TableCell>
+            <TableCell align="center">Property</TableCell>
+            <TableCell align="center">Complaint Date</TableCell>
+            <TableCell align="center">Complaint</TableCell>
+            <TableCell align="center">Status</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {Tabledata.map((data) => (
             <TableRow>
-              <TableCell>{data.name}</TableCell>
-              <TableCell>{data.email}</TableCell>
-              <TableCell>{data.phone}</TableCell>
-              <TableCell>{data.property}</TableCell>
-              <TableCell>{data.complaintdate}</TableCell>
-              <TableCell>
+              <TableCell align="center">{data.name}</TableCell>
+              <TableCell align="center">{data.email}</TableCell>
+              <TableCell align="center">{data.phone}</TableCell>
+              <TableCell align="center">{data.property}</TableCell>
+              <TableCell align="center">{data.complaintdate}</TableCell>
+              <TableCell align="center">
                 <div
                   style={{
                     display: "flex",
@@ -104,7 +98,7 @@ export default function Tablecomponent() {
                   />
                 </div>
               </TableCell>
-              <TableCell>{data.status}</TableCell>
+              <TableCell align="center">{data.status}</TableCell>
             </TableRow>
           ))}
         </TableBody>

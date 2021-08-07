@@ -65,6 +65,7 @@ const useStyles = makeStyles(() => ({
   logo: {
     color: "#FFFEFE",
     textAlign: "left",
+    cursor: "pointer",
   },
   menuButton: {
     textTransform: "none",
@@ -326,7 +327,12 @@ export default function Header(props) {
   };
 
   const femmecubatorLogo = (
-    <Typography variant="h6" component="h1" className={logo}>
+    <Typography
+      variant="h6"
+      component="h1"
+      className={logo}
+      onClick={() => history.push("/")}
+    >
       BookMyPG
     </Typography>
   );

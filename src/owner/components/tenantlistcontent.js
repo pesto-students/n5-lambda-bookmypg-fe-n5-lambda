@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import ReactDOM from "react-dom";
 import Table from "@material-ui/core/Table/Table";
 import TableHead from "@material-ui/core/TableHead/TableHead";
@@ -21,8 +22,10 @@ import DateFnsUtils from "@date-io/date-fns";
 import Tablecomponent from "./tenanttable";
 
 import Pagination from "./pagination";
+import TenantssSelector from "./TenantssSelector";
+import tenantsActions from "../../redux-store/actions/tenantsActions";
 
-export default function Tenantcontent() {
+export function Tenantcontent(props) {
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
@@ -37,6 +40,22 @@ export default function Tenantcontent() {
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
+
+  useEffect(() => {
+    props.resetTenants();
+  }, []);
+
+  useEffect(() => {
+    props.getTenants();
+  }, []);
+
+  const tenants =
+    props.tenants && props.tenants.length
+      ? props.tenants.filter((tenant) => tenant.property)
+      : [];
+
+  console.log("props.tenants", props.tenants);
+
   return (
     <div className="Table">
       <ResponsiveDrawer>
@@ -112,7 +131,10 @@ export default function Tenantcontent() {
                 </MuiPickersUtilsProvider>
               </Grid>
             </Grid>
-            <Tablecomponent />
+            <Tablecomponent
+              tenants={tenants}
+              updateTenant={props.updateTenant}
+            />
           </Grid>
           <Pagination />
         </Grid>
@@ -120,3 +142,21 @@ export default function Tenantcontent() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  const tenantsSelector = TenantssSelector(state.tenants);
+
+  return {
+    tenants: tenantsSelector.getTenantsData().data,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getTenants: () => dispatch(tenantsActions.getTenants()),
+    updateTenant: (id) => dispatch(tenantsActions.updateTenant(id)),
+    resetTenants: () => dispatch(tenantsActions.resetState()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tenantcontent);

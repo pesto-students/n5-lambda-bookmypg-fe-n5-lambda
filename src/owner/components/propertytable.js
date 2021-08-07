@@ -68,29 +68,23 @@ export default function Tablecomponent() {
           }}
         >
           <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell>Location</TableCell>
-            <TableCell>Address</TableCell>
-            <TableCell>Pincode</TableCell>
-            <TableCell>Free Beds</TableCell>
-            <TableCell>
-              Registered Date
-              <div style={{ display: "inline-grid", marginLeft: "5px" }}>
-                <ArrowDropUpIcon style={{ transform: "scale(0.7)" }} />
-                <ArrowDropDownIcon style={{ transform: "scale(0.7)" }} />
-              </div>
-            </TableCell>
+            <TableCell align="center">Name</TableCell>
+            <TableCell align="center">Location</TableCell>
+            <TableCell align="center">Address</TableCell>
+            <TableCell align="center">Pincode</TableCell>
+            <TableCell align="center">Free Beds</TableCell>
+            <TableCell align="center">Registered Date</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {Tabledata.map((data) => (
             <TableRow>
-              <TableCell>{data.name}</TableCell>
-              <TableCell>{data.location}</TableCell>
-              <TableCell>{data.address}</TableCell>
-              <TableCell>{data.pincode}</TableCell>
-              <TableCell>{data.freebeds}</TableCell>
-              <TableCell>{data.created}</TableCell>
+              <TableCell align="center">{data.name}</TableCell>
+              <TableCell align="center">{data.location}</TableCell>
+              <TableCell align="center">{data.address}</TableCell>
+              <TableCell align="center">{data.pincode}</TableCell>
+              <TableCell align="center">{data.freebeds}</TableCell>
+              <TableCell align="center">{data.created}</TableCell>
             </TableRow>
           ))}
         </TableBody>

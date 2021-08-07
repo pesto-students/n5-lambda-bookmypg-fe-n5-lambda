@@ -26,15 +26,15 @@ const drawerWidth = 240;
 const headersData = [
   {
     label: "Basic Details",
-    href: "/ownerhomepage",
+    href: "/owner-home",
   },
   {
     label: "My Properties",
-    href: "/ownerpropertylist",
+    href: "/owner-property-list",
   },
   {
     label: "Payment History",
-    href: "/ownertenantlist",
+    href: "/tenant-list",
   },
 ];
 const styles = (theme) => ({
