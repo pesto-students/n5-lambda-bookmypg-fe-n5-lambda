@@ -125,7 +125,7 @@ export default function FormDialog(props) {
           >
             <Grid item>
               <Typography component="h1" variant="subtitle1" color="primary">
-                Please rate your exeprience with the tenant!
+                Please rate your experience with the tenant!
               </Typography>
             </Grid>
             <Grid item>
