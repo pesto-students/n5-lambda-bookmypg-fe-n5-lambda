@@ -5,7 +5,6 @@ import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 
 export default function SimpleRating(props) {
-  console.log(props);
   return (
     <div>{props.mobileView ? displayMobile(props) : displayWeb(props)}</div>
   );

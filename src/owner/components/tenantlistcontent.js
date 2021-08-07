@@ -36,6 +36,7 @@ export function Tenantcontent(props) {
   };
 
   const [selectedDate, setSelectedDate] = React.useState(new Date());
+  const [enabled, setEnabled] = React.useState(false);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -47,14 +48,12 @@ export function Tenantcontent(props) {
 
   useEffect(() => {
     props.getTenants();
-  }, []);
+  }, [enabled, setEnabled]);
 
   const tenants =
     props.tenants && props.tenants.length
       ? props.tenants.filter((tenant) => tenant.property)
       : [];
-
-  console.log("props.tenants", props.tenants);
 
   return (
     <div className="Table">
@@ -134,6 +133,7 @@ export function Tenantcontent(props) {
             <Tablecomponent
               tenants={tenants}
               updateTenant={props.updateTenant}
+              setEnabled={setEnabled}
             />
           </Grid>
           <Pagination />

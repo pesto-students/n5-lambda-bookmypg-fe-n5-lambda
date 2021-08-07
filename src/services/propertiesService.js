@@ -1,10 +1,10 @@
 import httpInterceptor from "../network/interceptor";
 
 const PropertiesService = {
-  getProperties: async () => {
-    const URL = "http://localhost:4000/api/property/";
+  getProperties: async (payload) => {
+    const URL = "http://localhost:4000/api/property";
     const response = await httpInterceptor({
-      url: URL,
+      url: `${URL}${payload && payload.extraParams ? payload.extraParams : ""}`,
       method: "GET",
     });
 

@@ -21,7 +21,5 @@ export default async function getImages() {
       data: file.Body,
       mimetype: file.ContentType,
     };
-  } catch (ex) {
-    console.log("Error loading images from s3", ex);
-  }
+  } catch (ex) {}
 }

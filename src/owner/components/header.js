@@ -190,7 +190,6 @@ export default function Header(props) {
     const provider = new firebase.auth.GoogleAuthProvider();
     const response = await firebase.auth().signInWithPopup(provider);
     props.setLoggedUser(response.user);
-    console.log("USER", response.user._lat);
     setOpen(false);
     history.push("/");
   };

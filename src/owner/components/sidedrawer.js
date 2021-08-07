@@ -109,7 +109,6 @@ function ResponsiveDrawer(props) {
   };
   const { gilad, jason, antoine } = state;
   const error = [gilad, jason, antoine].filter((v) => v).length !== 2;
-  console.log(error);
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };

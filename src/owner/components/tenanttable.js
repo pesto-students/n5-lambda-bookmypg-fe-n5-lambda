@@ -58,6 +58,11 @@ export default function Tablecomponent(props) {
     <Ratetenant />;
   };
 
+  const handleSwitch = (tenant) => {
+    if (tenant.isactive) props.updateTenant(tenant._id);
+    props.setEnabled(true);
+  };
+
   return (
     <Paper style={{ overflowX: "auto" }}>
       <Table style={{ minWidth: "340px" }}>
@@ -92,9 +97,7 @@ export default function Tablecomponent(props) {
                     />
                     <Switch
                       checked={tenant.isactive}
-                      onChange={() =>
-                        tenant.isactive && props.updateTenant(tenant._id)
-                      }
+                      onChange={() => handleSwitch(tenant)}
                       name="checkedA"
                       inputProps={{ "aria-label": "secondary checkbox" }}
                     />

@@ -84,8 +84,6 @@ export function Album(props) {
     props.getProperties();
   }, []);
 
-  console.log("PROPERTIES", props.properties);
-
   return (
     <React.Fragment>
       <Container className={classes.cardGrid} maxWidth="md">

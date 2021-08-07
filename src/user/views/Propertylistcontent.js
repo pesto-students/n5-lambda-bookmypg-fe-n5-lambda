@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -10,8 +9,6 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles, responsiveFontSizes } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import Rating from "../components/rating";
-import PropertiesSelector from "../components/PropertiesSelector";
-import propertiesActions from "../../redux-store/actions/propertiesActions";
 import Pagination from "../components/pagination";
 import { S3_BUCKET_URL } from "../../constant";
 
@@ -98,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function PropertyListContent(props) {
+export default function PropertyListContent(props) {
   const classes = useStyles();
 
   const [state, setState] = useState({
@@ -190,7 +187,11 @@ export function PropertyListContent(props) {
               </Grid>
             ))}
           <Grid item xs={12} spacing={1}>
-            <Pagination />
+            <Pagination
+              getProperties={props.getProperties}
+              pagenumber={props.pagenumber}
+              setPagenumber={props.setPagenumber}
+            />
           </Grid>
         </Grid>
       </React.Fragment>
@@ -287,7 +288,11 @@ export function PropertyListContent(props) {
               </Grid>
             ))}
         </Grid>
-        <Pagination />
+        <Pagination
+          getProperties={props.getProperties}
+          pagenumber={props.pagenumber}
+          setPagenumber={props.setPagenumber}
+        />
       </React.Fragment>
     );
   };
@@ -298,21 +303,3 @@ export function PropertyListContent(props) {
     </>
   );
 }
-const mapStateToProps = (state) => {
-  const propertiesSelector = PropertiesSelector(state.properties);
-
-  return {
-    properties: propertiesSelector.getPropertiesData().data,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getProperties: () => dispatch(propertiesActions.getProperties()),
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PropertyListContent);

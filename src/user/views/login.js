@@ -23,7 +23,6 @@ const useStyles = makeStyles(() => ({
 }));
 
 export function Login(props) {
-  console.log("user====>", props.user);
   const { button, buttonmargin } = useStyles();
   const [open, setOpen] = React.useState(false);
   const history = useHistory();
@@ -45,7 +44,6 @@ export function Login(props) {
     const response = await firebase.auth().signInWithPopup(provider);
     props.setLoggedUser(response.user);
     props.userSubmitted(response.user);
-    console.log("USER", response.user._lat);
     setOpen(false);
     history.push("/");
   };
