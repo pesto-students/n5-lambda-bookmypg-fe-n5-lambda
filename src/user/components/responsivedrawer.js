@@ -26,11 +26,11 @@ const drawerWidth = 240;
 const headersData = [
   {
     label: "Basic Details",
-    href: "/owner-home",
+    href: "/myprofile",
   },
   {
     label: "My Properties",
-    href: "/owner-property-list",
+    href: "/mypropertydetails",
   },
   {
     label: "Payment History",

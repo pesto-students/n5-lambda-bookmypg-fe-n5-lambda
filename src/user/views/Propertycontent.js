@@ -173,8 +173,8 @@ export default function Album(props) {
                   src={MyCollection[activeStep].imgPath}
                   alt={MyCollection[activeStep].label}
                   style={{
-                    height: 255,
-                    width: "500px",
+                    height: 300,
+                    width: "700px",
                     maxWidth: "100%",
                     display: "block",
                     overflow: "hidden",

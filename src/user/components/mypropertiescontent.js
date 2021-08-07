@@ -10,6 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Rating from "@material-ui/lab/Rating";
 import TextField from "@material-ui/core/TextField";
+import Complaint from "../components/raisecomplaint";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -70,9 +71,21 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: "row",
     },
   },
+  gridStyle: {
+    marginLeft: "0px",
+  },
+  textfieldStyle: {
+    width: "100%",
+  },
+  buttonStyle: {
+    display: "flex",
+    paddingBottom: "10px",
+    alignSelf: "center",
+  },
+  buttonSpacing: {
+    marginLeft: "20px",
+  },
 }));
-
-const cards = [1, 2, 3, 4];
 
 const data = {
   propertyname: "Zolo House 1",
@@ -87,7 +100,7 @@ export default function Tablefile() {
   return (
     <div className="Table">
       <ResponsiveDrawer>
-        <Grid container spacing={5}>
+        <Grid container className={classes.gridStyle}>
           <Grid item xs={12} sm={6} md={3}>
             <Card className={classes.card}>
               <CardMedia
@@ -123,20 +136,17 @@ export default function Tablefile() {
                     placeholder="Placeholder"
                     multiline
                     variant="outlined"
+                    className={classes.textfieldStyle}
                   />
                 </div>
               </CardContent>
-              <div
-                style={{
-                  display: "flex",
-                  paddingBottom: "10px",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Button variant="contained" color="secondary">
-                  Complaint
-                </Button>
-                <Button variant="contained" color="secondary">
+              <div className={classes.buttonStyle}>
+                <Complaint />
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  className={classes.buttonSpacing}
+                >
                   Pay Rent
                 </Button>
               </div>

@@ -8,7 +8,7 @@ import Propertydetails from "./user/views/Propertydetails";
 import Propertylist from "./user/views/Propertylist";
 import Login from "./user/views/login";
 import Userpaymenthistory from "./views/Userprofile/Userpaymenthistory";
-import Myprofile from "../src/views/Userprofile/Myprofile";
+import Myprofile from "./user/views/Myprofile";
 import { Provider } from "react-redux";
 import { store } from "./redux-store/Store";
 import Ownertenantlist from "./owner/pages/Tenantlist";

@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
   formAlign: {
     alignSelf: "center",
+    overflow: "unset",
   },
   dateComponentSize: {
     width: "calc(278px + 0.5vw)",
@@ -52,9 +53,13 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     textAlign: "left",
     margin: "0px",
+    width: "100%",
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
+  },
+  textfieldStyle: {
+    width: "100%",
   },
 }));
 
@@ -104,7 +109,7 @@ export default function FormDialog(props) {
         aria-labelledby="form-dialog-title"
         PaperProps={{
           style: {
-            width: "calc(478px + 0.5vw)",
+            width: "calc(678px + 0.5vw)",
           },
         }}
       >
@@ -146,6 +151,7 @@ export default function FormDialog(props) {
                 label="Name"
                 defaultValue=""
                 fullwidth
+                className={classes.textfieldStyle}
               />
               <TextField
                 id="standard-basic"
@@ -153,6 +159,7 @@ export default function FormDialog(props) {
                 defaultValue=""
                 fullwidth
                 rows="4"
+                className={classes.textfieldStyle}
               />
               <TextField
                 id="standard-basic"
@@ -160,14 +167,10 @@ export default function FormDialog(props) {
                 defaultValue=""
                 fullwidth
                 multiline
+                rows="4"
+                className={classes.textfieldStyle}
               />
               <FormControl className={classes.formControl}>
-                <InputLabel
-                  shrink
-                  id="demo-simple-select-placeholder-label-label"
-                >
-                  Location
-                </InputLabel>
                 <Select
                   labelId="demo-simple-select-placeholder-label-label"
                   id="demo-simple-select-placeholder-label"
@@ -179,8 +182,8 @@ export default function FormDialog(props) {
                   <MenuItem value="Mumbai">Mumbai</MenuItem>
                   <MenuItem value="Delhi">Delhi</MenuItem>
                 </Select>
-                <FormHelperText>Location</FormHelperText>
               </FormControl>
+              <FormHelperText>Location</FormHelperText>
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -188,13 +191,14 @@ export default function FormDialog(props) {
                 label="Rent"
                 defaultValue=""
                 fullwidth
+                className={classes.textfieldStyle}
               />
               <TextField
                 id="standard-basic"
                 label="Total Beds"
                 defaultValue=""
                 fullwidth
-                rows="4"
+                className={classes.textfieldStyle}
               />
               <TextField
                 id="standard-basic"
@@ -202,7 +206,23 @@ export default function FormDialog(props) {
                 defaultValue=""
                 fullwidth
                 multiline
+                rows="4"
+                className={classes.textfieldStyle}
               />
+              <FormControl className={classes.formControl}>
+                <Select
+                  labelId="demo-simple-select-placeholder-label-label"
+                  id="demo-simple-select-placeholder-label"
+                  value={status}
+                  onChange={handleChange}
+                  displayEmpty
+                  className={classes.selectEmpty}
+                >
+                  <MenuItem value="Mumbai">Air Conditioner</MenuItem>
+                  <MenuItem value="Delhi">Washing Machine</MenuItem>
+                </Select>
+              </FormControl>
+              <FormHelperText>Amenities</FormHelperText>
             </Grid>
           </Grid>
         </DialogContent>

@@ -21,11 +21,10 @@ import {
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import Grid from "@material-ui/core/Grid";
-import EmailIcon from "@material-ui/icons/Email";
-import PhoneIcon from "@material-ui/icons/Phone";
-import AccessTimeIcon from "@material-ui/icons/AccessTime";
-import AccountBoxIcon from "@material-ui/icons/AccountBox";
-import Rating from "@material-ui/lab/Rating";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
+import FormHelperText from "@material-ui/core/FormHelperText";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
   dialogTitle: {
     alignSelf: "center",
     padding: "0px",
-    textAlign: "center",
   },
   dialogBox: {
     width: "calc(478px + 0.5vw)",
@@ -55,12 +53,36 @@ const useStyles = makeStyles((theme) => ({
   imgStyle: {
     width: "70px",
     alignContent: "center",
-    paddingLeft: "15px",
+    paddingLeft: "35px",
   },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+    width: "100%",
+    textAlign: "left",
+    margin: "0px",
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+  textfieldStyle: {
+    width: "280px",
+  },
+}));
+
+const useStylesLabel = makeStyles((theme) => ({
+  root: {
+    "&$disabled": {
+      color: "#616161",
+    },
+  },
+  disabled: {},
+  notchedOutline: {},
 }));
 
 export default function FormDialog(props) {
   const classes = useStyles();
+  const classesLabel = useStylesLabel();
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -76,12 +98,18 @@ export default function FormDialog(props) {
     setSelectedDate(date);
   };
   const date = new Date();
+
+  const [status, setStatus] = React.useState("");
+
+  const handleChange = (event) => {
+    setStatus(event.target.value);
+  };
   date.setDate(date.getDate() + 7);
   return (
     <div>
-      <Link href="#" onClick={handleClickOpen}>
-        {props.value}
-      </Link>
+      <Button variant="contained" color="secondary" onClick={handleClickOpen}>
+        Complaint
+      </Button>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -103,11 +131,10 @@ export default function FormDialog(props) {
         <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
           <div>
             <Typography component="h1" variant="h6" color="primary">
-              Rate {props.value}
+              Raise Complaint
             </Typography>
-
             <img
-              src="ratetenant.png"
+              src="complaint.jpg"
               alt="No image available"
               className={classes.imgStyle}
             />
@@ -116,21 +143,58 @@ export default function FormDialog(props) {
 
         <DialogContent className={classes.formAlign}>
           <Grid
-            spacing={3}
+            spacing={2}
             style={{
               textAlign: "center",
-              border: "1px solid rgba(0, 0, 0, 0.12)",
+
               borderRadius: "10px",
               padding: "10px",
             }}
           >
             <Grid item>
-              <Typography component="h1" variant="subtitle1" color="primary">
-                Please rate your experience with the tenant!
-              </Typography>
+              <TextField
+                disabled
+                id="standard-disabled"
+                label="Property Name"
+                defaultValue="abc"
+                fullwidth
+                className={classes.textfieldStyle}
+                InputProps={{
+                  classes: {
+                    root: classesLabel.root,
+                    disabled: classesLabel.disabled,
+                  },
+                }}
+              />
             </Grid>
             <Grid item>
-              <Rating size="large" />
+              <TextField
+                id="standard-basic"
+                label="Email"
+                defaultValue="-"
+                fullwidth
+                className={classes.textfieldStyle}
+              />
+            </Grid>
+            <Grid item>
+              <TextField
+                id="standard-basic"
+                label="Contact no"
+                defaultValue="-"
+                fullwidth
+                className={classes.textfieldStyle}
+              />
+            </Grid>
+            <Grid item>
+              <TextField
+                id="standard-basic"
+                label="Details"
+                defaultValue=""
+                fullwidth
+                multiline
+                rows="4"
+                className={classes.textfieldStyle}
+              />
             </Grid>
           </Grid>
         </DialogContent>

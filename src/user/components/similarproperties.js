@@ -1,84 +1,18 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import IconButton from "@material-ui/core/IconButton";
-import Rating from "../components/rating";
 import Cardrating from "../components/cardratings";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import { useHistory } from "react-router-dom";
 import { S3_BUCKET_URL } from "../../constant";
-
-const useStyles = makeStyles((theme) => ({
-  icon: {
-    marginRight: theme.spacing(2),
-  },
-  heroContent: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
-    paddingTop: "100px",
-  },
-  heroButtons: {
-    marginTop: theme.spacing(4),
-  },
-  cardGrid: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
-  },
-  card: {
-    height: "100%",
-    display: "flex",
-    flexDirection: "column",
-    padding: "10px",
-  },
-  cardMedia: {
-    paddingTop: "56.25%", // 16:9
-  },
-  cardContent: {
-    flexGrow: 1,
-  },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-  },
-  iconbuttons: {
-    display: "flex",
-  },
-  icons: {
-    [theme.breakpoints.down("md")]: {
-      transform: "rotate(90deg)",
-    },
-    [theme.breakpoints.up("md")]: {
-      transform: "rotate(0deg)",
-    },
-    [theme.breakpoints.up("lg")]: {
-      transform: "rotate(0deg)",
-    },
-  },
-  responsivegrid: {
-    display: "flex",
-    marginTop: "15px",
-    [theme.breakpoints.down("md")]: {
-      flexDirection: "column",
-    },
-    [theme.breakpoints.up("md")]: {
-      flexDirection: "row",
-    },
-    [theme.breakpoints.up("lg")]: {
-      flexDirection: "row",
-    },
-  },
-}));
-
-const cards = [1, 2, 3, 4];
+import useStyles from "./similarproperties.styles";
 
 const data = {
   propertyname: "Zolo House 1",

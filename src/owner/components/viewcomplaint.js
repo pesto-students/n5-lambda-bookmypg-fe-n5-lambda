@@ -216,7 +216,7 @@ export default function FormDialog(props) {
               <TextField
                 disabled
                 id="standard-disabled"
-                label="Remarks"
+                label="Description"
                 defaultValue="Air conditioner is not working."
                 fullwidth
                 multiline
@@ -251,6 +251,17 @@ export default function FormDialog(props) {
                 </Select>
                 <FormHelperText>Complaint Status</FormHelperText>
               </FormControl>
+            </Grid>
+            <Grid item>
+              <TextField
+                id="standard-basic"
+                label="Remarks"
+                defaultValue="-"
+                fullwidth
+                multiline
+                maxRows={4}
+                style={{ width: "280px" }}
+              />
             </Grid>
           </Grid>
         </DialogContent>
