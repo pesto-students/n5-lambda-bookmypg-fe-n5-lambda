@@ -171,7 +171,7 @@ function PropertyFilters(props) {
                   setGender({
                     male: !gender.male,
                     female: gender.female,
-                    other: gender.male,
+                    other: gender.other,
                   })
                 }
                 name="male"

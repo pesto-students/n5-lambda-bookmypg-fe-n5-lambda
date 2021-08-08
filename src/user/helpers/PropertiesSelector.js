@@ -7,7 +7,7 @@ export const PropertiesSelector = (state) => ({
           : {},
     };
   },
-  getuserRequestState: () => {
+  getPropertiesRequestState: () => {
     return state.getPropertiesRequestState || {};
   },
 });
