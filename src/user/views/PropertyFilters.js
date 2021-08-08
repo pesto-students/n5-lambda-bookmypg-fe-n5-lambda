@@ -106,53 +106,47 @@ function PropertyFilters(props) {
   const { gilad, jason, antoine } = state;
   const error = [gilad, jason, antoine].filter((v) => v).length !== 2;
 
-  const [male, setMale] = React.useState(false);
-  const [female, setFemale] = React.useState(false);
-  const [other, setOther] = React.useState(false);
+  const [gender, setGender] = React.useState({
+    male: false,
+    female: false,
+    other: false,
+  });
 
-  const [threeStars, setThreeStars] = React.useState(false);
-  const [fourStars, setFourStars] = React.useState(false);
-  const [fiveStars, setFiveStars] = React.useState(false);
+  const [rating, setRating] = React.useState({
+    threeStars: false,
+    fourStars: false,
+    fiveStars: false,
+  });
 
-  const [zeroRent, setZeroRent] = React.useState(false);
-  const [oneRent, setOneRent] = React.useState(false);
-  const [twoRent, setTwoRent] = React.useState(false);
+  const [rent, setRent] = React.useState({
+    zeroRent: false,
+    oneRent: false,
+    twoRent: false,
+  });
 
   const [pagenumber, setPagenumber] = React.useState(1);
   const [countperpage, setCountperpage] = React.useState(10);
 
   useEffect(() => {
-    const gender = [];
-    if (male) gender.push("male");
-    if (female) gender.push("female");
-    if (other) gender.push("other");
+    const selectedGender = [];
+    if (gender.male) selectedGender.push("male");
+    if (gender.female) selectedGender.push("female");
+    if (gender.other) selectedGender.push("other");
 
-    const rating = [];
-    if (threeStars) rating.push("3");
-    if (fourStars) rating.push("4");
-    if (fiveStars) rating.push("5");
+    const selectedRating = [];
+    if (rating.threeStars) selectedRating.push("3");
+    if (rating.fourStars) selectedRating.push("4");
+    if (rating.fiveStars) selectedRating.push("5");
 
-    const rent = [];
-    if (twoRent) rent.push("2");
-    if (oneRent) rent.push("1");
-    if (zeroRent) rent.push("0");
+    const selectedRent = [];
+    if (rent.twoRent) selectedRent.push("2");
+    if (rent.oneRent) selectedRent.push("1");
+    if (rent.zeroRent) selectedRent.push("0");
 
-    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&gender=${gender}&rating=${rating}&rent=${rent}`;
+    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&gender=${selectedGender}&rating=${selectedRating}&rent=${selectedRent}`;
     console.log("extraParams", extraParams);
     props.getProperties({ extraParams });
-  }, [
-    pagenumber,
-    countperpage,
-    male,
-    female,
-    other,
-    threeStars,
-    fourStars,
-    fiveStars,
-    zeroRent,
-    oneRent,
-    twoRent,
-  ]);
+  }, [pagenumber, countperpage, gender, rating, rent]);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -172,8 +166,14 @@ function PropertyFilters(props) {
           <FormControlLabel
             control={
               <Checkbox
-                checked={male}
-                onChange={() => setMale(!male)}
+                checked={gender.male}
+                onChange={() =>
+                  setGender({
+                    male: !gender.male,
+                    female: gender.female,
+                    other: gender.male,
+                  })
+                }
                 name="male"
               />
             }
@@ -182,8 +182,14 @@ function PropertyFilters(props) {
           <FormControlLabel
             control={
               <Checkbox
-                checked={female}
-                onChange={() => setFemale(!female)}
+                checked={gender.female}
+                onChange={() =>
+                  setGender({
+                    male: gender.male,
+                    female: !gender.female,
+                    other: gender.other,
+                  })
+                }
                 name="female"
               />
             }
@@ -192,8 +198,14 @@ function PropertyFilters(props) {
           <FormControlLabel
             control={
               <Checkbox
-                checked={other}
-                onChange={() => setOther(!other)}
+                checked={gender.other}
+                onChange={() =>
+                  setGender({
+                    male: gender.male,
+                    female: gender.female,
+                    other: !gender.other,
+                  })
+                }
                 name="other"
               />
             }
@@ -209,8 +221,14 @@ function PropertyFilters(props) {
           <FormControlLabel
             control={
               <Checkbox
-                checked={fiveStars}
-                onChange={() => setFiveStars(!fiveStars)}
+                checked={rating.fiveStars}
+                onChange={() =>
+                  setRating({
+                    threeStars: rating.threeStars,
+                    fourStars: rating.fourStars,
+                    fiveStars: !rating.fiveStars,
+                  })
+                }
                 name="fiveStars"
               />
             }
@@ -219,8 +237,14 @@ function PropertyFilters(props) {
           <FormControlLabel
             control={
               <Checkbox
-                checked={fourStars}
-                onChange={() => setFourStars(!fourStars)}
+                checked={rating.fourStars}
+                onChange={() =>
+                  setRating({
+                    threeStars: rating.threeStars,
+                    fourStars: !rating.fourStars,
+                    fiveStars: rating.fiveStars,
+                  })
+                }
                 name="fourStars"
               />
             }
@@ -229,8 +253,14 @@ function PropertyFilters(props) {
           <FormControlLabel
             control={
               <Checkbox
-                checked={threeStars}
-                onChange={() => setThreeStars(!threeStars)}
+                checked={rating.threeStars}
+                onChange={() =>
+                  setRating({
+                    threeStars: !rating.threeStars,
+                    fourStars: rating.fourStars,
+                    fiveStars: rating.fiveStars,
+                  })
+                }
                 name="threeStars"
               />
             }
@@ -245,8 +275,14 @@ function PropertyFilters(props) {
           <FormControlLabel
             control={
               <Checkbox
-                checked={twoRent}
-                onChange={() => setTwoRent(!twoRent)}
+                checked={rent.twoRent}
+                onChange={() =>
+                  setRent({
+                    zeroRent: rent.zeroRent,
+                    oneRent: rent.oneRent,
+                    twoRent: !rent.twoRent,
+                  })
+                }
                 name="twoRent"
               />
             }
@@ -255,8 +291,14 @@ function PropertyFilters(props) {
           <FormControlLabel
             control={
               <Checkbox
-                checked={oneRent}
-                onChange={() => setOneRent(!oneRent)}
+                checked={rent.oneRent}
+                onChange={() =>
+                  setRent({
+                    zeroRent: rent.zeroRent,
+                    oneRent: !rent.oneRent,
+                    twoRent: rent.twoRent,
+                  })
+                }
                 name="oneRent"
               />
             }
@@ -265,8 +307,14 @@ function PropertyFilters(props) {
           <FormControlLabel
             control={
               <Checkbox
-                checked={zeroRent}
-                onChange={() => setZeroRent(!zeroRent)}
+                checked={rent.zeroRent}
+                onChange={() =>
+                  setRent({
+                    zeroRent: !rent.zeroRent,
+                    oneRent: rent.oneRent,
+                    twoRent: rent.twoRent,
+                  })
+                }
                 name="zeroRent"
               />
             }
