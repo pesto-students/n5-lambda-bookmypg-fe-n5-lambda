@@ -6,7 +6,7 @@ import Content from "./content";
 import Footer from "../../components/footer/Footer";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { createTheme } from "@material-ui/core/styles";
-import Theme from "../../../src/";
+import Theme from "../../../src/theme/Theme";
 
 const data = [
   {
