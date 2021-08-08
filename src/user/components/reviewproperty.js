@@ -12,6 +12,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Rating from "@material-ui/lab/Rating";
+import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,7 +67,7 @@ export default function FormDialog(props) {
   return (
     <div>
       <Link href="#" onClick={handleClickOpen}>
-        {props.value}
+        Click here
       </Link>
       <Dialog
         open={open}
@@ -89,7 +90,7 @@ export default function FormDialog(props) {
         <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
           <div>
             <Typography component="h1" variant="h6" color="primary">
-              Rate {props.value}
+              Review {props.value}
             </Typography>
 
             <img
@@ -112,12 +113,21 @@ export default function FormDialog(props) {
           >
             <Grid item>
               <Typography component="h1" variant="subtitle1" color="primary">
-                Please rate your experience with the tenant!
+                Please share your experience with the property!
               </Typography>
             </Grid>
             <Grid item>
               <Rating size="large" />
             </Grid>
+            <TextField
+              id="outlined-basic"
+              label="Write your review here"
+              variant="outlined"
+              multiline
+              rows={2}
+              maxRows={4}
+              fullWidth
+            />
           </Grid>
         </DialogContent>
         <DialogActions className={classes.button}>

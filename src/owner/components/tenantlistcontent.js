@@ -66,7 +66,7 @@ export function Tenantcontent(props) {
             style={{ padding: "8px", textAlign: "center" }}
           >
             <Typography component="h1" variant="h5">
-              Tenants List
+              Tenant List
             </Typography>
             <Grid container justify={"space-between"}>
               <Grid
@@ -81,7 +81,7 @@ export function Tenantcontent(props) {
               >
                 <TextField
                   id="standard-basic"
-                  label="Search by name"
+                  label="Search by tenant name"
                   style={{ width: "300px" }}
                 />
               </Grid>

@@ -34,7 +34,7 @@ const headersData = [
   },
   {
     label: "Payment History",
-    href: "/tenant-list",
+    href: "/payment-list",
   },
 ];
 const styles = (theme) => ({

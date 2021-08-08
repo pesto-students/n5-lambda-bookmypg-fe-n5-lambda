@@ -19,13 +19,11 @@ import {
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
-import Tablecomponent from "./propertytable";
-import Pagination from "./pagination";
-import Addproperty from "./addproperty";
-import PropertiesSelector from "../../user/components/PropertiesSelector";
-import propertiesActions from "../../redux-store/actions/propertiesActions";
+import Tablecomponent from "./paymenttable";
 
-export function PropertyListContent(props) {
+import Pagination from "./pagination";
+
+export function Tenantcontent(props) {
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
@@ -36,18 +34,25 @@ export function PropertyListContent(props) {
   };
 
   const [selectedDate, setSelectedDate] = React.useState(new Date());
-
-  useEffect(() => {
-    props.resetProperties();
-  }, []);
-
-  useEffect(() => {
-    props.getProperties();
-  }, []);
+  const [enabled, setEnabled] = React.useState(false);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
+
+  useEffect(() => {
+    //props.resetTenants();
+  }, []);
+
+  useEffect(() => {
+    //  props.getTenants();
+  }, [enabled, setEnabled]);
+
+  const tenants =
+    props.tenants && props.tenants.length
+      ? props.tenants.filter((tenant) => tenant.property)
+      : [];
+
   return (
     <div className="Table">
       <ResponsiveDrawer>
@@ -59,7 +64,7 @@ export function PropertyListContent(props) {
             style={{ padding: "8px", textAlign: "center" }}
           >
             <Typography component="h1" variant="h5">
-              Property List
+              Payment History
             </Typography>
             <Grid container justify={"space-between"}>
               <Grid
@@ -74,7 +79,7 @@ export function PropertyListContent(props) {
               >
                 <TextField
                   id="standard-basic"
-                  label="Search by property name"
+                  label="Search by tenant name"
                   style={{ width: "300px" }}
                 />
               </Grid>
@@ -83,16 +88,51 @@ export function PropertyListContent(props) {
                 xs={12}
                 md={6}
                 style={{
-                  placeSelf: "flex-end",
-                  textAlign: "right",
-                  padding: "18px",
-                  paddingRight: "0px",
+                  padding: "8px",
+                  textAlign: "center",
+                  display: "flex",
                 }}
               >
-                <Addproperty />
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <KeyboardDatePicker
+                    disableToolbar
+                    variant="inline"
+                    format="MM/dd/yyyy"
+                    margin="normal"
+                    id="date-picker-inline"
+                    label="From Date:"
+                    value={selectedDate}
+                    onChange={handleDateChange}
+                    KeyboardButtonProps={{
+                      "aria-label": "change date",
+                    }}
+                    disablePast={true}
+                  />
+                </MuiPickersUtilsProvider>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <KeyboardDatePicker
+                    disableToolbar
+                    variant="inline"
+                    format="MM/dd/yyyy"
+                    margin="normal"
+                    id="date-picker-inline"
+                    label="To Date:"
+                    value={selectedDate}
+                    onChange={handleDateChange}
+                    KeyboardButtonProps={{
+                      "aria-label": "change date",
+                    }}
+                    disablePast={true}
+                    style={{ marginLeft: "10px" }}
+                  />
+                </MuiPickersUtilsProvider>
               </Grid>
             </Grid>
-            <Tablecomponent properties={props.properties} />
+            <Tablecomponent
+              tenants={tenants}
+              updateTenant={props.updateTenant}
+              setEnabled={setEnabled}
+            />
           </Grid>
           <Pagination />
         </Grid>
@@ -101,23 +141,22 @@ export function PropertyListContent(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  const propertiesSelector = PropertiesSelector(state.properties);
+/*const mapStateToProps = (state) => {
+  const tenantsSelector = TenantsSelector(state.tenants);
 
   return {
-    properties: propertiesSelector.getPropertiesData().data,
+    tenants: tenantsSelector.getTenantsData().data,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getProperties: () => dispatch(propertiesActions.getProperties()),
-    // updateProperty: (id) => dispatch(propertiesActions.updateProperty(id)),
-    resetProperties: () => dispatch(propertiesActions.resetState()),
+    getTenants: () => dispatch(tenantsActions.getTenants()),
+    updateTenant: (id) => dispatch(tenantsActions.updateTenant(id)),
+    resetTenants: () => dispatch(tenantsActions.resetState()),
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PropertyListContent);
+export default connect(mapStateToProps, mapDispatchToProps)(Tenantcontent);*/
+
+export default Tenantcontent;

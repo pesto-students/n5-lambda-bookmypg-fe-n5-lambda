@@ -9,8 +9,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Rating from "@material-ui/lab/Rating";
-import TextField from "@material-ui/core/TextField";
 import Complaint from "../components/raisecomplaint";
+import ReviewProperty from "./reviewproperty";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -88,10 +88,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const data = {
-  propertyname: "Zolo House 1",
+  property: "Zolo House 1",
   rent: "15000/month",
-  ownername: "Mr. Agarwal",
-  rating: 4,
+  owner: "Mr. Agarwal",
+  review: {},
   numratings: 10,
 };
 
@@ -111,13 +111,13 @@ export default function Tablefile() {
               <CardContent className={classes.cardContent}>
                 <div style={{ display: "flex" }}>
                   <Typography variant="h6" component="h2">
-                    {data.propertyname}
+                    {data.property}
                   </Typography>
                   <Typography
                     variant="body2"
                     style={{ paddingTop: "10px", paddingLeft: "5px" }}
                   >
-                    by {data.ownername}
+                    by {data.owner}
                   </Typography>
                 </div>
                 <div>
@@ -126,19 +126,39 @@ export default function Tablefile() {
                   </Typography>
                 </div>
 
-                <div>
-                  <Box display="flex" p={1}>
-                    <Rating value={5} size="large" />
-                  </Box>
-                  <TextField
-                    id="outlined-textarea"
-                    label="Write your review here"
-                    placeholder="Placeholder"
-                    multiline
-                    variant="outlined"
-                    className={classes.textfieldStyle}
-                  />
-                </div>
+                {data.review.rating ? (
+                  <div
+                    style={{
+                      border: "1px solid rgba(0, 0, 0, 0.12)",
+                      borderRadius: "10px",
+                      paddingTop: "10px",
+                    }}
+                  >
+                    <Box display="flex" p={1}>
+                      <Rating
+                        value={data.review.rating}
+                        size="large"
+                        readOnly
+                      />
+                    </Box>
+                    <Typography
+                      gutterBottom
+                      variant="subtitle2"
+                      style={{ padding: "8px" }}
+                    >
+                      {data.review.description}
+                    </Typography>
+                  </div>
+                ) : (
+                  <div>
+                    <Box display="flex" p={1}>
+                      <Typography gutterBottom variant="subtitle2">
+                        You haven't reviewed this property yet. To Review it
+                        <ReviewProperty value={data.property} />
+                      </Typography>
+                    </Box>
+                  </div>
+                )}
               </CardContent>
               <div className={classes.buttonStyle}>
                 <Complaint />
