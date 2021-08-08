@@ -43,6 +43,40 @@ const useStyles = makeStyles({
   },
 });
 
+const headersData = [
+  {
+    label: "Home",
+    href: "/",
+  },
+  {
+    label: "About us",
+    href: "/about",
+  },
+  {
+    label: "Contact us",
+    href: "/contact",
+  },
+];
+
+const locationItems = [
+  {
+    id: "0",
+    name: "None",
+  },
+  {
+    id: "1",
+    name: "Delhi",
+  },
+  {
+    id: "2",
+    name: "Mumbai",
+  },
+  {
+    id: "3",
+    name: "Chennai",
+  },
+];
+
 export default function HomePage() {
   const classes = useStyles();
   const [loggedUser, setLoggedUser] = React.useState("");
@@ -51,7 +85,12 @@ export default function HomePage() {
     <div className={classes.section}>
       <MuiThemeProvider theme={Theme}>
         <Grid container alignItems="center">
-          <Header loggedUser={loggedUser} setLoggedUser={setLoggedUser} />
+          <Header
+            loggedUser={loggedUser}
+            setLoggedUser={setLoggedUser}
+            headersData={headersData}
+            locationItems={locationItems}
+          />
           <Content />
           <Footer />
         </Grid>
