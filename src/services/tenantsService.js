@@ -2,7 +2,7 @@ import httpInterceptor from "../network/interceptor";
 
 const TenantsService = {
   getTenants: async () => {
-    const URL = "http://localhost:4000/api/user/";
+    const URL = "http://localhost:4000/api/users/";
     const response = await httpInterceptor({
       url: URL,
       method: "GET",
@@ -16,7 +16,7 @@ const TenantsService = {
   },
 
   updateTenant: async (id) => {
-    const URL = `http://localhost:4000/api/user/${id}`;
+    const URL = `http://localhost:4000/api/users/${id}`;
     const response = await httpInterceptor({
       url: URL,
       method: "DELETE",
