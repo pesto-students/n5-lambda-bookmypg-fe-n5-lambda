@@ -24,7 +24,6 @@ import ChevronRight from "@material-ui/icons/ChevronRight";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import Paper from "@material-ui/core/Paper";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-
 import { useTheme } from "@material-ui/core/styles";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import Rating from "../LandingPage/rating";
