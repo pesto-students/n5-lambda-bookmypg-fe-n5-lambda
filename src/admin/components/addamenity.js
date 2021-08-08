@@ -12,6 +12,8 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Link from "@material-ui/core/Link";
+import FormLabel from "@material-ui/core/FormLabel";
+import ImageUpload from "../components/imageupload";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "0px",
   },
   dialogBox: {
-    width: "calc(1278px + 0.5vw)",
+    width: "calc(478px + 0.5vw)",
   },
   formAlign: {
     alignSelf: "center",
@@ -132,9 +134,8 @@ export default function FormDialog(props) {
               {props.mode === "Edit" ? "Edit Amenity" : "Add New Amenity"}
             </Typography>
             <img
-              src="amenities.png"
+              src="addamenity.png"
               alt="No image available"
-              s
               className={classes.imgStyle}
             />
           </div>
@@ -158,12 +159,8 @@ export default function FormDialog(props) {
                 defaultValue=""
                 className={classes.textfieldStyle}
               />
-              <TextField
-                id="standard-basic"
-                label="Logo"
-                defaultValue=""
-                className={classes.textfieldStyle}
-              />
+
+              <ImageUpload />
             </Grid>
           </Grid>
         </DialogContent>

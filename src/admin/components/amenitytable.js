@@ -66,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
   },
   amenityStyle: {
     display: "flex",
+    placeContent: "center",
   },
 }));
 

@@ -130,7 +130,7 @@ export default function FormDialog(props) {
               Add New Owner
             </Typography>
             <img
-              src="addproperty.png"
+              src="addowner.jpg"
               alt="No image available"
               className={classes.imgStyle}
             />
