@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Header from "../../components/header/Header";
 import Content from "./content";
-import Footer from "../../components/footer/Footer";
+import Footer from "../../components/footer/footer";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { createTheme } from "@material-ui/core/styles";
 import Theme from "../../theme/theme";
