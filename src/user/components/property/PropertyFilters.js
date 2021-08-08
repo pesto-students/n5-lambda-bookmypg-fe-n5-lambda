@@ -24,6 +24,8 @@ import SortIcon from "@material-ui/icons/Sort";
 import Propertylistcontent from "./Propertylistcontent";
 import PropertiesSelector from "../../helpers/PropertiesSelector";
 import propertiesActions from "../../../redux-store/actions/propertiesActions";
+import LocationsSelector from "../../helpers/LocationsSelector";
+import locationsActions from "../../../redux-store/actions/locationsActions";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -143,10 +145,15 @@ function PropertyFilters(props) {
     if (rent.oneRent) selectedRent.push("1");
     if (rent.zeroRent) selectedRent.push("0");
 
-    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&gender=${selectedGender}&rating=${selectedRating}&rent=${selectedRent}`;
+    const search =
+      props.selectedLocation === "All" || props.selectedLocation === ""
+        ? ""
+        : props.selectedLocation;
+
+    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&gender=${selectedGender}&rating=${selectedRating}&rent=${selectedRent}`;
     console.log("extraParams", extraParams);
     props.getProperties({ extraParams });
-  }, [pagenumber, countperpage, gender, rating, rent]);
+  }, [pagenumber, countperpage, gender, rating, rent, props.selectedLocation]);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -414,9 +421,11 @@ function PropertyFilters(props) {
 
 const mapStateToProps = (state) => {
   const propertiesSelector = PropertiesSelector(state.properties);
+  const locationsSelector = LocationsSelector(state.locations);
 
   return {
     properties: propertiesSelector.getPropertiesData().data,
+    selectedLocation: locationsSelector.getSelectedLocation().selectedLocation
   };
 };
 
@@ -424,6 +433,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getProperties: (payload) =>
       dispatch(propertiesActions.getProperties(payload)),
+    getSelectedLocation: () => dispatch(locationsActions.getSelectedLocation()),
   };
 };
 

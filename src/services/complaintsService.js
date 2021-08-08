@@ -2,8 +2,7 @@ import httpInterceptor from "../network/interceptor";
 
 const ComplaintsService = {
   getComplaints: async () => {
-    const URL =
-      "http://bookmypglambdabackend-env.eba-pxbzun3k.us-east-2.elasticbeanstalk.com/api/complaints/";
+    const URL = "http://localhost:4000/api/complaints/";
     const response = await httpInterceptor({
       url: URL,
       method: "GET",

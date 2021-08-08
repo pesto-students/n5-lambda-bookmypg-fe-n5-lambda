@@ -39,7 +39,6 @@ ReactDOM.render(
           component={Ownercomplaintlist}
         />
         <Route exact path="/mypropertydetails" component={Mypropertydetails} />
-        <Route exact path="/propertylist" component={Propertylist} />
         <Route exact path="/property-details/:id" component={Propertydetails} />
         <Route exact path="/property-list" component={Propertylist} />
         <Route exact path="/payment-list" component={Paymentlist} />

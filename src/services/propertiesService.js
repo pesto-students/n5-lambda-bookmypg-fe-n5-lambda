@@ -2,8 +2,7 @@ import httpInterceptor from "../network/interceptor";
 
 const PropertiesService = {
   getProperties: async (payload) => {
-    const URL =
-      "http://bookmypglambdabackend-env.eba-pxbzun3k.us-east-2.elasticbeanstalk.com/api/properties";
+    const URL = "http://localhost:4000/api/properties";
     const response = await httpInterceptor({
       url: `${URL}${payload && payload.extraParams ? payload.extraParams : ""}`,
       method: "GET",

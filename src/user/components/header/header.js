@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import {
   AppBar,
   Toolbar,
@@ -13,7 +15,6 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import React, { useState, useEffect } from "react";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import { GoogleLoginButton } from "react-social-login-buttons";
 import firebase from "firebase/app";
@@ -33,6 +34,8 @@ import FacebookIcon from "@material-ui/icons/Facebook";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import EmailIcon from "@material-ui/icons/Email";
 import CloseIcon from "@material-ui/icons/Close";
+import LocationsSelector from "../../helpers/LocationsSelector";
+import locationsActions from "../../../redux-store/actions/locationsActions";
 
 const headersData = [
   {
@@ -144,7 +147,7 @@ const useStylesselect = makeStyles((theme) => ({
   },
 }));
 
-export default function Header(props) {
+export function Header(props) {
   const {
     header,
     logo,
@@ -165,10 +168,11 @@ export default function Header(props) {
   const classes = useStyles();
 
   const classesselect = useStylesselect();
-  const [location, setLocation] = React.useState("");
+  const [location, setLocation] = React.useState(props.selectedLocation || "");
 
   const handleChange = (event) => {
     setLocation(event.target.value);
+    props.setSelectedLocation(event.target.value);
     history.push("/property-list");
   };
 
@@ -180,14 +184,19 @@ export default function Header(props) {
         ? setState((prevState) => ({ ...prevState, mobileView: true }))
         : setState((prevState) => ({ ...prevState, mobileView: false }));
     };
-
     setResponsiveness();
-
     window.addEventListener("resize", () => setResponsiveness());
-
     return () => {
       window.removeEventListener("resize", () => setResponsiveness());
     };
+  }, []);
+
+  useEffect(()=>{
+    props.resetLocations()
+  },[])
+
+  useEffect(() => {
+    props.getLocations();
   }, []);
 
   const LoginPopup = () => {
@@ -209,6 +218,8 @@ export default function Header(props) {
     setOpen(false);
     history.push("/");
   };
+
+  const locations = props.locations;
 
   const displayDesktop = () => {
     return (
@@ -357,13 +368,16 @@ export default function Header(props) {
             onChange={handleChange}
             label="Location"
             style={{ color: "inherit" }}
+            variant="outlined"
           >
-            <MenuItem value="">
-              <em>None</em>
+            <MenuItem value="All">
+              <em>All</em>
             </MenuItem>
-            <MenuItem value={10}>Delhi</MenuItem>
-            <MenuItem value={20}>Mumbai</MenuItem>
-            <MenuItem value={30}>Chennai</MenuItem>
+            {locations &&
+              locations.length &&
+              locations.map((location) => (
+                <MenuItem value={location.name}>{location.name}</MenuItem>
+              ))}
           </Select>
         </FormControl>
       </Grid>
@@ -603,3 +617,24 @@ export default function Header(props) {
     </>
   );
 }
+
+const mapStateToProps = (state) => {
+  const locationsSelector = LocationsSelector(state.locations);
+
+  return {
+    locations: locationsSelector.getLocationsData().data,
+    selectedLocation: locationsSelector.getSelectedLocation().selectedLocation,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getLocations: () => dispatch(locationsActions.getLocations()),
+    setSelectedLocation: (payload) =>
+      dispatch(locationsActions.setSelectedLocation(payload)),
+    getSelectedLocation: () => dispatch(locationsActions.getSelectedLocation()),
+    resetLocations: () => dispatch(locationsActions.resetState()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
