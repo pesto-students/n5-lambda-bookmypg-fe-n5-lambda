@@ -8,13 +8,13 @@ import Typography from "@material-ui/core/Typography";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import IconButton from "@material-ui/core/IconButton";
-import Cardrating from "../components/cardratings";
+import Cardrating from "../../components/rating/cardratings";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import { useHistory } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
-import { S3_BUCKET_URL } from "../../constant";
-import useStyles from "./similarproperties.styles";
+import { S3_BUCKET_URL } from "../../../constant";
+import useStyles from "../similarproperties/similarproperties.styles";
 
 const data = {
   propertyname: "Zolo House 1",

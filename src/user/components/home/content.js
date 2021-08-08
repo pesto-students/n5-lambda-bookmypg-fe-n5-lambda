@@ -16,9 +16,9 @@ import Select from "@material-ui/core/Select";
 import ImageList from "@material-ui/core/ImageList";
 import ImageListItem from "@material-ui/core/ImageListItem";
 import { useHistory } from "react-router-dom";
-import PropertiesSelector from "./PropertiesSelector";
-import propertiesActions from "../../redux-store/actions/propertiesActions";
-import Similarproperties from "../components/similarproperties";
+import PropertiesSelector from "../../helpers/PropertiesSelector";
+import propertiesActions from "../../../redux-store/actions/propertiesActions";
+import Similarproperties from "../../components/similarproperties/similarproperties";
 
 const useStylesselect = makeStyles((theme) => ({
   formControl: {

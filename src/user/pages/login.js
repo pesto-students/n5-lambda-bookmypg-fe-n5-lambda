@@ -8,7 +8,7 @@ import { GoogleLoginButton } from "react-social-login-buttons";
 import firebase from "firebase/app";
 import "firebase/auth";
 import { useAuth } from "../../contexts/AuthContext";
-import UserSelector from "../components/UserSelector";
+import UserSelector from "../helpers/UserSelector";
 import userActions from "../../redux-store/actions/userActions";
 
 const useStyles = makeStyles(() => ({

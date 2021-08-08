@@ -8,9 +8,9 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, responsiveFontSizes } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
-import Rating from "../components/rating";
-import Pagination from "../components/pagination";
-import { S3_BUCKET_URL } from "../../constant";
+import Rating from "../../components/rating/rating";
+import Pagination from "../../components/pagination/pagination";
+import { S3_BUCKET_URL } from "../../../constant";
 
 const useStyles = makeStyles((theme) => ({
   icon: {

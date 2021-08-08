@@ -10,7 +10,7 @@ import Link from "@material-ui/core/Link";
 import Switch from "@material-ui/core/Switch";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowUpward";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDownward";
-import Theme from "../theme/theme";
+import Theme from "../../theme/theme";
 import { ReactComponent as SortingUpIcon } from "../../assets/svg/sortingUp.svg";
 import { ReactComponent as SortingDownIcon } from "../../assets/svg/sortingDown.svg";
 import { makeStyles } from "@material-ui/core/styles";

@@ -8,10 +8,10 @@ import MobileStepper from "@material-ui/core/MobileStepper";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import { useTheme } from "@material-ui/core/styles";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
-import Rating from "../components/rating";
-import Schedulevisit from "./Schedulevisit";
-import Bookproperty from "./Bookproperty";
-import Similarproperties from "../components/similarproperties";
+import Rating from "../../components/rating/rating";
+import Schedulevisit from "../../pages/Schedulevisit";
+import Bookproperty from "../../components/bookProperty/BookProperty";
+import Similarproperties from "../../components/similarproperties/similarproperties";
 import HomeIcon from "@material-ui/icons/Home";
 import PaymentIcon from "@material-ui/icons/Payment";
 import DescriptionIcon from "@material-ui/icons/Description";
@@ -22,9 +22,9 @@ import Dialog from "@material-ui/core/Dialog";
 import Box from "@material-ui/core/Box";
 
 import Link from "@material-ui/core/Link";
-import Amenities from "../components/amenities";
-import Reviews from "../components/displayreviews";
-import { S3_BUCKET_URL } from "../../constant";
+import Amenities from "../../components/amenity/amenities";
+import Reviews from "../../components/review/displayreviews";
+import { S3_BUCKET_URL } from "../../../constant";
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
 

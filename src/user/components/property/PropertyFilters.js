@@ -22,8 +22,8 @@ import Menu from "@material-ui/core/Menu";
 import SortIcon from "@material-ui/icons/Sort";
 
 import Propertylistcontent from "./Propertylistcontent";
-import PropertiesSelector from "../components/PropertiesSelector";
-import propertiesActions from "../../redux-store/actions/propertiesActions";
+import PropertiesSelector from "../../helpers/PropertiesSelector";
+import propertiesActions from "../../../redux-store/actions/propertiesActions";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({

@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import Propertycontent from "./Propertycontent";
-import Header from "../components/header";
-import Footer from "../components/footer";
+import Propertycontent from "../components/property/Propertycontent";
+import Header from "../components/header/header";
+import Footer from "../components/footer/footer";
 import Theme from "../theme/theme";
-import PropertiesSelector from "../components/PropertiesSelector";
+import PropertiesSelector from "../helpers/PropertiesSelector";
 import propertiesActions from "../../redux-store/actions/propertiesActions";
 
 const useStyles = makeStyles({

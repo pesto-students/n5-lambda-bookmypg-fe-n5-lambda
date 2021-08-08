@@ -1,5 +1,5 @@
 import React from "react";
-import ResponsiveDrawer from "./responsivedrawer";
+import ResponsiveDrawer from "../common/responsivedrawer";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -9,8 +9,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Rating from "@material-ui/lab/Rating";
-import Complaint from "../components/raisecomplaint";
-import ReviewProperty from "./reviewproperty";
+import Complaint from "../complaint/raisecomplaint";
+import ReviewProperty from "../review/reviewproperty";
 
 const useStyles = makeStyles((theme) => ({
   icon: {

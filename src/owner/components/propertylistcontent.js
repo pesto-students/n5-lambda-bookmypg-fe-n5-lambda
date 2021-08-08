@@ -22,7 +22,7 @@ import DateFnsUtils from "@date-io/date-fns";
 import Tablecomponent from "./propertytable";
 import Pagination from "./pagination";
 import Addproperty from "./addproperty";
-import PropertiesSelector from "../../user/components/PropertiesSelector";
+import PropertiesSelector from "../../user/helpers/PropertiesSelector";
 import propertiesActions from "../../redux-store/actions/propertiesActions";
 
 export function PropertyListContent(props) {

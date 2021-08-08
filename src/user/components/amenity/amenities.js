@@ -16,7 +16,7 @@ import Container from "@material-ui/core/Container";
 import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
 
-import { S3_BUCKET_URL } from "../../constant";
+import { S3_BUCKET_URL } from "../../../constant";
 
 const useStyles = makeStyles((theme) => ({
   root: {

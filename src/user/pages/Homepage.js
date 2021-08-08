@@ -1,10 +1,9 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import Header from "../components/header";
-import Footer from "../components/footer";
-import { MuiThemeProvider } from "@material-ui/core/styles";
-import Propertylistcontent from "./PropertyFilters";
+import { makeStyles, MuiThemeProvider } from "@material-ui/core/styles";
+import Header from "../components/header/header";
+import Content from "../components/home/content";
+import Footer from "../components/footer/footer";
 import Theme from "../theme/theme";
 
 const useStyles = makeStyles({
@@ -44,15 +43,55 @@ const useStyles = makeStyles({
   },
 });
 
-export default function WorkSection() {
+const headersData = [
+  {
+    label: "Home",
+    href: "/",
+  },
+  {
+    label: "About us",
+    href: "/about",
+  },
+  {
+    label: "Contact us",
+    href: "/contact",
+  },
+];
+
+const locationItems = [
+  {
+    id: "0",
+    name: "None",
+  },
+  {
+    id: "1",
+    name: "Delhi",
+  },
+  {
+    id: "2",
+    name: "Mumbai",
+  },
+  {
+    id: "3",
+    name: "Chennai",
+  },
+];
+
+export default function HomePage() {
   const classes = useStyles();
+  const [loggedUser, setLoggedUser] = React.useState("");
 
   return (
     <div className={classes.section}>
       <MuiThemeProvider theme={Theme}>
         <Grid container alignItems="center">
-          <Header />
-          <Propertylistcontent />
+          <Header
+            loggedUser={loggedUser}
+            setLoggedUser={setLoggedUser}
+            headersData={headersData}
+            locationItems={locationItems}
+          />
+          <Content />
           <Footer />
         </Grid>
       </MuiThemeProvider>
