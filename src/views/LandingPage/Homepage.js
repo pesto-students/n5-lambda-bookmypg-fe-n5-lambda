@@ -8,7 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Header from "./header";
 import Content from "./content";
-import Footer from "./footer";
+import Footer from "../../components/footer/footer";
 //import GridItem from "@material-ui/core/GridItem";
 //import CustomInput from "components/CustomInput/CustomInput.js";
 import Button from "@material-ui/core/Button";

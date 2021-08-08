@@ -1,52 +1,28 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import ResponsiveDrawer from "./responsivedrawer";
-import Grid from "@material-ui/core/Grid/Grid";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
+import React from "react";
+import ResponsiveDrawer from "../responsivedrawer/ResponsiveDrawer";
+import { Grid, Typography, TextField } from "@material-ui/core";
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
-import Tablecomponent from "./ownertable";
+import Tablecomponent from "./OwnerTable";
+import Pagination from "../pagination/Pagination";
+import Addowner from "./AddOwner";
+import useStyles from "./styles/OwnerListContent.styles";
 
-import Pagination from "./pagination";
-import Addowner from "../components/addowner";
-
-export function OwnersContent(props) {
-  const [state, setState] = React.useState({
-    checkedA: true,
-    checkedB: true,
-  });
-  const preventDefault = (event) => event.preventDefault();
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
-
+export function OwnerlistContent(props) {
+  const classes = useStyles();
   const [selectedDate, setSelectedDate] = React.useState(new Date());
-
-  useEffect(() => {
-    // props.resetComplaints();
-  }, []);
-
-  useEffect(() => {
-    //props.getComplaints();
-  }, []);
-
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
+
   return (
     <div className="Table">
       <ResponsiveDrawer>
         <Grid container justify={"center"}>
-          <Grid
-            item
-            xs={12}
-            md={10}
-            style={{ padding: "8px", textAlign: "center" }}
-          >
+          <Grid item xs={12} md={10} className={classes.gridStyle}>
             <Typography component="h1" variant="h5">
               Owner List
             </Typography>
@@ -64,19 +40,10 @@ export function OwnersContent(props) {
                 <TextField
                   id="standard-basic"
                   label="Search by property name"
-                  style={{ width: "300px" }}
+                  className={classes.textfieldStyle}
                 />
               </Grid>
-              <Grid
-                item
-                xs={12}
-                md={6}
-                style={{
-                  padding: "8px",
-                  textAlign: "center",
-                  display: "flex",
-                }}
-              >
+              <Grid item xs={12} md={6} className={classes.datepickerStyle}>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <KeyboardDatePicker
                     disableToolbar
@@ -122,21 +89,4 @@ export function OwnersContent(props) {
   );
 }
 
-/*const mapStateToProps = (state) => {
-  const complaintsSelector = ComplaintsSelector(state.complaints);
-
-  return {
-    complaints: complaintsSelector.getComplaintsData().data,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getComplaints: () => dispatch(complainsActions.getComplaints()),
-    // updateComplaint: (id) => dispatch(complainsActions.updateComplaint(id)),
-    resetComplaints: () => dispatch(complainsActions.resetState()),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ComplaintsContent);*/
-export default OwnersContent;
+export default OwnerlistContent;

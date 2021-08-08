@@ -16,9 +16,9 @@ import Ownerpropertylist from "./owner/pages/Propertylist";
 import Ownercomplaintlist from "./owner/pages/Complaintlist";
 import Mypropertydetails from "./user/views/Mypropertydetails";
 import OwnerHomepage from "./owner/pages/Homepage";
-import AdminHomepage from "./admin/pages/Homepage";
-import Ownerlist from "./admin/pages/Ownerlist";
-import Amenitylist from "./admin/pages/Amenitylist";
+import AdminHomepage from "./admin/pages/HomePage";
+import Ownerlist from "./admin/pages/OwnerList";
+import Amenitylist from "./admin/pages/AmenityList";
 import Paymentlist from "./user/views/Paymentlist";
 
 const hist = createBrowserHistory();

@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import TablePagination from "@material-ui/core/TablePagination";
 
 export default function Paginationcomponent() {
