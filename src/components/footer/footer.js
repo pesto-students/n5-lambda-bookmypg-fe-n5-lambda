@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Box, Link, Typography, Grid } from "@material-ui/core";
-import useStyles from "./Footer.styles";
+import useStyles from "./footer.styles";
 
 function Copyright() {
   return (
