@@ -100,13 +100,7 @@ export default function Tablecomponent(props) {
   return (
     <Paper style={{ overflowX: "auto" }}>
       <Table style={{ minWidth: "340px" }}>
-        <TableHead
-          style={
-            {
-              //backgroundColor: Theme.palette.secondary.main,
-            }
-          }
-        >
+        <TableHead>
           <TableRow>
             <TableCell align="center">Name</TableCell>
             <TableCell align="center">Email</TableCell>

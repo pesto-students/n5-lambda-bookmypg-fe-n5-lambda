@@ -64,7 +64,7 @@ export function ComplaintsContent(props) {
               >
                 <TextField
                   id="standard-basic"
-                  label="Search by name"
+                  label="Search by property name"
                   style={{ width: "300px" }}
                 />
               </Grid>

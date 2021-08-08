@@ -11,6 +11,9 @@ import ArrowDropUpIcon from "@material-ui/icons/ArrowUpward";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDownward";
 import Theme from "../theme/theme";
 import Viewcomplaint from "../components/viewcomplaint";
+import { makeStyles } from "@material-ui/core/styles";
+import { ReactComponent as SortingUpIcon } from "../../assets/svg/sortingUp.svg";
+import { ReactComponent as SortingDownIcon } from "../../assets/svg/sortingDown.svg";
 
 const Tabledata = [
   {
@@ -39,6 +42,36 @@ const Tabledata = [
   },
 ];
 
+const useStyles = makeStyles((theme) => ({
+  sortIcons: {
+    width: "8px",
+    height: "8px",
+
+    verticalAlign: "top",
+  },
+  sorting: {
+    display: "inline-block",
+    marginLeft: "8px",
+    height: "15px",
+    width: "20px",
+    position: "relative",
+    verticalAlign: "middle",
+  },
+  sortUp: {
+    top: "-1px",
+    width: "8px",
+    height: "8px",
+    cursor: "pointer",
+    position: "absolute",
+  },
+  sortDown: {
+    bottom: "-1px",
+    width: "8px",
+    height: "8px",
+    cursor: "pointer",
+    position: "absolute",
+  },
+}));
 export default function Tablecomponent(props) {
   const [state, setState] = React.useState({
     checkedA: true,
@@ -48,7 +81,7 @@ export default function Tablecomponent(props) {
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
-
+  const classes = useStyles();
   const [selectedDate, setSelectedDate] = React.useState(new Date());
 
   const complaints = props.complaints;
@@ -60,17 +93,23 @@ export default function Tablecomponent(props) {
   return (
     <Paper style={{ overflowX: "auto" }}>
       <Table style={{ minWidth: "340px" }}>
-        <TableHead
-          style={{
-            backgroundColor: Theme.palette.secondary.main,
-          }}
-        >
+        <TableHead>
           <TableRow>
             <TableCell align="center">Tenant Name</TableCell>
             <TableCell align="center">Email</TableCell>
             <TableCell align="center">Phone</TableCell>
             <TableCell align="center">Property</TableCell>
-            <TableCell align="center">Complaint Date</TableCell>
+            <TableCell align="center">
+              Complaint Date
+              <span className={classes.sorting}>
+                <span>
+                  <SortingUpIcon className={classes.sortUp} />
+                </span>
+                <span>
+                  <SortingDownIcon className={classes.sortDown} />
+                </span>
+              </span>
+            </TableCell>
             <TableCell align="center">Complaint</TableCell>
             <TableCell align="center">Status</TableCell>
           </TableRow>

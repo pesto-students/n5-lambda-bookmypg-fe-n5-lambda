@@ -1,17 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import ReactDOM from "react-dom";
-import Table from "@material-ui/core/Table/Table";
-import TableHead from "@material-ui/core/TableHead/TableHead";
-import TableRow from "@material-ui/core/TableRow/TableRow";
-import TableCell from "@material-ui/core/TableCell/TableCell";
-import TableBody from "@material-ui/core/TableBody/TableBody";
-import Paper from "@material-ui/core/Paper/Paper";
 import ResponsiveDrawer from "./responsivedrawer";
 import Grid from "@material-ui/core/Grid/Grid";
-import Link from "@material-ui/core/Link";
-import TablePagination from "@material-ui/core/TablePagination";
-import Switch from "@material-ui/core/Switch";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import {
@@ -19,13 +9,12 @@ import {
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
-import Tablecomponent from "./propertytable";
-import Pagination from "./pagination";
-import Addproperty from "./addproperty";
-import PropertiesSelector from "../../user/components/PropertiesSelector";
-import propertiesActions from "../../redux-store/actions/propertiesActions";
+import Tablecomponent from "./amenitytable";
 
-export function PropertyListContent(props) {
+import Pagination from "./pagination";
+import Addamenity from "./addamenity";
+
+export function OwnersContent(props) {
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
@@ -38,11 +27,11 @@ export function PropertyListContent(props) {
   const [selectedDate, setSelectedDate] = React.useState(new Date());
 
   useEffect(() => {
-    props.resetProperties();
+    // props.resetComplaints();
   }, []);
 
   useEffect(() => {
-    props.getProperties();
+    //props.getComplaints();
   }, []);
 
   const handleDateChange = (date) => {
@@ -59,7 +48,7 @@ export function PropertyListContent(props) {
             style={{ padding: "8px", textAlign: "center" }}
           >
             <Typography component="h1" variant="h5">
-              Property List
+              Amenity List
             </Typography>
             <Grid container justify={"space-between"}>
               <Grid
@@ -74,25 +63,14 @@ export function PropertyListContent(props) {
               >
                 <TextField
                   id="standard-basic"
-                  label="Search by property name"
+                  label="Search by amenity name"
                   style={{ width: "300px" }}
                 />
               </Grid>
-              <Grid
-                item
-                xs={12}
-                md={6}
-                style={{
-                  placeSelf: "flex-end",
-                  textAlign: "right",
-                  padding: "18px",
-                  paddingRight: "0px",
-                }}
-              >
-                <Addproperty />
-              </Grid>
+
+              <Addamenity />
             </Grid>
-            <Tablecomponent properties={props.properties} />
+            <Tablecomponent complaints={props.complaints} />
           </Grid>
           <Pagination />
         </Grid>
@@ -101,23 +79,21 @@ export function PropertyListContent(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  const propertiesSelector = PropertiesSelector(state.properties);
+/*const mapStateToProps = (state) => {
+  const complaintsSelector = ComplaintsSelector(state.complaints);
 
   return {
-    properties: propertiesSelector.getPropertiesData().data,
+    complaints: complaintsSelector.getComplaintsData().data,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getProperties: () => dispatch(propertiesActions.getProperties()),
-    // updateProperty: (id) => dispatch(propertiesActions.updateProperty(id)),
-    resetProperties: () => dispatch(propertiesActions.resetState()),
+    getComplaints: () => dispatch(complainsActions.getComplaints()),
+    // updateComplaint: (id) => dispatch(complainsActions.updateComplaint(id)),
+    resetComplaints: () => dispatch(complainsActions.resetState()),
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PropertyListContent);
+export default connect(mapStateToProps, mapDispatchToProps)(ComplaintsContent);*/
+export default OwnersContent;

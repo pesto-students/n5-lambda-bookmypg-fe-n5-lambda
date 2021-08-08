@@ -11,35 +11,31 @@ import Switch from "@material-ui/core/Switch";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowUpward";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDownward";
 import Theme from "../theme/theme";
-import Ratetenant from "../components/ratetenant";
 import { ReactComponent as SortingUpIcon } from "../../assets/svg/sortingUp.svg";
 import { ReactComponent as SortingDownIcon } from "../../assets/svg/sortingDown.svg";
 import { makeStyles } from "@material-ui/core/styles";
 
 const Tabledata = [
   {
-    name: "abc",
-    location: "Mumbai",
-    address: "Sion",
-    pincode: "12345",
-    freebeds: "10",
-    created: "12/07/2021",
+    property: "abc",
+    owner: "xyz",
+    transactionid: "123",
+    amount: "15000",
+    paymentdate: "12/07/2021",
   },
   {
-    name: "def",
-    location: "Delhi",
-    address: "123",
-    pincode: "abc",
-    freebeds: "abc",
-    created: "12/07/2021",
+    property: "abc",
+    owner: "xyz",
+    transactionid: "123",
+    amount: "15000",
+    paymentdate: "12/07/2021",
   },
   {
-    name: "pqr",
-    location: "Chennai",
-    address: "123",
-    pincode: "abc",
-    freebeds: "abc",
-    created: "12/07/2021",
+    property: "abc",
+    owner: "xyz",
+    transactionid: "123",
+    amount: "15000",
+    paymentdate: "12/07/2021",
   },
 ];
 
@@ -73,40 +69,39 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
   },
 }));
-
 export default function Tablecomponent(props) {
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
   });
-  const classes = useStyles();
   const preventDefault = (event) => event.preventDefault();
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
+  const classes = useStyles();
 
   const [selectedDate, setSelectedDate] = React.useState(new Date());
+
+  const tenants = props.tenants;
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
-  const rateTenantPopup = () => {
-    <Ratetenant />;
-  };
 
-  const properties = props.properties;
+  const handleSwitch = (tenant) => {
+    if (tenant.isactive) props.updateTenant(tenant._id);
+    props.setEnabled(true);
+  };
 
   return (
     <Paper style={{ overflowX: "auto" }}>
       <Table style={{ minWidth: "340px" }}>
         <TableHead>
           <TableRow>
-            <TableCell align="center">Name</TableCell>
-            <TableCell align="center">Location</TableCell>
-            <TableCell align="center">Address</TableCell>
-            <TableCell align="center">Free Beds</TableCell>
+            <TableCell align="center">Property Name</TableCell>
+            <TableCell align="center">PG-Owner Name</TableCell>
             <TableCell align="center">
-              Registered Date
+              Payment Date
               <span className={classes.sorting}>
                 <span>
                   <SortingUpIcon className={classes.sortUp} />
@@ -116,20 +111,37 @@ export default function Tablecomponent(props) {
                 </span>
               </span>
             </TableCell>
+            <TableCell align="center">Amount</TableCell>
+            <TableCell align="center">Transaction Id</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {properties &&
-            properties.length &&
-            properties.map((property) => (
-              <TableRow>
-                <TableCell align="center">{property.name}</TableCell>
-                <TableCell align="center">{property.location.name}</TableCell>
-                <TableCell align="center">{property.address}</TableCell>
-                <TableCell align="center">{property.totalbeds}</TableCell>
-                <TableCell align="center">{property.createdAt}</TableCell>
-              </TableRow>
-            ))}
+          {Tabledata.map((payment) => (
+            <TableRow>
+              <TableCell align="center">
+                <div
+                  style={{
+                    display: "flex",
+                    marginLeft: "5px",
+                    alignItems: "center",
+                  }}
+                >
+                  {payment.property}
+                  <Switch
+                    //checked={tenant.isactive}
+                    //onChange={() => handleSwitch(tenant)}
+                    name="checkedA"
+                    inputProps={{ "aria-label": "secondary checkbox" }}
+                  />
+                </div>
+              </TableCell>
+
+              <TableCell align="center">{payment.owner}</TableCell>
+              <TableCell align="center">{payment.paymentdate}</TableCell>
+              <TableCell align="center">{payment.amount}</TableCell>
+              <TableCell align="center">{payment.transactionid}</TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </Paper>

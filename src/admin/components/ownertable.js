@@ -11,35 +11,29 @@ import Switch from "@material-ui/core/Switch";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowUpward";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDownward";
 import Theme from "../theme/theme";
-import Ratetenant from "../components/ratetenant";
 import { ReactComponent as SortingUpIcon } from "../../assets/svg/sortingUp.svg";
 import { ReactComponent as SortingDownIcon } from "../../assets/svg/sortingDown.svg";
 import { makeStyles } from "@material-ui/core/styles";
+import Viewproperty from "../components/viewproperties";
 
 const Tabledata = [
   {
     name: "abc",
-    location: "Mumbai",
-    address: "Sion",
-    pincode: "12345",
-    freebeds: "10",
-    created: "12/07/2021",
+    email: "Mumbai",
+    phone: "Sion",
+    createdAt: "12/07/2021",
   },
   {
-    name: "def",
-    location: "Delhi",
-    address: "123",
-    pincode: "abc",
-    freebeds: "abc",
-    created: "12/07/2021",
+    name: "abc",
+    email: "Mumbai",
+    phone: "Sion",
+    createdAt: "12/07/2021",
   },
   {
-    name: "pqr",
-    location: "Chennai",
-    address: "123",
-    pincode: "abc",
-    freebeds: "abc",
-    created: "12/07/2021",
+    name: "abc",
+    email: "Mumbai",
+    phone: "Sion",
+    createdAt: "12/07/2021",
   },
 ];
 
@@ -91,7 +85,7 @@ export default function Tablecomponent(props) {
     setSelectedDate(date);
   };
   const rateTenantPopup = () => {
-    <Ratetenant />;
+    //<Ratetenant />;
   };
 
   const properties = props.properties;
@@ -102,9 +96,9 @@ export default function Tablecomponent(props) {
         <TableHead>
           <TableRow>
             <TableCell align="center">Name</TableCell>
-            <TableCell align="center">Location</TableCell>
-            <TableCell align="center">Address</TableCell>
-            <TableCell align="center">Free Beds</TableCell>
+            <TableCell align="center">Email</TableCell>
+            <TableCell align="center">Contact no</TableCell>
+            <TableCell align="center">Properties</TableCell>
             <TableCell align="center">
               Registered Date
               <span className={classes.sorting}>
@@ -119,17 +113,31 @@ export default function Tablecomponent(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {properties &&
-            properties.length &&
-            properties.map((property) => (
-              <TableRow>
-                <TableCell align="center">{property.name}</TableCell>
-                <TableCell align="center">{property.location.name}</TableCell>
-                <TableCell align="center">{property.address}</TableCell>
-                <TableCell align="center">{property.totalbeds}</TableCell>
-                <TableCell align="center">{property.createdAt}</TableCell>
-              </TableRow>
-            ))}
+          {Tabledata.map((owner) => (
+            <TableRow>
+              <TableCell align="center">
+                {owner.name}{" "}
+                <Switch
+                  checked={state.checkedA}
+                  onChange={handleChange}
+                  name="checkedA"
+                  inputProps={{ "aria-label": "secondary checkbox" }}
+                />
+              </TableCell>
+              <TableCell align="center">{owner.email}</TableCell>
+              <TableCell align="center">{owner.phone}</TableCell>
+              <TableCell align="center">
+                <Viewproperty />
+                {/* <Switch
+                      checked={state.checkedA}
+                      onChange={handleChange}
+                      name="checkedA"
+                      inputProps={{ "aria-label": "secondary checkbox" }}
+                    /> */}
+              </TableCell>
+              <TableCell align="center">{owner.createdAt}</TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </Paper>

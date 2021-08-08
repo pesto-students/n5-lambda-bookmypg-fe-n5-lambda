@@ -11,35 +11,27 @@ import Switch from "@material-ui/core/Switch";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowUpward";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDownward";
 import Theme from "../theme/theme";
-import Ratetenant from "../components/ratetenant";
 import { ReactComponent as SortingUpIcon } from "../../assets/svg/sortingUp.svg";
 import { ReactComponent as SortingDownIcon } from "../../assets/svg/sortingDown.svg";
 import { makeStyles } from "@material-ui/core/styles";
+import Viewproperty from "../components/viewproperties";
+import Addamenity from "../components/addamenity";
 
 const Tabledata = [
   {
-    name: "abc",
-    location: "Mumbai",
-    address: "Sion",
-    pincode: "12345",
-    freebeds: "10",
-    created: "12/07/2021",
+    name: "Washing Machine",
+    logo: "images/Hostel images/washing-machine.png",
+    createdAt: "12/07/2021",
   },
   {
-    name: "def",
-    location: "Delhi",
-    address: "123",
-    pincode: "abc",
-    freebeds: "abc",
-    created: "12/07/2021",
+    name: "Washing Machine",
+    logo: "images/Hostel images/washing-machine.png",
+    createdAt: "12/07/2021",
   },
   {
-    name: "pqr",
-    location: "Chennai",
-    address: "123",
-    pincode: "abc",
-    freebeds: "abc",
-    created: "12/07/2021",
+    name: "Washing Machine",
+    logo: "images/Hostel images/washing-machine.png",
+    createdAt: "12/07/2021",
   },
 ];
 
@@ -72,6 +64,9 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
     position: "absolute",
   },
+  amenityStyle: {
+    display: "flex",
+  },
 }));
 
 export default function Tablecomponent(props) {
@@ -91,7 +86,7 @@ export default function Tablecomponent(props) {
     setSelectedDate(date);
   };
   const rateTenantPopup = () => {
-    <Ratetenant />;
+    //<Ratetenant />;
   };
 
   const properties = props.properties;
@@ -102,9 +97,7 @@ export default function Tablecomponent(props) {
         <TableHead>
           <TableRow>
             <TableCell align="center">Name</TableCell>
-            <TableCell align="center">Location</TableCell>
-            <TableCell align="center">Address</TableCell>
-            <TableCell align="center">Free Beds</TableCell>
+            <TableCell align="center">Logo</TableCell>
             <TableCell align="center">
               Registered Date
               <span className={classes.sorting}>
@@ -119,17 +112,29 @@ export default function Tablecomponent(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {properties &&
-            properties.length &&
-            properties.map((property) => (
-              <TableRow>
-                <TableCell align="center">{property.name}</TableCell>
-                <TableCell align="center">{property.location.name}</TableCell>
-                <TableCell align="center">{property.address}</TableCell>
-                <TableCell align="center">{property.totalbeds}</TableCell>
-                <TableCell align="center">{property.createdAt}</TableCell>
-              </TableRow>
-            ))}
+          {Tabledata.map((amenity) => (
+            <TableRow>
+              <TableCell align="center">
+                <div className={classes.amenityStyle}>
+                  <Addamenity mode="Edit" value={amenity.name} />
+                  <Switch
+                    checked={state.checkedA}
+                    onChange={handleChange}
+                    name="checkedA"
+                    inputProps={{ "aria-label": "secondary checkbox" }}
+                  />
+                </div>
+              </TableCell>
+              <TableCell align="center">
+                <img
+                  src={amenity.logo}
+                  style={{ width: "30px" }}
+                  alt="No Preview available"
+                />
+              </TableCell>
+              <TableCell align="center">{amenity.createdAt}</TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </Paper>

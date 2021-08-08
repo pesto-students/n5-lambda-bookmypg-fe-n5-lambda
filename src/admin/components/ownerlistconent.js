@@ -1,17 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import ReactDOM from "react-dom";
-import Table from "@material-ui/core/Table/Table";
-import TableHead from "@material-ui/core/TableHead/TableHead";
-import TableRow from "@material-ui/core/TableRow/TableRow";
-import TableCell from "@material-ui/core/TableCell/TableCell";
-import TableBody from "@material-ui/core/TableBody/TableBody";
-import Paper from "@material-ui/core/Paper/Paper";
 import ResponsiveDrawer from "./responsivedrawer";
 import Grid from "@material-ui/core/Grid/Grid";
-import Link from "@material-ui/core/Link";
-import TablePagination from "@material-ui/core/TablePagination";
-import Switch from "@material-ui/core/Switch";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import {
@@ -19,13 +9,12 @@ import {
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
-import Tablecomponent from "./tenanttable";
+import Tablecomponent from "./ownertable";
 
 import Pagination from "./pagination";
-import TenantsSelector from "./TenantsSelector";
-import tenantsActions from "../../redux-store/actions/tenantsActions";
+import Addowner from "../components/addowner";
 
-export function Tenantcontent(props) {
+export function OwnersContent(props) {
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
@@ -36,25 +25,18 @@ export function Tenantcontent(props) {
   };
 
   const [selectedDate, setSelectedDate] = React.useState(new Date());
-  const [enabled, setEnabled] = React.useState(false);
+
+  useEffect(() => {
+    // props.resetComplaints();
+  }, []);
+
+  useEffect(() => {
+    //props.getComplaints();
+  }, []);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
-
-  useEffect(() => {
-    props.resetTenants();
-  }, []);
-
-  useEffect(() => {
-    props.getTenants();
-  }, [enabled, setEnabled]);
-
-  const tenants =
-    props.tenants && props.tenants.length
-      ? props.tenants.filter((tenant) => tenant.property)
-      : [];
-
   return (
     <div className="Table">
       <ResponsiveDrawer>
@@ -66,7 +48,7 @@ export function Tenantcontent(props) {
             style={{ padding: "8px", textAlign: "center" }}
           >
             <Typography component="h1" variant="h5">
-              Tenant List
+              Owner List
             </Typography>
             <Grid container justify={"space-between"}>
               <Grid
@@ -81,7 +63,7 @@ export function Tenantcontent(props) {
               >
                 <TextField
                   id="standard-basic"
-                  label="Search by tenant name"
+                  label="Search by property name"
                   style={{ width: "300px" }}
                 />
               </Grid>
@@ -129,12 +111,9 @@ export function Tenantcontent(props) {
                   />
                 </MuiPickersUtilsProvider>
               </Grid>
+              <Addowner />
             </Grid>
-            <Tablecomponent
-              tenants={tenants}
-              updateTenant={props.updateTenant}
-              setEnabled={setEnabled}
-            />
+            <Tablecomponent complaints={props.complaints} />
           </Grid>
           <Pagination />
         </Grid>
@@ -143,20 +122,21 @@ export function Tenantcontent(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  const tenantsSelector = TenantsSelector(state.tenants);
+/*const mapStateToProps = (state) => {
+  const complaintsSelector = ComplaintsSelector(state.complaints);
 
   return {
-    tenants: tenantsSelector.getTenantsData().data,
+    complaints: complaintsSelector.getComplaintsData().data,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getTenants: () => dispatch(tenantsActions.getTenants()),
-    updateTenant: (id) => dispatch(tenantsActions.updateTenant(id)),
-    resetTenants: () => dispatch(tenantsActions.resetState()),
+    getComplaints: () => dispatch(complainsActions.getComplaints()),
+    // updateComplaint: (id) => dispatch(complainsActions.updateComplaint(id)),
+    resetComplaints: () => dispatch(complainsActions.resetState()),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Tenantcontent);
+export default connect(mapStateToProps, mapDispatchToProps)(ComplaintsContent);*/
+export default OwnersContent;

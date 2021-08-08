@@ -16,6 +16,10 @@ import Ownerpropertylist from "./owner/pages/Propertylist";
 import Ownercomplaintlist from "./owner/pages/Complaintlist";
 import Mypropertydetails from "./user/views/Mypropertydetails";
 import OwnerHomepage from "./owner/pages/Homepage";
+import AdminHomepage from "./admin/pages/Homepage";
+import Ownerlist from "./admin/pages/Ownerlist";
+import Amenitylist from "./admin/pages/Amenitylist";
+import Paymentlist from "./user/views/Paymentlist";
 
 const hist = createBrowserHistory();
 
@@ -38,7 +42,11 @@ ReactDOM.render(
         <Route exact path="/propertylist" component={Propertylist} />
         <Route exact path="/property-details/:id" component={Propertydetails} />
         <Route exact path="/property-list" component={Propertylist} />
+        <Route exact path="/payment-list" component={Paymentlist} />
         <Route exact path="/owner-home" component={OwnerHomepage} />
+        <Route exact path="/admin-home" component={AdminHomepage} />
+        <Route exact path="/owner-list" component={Ownerlist} />
+        <Route exact path="/amenity-list" component={Amenitylist} />
         <Route exact path="/myprofile" component={Myprofile} />
         <Route exact path="/paymenthistory" component={Userpaymenthistory} />
         <Route exact path="/" component={Homepage} />
