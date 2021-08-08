@@ -52,7 +52,9 @@ export function Tenantcontent(props) {
 
   const tenants =
     props.tenants && props.tenants.length
-      ? props.tenants.filter((tenant) => tenant.property)
+      ? props.tenants.filter(
+          (tenant) => tenant.property && tenant.role === "user"
+        )
       : [];
 
   return (
