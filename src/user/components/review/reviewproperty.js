@@ -13,40 +13,9 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Rating from "@material-ui/lab/Rating";
 import TextField from "@material-ui/core/TextField";
+import useStyles from "./styles/ReviewProperty.styles";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      margin: theme.spacing(1),
-      width: "25ch",
-    },
-  },
-
-  button: {
-    margin: 10,
-  },
-  dialogTitle: {
-    alignSelf: "center",
-    padding: "0px",
-    textAlign: "center",
-  },
-  dialogBox: {
-    width: "calc(478px + 0.5vw)",
-  },
-  formAlign: {
-    alignSelf: "center",
-  },
-  dateComponentSize: {
-    width: "calc(278px + 0.5vw)",
-  },
-  imgStyle: {
-    width: "70px",
-    alignContent: "center",
-    paddingLeft: "15px",
-  },
-}));
-
-export default function FormDialog(props) {
+export default function ReviewProperty(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -57,11 +26,7 @@ export default function FormDialog(props) {
   const handleClose = () => {
     setOpen(false);
   };
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
   const date = new Date();
   date.setDate(date.getDate() + 7);
   return (
@@ -102,15 +67,7 @@ export default function FormDialog(props) {
         </DialogTitle>
 
         <DialogContent className={classes.formAlign}>
-          <Grid
-            spacing={3}
-            style={{
-              textAlign: "center",
-              border: "1px solid rgba(0, 0, 0, 0.12)",
-              borderRadius: "10px",
-              padding: "10px",
-            }}
-          >
+          <Grid spacing={3} className={classes.mainboxStyle}>
             <Grid item>
               <Typography component="h1" variant="subtitle1" color="primary">
                 Please share your experience with the property!

@@ -66,6 +66,14 @@ const useStyles = makeStyles((theme) => ({
     overflow: "hidden",
     cursor: "pointer",
   },
+  dialogStyle: {
+    position: "fixed",
+    display: "block",
+  },
+  reviewStyle: {
+    marginTop: "35px",
+    borderTop: "1px solid rgba(0, 0, 0, 0.12)",
+  },
 }));
 
 export default useStyles;

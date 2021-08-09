@@ -7,10 +7,10 @@ import MobileStepper from "@material-ui/core/MobileStepper";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import { useTheme } from "@material-ui/core/styles";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
-import Rating from "../../components/rating/rating";
+import Rating from "../rating/rating";
 import ScheduleVisit from "../schedulevisit/ScheduleVisit";
 import Bookproperty from "../bookproperty/BookProperty";
-import Similarproperties from "../../components/similarproperties/similarproperties";
+import Similarproperties from "../similarproperties/similarproperties";
 import HomeIcon from "@material-ui/icons/Home";
 import PaymentIcon from "@material-ui/icons/Payment";
 import DescriptionIcon from "@material-ui/icons/Description";
@@ -18,8 +18,8 @@ import "react-image-lightbox/style.css";
 import Dialog from "@material-ui/core/Dialog";
 import Box from "@material-ui/core/Box";
 import Link from "@material-ui/core/Link";
-import Amenities from "../../components/amenity/amenities";
-import Reviews from "../../components/review/displayreviews";
+import Amenities from "../amenity/amenities";
+import Reviews from "../review/DisplayReviews";
 import { S3_BUCKET_URL } from "../../../constant";
 import useStyles from "./styles/PropertyContent.styles";
 
@@ -111,10 +111,7 @@ export default function PropertyContent(props) {
                 />
                 {imgdialog && (
                   <Dialog
-                    style={{
-                      position: "fixed",
-                      display: "block",
-                    }}
+                    className={classes.dialogStyle}
                     open
                     onClick={handleShowDialog}
                     classes={{ paper: classes.dialogStyle }}
@@ -305,14 +302,7 @@ export default function PropertyContent(props) {
           />
         </Grid>
         <div ref={myRef}></div>
-        <Grid
-          item
-          xs={12}
-          style={{
-            marginTop: "35px",
-            borderTop: "1px solid rgba(0, 0, 0, 0.12)",
-          }}
-        >
+        <Grid item xs={12} className={classes.reviewStyle}>
           <Reviews />
         </Grid>
       </Container>

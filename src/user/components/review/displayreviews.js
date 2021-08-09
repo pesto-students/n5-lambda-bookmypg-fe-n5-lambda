@@ -1,32 +1,7 @@
 import React from "react";
-import AppBar from "@material-ui/core/AppBar";
-import Button from "@material-ui/core/Button";
-import CameraIcon from "@material-ui/icons/PhotoCamera";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import Link from "@material-ui/core/Link";
-import Paper from "@material-ui/core/Paper";
+import { Grid, Box, Typography, Avatar } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
-import Avatar from "@material-ui/core/Avatar";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing.unit * 2,
-    boxShadow: "none",
-  },
-}));
+import useStyles from "./styles/DisplayReview.styles";
 
 export default function CenteredGrid(props) {
   const reviews = [
@@ -65,16 +40,9 @@ export default function CenteredGrid(props) {
           marginTop: "8px",
         }}
       >
-        <Grid
-          item
-          xs={12}
-          sm={7}
-          style={{
-            padding: "10px",
-          }}
-        >
+        <Grid item xs={12} sm={7} className={classes.reviewgridStyle}>
           {reviews.map((review) => (
-            <Grid item xs={12} style={{ paddingBottom: "20px" }}>
+            <Grid item xs={12} className={classes.gridStyle}>
               <Box display="flex">
                 <Avatar alt="Monali Doshi" src="/static/images/avatar/1.jpg" />
                 <Typography
@@ -82,7 +50,7 @@ export default function CenteredGrid(props) {
                   variant="body1"
                   color="secondary"
                   align="justify"
-                  style={{ paddingLeft: "10px", paddingTop: "10px" }}
+                  className={classes.usernameStyle}
                 >
                   {review.reviewedby}
                 </Typography>
@@ -124,12 +92,7 @@ export default function CenteredGrid(props) {
           >
             Review Analysis
           </Typography>
-          <div
-            style={{
-              border: "1px solid rgba(0, 0, 0, 0.12)",
-              borderRadius: "10px",
-            }}
-          >
+          <div className={classes.graphboxStyle}>
             <Box display="flex" p={1}>
               <Rating value={5} readOnly />
               <Typography

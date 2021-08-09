@@ -3,7 +3,7 @@ import ResponsiveDrawer from "../common/responsivedrawer";
 import Typography from "@material-ui/core/Typography";
 import Rating from "@material-ui/lab/Rating";
 import Complaint from "../complaint/RaiseComplaint";
-import ReviewProperty from "../review/reviewproperty";
+import ReviewProperty from "../review/ReviewProperty";
 import {
   Grid,
   Button,

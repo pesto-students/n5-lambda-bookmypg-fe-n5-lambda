@@ -8,92 +8,10 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, responsiveFontSizes } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
-import Rating from "../../components/rating/rating";
-import Pagination from "../../components/pagination/pagination";
+import Rating from "../rating/rating";
+import Pagination from "../pagination/pagination";
 import { S3_BUCKET_URL } from "../../../constant";
-
-const useStyles = makeStyles((theme) => ({
-  icon: {
-    marginRight: theme.spacing(2),
-  },
-  heroContent: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
-    paddingTop: "100px",
-  },
-  heroButtons: {
-    paddingTop: "80px",
-  },
-  heroButtonsMobile: {
-    paddingTop: "0px",
-  },
-  cardGrid: {
-    paddingTop: theme.spacing(10),
-    paddingBottom: theme.spacing(8),
-    flexGrow: 1,
-  },
-  card: {
-    display: "flex",
-    [theme.breakpoints.down("md")]: {
-      flexDirection: "column",
-      height: "100%",
-      padding: "10px",
-    },
-    [theme.breakpoints.up("sm")]: {
-      flexDirection: "column",
-      height: "100%",
-      padding: "10px",
-    },
-    [theme.breakpoints.up("lg")]: {
-      flexDirection: "column",
-      height: "100%",
-      padding: "10px",
-    },
-  },
-
-  cardMedia: {
-    paddingTop: "56.25%", // 16:9
-  },
-  cardContent: {
-    flexGrow: 1,
-  },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-  },
-
-  root: {
-    display: "flex",
-    padding: "10px",
-  },
-  details: {
-    display: "flex",
-    flexDirection: "column",
-    width: "50%",
-  },
-  detailsMobile: {
-    display: "flex",
-    flexDirection: "column",
-    width: "90%",
-  },
-  content: {
-    flex: "1 0 auto",
-    paddingLeft: "24px",
-  },
-  cover: {
-    width: 351,
-    height: 210,
-  },
-  buttonAlign: {
-    display: "flex",
-  },
-  controls: {
-    display: "flex",
-    alignItems: "center",
-    paddingLeft: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
-  },
-}));
+import useStyles from "./styles/PropertyListContent.styles";
 
 export default function PropertyListContent(props) {
   const classes = useStyles();
@@ -136,10 +54,7 @@ export default function PropertyListContent(props) {
                     />
                   </Box>
                   <div className={classes.details}>
-                    <CardContent
-                      className={classes.content}
-                      style={{ padding: 0, paddingLeft: "20px" }}
-                    >
+                    <CardContent className={classes.content}>
                       <Typography component="h5" variant="h5">
                         {property.name}
                       </Typography>
@@ -156,14 +71,14 @@ export default function PropertyListContent(props) {
                             <Button
                               variant="contained"
                               color="secondary"
-                              style={{ margin: "10px", textTransform: "none" }}
+                              className={classes.buttonStyle}
                             >
                               Schedule Visit
                             </Button>
                             <Button
                               variant="contained"
                               color="secondary"
-                              style={{ margin: "10px", textTransform: "none" }}
+                              className={classes.buttonStyle}
                               onClick={() =>
                                 history.push(
                                   `/property-details/${property._id}`
@@ -214,10 +129,7 @@ export default function PropertyListContent(props) {
                     title="Image title"
                   />
                   <div className={classes.detailsMobile}>
-                    <CardContent
-                      className={classes.content}
-                      style={{ padding: 0, paddingLeft: "20px" }}
-                    >
+                    <CardContent className={classes.content}>
                       <Grid>
                         <Typography component="h5" variant="h5">
                           {property.name}
@@ -225,7 +137,7 @@ export default function PropertyListContent(props) {
                         <Typography
                           variant="subtitle1"
                           color="textSecondary"
-                          style={{ wordWrap: "break-word" }}
+                          className={classes.descriptionStyle}
                         >
                           {property.description}
                         </Typography>
@@ -234,20 +146,20 @@ export default function PropertyListContent(props) {
                         </Typography>
                       </Grid>
 
-                      <div className={classes.heroButtonsMobile}>
+                      <div className={classes.buttonsMobile}>
                         <Grid container spacing={2}>
                           <Box className={classes.buttonAlign}>
                             <Button
                               variant="contained"
                               color="secondary"
-                              style={{ margin: "10px", textTransform: "none" }}
+                              className={classes.buttonStyle}
                             >
                               Schedule Visit
                             </Button>
                             <Button
                               variant="contained"
                               color="secondary"
-                              style={{ margin: "10px", textTransform: "none" }}
+                              className={classes.buttonStyle}
                               onClick={() =>
                                 history.push(
                                   `/property-details/${property._id}`
@@ -259,14 +171,7 @@ export default function PropertyListContent(props) {
                           </Box>
                         </Grid>
                       </div>
-                      <div
-                        style={{
-                          display: "flex",
-                          paddingBottom: "10px",
-                          paddingTop: "20px",
-                          justifyContent: "space-evenly",
-                        }}
-                      >
+                      <div className={classes.ratingStyle}>
                         <Rating
                           value={4}
                           number={10}
