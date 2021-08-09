@@ -4,7 +4,7 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import Header from "../components/tenant/header/header";
 import Content from "../components/home/content";
 import VerticalBar from "../Charts/VerticalBar";
-import Footer from "../components/footer/footer";
+import Footer from "../../views/LandingPage/footer";
 import Theme from "../theme/theme";
 import Grid from "@material-ui/core/Grid";
 import PieChart from "../Charts/Piechart";
