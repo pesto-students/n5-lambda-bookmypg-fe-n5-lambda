@@ -111,7 +111,7 @@ export default function PropertyContent(props) {
                 />
                 {imgdialog && (
                   <Dialog
-                    className={classes.dialogStyle}
+                    className={classes.dialogboxStyle}
                     open
                     onClick={handleShowDialog}
                     classes={{ paper: classes.dialogStyle }}

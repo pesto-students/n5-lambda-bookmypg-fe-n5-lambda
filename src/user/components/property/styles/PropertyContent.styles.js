@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: "hidden",
     cursor: "pointer",
   },
-  dialogStyle: {
+  dialogboxStyle: {
     position: "fixed",
     display: "block",
   },
