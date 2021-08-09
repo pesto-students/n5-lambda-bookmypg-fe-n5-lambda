@@ -1,20 +1,15 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import Table from "@material-ui/core/Table/Table";
 import TableHead from "@material-ui/core/TableHead/TableHead";
 import TableRow from "@material-ui/core/TableRow/TableRow";
 import TableCell from "@material-ui/core/TableCell/TableCell";
 import TableBody from "@material-ui/core/TableBody/TableBody";
 import Paper from "@material-ui/core/Paper";
-import Link from "@material-ui/core/Link";
 import Switch from "@material-ui/core/Switch";
-import ArrowDropUpIcon from "@material-ui/icons/ArrowUpward";
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDownward";
-import Theme from "../theme/theme";
-import Ratetenant from "../components/ratetenant";
-import { ReactComponent as SortingUpIcon } from "../../assets/svg/sortingUp.svg";
-import { ReactComponent as SortingDownIcon } from "../../assets/svg/sortingDown.svg";
-import { makeStyles } from "@material-ui/core/styles";
+import Ratetenant from "./RateTenant";
+import { ReactComponent as SortingUpIcon } from "../../../assets/svg/sortingUp.svg";
+import { ReactComponent as SortingDownIcon } from "../../../assets/svg/sortingDown.svg";
+import useStyles from "./styles/TenantTable.styles";
 
 const Tabledata = [
   {
@@ -40,57 +35,14 @@ const Tabledata = [
   },
 ];
 
-const useStyles = makeStyles((theme) => ({
-  sortIcons: {
-    width: "8px",
-    height: "8px",
-
-    verticalAlign: "top",
-  },
-  sorting: {
-    display: "inline-block",
-    marginLeft: "8px",
-    height: "15px",
-    width: "20px",
-    position: "relative",
-    verticalAlign: "middle",
-  },
-  sortUp: {
-    top: "-1px",
-    width: "8px",
-    height: "8px",
-    cursor: "pointer",
-    position: "absolute",
-  },
-  sortDown: {
-    bottom: "-1px",
-    width: "8px",
-    height: "8px",
-    cursor: "pointer",
-    position: "absolute",
-  },
-}));
 export default function Tablecomponent(props) {
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
   });
-  const preventDefault = (event) => event.preventDefault();
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
   const classes = useStyles();
 
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
-
   const tenants = props.tenants;
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
-  const rateTenantPopup = () => {
-    <Ratetenant />;
-  };
 
   const handleSwitch = (tenant) => {
     if (tenant.isactive) props.updateTenant(tenant._id);
@@ -98,8 +50,8 @@ export default function Tablecomponent(props) {
   };
 
   return (
-    <Paper style={{ overflowX: "auto" }}>
-      <Table style={{ minWidth: "340px" }}>
+    <Paper className={classes.paperStyle}>
+      <Table className={classes.tableStyle}>
         <TableHead>
           <TableRow>
             <TableCell align="center">Name</TableCell>
@@ -125,13 +77,7 @@ export default function Tablecomponent(props) {
             tenants.map((tenant) => (
               <TableRow>
                 <TableCell align="center">
-                  <div
-                    style={{
-                      display: "flex",
-                      marginLeft: "5px",
-                      alignItems: "center",
-                    }}
-                  >
+                  <div className={classes.switchcellStyle}>
                     <Ratetenant
                       value={tenant.firstName + " " + tenant.lastName}
                     />

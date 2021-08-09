@@ -1,59 +1,29 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import { makeStyles } from "@material-ui/core/styles";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  TextField,
+  FormLabel,
+  FormControl,
+  Grid,
+  Typography,
+  Box,
+  IconButton,
+} from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
-import Box from "@material-ui/core/Box";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
-import Grid from "@material-ui/core/Grid";
+import { Phone, AccountBox } from "@material-ui/icons";
 import EmailIcon from "@material-ui/icons/Email";
-import PhoneIcon from "@material-ui/icons/Phone";
-import AccountBoxIcon from "@material-ui/icons/AccountBox";
+import useStyles from "./ScheduleVisit.styles";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      margin: theme.spacing(1),
-      width: "25ch",
-    },
-  },
-
-  button: {
-    margin: 10,
-  },
-  dialogTitle: {
-    alignSelf: "center",
-    padding: "0px",
-  },
-  dialogBox: {
-    width: "calc(478px + 0.5vw)",
-  },
-  formAlign: {
-    alignSelf: "center",
-  },
-  dateComponentSize: {
-    width: "calc(278px + 0.5vw)",
-  },
-  imgStyle: {
-    width: "70px",
-    alignContent: "center",
-    paddingLeft: "30px",
-  },
-}));
-
-export default function FormDialog() {
+export default function ScheduleVisit() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -95,7 +65,7 @@ export default function FormDialog() {
           </Box>
         </Box>
         <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
-          <div>
+          <div className={classes.textAlign}>
             <Typography component="h1" variant="h6" color="primary">
               Schedule Visit
             </Typography>
@@ -113,7 +83,7 @@ export default function FormDialog() {
             component="h1"
             variant="subtitle1"
             color="primary"
-            style={{ textAlign: "center" }}
+            className={classes.textAlign}
           >
             Open from 10:00am to 06:00pm
           </Typography>
@@ -146,11 +116,7 @@ export default function FormDialog() {
               defaultValue=""
               fullwidth
               InputProps={{
-                endAdornment: (
-                  <AccountBoxIcon
-                    style={{ paddingRight: "10px", color: "grey" }}
-                  />
-                ),
+                endAdornment: <AccountBox className={classes.iconStyle} />,
               }}
             />
             <TextField
@@ -159,9 +125,7 @@ export default function FormDialog() {
               defaultValue=""
               fullwidth
               InputProps={{
-                endAdornment: (
-                  <EmailIcon style={{ paddingRight: "10px", color: "grey" }} />
-                ),
+                endAdornment: <EmailIcon className={classes.iconStyle} />,
               }}
             />
             <TextField
@@ -170,9 +134,7 @@ export default function FormDialog() {
               defaultValue=""
               fullwidth
               InputProps={{
-                endAdornment: (
-                  <PhoneIcon style={{ paddingRight: "10px", color: "grey" }} />
-                ),
+                endAdornment: <Phone className={classes.iconStyle} />,
               }}
             />
           </FormControl>

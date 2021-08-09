@@ -3,23 +3,23 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Homepage from "./user/pages/Homepage";
-import Propertydetails from "./user/pages/Propertydetails";
-import Propertylist from "./user/pages/Propertylist";
+import HomePage from "./user/pages/HomePage";
+import PropertyDetails from "./user/pages/PropertyDetails";
+import PropertyList from "./user/pages/PropertyList";
 import Login from "./user/pages/login";
 import Userpaymenthistory from "./views/Userprofile/Userpaymenthistory";
-import Myprofile from "./user/pages/Myprofile";
 import { Provider } from "react-redux";
 import { store } from "./redux-store/Store";
 import Ownertenantlist from "./owner/pages/Tenantlist";
 import Ownerpropertylist from "./owner/pages/Propertylist";
 import Ownercomplaintlist from "./owner/pages/Complaintlist";
-import Mypropertydetails from "./user/pages/Mypropertydetails";
+import MyProfile from "./user/pages/myprofile/MyProfile";
+import MyPropertyDetails from "./user/pages/myprofile/MyPropertyDetails";
 import OwnerHomepage from "./owner/pages/Homepage";
 import AdminHomepage from "./admin/pages/Homepage";
 import Ownerlist from "./admin/pages/Ownerlist";
 import Amenitylist from "./admin/pages/Amenitylist";
-import Paymentlist from "./user/pages/Paymentlist";
+import PaymentList from "./user/pages/myprofile/PaymentList";
 
 const hist = createBrowserHistory();
 
@@ -38,17 +38,17 @@ ReactDOM.render(
           path="/owner-complaint-list"
           component={Ownercomplaintlist}
         />
-        <Route exact path="/mypropertydetails" component={Mypropertydetails} />
-        <Route exact path="/property-details/:id" component={Propertydetails} />
-        <Route exact path="/property-list" component={Propertylist} />
-        <Route exact path="/payment-list" component={Paymentlist} />
+        <Route exact path="/mypropertydetails" component={MyPropertyDetails} />
+        <Route exact path="/property-details/:id" component={PropertyDetails} />
+        <Route exact path="/property-list" component={PropertyList} />
+        <Route exact path="/payment-list" component={PaymentList} />
         <Route exact path="/owner-home" component={OwnerHomepage} />
         <Route exact path="/admin-home" component={AdminHomepage} />
         <Route exact path="/owner-list" component={Ownerlist} />
         <Route exact path="/amenity-list" component={Amenitylist} />
-        <Route exact path="/myprofile" component={Myprofile} />
+        <Route exact path="/myprofile" component={MyProfile} />
         <Route exact path="/paymenthistory" component={Userpaymenthistory} />
-        <Route exact path="/" component={Homepage} />
+        <Route exact path="/" component={HomePage} />
       </Switch>
     </BrowserRouter>
   </Provider>,

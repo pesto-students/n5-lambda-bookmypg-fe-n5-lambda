@@ -2,29 +2,26 @@ import React, { useRef } from "react";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import { useTheme } from "@material-ui/core/styles";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import Rating from "../../components/rating/rating";
-import Schedulevisit from "../../pages/Schedulevisit";
-import Bookproperty from "../../components/bookProperty/BookProperty";
+import ScheduleVisit from "../schedulevisit/ScheduleVisit";
+import Bookproperty from "../bookproperty/BookProperty";
 import Similarproperties from "../../components/similarproperties/similarproperties";
 import HomeIcon from "@material-ui/icons/Home";
 import PaymentIcon from "@material-ui/icons/Payment";
 import DescriptionIcon from "@material-ui/icons/Description";
-
 import "react-image-lightbox/style.css";
-
 import Dialog from "@material-ui/core/Dialog";
 import Box from "@material-ui/core/Box";
-
 import Link from "@material-ui/core/Link";
 import Amenities from "../../components/amenity/amenities";
 import Reviews from "../../components/review/displayreviews";
 import { S3_BUCKET_URL } from "../../../constant";
+import useStyles from "./styles/PropertyContent.styles";
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
 
@@ -74,62 +71,7 @@ const data = {
   ],
 };
 
-const useStyles = makeStyles((theme) => ({
-  icon: {
-    marginRight: theme.spacing(2),
-  },
-  heroContent: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
-    paddingTop: "100px",
-  },
-  heroButtons: {
-    marginTop: theme.spacing(4),
-    "&:hover": {
-      color: "#40a9ff",
-      opacity: 1,
-    },
-    "&$selected": {
-      color: "#1890ff",
-      fontWeight: theme.typography.fontWeightMedium,
-    },
-    "&:focus": {
-      color: "#40a9ff",
-    },
-  },
-  cardGrid: {
-    paddingTop: theme.spacing(10),
-    paddingBottom: theme.spacing(8),
-    maxWidth: "1400px",
-  },
-  card: {
-    height: "100%",
-    display: "flex",
-    flexDirection: "column",
-  },
-  cardMedia: {
-    paddingTop: "56.25%", // 16:9
-  },
-  cardContent: {
-    flexGrow: 1,
-  },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-  },
-  iconText: {
-    margin: "0px",
-  },
-  dialogStyle: { maxWidth: "800px" },
-  amenitiesBox: {
-    paddingTop: "20px",
-    paddingTop: "20px",
-  },
-}));
-
-const cards = [1, 2, 3, 4];
-
-export default function Album(props) {
+export default function PropertyContent(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -160,26 +102,11 @@ export default function Album(props) {
         {property && (
           <Grid container spacing={4}>
             <Grid item xs={12} sm={5}>
-              <div
-                style={{
-                  height: 355,
-                  width: "700px",
-                  maxWidth: "100%",
-                  display: "block",
-                  overflow: "hidden",
-                }}
-              >
+              <div className={classes.imgboxStyle}>
                 <img
                   src={MyCollection[activeStep].imgPath}
                   alt={MyCollection[activeStep].label}
-                  style={{
-                    height: 300,
-                    width: "700px",
-                    maxWidth: "100%",
-                    display: "block",
-                    overflow: "hidden",
-                    cursor: "pointer",
-                  }}
+                  className={classes.imgStyle}
                   onClick={handleShowDialog}
                 />
                 {imgdialog && (
@@ -359,7 +286,7 @@ export default function Album(props) {
                   <Bookproperty />
                 </Grid>
                 <Grid item xl={12} sm={6} md={3}>
-                  <Schedulevisit />
+                  <ScheduleVisit />
                 </Grid>
               </Grid>
             </Grid>
@@ -367,11 +294,10 @@ export default function Album(props) {
         )}
         <Grid
           item
-          xs={12}
-          style={{
-            marginTop: "35px",
-            borderTop: "1px solid rgba(0, 0, 0, 0.12)",
-          }}
+          xl={12}
+          className={classes.cardGrid}
+          maxWidth="md"
+          style={{ borderTop: "1px solid rgba(0, 0, 0, 0.12)" }}
         >
           <Similarproperties
             title={"Similar properties"}

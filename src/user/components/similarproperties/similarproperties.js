@@ -1,13 +1,12 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
-import IconButton from "@material-ui/core/IconButton";
+import {
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  Grid,
+  Typography,
+} from "@material-ui/core";
 import Cardrating from "../../components/rating/cardratings";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import { useHistory } from "react-router-dom";
@@ -26,18 +25,9 @@ const data = {
   numratings: 10,
 };
 
-export default function Album(props) {
+export default function SimilarProperties(props) {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
   const history = useHistory();
-
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 4);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 4);
-  };
 
   const [state, setState] = React.useState({
     mobileView: false,
@@ -83,12 +73,7 @@ export default function Album(props) {
                           title={property.photos[0]}
                         />
                         <CardContent className={classes.cardContent}>
-                          <div
-                            style={{
-                              display: "flex",
-                              justifyContent: "space-between",
-                            }}
-                          >
+                          <div className={classes.propertynameStyle}>
                             <Typography
                               gutterBottom
                               variant="h6"
@@ -105,13 +90,7 @@ export default function Album(props) {
                             {property.description}
                           </Typography>
                         </CardContent>
-                        <div
-                          style={{
-                            display: "flex",
-                            paddingBottom: "10px",
-                            justifyContent: "space-between",
-                          }}
-                        >
+                        <div className={classes.ratingboxStyle}>
                           <Cardrating
                             value={data.rating}
                             number={property.numreviews || 0}
@@ -121,7 +100,7 @@ export default function Album(props) {
                             size="small"
                             variant="contained"
                             color="ContainedSecondary"
-                            style={{ textTransform: "none" }}
+                            className={classes.buttonStyle}
                             onClick={() =>
                               history.push(`/property-details/${property._id}`)
                             }
@@ -165,12 +144,7 @@ export default function Album(props) {
                       title={property.photos[0]}
                     />
                     <CardContent className={classes.cardContent}>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
+                      <div className={classes.propertynameStyle}>
                         <Typography gutterBottom variant="h6" component="h2">
                           {property.name}
                         </Typography>
@@ -183,13 +157,7 @@ export default function Album(props) {
                         {property.description}
                       </Typography>
                     </CardContent>
-                    <div
-                      style={{
-                        display: "flex",
-                        paddingBottom: "10px",
-                        justifyContent: "space-between",
-                      }}
-                    >
+                    <div className={classes.ratingboxStyle}>
                       <Cardrating
                         value={data.rating}
                         number={property.numreviews || 0}
@@ -199,7 +167,7 @@ export default function Album(props) {
                         size="small"
                         variant="contained"
                         color="ContainedSecondary"
-                        style={{ textTransform: "none" }}
+                        className={classes.buttonStyle}
                         onClick={() =>
                           history.push(`/property-details/${property._id}`)
                         }
