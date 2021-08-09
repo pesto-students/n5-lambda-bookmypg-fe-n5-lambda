@@ -1,11 +1,11 @@
 import { all, takeLatest } from "redux-saga/effects";
 import {
+  GET_USER_REQUEST_MADE,
   GET_PROPERTIES_REQUEST_MADE,
   GET_TENANTS_REQUEST_MADE,
   UPDATE_TENANT_REQUEST_MADE,
   GET_COMPLAINTS_REQUEST_MADE,
   GET_LOCATIONS_REQUEST_MADE,
-  RESET_USER_STATE
 } from "../../constant";
 import { getUserSaga } from "./userSaga";
 import { getPropertiesSaga } from "./propertiesSaga";
@@ -28,6 +28,6 @@ export default function* rootSaga() {
     takeLatest(UPDATE_TENANT_REQUEST_MADE, updateTenantSaga, tenantsApi),
     takeLatest(GET_COMPLAINTS_REQUEST_MADE, getComplaintsSaga, complaintsApi),
     takeLatest(GET_LOCATIONS_REQUEST_MADE, getLocationsSaga, locationsApi),
-    takeLatest(RESET_USER_STATE, getUserSaga, userpApi),
+    takeLatest(GET_USER_REQUEST_MADE, getUserSaga, userpApi),
   ]);
 }

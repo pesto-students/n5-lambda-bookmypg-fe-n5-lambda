@@ -29,6 +29,8 @@ import EmailIcon from "@material-ui/icons/Email";
 import CloseIcon from "@material-ui/icons/Close";
 import LocationsSelector from "../../helpers/LocationsSelector";
 import locationsActions from "../../../redux-store/actions/locationsActions";
+import UserSelector from "../../helpers/UserSelector";
+import userActions from "../../../redux-store/actions/userActions";
 
 const headersData = [
   {
@@ -208,6 +210,7 @@ export function Header(props) {
     const provider = new firebase.auth.GoogleAuthProvider();
     const response = await firebase.auth().signInWithPopup(provider);
     props.setLoggedUser(response.user);
+    props.getUser(response.user.email);
     setOpen(false);
     history.push("/");
   };
@@ -613,8 +616,10 @@ export function Header(props) {
 
 const mapStateToProps = (state) => {
   const locationsSelector = LocationsSelector(state.locations);
+  const userSelector = UserSelector(state.user);
 
   return {
+    user: userSelector.getUserData().data,
     locations: locationsSelector.getLocationsData().data,
     selectedLocation: locationsSelector.getSelectedLocation().selectedLocation,
   };
@@ -622,6 +627,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    getUser: (payload) => dispatch(userActions.getUser(payload)),
     getLocations: () => dispatch(locationsActions.getLocations()),
     setSelectedLocation: (payload) =>
       dispatch(locationsActions.setSelectedLocation(payload)),
