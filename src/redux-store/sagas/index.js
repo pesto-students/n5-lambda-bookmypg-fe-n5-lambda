@@ -4,9 +4,10 @@ import {
   GET_TENANTS_REQUEST_MADE,
   UPDATE_TENANT_REQUEST_MADE,
   GET_COMPLAINTS_REQUEST_MADE,
-    GET_LOCATIONS_REQUEST_MADE,
+  GET_LOCATIONS_REQUEST_MADE,
+  RESET_USER_STATE
 } from "../../constant";
-import { submitGetUserSaga } from "./userSaga";
+import { getUserSaga } from "./userSaga";
 import { getPropertiesSaga } from "./propertiesSaga";
 import { getTenantsSaga, updateTenantSaga } from "./tenantsSaga";
 import { getComplaintsSaga } from "./complaintsSaga";
@@ -26,6 +27,7 @@ export default function* rootSaga() {
     takeLatest(GET_TENANTS_REQUEST_MADE, getTenantsSaga, tenantsApi),
     takeLatest(UPDATE_TENANT_REQUEST_MADE, updateTenantSaga, tenantsApi),
     takeLatest(GET_COMPLAINTS_REQUEST_MADE, getComplaintsSaga, complaintsApi),
-        takeLatest(GET_LOCATIONS_REQUEST_MADE, getLocationsSaga, locationsApi),
+    takeLatest(GET_LOCATIONS_REQUEST_MADE, getLocationsSaga, locationsApi),
+    takeLatest(RESET_USER_STATE, getUserSaga, userpApi),
   ]);
 }

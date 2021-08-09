@@ -1,33 +1,34 @@
 import {
-  SUBMIT_USER_REQUEST_MADE,
-  SUBMIT_USER_REQUEST_RESOLVED,
-  SUBMIT_USER_REQUEST_FAILED,
+  GET_USER_REQUEST_MADE,
+  GET_USER_REQUEST_RESOLVED,
+  GET_USER_REQUEST_FAILED,
+  RESET_USER_STATE,
 } from "../../constant";
 import requestState from "../utils/request";
 
-const submitUserRequestMadeResolver = (state = {}, payload = {}) => {
+const getUserRequestMadeResolver = (state = {}, payload = {}) => {
   return {
     ...state,
-    submitUserRequestState: {
+    getUserRequestState: {
       ...requestState.processing,
     },
   };
 };
 
-const submitUserRequestResolvedResolver = (state = {}, payload) => {
+const getUserRequestResolvedResolver = (state = {}, payload) => {
   return {
     ...state,
-    submitUserRequestState: {
+    getUserRequestState: {
       ...requestState.resolved,
     },
     user: payload,
   };
 };
 
-const submitUserRequestFailedResolver = (state = {}, payload = {}) => {
+const getUserRequestFailedResolver = (state = {}, payload = {}) => {
   return {
     ...state,
-    submitUserRequestState: {
+    getUserRequestState: {
       ...requestState.failed,
     },
     ...payload,
@@ -37,15 +38,16 @@ const submitUserRequestFailedResolver = (state = {}, payload = {}) => {
 const resetState = (state = {}) => {
   return {
     ...state,
-    submitUserRequestState: {},
+    getUserRequestState: {},
     user: {},
   };
 };
 
 const actionToResolverMap = {
-  [SUBMIT_USER_REQUEST_MADE]: submitUserRequestMadeResolver,
-  [SUBMIT_USER_REQUEST_RESOLVED]: submitUserRequestResolvedResolver,
-  [SUBMIT_USER_REQUEST_FAILED]: submitUserRequestFailedResolver,
+  [GET_USER_REQUEST_MADE]: getUserRequestMadeResolver,
+  [GET_USER_REQUEST_RESOLVED]: getUserRequestResolvedResolver,
+  [GET_USER_REQUEST_FAILED]: getUserRequestFailedResolver,
+  [RESET_USER_STATE]: resetState,
 };
 
 export default (state = {}, action = {}) => {

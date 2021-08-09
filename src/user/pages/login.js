@@ -43,7 +43,8 @@ export function Login(props) {
     const provider = new firebase.auth.GoogleAuthProvider();
     const response = await firebase.auth().signInWithPopup(provider);
     props.setLoggedUser(response.user);
-    props.userSubmitted(response.user);
+    console.log("User=>",response.user)
+    // props.getUser(response.user);
     setOpen(false);
     history.push("/");
   };
@@ -126,7 +127,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    userSubmitted: (payload) => dispatch(userActions.userSubmitted(payload)),
+    getUser: (payload) => dispatch(userActions.getUser(payload)),
   };
 };
 
