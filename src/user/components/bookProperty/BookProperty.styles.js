@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
   monetizationStyle: {
     paddingRight: "10px",
     color: "grey",
+    width: "25px",
   },
   textfieldStyle: {
     width: "100%",

@@ -86,7 +86,7 @@ export default function FormDialog() {
             </Typography>
           </div>
           <img
-            src={require("../../../user/assets/images/Bookproperty.jpg")}
+            src="Bookproperty.jpg"
             alt="No image available"
             className={classes.imgStyle}
           />
@@ -129,7 +129,10 @@ export default function FormDialog() {
                 fullwidth
                 InputProps={{
                   endAdornment: (
-                    <MonetizationOnIcon className={classes.monetizationStyle} />
+                    <img
+                      src="../inrIcon.jpg"
+                      className={classes.monetizationStyle}
+                    />
                   ),
                 }}
                 className={classes.textfieldStyle}

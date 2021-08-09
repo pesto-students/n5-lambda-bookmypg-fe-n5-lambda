@@ -9,19 +9,20 @@ import {
   Link,
   MenuItem,
   DialogContent,
+  Grid,
+  Box,
+  Dialog,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-import Dialog from "@material-ui/core/Dialog";
 import React, { useState, useEffect } from "react";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import firebase from "firebase/app";
 import "firebase/auth";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import EmailIcon from "@material-ui/icons/Email";
 import CloseIcon from "@material-ui/icons/Close";
+import useStyles from "./header.styles";
 
 const headersData = [
   {
@@ -53,82 +54,6 @@ const responsiveHeaderData = [
   },
 ];
 
-const useStyles = makeStyles(() => ({
-  header: {
-    backgroundColor: "#616161",
-  },
-  responsivegrid: {
-    display: "flex",
-    height: "100%",
-    overflow: "hidden",
-  },
-  logo: {
-    color: "#FFFEFE",
-    textAlign: "left",
-    cursor: "pointer",
-  },
-  menuButton: {
-    textTransform: "none",
-    size: "18px",
-    marginLeft: "38px",
-  },
-  toolbar: {
-    display: "flex",
-    justifyContent: "space-between",
-  },
-  drawerContainer: {
-    padding: "20px 30px",
-  },
-  button: {
-    justifyContent: "center",
-    display: "grid",
-    paddingLeft: "32px",
-  },
-  mobileviewButton: {
-    justifyContent: "center",
-    display: "grid",
-  },
-  buttonmargin: {
-    marginTop: 10,
-    textTransform: "none",
-  },
-  paper: { height: "80%", width: "70%" },
-
-  root: {
-    background: "linear-gradient(to bottom, #232526, #414345)",
-  },
-  titleStyle: {
-    width: "70%",
-    textAlign: "center",
-    marginTop: "10px",
-  },
-  imageStyle: {
-    width: "40%",
-  },
-  boxStyle: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  dialogTitle: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-}));
-
-const useStylesselect = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(2),
-    minWidth: "80%",
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-  heroContent: {
-    width: "250px",
-  },
-}));
-
 export default function Header(props) {
   const {
     header,
@@ -148,13 +73,6 @@ export default function Header(props) {
   });
 
   const classes = useStyles();
-
-  const classesselect = useStylesselect();
-  const [location, setLocation] = React.useState("");
-
-  const handleChange = (event) => {
-    setLocation(event.target.value);
-  };
 
   const { mobileView, drawerOpen } = state;
 
@@ -379,13 +297,9 @@ export default function Header(props) {
                 </IconButton>
               </Box>
             </Box>
-            <DialogContent style={{ padding: "0px" }}>
+            <DialogContent className={classes.dialogStyle}>
               <Grid className={classes.responsivegrid}>
-                <Grid
-                  item
-                  xs={12}
-                  style={{ "justify-content": "center", display: "flex" }}
-                >
+                <Grid item xs={12} className={classes.loginboxStyle}>
                   <Box
                     p={2}
                     display="flex"
@@ -406,7 +320,7 @@ export default function Header(props) {
                         variant="body2"
                         gutterBottom
                         color="primary"
-                        style={{ marginTop: "20px" }}
+                        className={classes.textStyle}
                       >
                         By continuing, you agree to BookMyPG's
                         <Link href="#" gutterBottom>
@@ -418,16 +332,9 @@ export default function Header(props) {
                       <div
                         color="secondary"
                         gutterBottom
-                        style={{
-                          marginTop: "40px",
-                          alignContent: "center",
-                          display: "flex",
-                          flexDirection: "column",
-                          justifyContent: "center",
-                          textAlign: "center",
-                        }}
+                        className={classes.connectusStyle}
                       >
-                        <div style={{ marginTop: "20px" }}></div>
+                        <div className={classes.textStyle}></div>
                         <Typography color="secondary.contrastText">
                           Connect with us via
                         </Typography>
@@ -454,7 +361,7 @@ export default function Header(props) {
             maxWidth="lg"
             classes={{ paper: classes.paper }}
           >
-            <DialogContent style={{ padding: "0px" }}>
+            <DialogContent className={classes.dialogStyle}>
               <Grid className={classes.responsivegrid}>
                 <Grid item xs={12} sm={6} className={classes.root}>
                   <Box
@@ -493,12 +400,7 @@ export default function Header(props) {
                     </Typography>
                   </Box>
                 </Grid>
-                <Grid
-                  item
-                  xs={12}
-                  sm={6}
-                  style={{ "justify-content": "center", display: "flex" }}
-                >
+                <Grid item xs={12} sm={6} className={classes.loginboxStyle}>
                   <Box
                     p={2}
                     display="flex"
@@ -519,7 +421,7 @@ export default function Header(props) {
                         variant="body2"
                         gutterBottom
                         color="primary"
-                        style={{ marginTop: "20px" }}
+                        className={classes.textStyle}
                       >
                         By continuing, you agree to BookMyPG's
                         <Link href="#" gutterBottom>
@@ -531,14 +433,7 @@ export default function Header(props) {
                       <div
                         color="secondary"
                         gutterBottom
-                        style={{
-                          marginTop: "40px",
-                          alignContent: "center",
-                          display: "flex",
-                          flexDirection: "column",
-                          justifyContent: "center",
-                          textAlign: "center",
-                        }}
+                        className={classes.connectusStyle}
                       >
                         <div style={{ marginTop: "20px" }}></div>
                         <Typography color="secondary.contrastText">

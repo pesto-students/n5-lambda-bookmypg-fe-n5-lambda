@@ -6,7 +6,7 @@ import {
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
-import Tablecomponent from "./paymenttable";
+import Tablecomponent from "./PaymentTable";
 import Pagination from "../../../components/tablepagination/tablepagination";
 import useStyles from "./styles/PaymentListContent.styles";
 

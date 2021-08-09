@@ -6,7 +6,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import HomePage from "./user/pages/HomePage";
 import PropertyDetails from "./user/pages/PropertyDetails";
 import PropertyList from "./user/pages/PropertyList";
-import Login from "./user/pages/login";
 import Userpaymenthistory from "./views/Userprofile/Userpaymenthistory";
 import { Provider } from "react-redux";
 import { store } from "./redux-store/Store";
