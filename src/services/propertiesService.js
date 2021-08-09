@@ -14,5 +14,18 @@ const PropertiesService = {
     }
     throw new Error(response);
   },
+
+  getLatestProperties: async () => {
+    const response = await httpInterceptor({
+      url: "http://localhost:4000/api/properties?pagenumber=1&countperpage=10",
+      method: "GET",
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    }
+    throw new Error(response);
+  },
 };
 export default PropertiesService;

@@ -21,7 +21,7 @@ export function PropertyDetails(props) {
       <MuiThemeProvider theme={Theme}>
         <Grid container alignItems="center">
           <Header />
-          <Propertycontent property={property} properties={props.properties} />
+          <Propertycontent property={property} properties={props.properties} latestProperties={props.latestProperties}/>
           <Footer />
         </Grid>
       </MuiThemeProvider>
@@ -34,6 +34,7 @@ const mapStateToProps = (state) => {
 
   return {
     properties: propertiesSelector.getPropertiesData().data,
+    latestProperties: propertiesSelector.getLatestPropertiesData().data
   };
 };
 

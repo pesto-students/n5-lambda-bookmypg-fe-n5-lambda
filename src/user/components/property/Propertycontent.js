@@ -276,7 +276,7 @@ export default function PropertyContent(props) {
         >
           <Similarproperties
             title={"Similar properties"}
-            properties={props.properties}
+            latestProperties={props.latestProperties}
           />
         </Grid>
         <div ref={myRef}></div>

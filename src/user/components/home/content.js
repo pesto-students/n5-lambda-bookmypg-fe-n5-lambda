@@ -12,10 +12,12 @@ export function Content(props) {
 
   useEffect(() => {
     props.resetProperties();
+    props.resetLatestProperties();
   }, []);
 
   useEffect(() => {
     props.getProperties();
+    props.getLatestProperties();
   }, []);
 
   return (
@@ -90,7 +92,7 @@ export function Content(props) {
       <Container className={classes.cardGrid} maxWidth="md">
         <Similarproperties
           title={"Popular properties"}
-          properties={props.properties}
+          latestProperties={props.latestProperties}
         />
       </Container>
     </React.Fragment>
@@ -102,13 +104,18 @@ const mapStateToProps = (state) => {
 
   return {
     properties: propertiesSelector.getPropertiesData().data,
+    latestProperties: propertiesSelector.getLatestPropertiesData().data,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getProperties: () => dispatch(propertiesActions.getProperties()),
+    getLatestProperties: () =>
+      dispatch(propertiesActions.getLatestProperties()),
     resetProperties: () => dispatch(propertiesActions.resetState()),
+    resetLatestProperties: () =>
+      dispatch(propertiesActions.resetLatestPropertiesState()),
   };
 };
 

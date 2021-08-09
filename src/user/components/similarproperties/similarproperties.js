@@ -47,6 +47,8 @@ export default function SimilarProperties(props) {
     };
   }, []);
 
+  const latestProperties = props.latestProperties;
+
   const displayDesktop = () => {
     return (
       <React.Fragment>
@@ -61,9 +63,9 @@ export default function SimilarProperties(props) {
         <Grid className={classes.responsivegrid}>
           <Swiper slidesPerView={4}>
             <Grid container spacing={5}>
-              {props.properties &&
-                props.properties.length &&
-                props.properties.map((property) => (
+              {latestProperties &&
+                latestProperties.length &&
+                latestProperties.map((property) => (
                   <Grid item key={property._id} xs={12} sm={6} md={3}>
                     <SwiperSlide>
                       <Card className={classes.card}>
@@ -133,9 +135,9 @@ export default function SimilarProperties(props) {
         </Typography>
         <Grid className={classes.responsivegrid}>
           <Grid container spacing={5}>
-            {props.properties &&
-              props.properties.length &&
-              props.properties.map((property) => (
+            {latestProperties &&
+              latestProperties.length &&
+              latestProperties.map((property) => (
                 <Grid item key={property._id} xs={12} sm={6} md={3}>
                   <Card className={classes.card}>
                     <CardMedia

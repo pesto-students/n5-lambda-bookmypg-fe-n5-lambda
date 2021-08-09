@@ -7,8 +7,22 @@ export const PropertiesSelector = (state) => ({
           : {},
     };
   },
+
+  getLatestPropertiesData: () => {
+    return {
+      data:
+        state && state.latestProperties && state.latestProperties.data
+          ? state.latestProperties.data
+          : {},
+    };
+  },
+  
   getPropertiesRequestState: () => {
     return state.getPropertiesRequestState || {};
+  },
+
+  getLatestPropertiesRequestState: () => {
+    return state.getLatestPropertiesRequestState || {};
   },
 });
 
