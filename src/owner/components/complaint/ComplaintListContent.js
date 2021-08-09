@@ -1,32 +1,21 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import ResponsiveDrawer from "./responsivedrawer";
-import Grid from "@material-ui/core/Grid/Grid";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
+import ResponsiveDrawer from "../responsivedrawer/responsivedrawer";
+import { Grid, TextField, Typography } from "@material-ui/core";
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
-import Tablecomponent from "./complainttable";
-
-import Pagination from "./pagination";
-import ComplaintsSelector from "./ComplaintsSelector";
-import complainsActions from "../../redux-store/actions/complaintsActions";
+import Tablecomponent from "./ComplaintTable";
+import Pagination from "../pagination/pagination";
+import ComplaintsSelector from "../ComplaintsSelector";
+import complainsActions from "../../../redux-store/actions/complaintsActions";
+import useStyles from "./styles/ComplaintListContent";
 
 export function ComplaintsContent(props) {
-  const [state, setState] = React.useState({
-    checkedA: true,
-    checkedB: true,
-  });
-  const preventDefault = (event) => event.preventDefault();
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
-
   const [selectedDate, setSelectedDate] = React.useState(new Date());
-
+  const classes = useStyles();
   useEffect(() => {
     props.resetComplaints();
   }, []);
@@ -42,42 +31,19 @@ export function ComplaintsContent(props) {
     <div className="Table">
       <ResponsiveDrawer>
         <Grid container justify={"center"}>
-          <Grid
-            item
-            xs={12}
-            md={10}
-            style={{ padding: "8px", textAlign: "center" }}
-          >
+          <Grid item xs={12} md={10} className={classes.containerStyle}>
             <Typography component="h1" variant="h5">
               Complaint List
             </Typography>
             <Grid container justify={"space-between"}>
-              <Grid
-                item
-                xs={12}
-                md={4}
-                style={{
-                  padding: "18px",
-                  paddingLeft: "0px",
-                  textAlign: "center",
-                }}
-              >
+              <Grid item xs={12} md={4} className={classes.searchboxStyle}>
                 <TextField
                   id="standard-basic"
                   label="Search by property name"
-                  style={{ width: "300px" }}
+                  className={classes.textfieldStyle}
                 />
               </Grid>
-              <Grid
-                item
-                xs={12}
-                md={6}
-                style={{
-                  padding: "8px",
-                  textAlign: "center",
-                  display: "flex",
-                }}
-              >
+              <Grid item xs={12} md={6} className={classes.datepickerStyle}>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <KeyboardDatePicker
                     disableToolbar
@@ -91,7 +57,7 @@ export function ComplaintsContent(props) {
                     KeyboardButtonProps={{
                       "aria-label": "change date",
                     }}
-                    disablePast={true}
+                    disableFuture={true}
                   />
                 </MuiPickersUtilsProvider>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -107,7 +73,7 @@ export function ComplaintsContent(props) {
                     KeyboardButtonProps={{
                       "aria-label": "change date",
                     }}
-                    disablePast={true}
+                    disableFuture={true}
                     style={{ marginLeft: "10px" }}
                   />
                 </MuiPickersUtilsProvider>

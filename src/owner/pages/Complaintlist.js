@@ -1,8 +1,8 @@
 import React from "react";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import Header from "../components/header";
-import Content from "../components/complaintlistcontent";
-import Footer from "../components/footer";
+import Header from "../components/tenant/header/header";
+import Content from "../components/complaint/ComplaintListContent";
+import Footer from "../../components/footer/footer";
 import Theme from "../theme/theme";
 
 export default function HomePage() {

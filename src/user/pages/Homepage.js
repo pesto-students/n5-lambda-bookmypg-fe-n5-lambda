@@ -1,48 +1,10 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import { makeStyles, MuiThemeProvider } from "@material-ui/core/styles";
+import { MuiThemeProvider } from "@material-ui/core/styles";
 import Header from "../components/header/header";
 import Content from "../components/home/content";
 import Footer from "../components/footer/footer";
 import Theme from "../theme/theme";
-
-const useStyles = makeStyles({
-  section: {
-    //padding: "70px 0",
-  },
-  title: {
-    marginBottom: "50px",
-    marginTop: "30px",
-    minHeight: "32px",
-    textDecoration: "none",
-    textAlign: "center",
-  },
-  description: {
-    color: "#999",
-    textAlign: "center",
-  },
-  textCenter: {
-    textAlign: "center",
-  },
-  textArea: {
-    marginRight: "15px",
-    marginLeft: "15px",
-  },
-  spacin: {
-    marginRight: "50px",
-    marginLeft: "25px",
-    marginTop: "15px",
-    marginBottom: "15px",
-    padding: "20px 0px",
-  },
-  spacinlocation: {
-    marginRight: "50px",
-    marginLeft: "25px",
-    marginTop: "15px",
-    marginBottom: "15px",
-  },
-});
-
 const headersData = [
   {
     label: "Home",
@@ -78,11 +40,10 @@ const locationItems = [
 ];
 
 export default function HomePage() {
-  const classes = useStyles();
   const [loggedUser, setLoggedUser] = React.useState("");
 
   return (
-    <div className={classes.section}>
+    <div>
       <MuiThemeProvider theme={Theme}>
         <Grid container alignItems="center">
           <Header

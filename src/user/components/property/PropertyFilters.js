@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Divider from "@material-ui/core/Divider";
@@ -10,7 +9,6 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import FormLabel from "@material-ui/core/FormLabel";
 import FormControl from "@material-ui/core/FormControl";
@@ -20,78 +18,18 @@ import Checkbox from "@material-ui/core/Checkbox";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import SortIcon from "@material-ui/icons/Sort";
-
 import Propertylistcontent from "./Propertylistcontent";
 import PropertiesSelector from "../../helpers/PropertiesSelector";
 import propertiesActions from "../../../redux-store/actions/propertiesActions";
 import LocationsSelector from "../../helpers/LocationsSelector";
 import locationsActions from "../../../redux-store/actions/locationsActions";
-
-const drawerWidth = 240;
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    marginTop: "80px",
-  },
-  drawer: {
-    [theme.breakpoints.up("sm")]: {
-      width: drawerWidth,
-      flexShrink: 0,
-    },
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    width: "150px",
-  },
-  appBar: {
-    [theme.breakpoints.up("sm")]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-    },
-    marginTop: "60px",
-    backgroundColor: "white",
-    color: "black",
-  },
-  searchsortButtons: {
-    justifyContent: "flex-end",
-    display: "flex",
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up("sm")]: {
-      display: "none",
-    },
-  },
-  // necessary for content to be below app bar
-  //toolbar: theme.mixins.toolbar,
-  drawerPaper: {
-    width: drawerWidth,
-    marginTop: "60px",
-  },
-  content: {
-    flexGrow: 1,
-    flexDirection: "column",
-    padding: theme.spacing(3),
-    paddingTop: "70px",
-  },
-  searchbox: {
-    height: "25px",
-  },
-}));
+import useStyles from "./styles/ProeprtyFilters.styles";
 
 function PropertyFilters(props) {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [state, setState] = React.useState({
-    gilad: true,
-    jason: false,
-    antoine: false,
-  });
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -101,12 +39,6 @@ function PropertyFilters(props) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
-  const { gilad, jason, antoine } = state;
-  const error = [gilad, jason, antoine].filter((v) => v).length !== 2;
 
   const [gender, setGender] = React.useState({
     male: false,
@@ -184,7 +116,7 @@ function PropertyFilters(props) {
                 name="male"
               />
             }
-            label={<span style={{ fontSize: "14px" }}>{"Male"}</span>}
+            label={<span className={classes.labelStyle}>{"Male"}</span>}
           />
           <FormControlLabel
             control={
@@ -200,7 +132,7 @@ function PropertyFilters(props) {
                 name="female"
               />
             }
-            label={<span style={{ fontSize: "14px" }}>{"Female"}</span>}
+            label={<span className={classes.labelStyle}>{"Female"}</span>}
           />
           <FormControlLabel
             control={
@@ -216,7 +148,7 @@ function PropertyFilters(props) {
                 name="other"
               />
             }
-            label={<span style={{ fontSize: "14px" }}>{"Other"}</span>}
+            label={<span className={classes.labelStyle}>{"Other"}</span>}
           />
         </FormGroup>
       </FormControl>
@@ -239,7 +171,7 @@ function PropertyFilters(props) {
                 name="fiveStars"
               />
             }
-            label={<span style={{ fontSize: "14px" }}>{"5 Stars"}</span>}
+            label={<span className={classes.labelStyle}>{"5 Stars"}</span>}
           />
           <FormControlLabel
             control={
@@ -255,7 +187,7 @@ function PropertyFilters(props) {
                 name="fourStars"
               />
             }
-            label={<span style={{ fontSize: "14px" }}>{"4 Stars"}</span>}
+            label={<span className={classes.labelStyle}>{"4 Stars"}</span>}
           />
           <FormControlLabel
             control={
@@ -271,7 +203,7 @@ function PropertyFilters(props) {
                 name="threeStars"
               />
             }
-            label={<span style={{ fontSize: "14px" }}>{"3 Stars"}</span>}
+            label={<span className={classes.labelStyle}>{"3 Stars"}</span>}
           />
         </FormGroup>
       </FormControl>
@@ -293,7 +225,7 @@ function PropertyFilters(props) {
                 name="twoRent"
               />
             }
-            label={<span style={{ fontSize: "14px" }}>{">15000"}</span>}
+            label={<span className={classes.labelStyle}>{">15000"}</span>}
           />
           <FormControlLabel
             control={
@@ -309,7 +241,7 @@ function PropertyFilters(props) {
                 name="oneRent"
               />
             }
-            label={<span style={{ fontSize: "14px" }}>{"10000-15000"}</span>}
+            label={<span className={classes.labelStyle}>{"10000-15000"}</span>}
           />
           <FormControlLabel
             control={
@@ -325,7 +257,7 @@ function PropertyFilters(props) {
                 name="zeroRent"
               />
             }
-            label={<span style={{ fontSize: "14px" }}>{"<10000"}</span>}
+            label={<span className={classes.labelStyle}>{"<10000"}</span>}
           />
         </FormGroup>
       </FormControl>
@@ -375,7 +307,6 @@ function PropertyFilters(props) {
           </Toolbar>
         </AppBar>
         <nav className={classes.drawer} aria-label="mailbox folders">
-          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
           <Hidden smUp implementation="css">
             <Drawer
               container={container}
@@ -425,7 +356,7 @@ const mapStateToProps = (state) => {
 
   return {
     properties: propertiesSelector.getPropertiesData().data,
-    selectedLocation: locationsSelector.getSelectedLocation().selectedLocation
+    selectedLocation: locationsSelector.getSelectedLocation().selectedLocation,
   };
 };
 

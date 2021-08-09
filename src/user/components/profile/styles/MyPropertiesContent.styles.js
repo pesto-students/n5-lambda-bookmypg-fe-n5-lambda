@@ -9,8 +9,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(8, 0, 6),
     paddingTop: "100px",
   },
-  buttonStyle: {
-    textTransform: "none",
+  heroButtons: {
+    marginTop: theme.spacing(4),
   },
   cardGrid: {
     paddingTop: theme.spacing(8),
@@ -21,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     padding: "10px",
-    marginRight: "20px",
   },
   cardMedia: {
     paddingTop: "56.25%", // 16:9
@@ -60,14 +59,34 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: "row",
     },
   },
-  propertynameStyle: {
-    display: "flex",
-    justifyContent: "space-between",
+  gridStyle: {
+    marginLeft: "0px",
   },
-  ratingboxStyle: {
+  textfieldStyle: {
+    width: "100%",
+  },
+  buttonStyle: {
     display: "flex",
     paddingBottom: "10px",
-    justifyContent: "space-between",
+    alignSelf: "center",
+  },
+  buttonSpacing: {
+    marginLeft: "20px",
+  },
+  propertydetailStyle: {
+    display: "flex",
+  },
+  ownerStyle: {
+    paddingTop: "10px",
+    paddingLeft: "5px",
+  },
+  ratingboxStyle: {
+    border: "1px solid rgba(0, 0, 0, 0.12)",
+    borderRadius: "10px",
+    paddingTop: "10px",
+  },
+  descriptionStyle: {
+    padding: "8px",
   },
 }));
 

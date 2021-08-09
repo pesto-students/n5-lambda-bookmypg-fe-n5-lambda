@@ -37,7 +37,7 @@ const footers = [
   },
 ];
 
-export default function Footer() {
+export default function FooterContent() {
   const classes = useStyles();
 
   return (

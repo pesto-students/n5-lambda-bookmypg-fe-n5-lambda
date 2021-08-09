@@ -1,38 +1,17 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import ReactDOM from "react-dom";
-import Table from "@material-ui/core/Table/Table";
-import TableHead from "@material-ui/core/TableHead/TableHead";
-import TableRow from "@material-ui/core/TableRow/TableRow";
-import TableCell from "@material-ui/core/TableCell/TableCell";
-import TableBody from "@material-ui/core/TableBody/TableBody";
-import Paper from "@material-ui/core/Paper/Paper";
 import ResponsiveDrawer from "../common/responsivedrawer";
-import Grid from "@material-ui/core/Grid/Grid";
-import Link from "@material-ui/core/Link";
-import TablePagination from "@material-ui/core/TablePagination";
-import Switch from "@material-ui/core/Switch";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
+import { Grid, Typography, TextField } from "@material-ui/core";
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import Tablecomponent from "./paymenttable";
+import Pagination from "../../../components/tablepagination/tablepagination";
+import useStyles from "./styles/PaymentListContent.styles";
 
-import Pagination from "../pagination/pagination";
-
-export function Tenantcontent(props) {
-  const [state, setState] = React.useState({
-    checkedA: true,
-    checkedB: true,
-  });
-  const preventDefault = (event) => event.preventDefault();
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
-
+export function PaymentContent(props) {
+  const classes = useStyles();
   const [selectedDate, setSelectedDate] = React.useState(new Date());
   const [enabled, setEnabled] = React.useState(false);
 
@@ -57,42 +36,19 @@ export function Tenantcontent(props) {
     <div className="Table">
       <ResponsiveDrawer>
         <Grid container justify={"center"}>
-          <Grid
-            item
-            xs={12}
-            md={10}
-            style={{ padding: "8px", textAlign: "center" }}
-          >
+          <Grid item xs={12} md={10} className={classes.gridStyle}>
             <Typography component="h1" variant="h5">
               Payment History
             </Typography>
             <Grid container justify={"space-between"}>
-              <Grid
-                item
-                xs={12}
-                md={4}
-                style={{
-                  padding: "18px",
-                  paddingLeft: "0px",
-                  textAlign: "center",
-                }}
-              >
+              <Grid item xs={12} md={4} className={classes.searchfieldStyle}>
                 <TextField
                   id="standard-basic"
                   label="Search by tenant name"
                   style={{ width: "300px" }}
                 />
               </Grid>
-              <Grid
-                item
-                xs={12}
-                md={6}
-                style={{
-                  padding: "8px",
-                  textAlign: "center",
-                  display: "flex",
-                }}
-              >
+              <Grid item xs={12} md={6} className={classes.datepickerStyle}>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <KeyboardDatePicker
                     disableToolbar
@@ -106,7 +62,7 @@ export function Tenantcontent(props) {
                     KeyboardButtonProps={{
                       "aria-label": "change date",
                     }}
-                    disablePast={true}
+                    disableFuture={true}
                   />
                 </MuiPickersUtilsProvider>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -122,8 +78,8 @@ export function Tenantcontent(props) {
                     KeyboardButtonProps={{
                       "aria-label": "change date",
                     }}
-                    disablePast={true}
-                    style={{ marginLeft: "10px" }}
+                    disableFuture={true}
+                    className={classes.datepickermarginStyle}
                   />
                 </MuiPickersUtilsProvider>
               </Grid>
@@ -159,4 +115,4 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tenantcontent);*/
 
-export default Tenantcontent;
+export default PaymentContent;
