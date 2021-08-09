@@ -1,15 +1,11 @@
 import React from "react";
 import ResponsiveDrawer from "../responsivedrawer/ResponsiveDrawer";
 import { Grid, Typography, TextField } from "@material-ui/core";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
 import Tablecomponent from "./OwnerTable";
 import Pagination from "../pagination/Pagination";
 import Addowner from "./AddOwner";
 import useStyles from "./styles/OwnerListContent.styles";
+import Datepicker from "../../../components/datepicker/Datepicker";
 
 export function OwnerlistContent(props) {
   const classes = useStyles();
@@ -44,39 +40,16 @@ export function OwnerlistContent(props) {
                 />
               </Grid>
               <Grid item xs={12} md={6} className={classes.datepickerStyle}>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <KeyboardDatePicker
-                    disableToolbar
-                    variant="inline"
-                    format="MM/dd/yyyy"
-                    margin="normal"
-                    id="date-picker-inline"
-                    label="From Date:"
-                    value={selectedDate}
-                    onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                      "aria-label": "change date",
-                    }}
-                    disablePast={true}
-                  />
-                </MuiPickersUtilsProvider>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <KeyboardDatePicker
-                    disableToolbar
-                    variant="inline"
-                    format="MM/dd/yyyy"
-                    margin="normal"
-                    id="date-picker-inline"
-                    label="To Date:"
-                    value={selectedDate}
-                    onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                      "aria-label": "change date",
-                    }}
-                    disablePast={true}
-                    style={{ marginLeft: "10px" }}
-                  />
-                </MuiPickersUtilsProvider>
+                <Datepicker
+                  type="DisableFuture"
+                  selectedDate={selectedDate}
+                  handleDateChange={handleDateChange}
+                />
+                <Datepicker
+                  type="DisableFutureMargin"
+                  selectedDate={selectedDate}
+                  handleDateChange={handleDateChange}
+                />
               </Grid>
               <Addowner />
             </Grid>

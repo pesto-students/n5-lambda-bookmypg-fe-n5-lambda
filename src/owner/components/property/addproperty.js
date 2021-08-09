@@ -1,22 +1,21 @@
 import React from "react";
 import {
-  Button,
   TextField,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
   Box,
-  IconButton,
-  Typography,
   FormControl,
   Grid,
   MenuItem,
   Select,
   FormHelperText,
 } from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
 import useStyles from "./styles/addproperty.styles";
+import Button from "../../../components/button/Button";
+import CloseButton from "../../../components/closebutton/CloseButton";
+import Typography from "../../../components/typography/Typography";
 
 export default function FormDialog(props) {
   const classes = useStyles();
@@ -40,9 +39,7 @@ export default function FormDialog(props) {
   date.setDate(date.getDate() + 7);
   return (
     <div>
-      <Button variant="contained" color="secondary" onClick={handleClickOpen}>
-        Add Property
-      </Button>
+      <Button text="Add Property" handleClick={handleClickOpen} />
       <Dialog
         open={open}
         onClose={handleClose}
@@ -56,16 +53,12 @@ export default function FormDialog(props) {
         <Box display="flex" alignItems="flex-start">
           <Box flexGrow={1}></Box>
           <Box>
-            <IconButton onClick={handleClose}>
-              <CloseIcon />
-            </IconButton>
+            <CloseButton handleClick={handleClose} />
           </Box>
         </Box>
         <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
           <div>
-            <Typography component="h1" variant="h6" color="primary">
-              Add New Property
-            </Typography>
+            <Typography type="FormTitle" text="Add New Property" />
             <img
               src="addproperty.png"
               alt="No image available"
@@ -158,12 +151,8 @@ export default function FormDialog(props) {
           </Grid>
         </DialogContent>
         <DialogActions className={classes.button}>
-          <Button variant="contained" color="secondary">
-            Submit
-          </Button>
-          <Button variant="contained" color="secondary">
-            Cancel
-          </Button>
+          <Button text="Submit" />
+          <Button text="Cancel" />
         </DialogActions>
       </Dialog>
     </div>

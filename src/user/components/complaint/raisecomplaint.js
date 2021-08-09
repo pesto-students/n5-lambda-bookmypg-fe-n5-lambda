@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Button,
   Dialog,
   DialogActions,
   DialogContent,
@@ -11,9 +10,9 @@ import {
   Box,
   IconButton,
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 import CloseIcon from "@material-ui/icons/Close";
 import useStyles from "./RaiseComplaint.styles";
+import Button from "../../../components/button/Button";
 
 export default function FormDialog(props) {
   const classes = useStyles();
@@ -29,9 +28,8 @@ export default function FormDialog(props) {
 
   return (
     <div>
-      <Button variant="contained" color="secondary" onClick={handleClickOpen}>
-        Complaint
-      </Button>
+      <Button text="Complaint" handleClick={handleClickOpen} />
+
       <Dialog
         open={open}
         onClose={handleClose}
@@ -121,12 +119,8 @@ export default function FormDialog(props) {
           </Grid>
         </DialogContent>
         <DialogActions className={classes.button}>
-          <Button variant="contained" color="secondary">
-            Submit
-          </Button>
-          <Button variant="contained" color="secondary">
-            Cancel
-          </Button>
+          <Button text="Submit" />
+          <Button text="Cancel" />
         </DialogActions>
       </Dialog>
     </div>

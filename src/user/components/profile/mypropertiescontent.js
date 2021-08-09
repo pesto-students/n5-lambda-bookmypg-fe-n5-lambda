@@ -4,15 +4,9 @@ import Typography from "@material-ui/core/Typography";
 import Rating from "@material-ui/lab/Rating";
 import Complaint from "../complaint/RaiseComplaint";
 import ReviewProperty from "../review/ReviewProperty";
-import {
-  Grid,
-  Button,
-  Card,
-  CardContent,
-  CardMedia,
-  Box,
-} from "@material-ui/core";
+import { Grid, Card, CardContent, CardMedia, Box } from "@material-ui/core";
 import useStyles from "./styles/MyPropertiesContent.styles";
+import Button from "../../../components/button/Button";
 
 const data = {
   property: "Zolo House 1",
@@ -80,13 +74,7 @@ export default function Tablefile() {
               </CardContent>
               <div className={classes.buttonStyle}>
                 <Complaint />
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  className={classes.buttonSpacing}
-                >
-                  Pay Rent
-                </Button>
+                <Button text="Pay Rent" type="Paybutton" />
               </div>
             </Card>
           </Grid>

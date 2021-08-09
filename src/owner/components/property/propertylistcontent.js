@@ -4,7 +4,7 @@ import ResponsiveDrawer from "../responsivedrawer/responsivedrawer";
 import Grid from "@material-ui/core/Grid/Grid";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
-import Tablecomponent from "./propertytable";
+import Tablecomponent from "./PropertyTable";
 import Pagination from "../pagination/pagination";
 import Addproperty from "./addproperty";
 import PropertiesSelector from "../../../user/helpers/PropertiesSelector";

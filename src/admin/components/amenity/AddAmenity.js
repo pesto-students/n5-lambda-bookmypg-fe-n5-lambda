@@ -1,20 +1,19 @@
 import React from "react";
-import CloseIcon from "@material-ui/icons/Close";
 import {
   Grid,
-  Link,
   Box,
-  Typography,
-  IconButton,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
   TextField,
-  Button,
 } from "@material-ui/core";
 import ImageUpload from "./ImageUpload";
 import useStyles from "./styles/AddAmenity.styles";
+import Button from "../../../components/button/Button";
+import CloseButton from "../../../components/closebutton/CloseButton";
+import Link from "../../../components/link/Link";
+import Typography from "../../../components/typography/Typography";
 
 export default function AddAmenity(props) {
   const classes = useStyles();
@@ -34,13 +33,9 @@ export default function AddAmenity(props) {
   return (
     <div className={classes.buttonStyle}>
       {props.mode === "Edit" ? (
-        <Link href="#" onClick={handleClickOpen}>
-          {props.value}
-        </Link>
+        <Link text={props.value} handelClick={handleClickOpen} href="#" />
       ) : (
-        <Button variant="contained" color="secondary" onClick={handleClickOpen}>
-          Add Amenity
-        </Button>
+        <Button text="Add Amenity" handleClick={handleClickOpen} />
       )}
       <Dialog
         open={open}
@@ -55,16 +50,15 @@ export default function AddAmenity(props) {
         <Box display="flex" alignItems="flex-start">
           <Box flexGrow={1}></Box>
           <Box>
-            <IconButton onClick={handleClose}>
-              <CloseIcon />
-            </IconButton>
+            <CloseButton handleClick={handleClose} />
           </Box>
         </Box>
         <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
           <div>
-            <Typography component="h1" variant="h6" color="primary">
-              {props.mode === "Edit" ? "Edit Amenity" : "Add New Amenity"}
-            </Typography>
+            <Typography
+              type="FormTitle"
+              text={props.mode === "Edit" ? "Edit Amenity" : "Add New Amenity"}
+            />
             <img
               src="addamenity.png"
               alt="No image available"
@@ -87,12 +81,8 @@ export default function AddAmenity(props) {
           </Grid>
         </DialogContent>
         <DialogActions className={classes.button}>
-          <Button variant="contained" color="secondary">
-            Submit
-          </Button>
-          <Button variant="contained" color="secondary">
-            Cancel
-          </Button>
+          <Button text="Submit" />
+          <Button text="Cancel" />
         </DialogActions>
       </Dialog>
     </div>

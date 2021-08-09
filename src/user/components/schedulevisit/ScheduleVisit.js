@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Button,
   Dialog,
   DialogActions,
   DialogContent,
@@ -8,20 +7,15 @@ import {
   TextField,
   FormLabel,
   FormControl,
-  Grid,
   Typography,
   Box,
-  IconButton,
 } from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
 import { Phone, AccountBox } from "@material-ui/icons";
 import EmailIcon from "@material-ui/icons/Email";
 import useStyles from "./ScheduleVisit.styles";
+import Button from "../../../components/button/Button";
+import Datepicker from "../../../components/datepicker/Datepicker";
+import CloseButton from "../../../components/closebutton/CloseButton";
 
 export default function ScheduleVisit() {
   const classes = useStyles();
@@ -43,9 +37,7 @@ export default function ScheduleVisit() {
   date.setDate(date.getDate() + 7);
   return (
     <div>
-      <Button variant="contained" color="secondary" onClick={handleClickOpen}>
-        Schedule Visit
-      </Button>
+      <Button text="Schedule Visit" handleClick={handleClickOpen} />
       <Dialog
         open={open}
         onClose={handleClose}
@@ -59,9 +51,7 @@ export default function ScheduleVisit() {
         <Box display="flex" alignItems="flex-start">
           <Box flexGrow={1}></Box>
           <Box>
-            <IconButton onClick={handleClose}>
-              <CloseIcon />
-            </IconButton>
+            <CloseButton handleClick={handleClose} />
           </Box>
         </Box>
         <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
@@ -89,26 +79,11 @@ export default function ScheduleVisit() {
           </Typography>
           <FormControl component="fieldset">
             <FormLabel component="legend"></FormLabel>
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <Grid container>
-                <KeyboardDatePicker
-                  disableToolbar
-                  variant="inline"
-                  format="MM/dd/yyyy"
-                  margin="normal"
-                  id="date-picker-inline"
-                  label="When you want to move in?"
-                  value={selectedDate}
-                  onChange={handleDateChange}
-                  KeyboardButtonProps={{
-                    "aria-label": "change date",
-                  }}
-                  disablePast={true}
-                  maxDate={date}
-                  className={classes.dateComponentSize}
-                />
-              </Grid>
-            </MuiPickersUtilsProvider>
+            <Datepicker
+              selectedDate={selectedDate}
+              handleDateChange={handleDateChange}
+              maxdate={date}
+            />
 
             <TextField
               id="standard-basic"
@@ -140,12 +115,8 @@ export default function ScheduleVisit() {
           </FormControl>
         </DialogContent>
         <DialogActions className={classes.button}>
-          <Button variant="contained" color="secondary">
-            Submit
-          </Button>
-          <Button variant="contained" color="secondary">
-            Cancel
-          </Button>
+          <Button text="Submit" />
+          <Button text="Cancel" />
         </DialogActions>
       </Dialog>
     </div>

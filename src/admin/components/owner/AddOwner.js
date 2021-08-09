@@ -1,18 +1,17 @@
 import React from "react";
-import CloseIcon from "@material-ui/icons/Close";
 import {
   Grid,
-  Typography,
-  IconButton,
   Box,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
   TextField,
-  Button,
 } from "@material-ui/core";
 import useStyles from "./styles/AddOwner.styles";
+import Button from "../../../components/button/Button";
+import CloseButton from "../../../components/closebutton/CloseButton";
+import Typography from "../../../components/typography/Typography";
 
 export default function AddOwner(props) {
   const classes = useStyles();
@@ -30,9 +29,7 @@ export default function AddOwner(props) {
 
   return (
     <div className={classes.buttonStyle}>
-      <Button variant="contained" color="secondary" onClick={handleClickOpen}>
-        Add Owner
-      </Button>
+      <Button text="Add Owner" handleClick={handleClickOpen} />
       <Dialog
         open={open}
         onClose={handleClose}
@@ -46,16 +43,12 @@ export default function AddOwner(props) {
         <Box className={classes.boxStyle}>
           <Box flexGrow={1}></Box>
           <Box>
-            <IconButton onClick={handleClose}>
-              <CloseIcon />
-            </IconButton>
+            <CloseButton handleClick={handleClose} />
           </Box>
         </Box>
         <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
           <div>
-            <Typography component="h1" variant="h6" color="primary">
-              Add New Owner
-            </Typography>
+            <Typography type="FormTitle" text="Add New Owner" />
             <img
               src="addowner.jpg"
               alt="No image available"
@@ -97,12 +90,8 @@ export default function AddOwner(props) {
           </Grid>
         </DialogContent>
         <DialogActions className={classes.button}>
-          <Button variant="contained" color="secondary">
-            Submit
-          </Button>
-          <Button variant="contained" color="secondary">
-            Cancel
-          </Button>
+          <Button text="Submit" />
+          <Button text="Cancel" />
         </DialogActions>
       </Dialog>
     </div>

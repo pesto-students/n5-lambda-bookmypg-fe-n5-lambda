@@ -1,17 +1,14 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import ResponsiveDrawer from "../responsivedrawer/responsivedrawer";
-import { Grid, TextField, Typography } from "@material-ui/core";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
+import { Grid, TextField } from "@material-ui/core";
 import Tablecomponent from "./ComplaintTable";
 import Pagination from "../pagination/pagination";
 import ComplaintsSelector from "../ComplaintsSelector";
 import complainsActions from "../../../redux-store/actions/complaintsActions";
 import useStyles from "./styles/ComplaintListContent";
+import Datepicker from "../../../components/datepicker/Datepicker";
+import Typography from "../../../components/typography/Typography";
 
 export function ComplaintsContent(props) {
   const [selectedDate, setSelectedDate] = React.useState(new Date());
@@ -32,9 +29,7 @@ export function ComplaintsContent(props) {
       <ResponsiveDrawer>
         <Grid container justify={"center"}>
           <Grid item xs={12} md={10} className={classes.containerStyle}>
-            <Typography component="h1" variant="h5">
-              Complaint List
-            </Typography>
+            <Typography text="Complaint List" type="ListTitle" />
             <Grid container justify={"space-between"}>
               <Grid item xs={12} md={4} className={classes.searchboxStyle}>
                 <TextField
@@ -44,39 +39,16 @@ export function ComplaintsContent(props) {
                 />
               </Grid>
               <Grid item xs={12} md={6} className={classes.datepickerStyle}>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <KeyboardDatePicker
-                    disableToolbar
-                    variant="inline"
-                    format="MM/dd/yyyy"
-                    margin="normal"
-                    id="date-picker-inline"
-                    label="From Date:"
-                    value={selectedDate}
-                    onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                      "aria-label": "change date",
-                    }}
-                    disableFuture={true}
-                  />
-                </MuiPickersUtilsProvider>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <KeyboardDatePicker
-                    disableToolbar
-                    variant="inline"
-                    format="MM/dd/yyyy"
-                    margin="normal"
-                    id="date-picker-inline"
-                    label="To Date:"
-                    value={selectedDate}
-                    onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                      "aria-label": "change date",
-                    }}
-                    disableFuture={true}
-                    style={{ marginLeft: "10px" }}
-                  />
-                </MuiPickersUtilsProvider>
+                <Datepicker
+                  type="DisableFuture"
+                  selectedDate={selectedDate}
+                  handleDateChange={handleDateChange}
+                />
+                <Datepicker
+                  type="DisableFutureMargin"
+                  selectedDate={selectedDate}
+                  handleDateChange={handleDateChange}
+                />
               </Grid>
             </Grid>
             <Tablecomponent complaints={props.complaints} />

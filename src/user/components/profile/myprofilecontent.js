@@ -7,9 +7,9 @@ import {
   RadioGroup,
   FormControlLabel,
   FormLabel,
-  Button,
 } from "@material-ui/core";
 import useStyles from "./styles/MyProfileContent.styles";
+import Button from "../../../components/button/Button";
 
 const data = {
   propertyname: "Zolo House 1",
@@ -94,9 +94,7 @@ export default function Tablefile() {
               </RadioGroup>
             </Grid>
             <Grid item className={classes.buttonSpacing}>
-              <Button variant="contained" color="secondary">
-                Update
-              </Button>
+              <Button text="Update" />
             </Grid>
           </Grid>
         </Grid>

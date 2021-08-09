@@ -5,7 +5,6 @@ import {
   Toolbar,
   Typography,
   makeStyles,
-  Button,
   IconButton,
   Drawer,
   Link,
@@ -31,6 +30,7 @@ import LocationsSelector from "../../helpers/LocationsSelector";
 import locationsActions from "../../../redux-store/actions/locationsActions";
 import UserSelector from "../../helpers/UserSelector";
 import userActions from "../../../redux-store/actions/userActions";
+import Button from "../../../components/button/Button";
 
 const headersData = [
   {
@@ -225,28 +225,13 @@ export function Header(props) {
         <div>
           {getMenuButtons()}
           {props.loggedUser == "" ? (
-            <Button
-              key={"Login"}
-              {...{
-                color: "inherit",
-                className: menuButton,
-              }}
-              onClick={LoginPopup}
-            >
-              {"Login"}
-            </Button>
+            <Button text="Login" type="Menubutton" handleClick={LoginPopup} />
           ) : (
             <Button
-              key={"Logout"}
-              {...{
-                color: "inherit",
-
-                className: menuButton,
-              }}
-              onClick={handleLogout}
-            >
-              {"Logout"}
-            </Button>
+              text="Logout"
+              type="Menubutton"
+              handleClick={handleLogout}
+            />
           )}
         </div>
       </Toolbar>
@@ -384,16 +369,11 @@ export function Header(props) {
     return headersData.map(({ label, href }) => {
       return (
         <Button
-          key={label}
-          {...{
-            color: "inherit",
-            to: href,
-            component: RouterLink,
-            className: menuButton,
-          }}
-        >
-          {label}
-        </Button>
+          text={label}
+          type="Menubutton"
+          component={RouterLink}
+          to={href}
+        />
       );
     });
   };
@@ -439,13 +419,9 @@ export function Header(props) {
                   >
                     <div className={mobileviewButton}>
                       <Button
-                        variant="contained"
-                        color="secondary"
-                        onClick={handleLogin}
-                        className={buttonmargin}
-                      >
-                        Signin with Google
-                      </Button>
+                        text="Signin with Google"
+                        handelClick={handleLogin}
+                      />
                       <Typography
                         variant="body2"
                         gutterBottom
@@ -552,13 +528,9 @@ export function Header(props) {
                   >
                     <div className={button}>
                       <Button
-                        variant="contained"
-                        color="secondary"
-                        onClick={handleLogin}
-                        className={buttonmargin}
-                      >
-                        Signin with Google
-                      </Button>
+                        text="Signin with Google"
+                        handelClick={handleLogin}
+                      />
                       <Typography
                         variant="body2"
                         gutterBottom

@@ -1,19 +1,18 @@
 import React from "react";
 import {
-  Button,
-  Link,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
   Box,
-  IconButton,
   Grid,
-  Typography,
 } from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
-import Rating from "@material-ui/lab/Rating";
+import Rating from "../../../components/rating/rating";
 import useStyles from "./styles/RateTenant.styles";
+import Button from "../../../components/button/Button";
+import CloseButton from "../../../components/closebutton/CloseButton";
+import Typography from "../../../components/typography/Typography";
+import Link from "../../../components/link/Link";
 
 export default function Ratetenant(props) {
   const classes = useStyles();
@@ -29,9 +28,8 @@ export default function Ratetenant(props) {
 
   return (
     <div>
-      <Link href="#" onClick={handleClickOpen}>
-        {props.value}
-      </Link>
+      <Link text={props.value} handelClick={handleClickOpen} href="#" />
+
       <Dialog
         open={open}
         onClose={handleClose}
@@ -45,17 +43,12 @@ export default function Ratetenant(props) {
         <Box display="flex" alignItems="flex-start">
           <Box flexGrow={1}></Box>
           <Box>
-            <IconButton onClick={handleClose}>
-              <CloseIcon />
-            </IconButton>
+            <CloseButton handleClick={handleClose} />
           </Box>
         </Box>
         <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
           <div>
-            <Typography component="h1" variant="h6" color="primary">
-              Rate {props.value}
-            </Typography>
-
+            <Typography text={`Rate ${props.value}`} type="FormTitle" />
             <img
               src="ratetenant.png"
               alt="No image available"
@@ -67,22 +60,19 @@ export default function Ratetenant(props) {
         <DialogContent className={classes.formAlign}>
           <Grid spacing={3} className={classes.gridStyle}>
             <Grid item>
-              <Typography component="h1" variant="subtitle1" color="primary">
-                Please rate your experience with the tenant!
-              </Typography>
+              <Typography
+                text="Please rate your experience with the tenant!"
+                type="SubTitleText"
+              />
             </Grid>
             <Grid item>
-              <Rating size="large" />
+              <Rating type="Large" />
             </Grid>
           </Grid>
         </DialogContent>
         <DialogActions className={classes.button}>
-          <Button variant="contained" color="secondary">
-            Submit
-          </Button>
-          <Button variant="contained" color="secondary">
-            Cancel
-          </Button>
+          <Button text="Submit" />
+          <Button text="Cancel" />
         </DialogActions>
       </Dialog>
     </div>

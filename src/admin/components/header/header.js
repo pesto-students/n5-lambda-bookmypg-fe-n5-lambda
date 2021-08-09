@@ -2,8 +2,6 @@ import {
   AppBar,
   Toolbar,
   Typography,
-  makeStyles,
-  Button,
   IconButton,
   Drawer,
   Link,
@@ -23,6 +21,7 @@ import TwitterIcon from "@material-ui/icons/Twitter";
 import EmailIcon from "@material-ui/icons/Email";
 import CloseIcon from "@material-ui/icons/Close";
 import useStyles from "./header.styles";
+import Button from "../../../components/button/Button";
 
 const headersData = [
   {
@@ -120,28 +119,9 @@ export default function Header(props) {
         <div>
           {getMenuButtons()}
           {props.loggedUser == "" ? (
-            <Button
-              key={"Login"}
-              {...{
-                color: "inherit",
-                className: menuButton,
-              }}
-              onClick={LoginPopup}
-            >
-              {"Login"}
-            </Button>
+            <Button type="Menubutton" text="Login" handleClick={LoginPopup} />
           ) : (
-            <Button
-              key={"Logout"}
-              {...{
-                color: "inherit",
-
-                className: menuButton,
-              }}
-              onClick={handleLogout}
-            >
-              {"Logout"}
-            </Button>
+            <Button type="Menubutton" text="Login" handleClick={handleLogout} />
           )}
         </div>
       </Toolbar>
@@ -258,16 +238,11 @@ export default function Header(props) {
     return headersData.map(({ label, href }) => {
       return (
         <Button
-          key={label}
-          {...{
-            color: "inherit",
-            to: href,
-            component: RouterLink,
-            className: menuButton,
-          }}
-        >
-          {label}
-        </Button>
+          type="Menubutton"
+          text={label}
+          component={RouterLink}
+          to={href}
+        />
       );
     });
   };
@@ -309,13 +284,9 @@ export default function Header(props) {
                   >
                     <div className={mobileviewButton}>
                       <Button
-                        variant="contained"
-                        color="secondary"
-                        onClick={handleLogin}
-                        className={buttonmargin}
-                      >
-                        Signin with Google
-                      </Button>
+                        text="Signin with Google"
+                        handleClick={handleLogin}
+                      />
                       <Typography
                         variant="body2"
                         gutterBottom
@@ -410,13 +381,9 @@ export default function Header(props) {
                   >
                     <div className={button}>
                       <Button
-                        variant="contained"
-                        color="secondary"
-                        onClick={handleLogin}
-                        className={buttonmargin}
-                      >
-                        Signin with Google
-                      </Button>
+                        text="Signin with Google"
+                        handleClick={handleLogin}
+                      />
                       <Typography
                         variant="body2"
                         gutterBottom

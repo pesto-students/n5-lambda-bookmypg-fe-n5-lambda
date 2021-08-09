@@ -1,14 +1,10 @@
 import React, { useEffect } from "react";
 import ResponsiveDrawer from "../common/responsivedrawer";
 import { Grid, Typography, TextField } from "@material-ui/core";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
 import Tablecomponent from "./PaymentTable";
 import Pagination from "../../../components/tablepagination/tablepagination";
 import useStyles from "./styles/PaymentListContent.styles";
+import Datepicker from "../../../components/datepicker/Datepicker";
 
 export function PaymentContent(props) {
   const classes = useStyles();
@@ -49,39 +45,16 @@ export function PaymentContent(props) {
                 />
               </Grid>
               <Grid item xs={12} md={6} className={classes.datepickerStyle}>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <KeyboardDatePicker
-                    disableToolbar
-                    variant="inline"
-                    format="MM/dd/yyyy"
-                    margin="normal"
-                    id="date-picker-inline"
-                    label="From Date:"
-                    value={selectedDate}
-                    onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                      "aria-label": "change date",
-                    }}
-                    disableFuture={true}
-                  />
-                </MuiPickersUtilsProvider>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <KeyboardDatePicker
-                    disableToolbar
-                    variant="inline"
-                    format="MM/dd/yyyy"
-                    margin="normal"
-                    id="date-picker-inline"
-                    label="To Date:"
-                    value={selectedDate}
-                    onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                      "aria-label": "change date",
-                    }}
-                    disableFuture={true}
-                    className={classes.datepickermarginStyle}
-                  />
-                </MuiPickersUtilsProvider>
+                <Datepicker
+                  type="DisableFuture"
+                  selectedDate={selectedDate}
+                  handleDateChange={handleDateChange}
+                />
+                <Datepicker
+                  type="DisableFutureMargin"
+                  selectedDate={selectedDate}
+                  handleDateChange={handleDateChange}
+                />
               </Grid>
             </Grid>
             <Tablecomponent
