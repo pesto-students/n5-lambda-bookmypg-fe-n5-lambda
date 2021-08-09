@@ -66,7 +66,6 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flex: "1 0 auto",
-    paddingLeft: "24px",
     padding: 0,
     paddingLeft: "20px",
   },

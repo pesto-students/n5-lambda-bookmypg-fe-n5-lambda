@@ -25,27 +25,6 @@ import useStyles from "./styles/PropertyContent.styles";
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
 
-const reviews = [
-  {
-    rating: "4",
-    description: "Awesome Property",
-    user: "abcdef",
-    createdon: "12/7/2021",
-  },
-  {
-    rating: "4",
-    description: "Awesome Property",
-    user: "abcdef",
-    createdon: "12/7/2021",
-  },
-  {
-    rating: "4",
-    description: "Awesome Property",
-    user: "abcdef",
-    createdon: "12/7/2021",
-  },
-];
-
 const data = {
   propertyname: "Zolo House 1",
   description:
@@ -120,7 +99,6 @@ export default function PropertyContent(props) {
                       src={MyCollection[activeStep].imgPath}
                       alt={MyCollection[activeStep].label}
                       onClick={handleShowDialog}
-                      alt="no image"
                     />
                   </Dialog>
                 )}

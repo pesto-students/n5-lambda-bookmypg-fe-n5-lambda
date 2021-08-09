@@ -1,19 +1,14 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Grid, Typography, ImageList, ImageListItem } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { useHistory } from "react-router-dom";
 import PropertiesSelector from "../../helpers/PropertiesSelector";
 import propertiesActions from "../../../redux-store/actions/propertiesActions";
 import Similarproperties from "../similarproperties/similarproperties";
 import useStyles from "./Content.styles";
 
-export function Album(props) {
+export function Content(props) {
   const classes = useStyles();
-
-  const [location, setLocation] = React.useState("");
-  const history = useHistory();
 
   useEffect(() => {
     props.resetProperties();
@@ -117,4 +112,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Album);
+export default connect(mapStateToProps, mapDispatchToProps)(Content);

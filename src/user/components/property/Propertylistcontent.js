@@ -171,11 +171,7 @@ export default function PropertyListContent(props) {
                         </Grid>
                       </div>
                       <div className={classes.ratingStyle}>
-                        <Rating
-                          value={4}
-                          number={10}
-                          number={property.numreviews || 0}
-                        />
+                        <Rating value={4} number={property.numreviews || 0} />
 
                         <Button
                           size="small"

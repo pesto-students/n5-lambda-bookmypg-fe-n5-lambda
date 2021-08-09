@@ -25,7 +25,7 @@ import PropertiesSelector from "../../helpers/PropertiesSelector";
 import propertiesActions from "../../../redux-store/actions/propertiesActions";
 import LocationsSelector from "../../helpers/LocationsSelector";
 import locationsActions from "../../../redux-store/actions/locationsActions";
-import useStyles from "./styles/ProeprtyFilters.styles";
+import useStyles from "./styles/PropertyFilters.styles";
 
 function PropertyFilters(props) {
   const { window } = props;

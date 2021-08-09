@@ -49,7 +49,6 @@ const useStyles = makeStyles((theme) => ({
   dialogStyle: { maxWidth: "800px" },
   amenitiesBox: {
     paddingTop: "20px",
-    paddingTop: "20px",
   },
   imgboxStyle: {
     height: 355,

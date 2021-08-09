@@ -66,12 +66,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3, 4];
-
-export default function Album() {
+export default function Content() {
   const classes = useStyles();
-
-  const classesselect = useStylesselect();
 
   const [location, setLocation] = React.useState("");
   const handleChange = (event) => {

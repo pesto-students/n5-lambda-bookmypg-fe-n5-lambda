@@ -72,7 +72,7 @@ export default function ScheduleVisit() {
 
             <img
               src="schedulevisit.png"
-              alt="No image available"
+              alt="Not available"
               className={classes.imgStyle}
             />
           </div>
