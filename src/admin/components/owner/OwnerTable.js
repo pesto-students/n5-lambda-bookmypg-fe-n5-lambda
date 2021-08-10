@@ -13,27 +13,6 @@ import { ReactComponent as SortingDownIcon } from "../../../assets/svg/sortingDo
 import Viewproperty from "./ViewProperty";
 import useStyles from "./styles/OwnerTable.styles";
 
-const Tabledata = [
-  {
-    name: "abc",
-    email: "Mumbai",
-    phone: "Sion",
-    createdAt: "12/07/2021",
-  },
-  {
-    name: "abc",
-    email: "Mumbai",
-    phone: "Sion",
-    createdAt: "12/07/2021",
-  },
-  {
-    name: "abc",
-    email: "Mumbai",
-    phone: "Sion",
-    createdAt: "12/07/2021",
-  },
-];
-
 export default function OwnerTable(props) {
   const [state, setState] = React.useState({
     checkedA: true,
