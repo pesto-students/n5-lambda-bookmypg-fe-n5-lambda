@@ -65,7 +65,7 @@ export default function PropertyListContent(props) {
                         ₹{property.rent}
                       </Typography>
 
-                      <div className={classes.contentButtons}>
+                      <div className={classes.buttonStyle}>
                         <Grid container spacing={2}>
                           <Box>
                             <Button text="Schedule Visit" />
