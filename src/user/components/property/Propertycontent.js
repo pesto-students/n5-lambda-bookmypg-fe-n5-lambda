@@ -275,7 +275,7 @@ export default function PropertyContent(props) {
           style={{ borderTop: "1px solid rgba(0, 0, 0, 0.12)" }}
         >
           <Similarproperties
-            title={"Similar properties"}
+            title={"Recently Added Properties"}
             latestProperties={props.latestProperties}
           />
         </Grid>

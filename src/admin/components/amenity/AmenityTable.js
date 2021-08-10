@@ -12,6 +12,7 @@ import { ReactComponent as SortingUpIcon } from "../../../assets/svg/sortingUp.s
 import { ReactComponent as SortingDownIcon } from "../../../assets/svg/sortingDown.svg";
 import Addamenity from "./AddAmenity";
 import useStyles from "./styles/AmenityTable.styles";
+import { S3_BUCKET_URL } from "../../../constant";
 
 const Tabledata = [
   {
@@ -40,6 +41,9 @@ export default function AmenityTable(props) {
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
+
+  const amenities = props.amenities;
+
   return (
     <Paper className={classes.paperStyle}>
       <Table className={classes.tableStyle}>
@@ -61,29 +65,31 @@ export default function AmenityTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {Tabledata.map((amenity) => (
-            <TableRow>
-              <TableCell align="center">
-                <div className={classes.amenityStyle}>
-                  <Addamenity mode="Edit" value={amenity.name} />
-                  <Switch
-                    checked={state.checkedA}
-                    onChange={handleChange}
-                    name="checkedA"
-                    inputProps={{ "aria-label": "secondary checkbox" }}
+          {amenities &&
+            amenities.length &&
+            amenities.map((amenity) => (
+              <TableRow>
+                <TableCell align="center">
+                  <div className={classes.amenityStyle}>
+                    <Addamenity mode="Edit" value={amenity.name} />
+                    <Switch
+                      checked={state.checkedA}
+                      onChange={handleChange}
+                      name="checkedA"
+                      inputProps={{ "aria-label": "secondary checkbox" }}
+                    />
+                  </div>
+                </TableCell>
+                <TableCell align="center">
+                  <img
+                    src={`${S3_BUCKET_URL}/${amenity.logo}`}
+                    alt="No Preview available"
+                    className={classes.imgStyle}
                   />
-                </div>
-              </TableCell>
-              <TableCell align="center">
-                <img
-                  src={amenity.logo}
-                  alt="No Preview available"
-                  className={classes.imgStyle}
-                />
-              </TableCell>
-              <TableCell align="center">{amenity.createdAt}</TableCell>
-            </TableRow>
-          ))}
+                </TableCell>
+                <TableCell align="center">{amenity.createdAt}</TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </Paper>

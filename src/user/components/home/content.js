@@ -91,7 +91,7 @@ export function Content(props) {
       </Container>
       <Container className={classes.cardGrid} maxWidth="md">
         <Similarproperties
-          title={"Popular properties"}
+          title={"Recently Added Properties"}
           latestProperties={props.latestProperties}
         />
       </Container>
