@@ -21,6 +21,7 @@ import Select from "@material-ui/core/Select";
 import ImageList from "@material-ui/core/ImageList";
 import ImageListItem from "@material-ui/core/ImageListItem";
 import ChevronRight from "@material-ui/icons/ChevronRight";
+import { useHistory } from "react-router-dom";
 
 const useStylesselect = makeStyles((theme) => ({
   formControl: {
@@ -36,12 +37,12 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: theme.spacing(2),
   },
-  heroContent: {
+  contentStyle: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(8, 0, 6),
     paddingTop: "100px",
   },
-  heroButtons: {
+  buttonStyle: {
     marginTop: theme.spacing(4),
   },
   cardGrid: {
@@ -67,18 +68,27 @@ const useStyles = makeStyles((theme) => ({
 
 const cards = [1, 2, 3, 4];
 
-export default function Album() {
+export default function Content() {
   const classes = useStyles();
 
   const classesselect = useStylesselect();
-
+  const history = useHistory();
   const [location, setLocation] = React.useState("");
   const handleChange = (event) => {
     setLocation(event.target.value);
   };
+
+  const handleMoreDetails = () => {
+    history.push("/property-details");
+  };
+
   return (
     <React.Fragment>
-      <Container maxWidth="sm" component="main" className={classes.heroContent}>
+      <Container
+        maxWidth="sm"
+        component="main"
+        className={classes.contentStyle}
+      >
         <Typography
           component="h1"
           variant="h5"
@@ -114,7 +124,7 @@ export default function Album() {
         <Typography component="h1" variant="h6" color="secondary" gutterBottom>
           Who are we?
         </Typography>
-        {/* End hero unit */}
+        buttonStyle
         <Grid container spacing={4}>
           <Grid item xs={12} sm={6}>
             <Typography
@@ -146,7 +156,7 @@ export default function Album() {
         maxWidth="md"
         style={{ borderTop: `1px solid rgba(0, 0, 0, 0.12)` }}
       >
-        {/* End hero unit */}
+        buttonStyle
         <Grid container spacing={4}>
           <Grid item xs={12} sm={6}>
             <ImageList cols={1}>
@@ -196,7 +206,7 @@ export default function Album() {
         >
           Popular properties
         </Typography>
-        {/* End hero unit */}
+        buttonStyle
         <Grid container spacing={5}>
           {cards.map((card) => (
             <Grid item key={card} xs={12} sm={6} md={3}>
@@ -213,7 +223,11 @@ export default function Album() {
                   <Typography>Ratings: 4</Typography>
                 </CardContent>
                 <CardActions>
-                  <Button size="small" color="primary">
+                  <Button
+                    size="small"
+                    color="primary"
+                    onClick={handleMoreDetails}
+                  >
                     More Details
                   </Button>
                 </CardActions>

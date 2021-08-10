@@ -47,6 +47,7 @@ const useStyles = makeStyles(() => ({
     fontWeight: 600,
     color: "#FFFEFE",
     textAlign: "left",
+    cursor: "pointer",
   },
   menuButton: {
     fontFamily: "Open Sans, sans-serif",

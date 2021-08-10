@@ -1,57 +1,11 @@
 import React from "react";
-// @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-
-// @material-ui/icons
-
-// core components
 import Grid from "@material-ui/core/Grid";
-import Header from "./header";
+import Header from "../../components/header/Header";
 import Content from "./content";
-import Footer from "./footer";
-//import GridItem from "@material-ui/core/GridItem";
-//import CustomInput from "components/CustomInput/CustomInput.js";
-import Button from "@material-ui/core/Button";
-import CustomInput from "@material-ui/core/Input";
-import Paper from "@material-ui/core/Paper";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import FormControl from "@material-ui/core/FormControl";
-import ImageList from "@material-ui/core/ImageList";
-import ImageListItem from "@material-ui/core/ImageListItem";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
+import Footer from "../../components/footer/footer";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-
 import { createTheme } from "@material-ui/core/styles";
-import Select from "@material-ui/core/Select";
-import InputLabel from "@material-ui/core/InputLabel";
-
-//import styles from "assets/jss/material-kit-react/views/landingPageSections/workStyle.js";
-
-//const useStyles = makeStyles(styles);
-const sections = [
-  { title: "Technology", url: "#" },
-  { title: "Design", url: "#" },
-  { title: "Culture", url: "#" },
-  { title: "Business", url: "#" },
-  { title: "Politics", url: "#" },
-  { title: "Opinion", url: "#" },
-  { title: "Science", url: "#" },
-  { title: "Health", url: "#" },
-  { title: "Style", url: "#" },
-  { title: "Travel", url: "#" },
-];
 
 const data = [
   {
@@ -187,26 +141,6 @@ const useStylesnew = makeStyles({
 
 export default function WorkSection() {
   const classes = useStyles();
-  const classesgrid = useStylesgrid();
-  const classesselect = useStylesselect();
-  const classes1 = useStylesnew();
-  const [location, setLocation] = React.useState("");
-  const newtheme = createTheme({
-    palette: {
-      primary: {
-        light: "#757ce8",
-        main: "#212121",
-        dark: "#002884",
-        contrastText: "#fff",
-      },
-      secondary: {
-        light: "#616161",
-        main: "#616161",
-        dark: "#616161",
-        contrastText: "#fff",
-      },
-    },
-  });
 
   return (
     <div className={classes.section}>

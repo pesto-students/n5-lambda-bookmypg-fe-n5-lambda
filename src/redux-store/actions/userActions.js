@@ -1,14 +1,17 @@
 import { action } from "typesafe-actions";
 import {
   GET_USER_REQUEST_MADE,
-  GET_USER_RESOLVED,
-  GET_USER_FAILED,
+  GET_USER_REQUEST_RESOLVED,
+  GET_USER_REQUEST_FAILED,
+  RESET_USER_STATE,
 } from "../../constant";
 
 export default {
-  submitGetUser: (payload) => action(GET_USER_REQUEST_MADE, payload),
+  getUser: (payload) => action(GET_USER_REQUEST_MADE, payload),
 
-  getUserSubmitted: (payload) => action(GET_USER_RESOLVED, payload),
+  userReceived: (payload) => action(GET_USER_REQUEST_RESOLVED, payload),
 
-  submitGetUserFailed: (payload) => action(GET_USER_FAILED, payload),
+  getUserFailed: (payload) => action(GET_USER_REQUEST_FAILED, payload),
+
+  resetState: (payload) => action(RESET_USER_STATE, payload),
 };
