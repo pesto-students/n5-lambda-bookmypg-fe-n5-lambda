@@ -11,7 +11,7 @@ import Pagination from "../pagination/pagination";
 import { S3_BUCKET_URL } from "../../../constant";
 import useStyles from "./styles/PropertyListContent.styles";
 import Button from "../../../components/button/Button";
-import MoreButton from "@material-ui/core/Box";
+import MoreButton from "@material-ui/core/Button";
 
 export default function PropertyListContent(props) {
   const classes = useStyles();
