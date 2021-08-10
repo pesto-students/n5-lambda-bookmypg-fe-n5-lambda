@@ -6,12 +6,11 @@ import Footer from "../../components/footer/footer";
 import Theme from "../theme/theme";
 
 export default function HomePage() {
-  const [loggedUser, setLoggedUser] = React.useState("");
 
   return (
     <div>
       <MuiThemeProvider theme={Theme}>
-        <Header loggedUser={loggedUser} setLoggedUser={setLoggedUser} />
+        <Header/>
         <Content />
 
         <Footer />

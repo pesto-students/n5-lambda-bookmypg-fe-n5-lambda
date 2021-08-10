@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import {
   AppBar,
   Toolbar,
@@ -14,7 +16,6 @@ import {
   Dialog,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-import React, { useState, useEffect } from "react";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import firebase from "firebase/app";
 import "firebase/auth";
@@ -23,6 +24,8 @@ import TwitterIcon from "@material-ui/icons/Twitter";
 import EmailIcon from "@material-ui/icons/Email";
 import CloseIcon from "@material-ui/icons/Close";
 import useStyles from "./header.styles";
+import UserSelector from "../../../user/helpers/UserSelector";
+import userActions from "../../../redux-store/actions/userActions";
 
 const headersData = [
   {
@@ -54,7 +57,7 @@ const responsiveHeaderData = [
   },
 ];
 
-export default function Header(props) {
+export function Header(props) {
   const {
     header,
     logo,
@@ -119,7 +122,7 @@ export default function Header(props) {
 
         <div>
           {getMenuButtons()}
-          {props.loggedUser == "" ? (
+          {!props.user || Object.keys(props.user).length === 0 ? (
             <Button
               key={"Login"}
               {...{
@@ -132,15 +135,14 @@ export default function Header(props) {
             </Button>
           ) : (
             <Button
-              key={"Logout"}
+              key={props.user.firstName + " " + props.user.lastName}
               {...{
                 color: "inherit",
-
                 className: menuButton,
               }}
               onClick={handleLogout}
             >
-              {"Logout"}
+              {props.user.firstName + " " + props.user.lastName}
             </Button>
           )}
         </div>
@@ -177,28 +179,28 @@ export default function Header(props) {
         >
           <div className={drawerContainer}>
             {getrespDrawerChoices()}
-            {props.loggedUser == "" ? (
-              <Link
+            {!props.user || Object.keys(props.user).length === 0 ? (
+              <Button
                 key={"Login"}
                 {...{
                   color: "inherit",
-                  style: { textDecoration: "none" },
+                  className: menuButton,
                 }}
                 onClick={LoginPopup}
               >
-                <MenuItem>{"Login"}</MenuItem>
-              </Link>
+                {"Login"}
+              </Button>
             ) : (
-              <Link
-                key={"Logout"}
+              <Button
+                key={props.user.firstName + " " + props.user.lastName}
                 {...{
                   color: "inherit",
-                  style: { textDecoration: "none" },
+                  className: menuButton,
                 }}
                 onClick={handleLogout}
               >
-                <MenuItem>{"Logout"}</MenuItem>
-              </Link>
+                {props.user.firstName + " " + props.user.lastName}
+              </Button>
             )}
           </div>
         </Drawer>
@@ -464,3 +466,20 @@ export default function Header(props) {
     </>
   );
 }
+
+const mapStateToProps = (state) => {
+  const userSelector = UserSelector(state.user);
+
+  return {
+    user: userSelector.getUserData().data,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getUser: (payload) => dispatch(userActions.getUser(payload)),
+    logoutUser: () => dispatch(userActions.resetState()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

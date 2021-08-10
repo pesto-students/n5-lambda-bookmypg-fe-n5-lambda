@@ -12,6 +12,7 @@ import Pagination from "../pagination/pagination";
 import TenantsSelector from "../TenantsSelector";
 import tenantsActions from "../../../redux-store/actions/tenantsActions";
 import useStyles from "./styles/TenantListContent.styles";
+import UserSelector from "../../../user/helpers/UserSelector";
 
 export function Tenantcontent(props) {
   const classes = useStyles();
@@ -109,9 +110,11 @@ export function Tenantcontent(props) {
 
 const mapStateToProps = (state) => {
   const tenantsSelector = TenantsSelector(state.tenants);
+  const userSelector = UserSelector(state.user);
 
   return {
     tenants: tenantsSelector.getTenantsData().data,
+    user: userSelector.getUserData().data
   };
 };
 
