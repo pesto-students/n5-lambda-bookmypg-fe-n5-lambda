@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import ResponsiveDrawer from "../responsivedrawer/ResponsiveDrawer";
 import { Grid, Typography, TextField } from "@material-ui/core";
 import {
@@ -10,13 +11,43 @@ import Tablecomponent from "./OwnerTable";
 import Pagination from "../pagination/Pagination";
 import Addowner from "./AddOwner";
 import useStyles from "./styles/OwnerListContent.styles";
+import UserSelector from "../../../user/helpers/UserSelector";
+import TenantsSelector from "../../../owner/components/TenantsSelector";
+import tenantsActions from "../../../redux-store/actions/tenantsActions";
 
 export function OwnerlistContent(props) {
   const classes = useStyles();
   const [selectedDate, setSelectedDate] = React.useState(new Date());
+  const [enabled, setEnabled] = React.useState(false);
+
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
+  
+  useEffect(() => {
+    props.resetTenants();
+  }, []);
+
+  useEffect(() => {
+    props.getTenants();
+  }, [enabled, setEnabled]);
+
+  let owners;
+  if (
+    props.tenants &&
+    props.tenants.length
+  ) {
+    owners =
+      props.tenants && props.tenants.length
+        ? props.tenants.filter(
+            (tenant) => tenant.role === "owner"
+          )
+        : [];
+  }
+
+    console.log("tenants", props.tenants);
+    console.log("owners", owners);
+
 
   return (
     <div className="Table">
@@ -39,7 +70,7 @@ export function OwnerlistContent(props) {
               >
                 <TextField
                   id="standard-basic"
-                  label="Search by property name"
+                  label="Search by Owner name"
                   className={classes.textfieldStyle}
                 />
               </Grid>
@@ -80,7 +111,11 @@ export function OwnerlistContent(props) {
               </Grid>
               <Addowner />
             </Grid>
-            <Tablecomponent complaints={props.complaints} />
+            <Tablecomponent
+              owners={owners}
+              updateOwner={props.updateTenant}
+              setEnabled={setEnabled}
+            />
           </Grid>
           <Pagination />
         </Grid>
@@ -89,4 +124,22 @@ export function OwnerlistContent(props) {
   );
 }
 
-export default OwnerlistContent;
+const mapStateToProps = (state) => {
+  const userSelector = UserSelector(state.user);
+  const tenantsSelector = TenantsSelector(state.tenants);
+
+  return {
+    user: userSelector.getUserData().data,
+    tenants: tenantsSelector.getTenantsData().data,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getTenants: () => dispatch(tenantsActions.getTenants()),
+    updateTenant: (id) => dispatch(tenantsActions.updateTenant(id)),
+    resetTenants: () => dispatch(tenantsActions.resetState()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(OwnerlistContent);

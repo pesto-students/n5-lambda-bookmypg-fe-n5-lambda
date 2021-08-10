@@ -44,6 +44,13 @@ export default function OwnerTable(props) {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
 
+  const handleSwitch = (owner) => {
+    if (owner.isactive) props.updateOwner(owner._id);
+    props.setEnabled(true);
+  };
+
+  const owners = props.owners;
+
   return (
     <Paper className={classes.paperStyle}>
       <Table className={classes.tableStyle}>
@@ -51,8 +58,7 @@ export default function OwnerTable(props) {
           <TableRow>
             <TableCell align="center">Name</TableCell>
             <TableCell align="center">Email</TableCell>
-            <TableCell align="center">Contact no</TableCell>
-            <TableCell align="center">Properties</TableCell>
+            <TableCell align="center">Phone</TableCell>
             <TableCell align="center">
               Registered Date
               <span className={classes.sorting}>
@@ -67,25 +73,26 @@ export default function OwnerTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {Tabledata.map((owner) => (
-            <TableRow>
-              <TableCell align="center">
-                {owner.name}{" "}
-                <Switch
-                  checked={state.checkedA}
-                  onChange={handleChange}
-                  name="checkedA"
-                  inputProps={{ "aria-label": "secondary checkbox" }}
-                />
-              </TableCell>
-              <TableCell align="center">{owner.email}</TableCell>
-              <TableCell align="center">{owner.phone}</TableCell>
-              <TableCell align="center">
-                <Viewproperty />
-              </TableCell>
-              <TableCell align="center">{owner.createdAt}</TableCell>
-            </TableRow>
-          ))}
+          {owners &&
+            owners.length &&
+            owners.map((owner) => (
+              <TableRow>
+                <TableCell align="center">
+                  <div className={classes.switchcellStyle}>
+                    {owner.firstName + " " + owner.lastName}
+                    <Switch
+                      checked={owner.isactive}
+                      onChange={() => handleSwitch(owner)}
+                      name="checkedA"
+                      inputProps={{ "aria-label": "secondary checkbox" }}
+                    />
+                  </div>
+                </TableCell>
+                <TableCell align="center">{owner.email}</TableCell>
+                <TableCell align="center">{"+91 " + owner.phone}</TableCell>
+                <TableCell align="center">{owner.createdAt}</TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </Paper>
