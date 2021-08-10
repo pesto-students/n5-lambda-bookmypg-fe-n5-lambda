@@ -85,7 +85,6 @@ function PropertyFilters(props) {
         : props.selectedLocation;
 
     const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&gender=${selectedGender}&rating=${selectedRating}&rent=${selectedRent}`;
-    console.log("extraParams", extraParams);
     props.getProperties({ extraParams });
   }, [pagenumber, countperpage, gender, rating, rent, props.selectedLocation]);
 

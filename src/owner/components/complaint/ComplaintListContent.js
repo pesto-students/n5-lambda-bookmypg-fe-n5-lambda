@@ -23,7 +23,7 @@ export function ComplaintsContent(props) {
   }, []);
 
   useEffect(() => {
-    props.getComplaints();
+    props.getComplaints(props.user);
   }, []);
 
   const handleDateChange = (date) => {
@@ -123,7 +123,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getComplaints: () => dispatch(complainsActions.getComplaints()),
+    getComplaints: (payload) =>
+      dispatch(complainsActions.getComplaints(payload)),
     // updateComplaint: (id) => dispatch(complainsActions.updateComplaint(id)),
     resetComplaints: () => dispatch(complainsActions.resetState()),
   };

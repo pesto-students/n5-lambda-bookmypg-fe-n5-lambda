@@ -18,7 +18,7 @@ export function AmenityListContent(props) {
   }, []);
 
   useEffect(() => {
-    props.getAmenities();
+    props.getAmenities(props.user);
   }, []);
 
   return (
@@ -60,7 +60,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAmenities: () => dispatch(amenitiesActions.getAmenities()),
+    getAmenities: (payload) => dispatch(amenitiesActions.getAmenities(payload)),
     resetAmenities: () => dispatch(amenitiesActions.resetState()),
   };
 };

@@ -45,10 +45,6 @@ export function OwnerlistContent(props) {
         : [];
   }
 
-    console.log("tenants", props.tenants);
-    console.log("owners", owners);
-
-
   return (
     <div className="Table">
       <ResponsiveDrawer>
