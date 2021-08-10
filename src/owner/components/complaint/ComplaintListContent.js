@@ -60,7 +60,7 @@ export function ComplaintsContent(props) {
               <Grid item xs={12} md={4} className={classes.searchboxStyle}>
                 <TextField
                   id="standard-basic"
-                  label="Search by property name"
+                  label="Search by tenant name"
                   className={classes.textfieldStyle}
                 />
               </Grid>
