@@ -13,6 +13,7 @@ import TenantsSelector from "../TenantsSelector";
 import tenantsActions from "../../../redux-store/actions/tenantsActions";
 import useStyles from "./styles/TenantListContent.styles";
 import UserSelector from "../../../user/helpers/UserSelector";
+import PropertiesSelector from "../../../user/helpers/PropertiesSelector";
 
 export function Tenantcontent(props) {
   const classes = useStyles();
@@ -36,12 +37,27 @@ export function Tenantcontent(props) {
     props.getTenants();
   }, [enabled, setEnabled]);
 
-  const tenants =
-    props.tenants && props.tenants.length
-      ? props.tenants.filter(
-          (tenant) => tenant.property && tenant.role === "user"
-        )
-      : [];
+  let properties;
+  let tenants;
+  if (
+    props.properties &&
+    props.properties.length &&
+    props.tenants &&
+    props.tenants.length
+  ) {
+    properties = props.properties.filter(
+      (property) => property.owner._id === props.user._id
+    );
+    properties = properties.map((property) => property._id);
+    tenants =
+      props.tenants && props.tenants.length
+        ? props.tenants.filter(
+            (tenant) => tenant.property && tenant.role === "user"
+          )
+        : [];
+
+    tenants = tenants.filter(tenant=> properties.includes(tenant.property._id));
+  }
 
   return (
     <div className="Table">
@@ -111,10 +127,12 @@ export function Tenantcontent(props) {
 const mapStateToProps = (state) => {
   const tenantsSelector = TenantsSelector(state.tenants);
   const userSelector = UserSelector(state.user);
+  const propertiesSelector = PropertiesSelector(state.properties);
 
   return {
     tenants: tenantsSelector.getTenantsData().data,
-    user: userSelector.getUserData().data
+    user: userSelector.getUserData().data,
+    properties: propertiesSelector.getPropertiesData().data,
   };
 };
 

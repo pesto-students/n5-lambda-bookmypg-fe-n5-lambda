@@ -9,6 +9,7 @@ import Pagination from "../pagination/pagination";
 import Addproperty from "./addproperty";
 import PropertiesSelector from "../../../user/helpers/PropertiesSelector";
 import propertiesActions from "../../../redux-store/actions/propertiesActions";
+import UserSelector from "../../../user/helpers/UserSelector";
 import useStyles from "./styles/propertylistcontent.styles";
 
 export function PropertyListContent(props) {
@@ -20,6 +21,13 @@ export function PropertyListContent(props) {
   useEffect(() => {
     props.getProperties();
   }, []);
+
+  let properties;
+  if(props.properties && props.properties.length){
+  properties = props.properties.filter(
+    (property) => property.owner._id === props.user._id
+  );
+  }
 
   return (
     <div className="Table">
@@ -41,7 +49,7 @@ export function PropertyListContent(props) {
                 <Addproperty />
               </Grid>
             </Grid>
-            <Tablecomponent properties={props.properties} />
+            <Tablecomponent properties={properties} />
           </Grid>
           <Pagination />
         </Grid>
@@ -52,15 +60,18 @@ export function PropertyListContent(props) {
 
 const mapStateToProps = (state) => {
   const propertiesSelector = PropertiesSelector(state.properties);
+  const userSelector = UserSelector(state.user);
 
   return {
+    user: userSelector.getUserData().data,
     properties: propertiesSelector.getPropertiesData().data,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getProperties: () => dispatch(propertiesActions.getProperties()),
+    getProperties: () =>
+      dispatch(propertiesActions.getProperties()),
     // updateProperty: (id) => dispatch(propertiesActions.updateProperty(id)),
     resetProperties: () => dispatch(propertiesActions.resetState()),
   };

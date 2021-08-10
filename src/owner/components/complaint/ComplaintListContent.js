@@ -11,6 +11,8 @@ import Tablecomponent from "./ComplaintTable";
 import Pagination from "../pagination/pagination";
 import ComplaintsSelector from "../ComplaintsSelector";
 import complainsActions from "../../../redux-store/actions/complaintsActions";
+import PropertiesSelector from "../../../user/helpers/PropertiesSelector";
+import UserSelector from "../../../user/helpers/UserSelector";
 import useStyles from "./styles/ComplaintListContent";
 
 export function ComplaintsContent(props) {
@@ -27,6 +29,25 @@ export function ComplaintsContent(props) {
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
+
+  let properties;
+  let complaints;
+  if (
+    props.properties &&
+    props.properties.length &&
+    props.complaints &&
+    props.complaints.length
+  ) {
+    properties = props.properties.filter(
+      (property) => property.owner._id === props.user._id
+    );
+    properties = properties.map((property) => property._id);
+
+    complaints = props.complaints.filter((complaint) =>
+      properties.includes(complaint.property._id)
+    );
+  }
+
   return (
     <div className="Table">
       <ResponsiveDrawer>
@@ -79,7 +100,7 @@ export function ComplaintsContent(props) {
                 </MuiPickersUtilsProvider>
               </Grid>
             </Grid>
-            <Tablecomponent complaints={props.complaints} />
+            <Tablecomponent complaints={complaints} />
           </Grid>
           <Pagination />
         </Grid>
@@ -90,9 +111,13 @@ export function ComplaintsContent(props) {
 
 const mapStateToProps = (state) => {
   const complaintsSelector = ComplaintsSelector(state.complaints);
+  const propertiesSelector = PropertiesSelector(state.properties);
+  const userSelector = UserSelector(state.user);
 
   return {
+    user: userSelector.getUserData().data,
     complaints: complaintsSelector.getComplaintsData().data,
+    properties: propertiesSelector.getPropertiesData().data,
   };
 };
 

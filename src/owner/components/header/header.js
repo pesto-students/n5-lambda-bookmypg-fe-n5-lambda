@@ -106,7 +106,7 @@ export function Header(props) {
   };
 
   const handleLogout = () => {
-    props.setLoggedUser("");
+    history.push("/");
   };
 
   const handleClose = () => {
@@ -116,7 +116,6 @@ export function Header(props) {
   const handleLogin = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     const response = await firebase.auth().signInWithPopup(provider);
-    props.setLoggedUser(response.user);
     setOpen(false);
     history.push("/");
   };
