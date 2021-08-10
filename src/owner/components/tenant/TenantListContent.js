@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import ResponsiveDrawer from "../responsivedrawer/responsivedrawer";
-import { Grid, TextField } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import Tablecomponent from "./TenantTable";
 import Pagination from "../pagination/pagination";
 import TenantsSelector from "../TenantsSelector";
@@ -9,6 +9,7 @@ import tenantsActions from "../../../redux-store/actions/tenantsActions";
 import useStyles from "./styles/TenantListContent.styles";
 import Datepicker from "../../../components/datepicker/Datepicker";
 import Typography from "../../../components/typography/Typography";
+import TextField from "../../../components/textfield/Textfield";
 
 export function Tenantcontent(props) {
   const classes = useStyles();
@@ -47,11 +48,7 @@ export function Tenantcontent(props) {
             <Typography text="Tenant List" type="ListTitle" />
             <Grid container justify={"space-between"}>
               <Grid item xs={12} md={4} className={classes.searchboxStyle}>
-                <TextField
-                  id="standard-basic"
-                  label="Search by tenant name"
-                  className={classes.textfieldStyle}
-                />
+                <TextField type="standardForm" label="Search by tenant name" />
               </Grid>
               <Grid item xs={12} md={6} className={classes.datepickerStyle}>
                 <Datepicker

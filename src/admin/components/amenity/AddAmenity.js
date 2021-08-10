@@ -6,7 +6,6 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  TextField,
 } from "@material-ui/core";
 import ImageUpload from "./ImageUpload";
 import useStyles from "./styles/AddAmenity.styles";
@@ -14,6 +13,7 @@ import Button from "../../../components/button/Button";
 import CloseButton from "../../../components/closebutton/CloseButton";
 import Link from "../../../components/link/Link";
 import Typography from "../../../components/typography/Typography";
+import TextField from "../../../components/textfield/Textfield";
 
 export default function AddAmenity(props) {
   const classes = useStyles();
@@ -70,12 +70,7 @@ export default function AddAmenity(props) {
         <DialogContent className={classes.formAlign}>
           <Grid container spacing={3} className={classes.containerStyle}>
             <Grid item>
-              <TextField
-                id="standard-basic"
-                label="Name"
-                defaultValue=""
-                className={classes.textfieldStyle}
-              />
+              <TextField type="standardForm" label="Name" />
               <ImageUpload />
             </Grid>
           </Grid>

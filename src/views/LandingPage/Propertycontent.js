@@ -51,12 +51,12 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: theme.spacing(2),
   },
-  heroContent: {
+  contentStyle: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(8, 0, 6),
     paddingTop: "100px",
   },
-  heroButtons: {
+  contentButtons: {
     marginTop: theme.spacing(4),
   },
   cardGrid: {
@@ -104,7 +104,7 @@ export default function PropertyContent() {
   return (
     <React.Fragment>
       <Container className={classes.cardGrid} maxWidth="md">
-        {/* End hero unit */}
+        contentButtons
         <Grid container spacing={4}>
           <Grid item xs={12} sm={6}>
             <div
@@ -160,7 +160,7 @@ export default function PropertyContent() {
               />
             </div>
             <Rating value={4} number={10} />
-            <div className={classes.heroButtons}>
+            <div className={classes.contentButtons}>
               <Grid container spacing={2} justifyContent="center">
                 <Grid item>
                   <Button variant="contained" color="secondary">
@@ -243,7 +243,7 @@ export default function PropertyContent() {
         >
           Similar results
         </Typography>
-        {/* End hero unit */}
+        contentButtons
         <Grid container spacing={5}>
           {cards.map((card) => (
             <Grid item key={card} xs={12} sm={6} md={3}>

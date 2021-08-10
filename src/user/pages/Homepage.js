@@ -3,7 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import Header from "../components/header/header";
 import Content from "../components/home/Content";
-import Footer from "../components/footer/footer";
+import Footer from "../../components/footer/footer";
 import Theme from "../theme/theme";
 const headersData = [
   {

@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
-  heroContent: {
+  contentStyle: {
     width: "250px",
   },
   dialogStyle: {

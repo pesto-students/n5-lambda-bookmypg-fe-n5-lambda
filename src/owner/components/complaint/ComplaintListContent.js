@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import ResponsiveDrawer from "../responsivedrawer/responsivedrawer";
-import { Grid, TextField } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import Tablecomponent from "./ComplaintTable";
 import Pagination from "../pagination/pagination";
 import ComplaintsSelector from "../ComplaintsSelector";
@@ -9,6 +9,7 @@ import complainsActions from "../../../redux-store/actions/complaintsActions";
 import useStyles from "./styles/ComplaintListContent";
 import Datepicker from "../../../components/datepicker/Datepicker";
 import Typography from "../../../components/typography/Typography";
+import TextField from "../../../components/textfield/Textfield";
 
 export function ComplaintsContent(props) {
   const [selectedDate, setSelectedDate] = React.useState(new Date());
@@ -33,9 +34,8 @@ export function ComplaintsContent(props) {
             <Grid container justify={"space-between"}>
               <Grid item xs={12} md={4} className={classes.searchboxStyle}>
                 <TextField
-                  id="standard-basic"
+                  type="standardForm"
                   label="Search by property name"
-                  className={classes.textfieldStyle}
                 />
               </Grid>
               <Grid item xs={12} md={6} className={classes.datepickerStyle}>

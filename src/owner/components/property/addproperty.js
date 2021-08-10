@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  TextField,
   Dialog,
   DialogActions,
   DialogContent,
@@ -12,10 +11,11 @@ import {
   Select,
   FormHelperText,
 } from "@material-ui/core";
-import useStyles from "./styles/addproperty.styles";
+import useStyles from "./styles/AddProperty.styles";
 import Button from "../../../components/button/Button";
 import CloseButton from "../../../components/closebutton/CloseButton";
 import Typography from "../../../components/typography/Typography";
+import TextField from "../../../components/textfield/Textfield";
 
 export default function FormDialog(props) {
   const classes = useStyles();
@@ -70,30 +70,15 @@ export default function FormDialog(props) {
         <DialogContent className={classes.formAlign}>
           <Grid container spacing={3} className={classes.containerStyle}>
             <Grid item xs={12} sm={6}>
+              <TextField type="standardForm" label="Name" />
+              <TextField type="standardForm" label="Total Beds" />
               <TextField
-                id="standard-basic"
-                label="Name"
-                defaultValue=""
-                fullwidth
-                className={classes.textfieldStyle}
-              />
-              <TextField
-                id="standard-basic"
-                label="Total Beds"
-                defaultValue=""
-                fullwidth
-                rows="4"
-                className={classes.textfieldStyle}
-              />
-              <TextField
-                id="standard-basic"
+                type="standardForm"
                 label="Address"
-                defaultValue=""
-                fullwidth
-                multiline
-                rows="4"
-                className={classes.textfieldStyle}
+                multiline={true}
+                rows={4}
               />
+
               <FormControl className={classes.formControl}>
                 <Select
                   labelId="demo-simple-select-placeholder-label-label"
@@ -110,29 +95,15 @@ export default function FormDialog(props) {
               <FormHelperText>Location</FormHelperText>
             </Grid>
             <Grid item xs={12} sm={6}>
+              <TextField type="standardForm" label="Rent" />
+              <TextField type="standardForm" label="Total Beds" />
               <TextField
-                id="standard-basic"
-                label="Rent"
-                defaultValue=""
-                fullwidth
-                className={classes.textfieldStyle}
-              />
-              <TextField
-                id="standard-basic"
-                label="Total Beds"
-                defaultValue=""
-                fullwidth
-                className={classes.textfieldStyle}
-              />
-              <TextField
-                id="standard-basic"
+                type="standardForm"
                 label="Description"
-                defaultValue=""
-                fullwidth
-                multiline
-                rows="4"
-                className={classes.textfieldStyle}
+                multiline={true}
+                rows={4}
               />
+
               <FormControl className={classes.formControl}>
                 <Select
                   labelId="demo-simple-select-placeholder-label-label"

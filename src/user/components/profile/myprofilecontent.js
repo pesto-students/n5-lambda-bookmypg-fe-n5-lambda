@@ -19,7 +19,7 @@ const data = {
   numratings: 10,
 };
 
-export default function Tablefile() {
+export default function MyProfileContent() {
   const classes = useStyles();
   const [value, setValue] = React.useState("female");
   const handleChange = (event) => {

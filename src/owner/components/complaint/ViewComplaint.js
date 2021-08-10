@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  TextField,
   Dialog,
   DialogActions,
   DialogContent,
@@ -18,6 +17,7 @@ import CloseButton from "../../../components/closebutton/CloseButton";
 import Button from "../../../components/button/Button";
 import Link from "../../../components/link/Link";
 import Typography from "../../../components/typography/Typography";
+import TextField from "../../../components/textfield/Textfield";
 
 export default function FormDialog(props) {
   const classes = useStyles();
@@ -71,85 +71,23 @@ export default function FormDialog(props) {
         <DialogContent className={classes.formAlign}>
           <Grid spacing={3} className={classes.containerStyle}>
             <Grid item>
-              <TextField
-                disabled
-                id="standard-disabled"
-                label="Complaint Raisedby"
-                defaultValue="Monali"
-                fullwidth
-                className={classes.textfieldStyle}
-                InputProps={{
-                  classes: {
-                    root: classes.root,
-                    disabled: classes.disabled,
-                  },
-                }}
-              />
+              <TextField label="Complaint Raisedby" defaultValue="Monali" />
+            </Grid>
+            <Grid item>
+              <TextField label="Email" defaultValue="abc@gmail.com" />
+            </Grid>
+            <Grid item>
+              <TextField label="Phone" defaultValue="12345" />
+            </Grid>
+            <Grid item>
+              <TextField label="Complaint Date" defaultValue="12/07/2021" />
             </Grid>
             <Grid item>
               <TextField
-                disabled
-                id="standard-disabled"
-                label="Email"
-                defaultValue="abc@gmail.com"
-                fullwidth
-                className={classes.textfieldStyle}
-                InputProps={{
-                  classes: {
-                    root: classes.root,
-                    disabled: classes.disabled,
-                  },
-                }}
-              />
-            </Grid>
-            <Grid item>
-              <TextField
-                disabled
-                id="standard-disabled"
-                label="Phone"
-                defaultValue="12345"
-                fullwidth
-                className={classes.textfieldStyle}
-                InputProps={{
-                  classes: {
-                    root: classes.root,
-                    disabled: classes.disabled,
-                  },
-                }}
-              />
-            </Grid>
-            <Grid item>
-              <TextField
-                disabled
-                id="standard-disabled"
-                label="Complaint Date"
-                defaultValue="12/07/2021"
-                fullwidth
-                className={classes.textfieldStyle}
-                InputProps={{
-                  classes: {
-                    root: classes.root,
-                    disabled: classes.disabled,
-                  },
-                }}
-              />
-            </Grid>
-            <Grid item>
-              <TextField
-                disabled
-                id="standard-disabled"
                 label="Description"
                 defaultValue="Air conditioner is not working."
-                fullwidth
-                multiline
-                maxRows={4}
-                className={classes.textfieldStyle}
-                InputProps={{
-                  classes: {
-                    root: classes.root,
-                    disabled: classes.disabled,
-                  },
-                }}
+                maxrows={4}
+                multiline={true}
               />
             </Grid>
             <Grid item>
@@ -176,13 +114,10 @@ export default function FormDialog(props) {
             </Grid>
             <Grid item>
               <TextField
-                id="standard-basic"
                 label="Remarks"
                 defaultValue="-"
-                fullwidth
-                multiline
-                maxRows={4}
-                className={classes.textfieldStyle}
+                maxrows={4}
+                multiline={true}
               />
             </Grid>
           </Grid>

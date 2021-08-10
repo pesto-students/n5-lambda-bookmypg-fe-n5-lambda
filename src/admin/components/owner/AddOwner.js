@@ -6,12 +6,12 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  TextField,
 } from "@material-ui/core";
 import useStyles from "./styles/AddOwner.styles";
 import Button from "../../../components/button/Button";
 import CloseButton from "../../../components/closebutton/CloseButton";
 import Typography from "../../../components/typography/Typography";
+import TextField from "../../../components/textfield/Textfield";
 
 export default function AddOwner(props) {
   const classes = useStyles();
@@ -68,24 +68,9 @@ export default function AddOwner(props) {
             }}
           >
             <Grid item>
-              <TextField
-                id="standard-basic"
-                label="Name"
-                defaultValue=""
-                className={classes.textfieldStyle}
-              />
-              <TextField
-                id="standard-basic"
-                label="Email"
-                defaultValue=""
-                className={classes.textfieldStyle}
-              />
-              <TextField
-                id="standard-basic"
-                label="Contact no"
-                defaultValue=""
-                className={classes.textfieldStyle}
-              />
+              <TextField type="standardForm" label="Name" />
+              <TextField type="standardForm" label="Email" />
+              <TextField type="standardForm" label="Contact no" />
             </Grid>
           </Grid>
         </DialogContent>

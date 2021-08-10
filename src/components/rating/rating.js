@@ -1,15 +1,15 @@
 import React from "react";
-import useStyles from "./rating.styles";
 import Rating from "@material-ui/lab/Rating";
 
 export default function RatingComponent(props) {
-  const classes = useStyles();
   switch (props.type) {
     case "Large":
-      return <Rating size="large" />;
-    case "SubTitleText":
-      return <Rating size="large" />;
+      return (
+        <Rating size="large" readOnly={props.readonly} value={props.value} />
+      );
+    case "Small":
+      return <Rating size="small" readOnly={props.readonly} />;
     default:
-      return <Rating size="large" />;
+      return <Rating readOnly={props.readonly} />;
   }
 }

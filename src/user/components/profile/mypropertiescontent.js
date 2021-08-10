@@ -1,12 +1,12 @@
 import React from "react";
 import ResponsiveDrawer from "../common/responsivedrawer";
 import Typography from "@material-ui/core/Typography";
-import Rating from "@material-ui/lab/Rating";
 import Complaint from "../complaint/RaiseComplaint";
 import ReviewProperty from "../review/ReviewProperty";
 import { Grid, Card, CardContent, CardMedia, Box } from "@material-ui/core";
 import useStyles from "./styles/MyPropertiesContent.styles";
 import Button from "../../../components/button/Button";
+import Rating from "../../../components/rating/rating";
 
 const data = {
   property: "Zolo House 1",
@@ -16,7 +16,7 @@ const data = {
   numratings: 10,
 };
 
-export default function Tablefile() {
+export default function MyPropertiesContent() {
   const classes = useStyles();
   return (
     <div className="Table">
@@ -49,8 +49,8 @@ export default function Tablefile() {
                     <Box display="flex" p={1}>
                       <Rating
                         value={data.review.rating}
-                        size="large"
-                        readOnly
+                        type="Large"
+                        readonly={true}
                       />
                     </Box>
                     <Typography
