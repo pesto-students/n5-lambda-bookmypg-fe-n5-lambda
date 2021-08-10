@@ -8,7 +8,7 @@ import Box from "@material-ui/core/Box";
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="primary" align="center">
+    <Typography variant="body2" color="textSecondary" align="center">
       {"N5 Team Lambda © "}
 
       {new Date().getFullYear()}
@@ -20,7 +20,7 @@ function Copyright() {
 const footers = [
   {
     title: "Quick links",
-    description: ["About Us", "Contact Us", "Login"],
+    description: ["About Us", "Contact Us"],
   },
   {
     title: "Features",
@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
   link: {
     margin: theme.spacing(1, 1.5),
   },
-  heroContent: {
+  contentStyle: {
     padding: theme.spacing(8, 0, 6),
   },
   cardHeader: {
@@ -69,12 +69,6 @@ const useStyles = makeStyles((theme) => ({
       theme.palette.type === "light"
         ? theme.palette.grey[200]
         : theme.palette.grey[700],
-  },
-  cardPricing: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "baseline",
-    marginBottom: theme.spacing(2),
   },
   footer: {
     borderTop: `1px solid ${theme.palette.divider}`,

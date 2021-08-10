@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -11,6 +10,8 @@ import Rating from "../rating/rating";
 import Pagination from "../pagination/pagination";
 import { S3_BUCKET_URL } from "../../../constant";
 import useStyles from "./styles/PropertyListContent.styles";
+import Button from "../../../components/button/Button";
+import MoreButton from "@material-ui/core/Button";
 
 export default function PropertyListContent(props) {
   const classes = useStyles();
@@ -64,28 +65,19 @@ export default function PropertyListContent(props) {
                         ₹{property.rent}
                       </Typography>
 
-                      <div className={classes.heroButtons}>
+                      <div className={classes.buttonStyle}>
                         <Grid container spacing={2}>
                           <Box>
-                            <Button
-                              variant="contained"
-                              color="secondary"
-                              className={classes.buttonStyle}
-                            >
-                              Schedule Visit
-                            </Button>
-                            <Button
-                              variant="contained"
-                              color="secondary"
-                              className={classes.buttonStyle}
+                            <Button text="Schedule Visit" />
+                            <MoreButton
                               onClick={() =>
                                 history.push(
                                   `/property-details/${property._id}`
                                 )
                               }
                             >
-                              More Details
-                            </Button>
+                              More
+                            </MoreButton>
                           </Box>
                         </Grid>
                       </div>
@@ -148,39 +140,23 @@ export default function PropertyListContent(props) {
                       <div className={classes.buttonsMobile}>
                         <Grid container spacing={2}>
                           <Box className={classes.buttonAlign}>
-                            <Button
-                              variant="contained"
-                              color="secondary"
-                              className={classes.buttonStyle}
-                            >
-                              Schedule Visit
-                            </Button>
-                            <Button
-                              variant="contained"
-                              color="secondary"
-                              className={classes.buttonStyle}
+                            <Button text="Schedule Visit" />
+                            <MoreButton
                               onClick={() =>
                                 history.push(
                                   `/property-details/${property._id}`
                                 )
                               }
-                            >
-                              More Details
-                            </Button>
+                            />
                           </Box>
                         </Grid>
                       </div>
                       <div className={classes.ratingStyle}>
                         <Rating value={4} number={property.numreviews || 0} />
-
                         <Button
-                          size="small"
-                          variant="contained"
+                          text="Schedule Visit"
                           color="ContainedSecondary"
-                          style={{ textTransform: "none" }}
-                        >
-                          More Details
-                        </Button>
+                        />
                       </div>
                     </CardContent>
                   </div>

@@ -7,9 +7,9 @@ import {
   RadioGroup,
   FormControlLabel,
   FormLabel,
-  Button,
 } from "@material-ui/core";
 import useStyles from "./styles/MyProfileContent.styles";
+import Button from "../../../components/button/Button";
 
 const data = {
   propertyname: "Zolo House 1",
@@ -19,7 +19,7 @@ const data = {
   numratings: 10,
 };
 
-export default function Tablefile() {
+export default function MyProfileContent() {
   const classes = useStyles();
   const [value, setValue] = React.useState("female");
   const handleChange = (event) => {
@@ -94,9 +94,7 @@ export default function Tablefile() {
               </RadioGroup>
             </Grid>
             <Grid item className={classes.buttonSpacing}>
-              <Button variant="contained" color="secondary">
-                Update
-              </Button>
+              <Button text="Update" />
             </Grid>
           </Grid>
         </Grid>

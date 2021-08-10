@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Button,
   Dialog,
   DialogActions,
   DialogContent,
@@ -14,16 +13,15 @@ import {
   Grid,
   Typography,
   Box,
-  IconButton,
 } from "@material-ui/core";
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
-import CloseIcon from "@material-ui/icons/Close";
-import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
+import Button from "../../../components/button/Button";
 import useStyles from "./BookProperty.styles";
+import CloseButton from "../../../components/closebutton/CloseButton";
 
 export default function FormDialog() {
   const classes = useStyles();
@@ -57,9 +55,7 @@ export default function FormDialog() {
 
   return (
     <div>
-      <Button variant="contained" color="secondary" onClick={handleClickOpen}>
-        Book Property
-      </Button>
+      <Button text="Book Property" handleClick={handleClickOpen} />
       {/* <CheckoutWithStripe rent={rent} /> */}
       <Dialog
         open={open}
@@ -74,9 +70,7 @@ export default function FormDialog() {
         <Box display="flex" alignItems="flex-start">
           <Box flexGrow={1}></Box>
           <Box>
-            <IconButton onClick={handleClose}>
-              <CloseIcon />
-            </IconButton>
+            <CloseButton handleClick={handleClose} />
           </Box>
         </Box>
         <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
@@ -162,12 +156,8 @@ export default function FormDialog() {
         </DialogContent>
 
         <DialogActions className={classes.button}>
-          <Button variant="contained" color="secondary" onClick={handlePayment}>
-            Submit
-          </Button>
-          <Button variant="contained" color="secondary" onClick={handleClose}>
-            Cancel
-          </Button>
+          <Button text="Submit" />
+          <Button text="Cancel" />
         </DialogActions>
       </Dialog>
     </div>

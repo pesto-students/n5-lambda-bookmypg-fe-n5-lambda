@@ -4,12 +4,12 @@ import ResponsiveDrawer from "../responsivedrawer/responsivedrawer";
 import Grid from "@material-ui/core/Grid/Grid";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
-import Tablecomponent from "./propertytable";
+import Tablecomponent from "./PropertyTable";
 import Pagination from "../pagination/pagination";
-import Addproperty from "./addproperty";
+import Addproperty from "./AddProperty";
 import PropertiesSelector from "../../../user/helpers/PropertiesSelector";
 import propertiesActions from "../../../redux-store/actions/propertiesActions";
-import useStyles from "./styles/propertylistcontent.styles";
+import useStyles from "./styles/PropertyListContent.styles.js";
 
 export function PropertyListContent(props) {
   const classes = useStyles();

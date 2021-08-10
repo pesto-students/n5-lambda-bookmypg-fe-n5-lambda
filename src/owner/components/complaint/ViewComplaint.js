@@ -1,15 +1,10 @@
 import React from "react";
 import {
-  Button,
-  Link,
-  TextField,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
   Box,
-  IconButton,
-  Typography,
   FormControl,
   Grid,
   InputLabel,
@@ -17,8 +12,12 @@ import {
   MenuItem,
   FormHelperText,
 } from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
 import useStyles from "./styles/ViewComplaint.styles";
+import CloseButton from "../../../components/closebutton/CloseButton";
+import Button from "../../../components/button/Button";
+import Link from "../../../components/link/Link";
+import Typography from "../../../components/typography/Typography";
+import TextField from "../../../components/textfield/Textfield";
 
 export default function FormDialog(props) {
   const classes = useStyles();
@@ -41,9 +40,7 @@ export default function FormDialog(props) {
   date.setDate(date.getDate() + 7);
   return (
     <div>
-      <Link href="#" onClick={handleClickOpen}>
-        View
-      </Link>
+      <Link text="View" handelClick={handleClickOpen} href="#" />
       <Dialog
         open={open}
         onClose={handleClose}
@@ -57,16 +54,12 @@ export default function FormDialog(props) {
         <Box display="flex" alignItems="flex-start">
           <Box flexGrow={1}></Box>
           <Box>
-            <IconButton onClick={handleClose}>
-              <CloseIcon />
-            </IconButton>
+            <CloseButton handleClick={handleClose} />
           </Box>
         </Box>
         <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
           <div>
-            <Typography component="h1" variant="h6" color="primary">
-              Complaint Details
-            </Typography>
+            <Typography type="FormTitle" text="Complaint Details" />
             <img
               src="complaint.jpg"
               alt="No image available"
@@ -78,85 +71,23 @@ export default function FormDialog(props) {
         <DialogContent className={classes.formAlign}>
           <Grid spacing={3} className={classes.containerStyle}>
             <Grid item>
-              <TextField
-                disabled
-                id="standard-disabled"
-                label="Complaint Raisedby"
-                defaultValue="Monali"
-                fullwidth
-                className={classes.textfieldStyle}
-                InputProps={{
-                  classes: {
-                    root: classes.root,
-                    disabled: classes.disabled,
-                  },
-                }}
-              />
+              <TextField label="Complaint Raisedby" defaultValue="Monali" />
+            </Grid>
+            <Grid item>
+              <TextField label="Email" defaultValue="abc@gmail.com" />
+            </Grid>
+            <Grid item>
+              <TextField label="Phone" defaultValue="12345" />
+            </Grid>
+            <Grid item>
+              <TextField label="Complaint Date" defaultValue="12/07/2021" />
             </Grid>
             <Grid item>
               <TextField
-                disabled
-                id="standard-disabled"
-                label="Email"
-                defaultValue="abc@gmail.com"
-                fullwidth
-                className={classes.textfieldStyle}
-                InputProps={{
-                  classes: {
-                    root: classes.root,
-                    disabled: classes.disabled,
-                  },
-                }}
-              />
-            </Grid>
-            <Grid item>
-              <TextField
-                disabled
-                id="standard-disabled"
-                label="Phone"
-                defaultValue="12345"
-                fullwidth
-                className={classes.textfieldStyle}
-                InputProps={{
-                  classes: {
-                    root: classes.root,
-                    disabled: classes.disabled,
-                  },
-                }}
-              />
-            </Grid>
-            <Grid item>
-              <TextField
-                disabled
-                id="standard-disabled"
-                label="Complaint Date"
-                defaultValue="12/07/2021"
-                fullwidth
-                className={classes.textfieldStyle}
-                InputProps={{
-                  classes: {
-                    root: classes.root,
-                    disabled: classes.disabled,
-                  },
-                }}
-              />
-            </Grid>
-            <Grid item>
-              <TextField
-                disabled
-                id="standard-disabled"
                 label="Description"
                 defaultValue="Air conditioner is not working."
-                fullwidth
-                multiline
-                maxRows={4}
-                className={classes.textfieldStyle}
-                InputProps={{
-                  classes: {
-                    root: classes.root,
-                    disabled: classes.disabled,
-                  },
-                }}
+                maxrows={4}
+                multiline={true}
               />
             </Grid>
             <Grid item>
@@ -183,24 +114,17 @@ export default function FormDialog(props) {
             </Grid>
             <Grid item>
               <TextField
-                id="standard-basic"
                 label="Remarks"
                 defaultValue="-"
-                fullwidth
-                multiline
-                maxRows={4}
-                className={classes.textfieldStyle}
+                maxrows={4}
+                multiline={true}
               />
             </Grid>
           </Grid>
         </DialogContent>
         <DialogActions className={classes.button}>
-          <Button variant="contained" color="secondary">
-            Submit
-          </Button>
-          <Button variant="contained" color="secondary">
-            Cancel
-          </Button>
+          <Button text="Submit" />
+          <Button text="Cancel" />
         </DialogActions>
       </Dialog>
     </div>

@@ -1,17 +1,15 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import ResponsiveDrawer from "../responsivedrawer/responsivedrawer";
-import { Grid, Typography, TextField } from "@material-ui/core";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
+import { Grid } from "@material-ui/core";
 import Tablecomponent from "./TenantTable";
 import Pagination from "../pagination/pagination";
 import TenantsSelector from "../TenantsSelector";
 import tenantsActions from "../../../redux-store/actions/tenantsActions";
 import useStyles from "./styles/TenantListContent.styles";
+import Datepicker from "../../../components/datepicker/Datepicker";
+import Typography from "../../../components/typography/Typography";
+import TextField from "../../../components/textfield/Textfield";
 
 export function Tenantcontent(props) {
   const classes = useStyles();
@@ -47,51 +45,22 @@ export function Tenantcontent(props) {
       <ResponsiveDrawer>
         <Grid container justify={"center"}>
           <Grid item xs={12} md={10} className={classes.containerStyle}>
-            <Typography component="h1" variant="h5">
-              Tenant List
-            </Typography>
+            <Typography text="Tenant List" type="ListTitle" />
             <Grid container justify={"space-between"}>
               <Grid item xs={12} md={4} className={classes.searchboxStyle}>
-                <TextField
-                  id="standard-basic"
-                  label="Search by tenant name"
-                  className={classes.textfieldStyle}
-                />
+                <TextField type="standardForm" label="Search by tenant name" />
               </Grid>
               <Grid item xs={12} md={6} className={classes.datepickerStyle}>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <KeyboardDatePicker
-                    disableToolbar
-                    variant="inline"
-                    format="MM/dd/yyyy"
-                    margin="normal"
-                    id="date-picker-inline"
-                    label="From Date:"
-                    value={selectedDate}
-                    onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                      "aria-label": "change date",
-                    }}
-                    disableFuture={true}
-                  />
-                </MuiPickersUtilsProvider>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <KeyboardDatePicker
-                    disableToolbar
-                    variant="inline"
-                    format="MM/dd/yyyy"
-                    margin="normal"
-                    id="date-picker-inline"
-                    label="To Date:"
-                    value={selectedDate}
-                    onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                      "aria-label": "change date",
-                    }}
-                    disableFuture={true}
-                    style={{ marginLeft: "10px" }}
-                  />
-                </MuiPickersUtilsProvider>
+                <Datepicker
+                  type="DisableFuture"
+                  selectedDate={selectedDate}
+                  handleDateChange={handleDateChange}
+                />
+                <Datepicker
+                  type="DisableFutureMargin"
+                  selectedDate={selectedDate}
+                  handleDateChange={handleDateChange}
+                />
               </Grid>
             </Grid>
             <Tablecomponent

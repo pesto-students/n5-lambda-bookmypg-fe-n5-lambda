@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Button,
   Card,
   CardContent,
   CardMedia,
@@ -14,6 +13,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
 import { S3_BUCKET_URL } from "../../../constant";
 import useStyles from "../similarproperties/similarproperties.styles";
+import Button from "../../../components/button/Button";
 
 const data = {
   propertyname: "Zolo House 1",
@@ -95,18 +95,14 @@ export default function SimilarProperties(props) {
                             value={data.rating}
                             number={property.numreviews || 0}
                           />
-
                           <Button
-                            size="small"
-                            variant="contained"
+                            text="More Details"
                             color="ContainedSecondary"
-                            className={classes.buttonStyle}
-                            onClick={() =>
+                            handelClick={() =>
                               history.push(`/property-details/${property._id}`)
                             }
-                          >
-                            More Details
-                          </Button>
+                            text="More Details"
+                          />
                         </div>
                       </Card>
                       <div></div>

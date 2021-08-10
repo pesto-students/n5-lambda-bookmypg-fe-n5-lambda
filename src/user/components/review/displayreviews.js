@@ -3,7 +3,7 @@ import { Grid, Box, Typography, Avatar } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
 import useStyles from "./styles/DisplayReview.styles";
 
-export default function CenteredGrid(props) {
+export default function DisplayReviewContent(props) {
   const reviews = [
     {
       rating: "5",

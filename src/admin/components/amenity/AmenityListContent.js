@@ -1,10 +1,12 @@
 import React from "react";
-import { Grid, Typography, TextField } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import Tablecomponent from "./AmenityTable";
 import Pagination from "../pagination/Pagination";
 import Addamenity from "./AddAmenity";
 import ResponsiveDrawer from "../responsivedrawer/ResponsiveDrawer";
 import useStyles from "./styles/AmenityListContent.styles";
+import Typography from "../../../components/typography/Typography";
+import TextField from "../../../components/textfield/Textfield";
 
 export function AmenityListContent(props) {
   const classes = useStyles();
@@ -13,16 +15,10 @@ export function AmenityListContent(props) {
       <ResponsiveDrawer>
         <Grid container justify={"center"}>
           <Grid item xs={12} md={10} className={classes.gridStyle}>
-            <Typography component="h1" variant="h5">
-              Amenity List
-            </Typography>
+            <Typography type="ListTitle" text="Amenity List" />
             <Grid container justify={"space-between"}>
               <Grid item xs={12} md={4} className={classes.containerStyle}>
-                <TextField
-                  id="standard-basic"
-                  label="Search by amenity name"
-                  className={classes.textfieldStyle}
-                />
+                <TextField type="standardForm" label="Search by amenity name" />
               </Grid>
               <Addamenity />
             </Grid>

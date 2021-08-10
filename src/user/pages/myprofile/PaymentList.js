@@ -5,7 +5,7 @@ import Content from "../../components/payment/PaymentListContent";
 import Footer from "../../components/footer/footer";
 import Theme from "../../theme/theme";
 
-export default function HomePage() {
+export default function PaymentListContent() {
   const [loggedUser, setLoggedUser] = React.useState("");
 
   return (

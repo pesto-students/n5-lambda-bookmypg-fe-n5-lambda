@@ -5,7 +5,7 @@ import Content from "../../components/profile/MyProfileContent";
 import Footer from "../../components/footer/footer";
 import Theme from "../../theme/theme";
 
-export default function HomePage() {
+export default function MyProfile() {
   const [loggedUser, setLoggedUser] = React.useState("");
 
   return (

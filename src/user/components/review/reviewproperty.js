@@ -1,18 +1,19 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-import Link from "@material-ui/core/Link";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import CloseIcon from "@material-ui/icons/Close";
-import Box from "@material-ui/core/Box";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
+import {
+  Link,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Box,
+  Grid,
+  Typography,
+  TextField,
+} from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
-import TextField from "@material-ui/core/TextField";
 import useStyles from "./styles/ReviewProperty.styles";
+import Button from "../../../components/button/Button";
+import CloseButton from "../../../components/closebutton/CloseButton";
 
 export default function ReviewProperty(props) {
   const classes = useStyles();
@@ -46,9 +47,7 @@ export default function ReviewProperty(props) {
         <Box display="flex" alignItems="flex-start">
           <Box flexGrow={1}></Box>
           <Box>
-            <IconButton onClick={handleClose}>
-              <CloseIcon />
-            </IconButton>
+            <CloseButton handleClick={handleClose} />
           </Box>
         </Box>
         <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
@@ -87,12 +86,8 @@ export default function ReviewProperty(props) {
           </Grid>
         </DialogContent>
         <DialogActions className={classes.button}>
-          <Button variant="contained" color="secondary">
-            Submit
-          </Button>
-          <Button variant="contained" color="secondary">
-            Cancel
-          </Button>
+          <Button text="Submit" />
+          <Button text="Cancel" />
         </DialogActions>
       </Dialog>
     </div>

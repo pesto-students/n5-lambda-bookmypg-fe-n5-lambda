@@ -1,15 +1,13 @@
 import React from "react";
 import ResponsiveDrawer from "../responsivedrawer/ResponsiveDrawer";
-import { Grid, Typography, TextField } from "@material-ui/core";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
+import { Grid } from "@material-ui/core";
 import Tablecomponent from "./OwnerTable";
 import Pagination from "../pagination/Pagination";
 import Addowner from "./AddOwner";
 import useStyles from "./styles/OwnerListContent.styles";
+import Datepicker from "../../../components/datepicker/Datepicker";
+import Typography from "../../../components/typography/Typography";
+import TextField from "../../../components/textfield/Textfield";
 
 export function OwnerlistContent(props) {
   const classes = useStyles();
@@ -23,9 +21,7 @@ export function OwnerlistContent(props) {
       <ResponsiveDrawer>
         <Grid container justify={"center"}>
           <Grid item xs={12} md={10} className={classes.gridStyle}>
-            <Typography component="h1" variant="h5">
-              Owner List
-            </Typography>
+            <Typography type="ListTitle" text="Owner List" />
             <Grid container justify={"space-between"}>
               <Grid
                 item
@@ -38,45 +34,21 @@ export function OwnerlistContent(props) {
                 }}
               >
                 <TextField
-                  id="standard-basic"
+                  type="standardForm"
                   label="Search by property name"
-                  className={classes.textfieldStyle}
                 />
               </Grid>
               <Grid item xs={12} md={6} className={classes.datepickerStyle}>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <KeyboardDatePicker
-                    disableToolbar
-                    variant="inline"
-                    format="MM/dd/yyyy"
-                    margin="normal"
-                    id="date-picker-inline"
-                    label="From Date:"
-                    value={selectedDate}
-                    onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                      "aria-label": "change date",
-                    }}
-                    disablePast={true}
-                  />
-                </MuiPickersUtilsProvider>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <KeyboardDatePicker
-                    disableToolbar
-                    variant="inline"
-                    format="MM/dd/yyyy"
-                    margin="normal"
-                    id="date-picker-inline"
-                    label="To Date:"
-                    value={selectedDate}
-                    onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                      "aria-label": "change date",
-                    }}
-                    disablePast={true}
-                    style={{ marginLeft: "10px" }}
-                  />
-                </MuiPickersUtilsProvider>
+                <Datepicker
+                  type="DisableFuture"
+                  selectedDate={selectedDate}
+                  handleDateChange={handleDateChange}
+                />
+                <Datepicker
+                  type="DisableFutureMargin"
+                  selectedDate={selectedDate}
+                  handleDateChange={handleDateChange}
+                />
               </Grid>
               <Addowner />
             </Grid>

@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core";
 import { ReactComponent as SortingUpIcon } from "../../../assets/svg/sortingUp.svg";
 import { ReactComponent as SortingDownIcon } from "../../../assets/svg/sortingDown.svg";
-import useStyles from "./styles/propertytable.styles";
+import useStyles from "./styles/PropertyTable.styles";
 
 const Tabledata = [
   {

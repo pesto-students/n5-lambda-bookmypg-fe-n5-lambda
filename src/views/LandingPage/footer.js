@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
   link: {
     margin: theme.spacing(1, 1.5),
   },
-  heroContent: {
+  contentStyle: {
     padding: theme.spacing(8, 0, 6),
   },
   cardHeader: {
@@ -71,12 +71,6 @@ const useStyles = makeStyles((theme) => ({
       theme.palette.type === "light"
         ? theme.palette.grey[200]
         : theme.palette.grey[700],
-  },
-  cardPricing: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "baseline",
-    marginBottom: theme.spacing(2),
   },
   footer: {
     borderTop: `1px solid ${theme.palette.divider}`,
@@ -90,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Pricing() {
+export default function Footer() {
   const classes = useStyles();
 
   return (

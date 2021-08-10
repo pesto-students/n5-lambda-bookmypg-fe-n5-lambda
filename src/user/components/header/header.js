@@ -4,33 +4,30 @@ import {
   AppBar,
   Toolbar,
   Typography,
-  makeStyles,
-  Button,
   IconButton,
   Drawer,
   Link,
   MenuItem,
   DialogContent,
+  FormControl,
+  InputLabel,
+  Select,
+  Grid,
+  Box,
+  Container,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import Dialog from "@material-ui/core/Dialog";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import firebase from "firebase/app";
 import "firebase/auth";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Container from "@material-ui/core/Container";
-import FacebookIcon from "@material-ui/icons/Facebook";
-import TwitterIcon from "@material-ui/icons/Twitter";
-import EmailIcon from "@material-ui/icons/Email";
-import CloseIcon from "@material-ui/icons/Close";
+import { Facebook, Twitter, Email, Close } from "@material-ui/icons";
 import LocationsSelector from "../../helpers/LocationsSelector";
 import locationsActions from "../../../redux-store/actions/locationsActions";
 import UserSelector from "../../helpers/UserSelector";
 import userActions from "../../../redux-store/actions/userActions";
+import Button from "../../../components/button/Button";
+import useStyles from "./header.styles";
 
 const headersData = [
   {
@@ -66,82 +63,6 @@ const locationItems = [
   },
 ];
 
-const useStyles = makeStyles(() => ({
-  header: {
-    backgroundColor: "#616161",
-  },
-  responsivegrid: {
-    display: "flex",
-    height: "100%",
-    overflow: "hidden",
-  },
-  logo: {
-    color: "#FFFEFE",
-    textAlign: "left",
-    cursor: "pointer",
-  },
-  menuButton: {
-    textTransform: "none",
-    size: "18px",
-    marginLeft: "38px",
-  },
-  toolbar: {
-    display: "flex",
-    justifyContent: "space-between",
-  },
-  drawerContainer: {
-    padding: "20px 30px",
-  },
-  button: {
-    justifyContent: "center",
-    display: "grid",
-    paddingLeft: "32px",
-  },
-  mobileviewButton: {
-    justifyContent: "center",
-    display: "grid",
-  },
-  buttonmargin: {
-    marginTop: 10,
-    textTransform: "none",
-  },
-  paper: { height: "80%", width: "70%" },
-
-  root: {
-    background: "linear-gradient(to bottom, #232526, #414345)",
-  },
-  titleStyle: {
-    width: "70%",
-    textAlign: "center",
-    marginTop: "10px",
-  },
-  imageStyle: {
-    width: "40%",
-  },
-  boxStyle: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  dialogTitle: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-}));
-
-const useStylesselect = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(2),
-    minWidth: "80%",
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-  heroContent: {
-    width: "250px",
-  },
-}));
-
 export function Header(props) {
   const {
     header,
@@ -162,7 +83,6 @@ export function Header(props) {
 
   const classes = useStyles();
 
-  const classesselect = useStylesselect();
   const [location, setLocation] = React.useState(props.selectedLocation || "");
 
   const handleChange = (event) => {
@@ -221,32 +141,17 @@ export function Header(props) {
     return (
       <Toolbar className={toolbar}>
         {femmecubatorLogo}
-        <div className={classesselect.heroContent}>{searchBar}</div>
+        <div className={classes.contentStyle}>{searchBar}</div>
         <div>
           {getMenuButtons()}
           {props.loggedUser == "" ? (
-            <Button
-              key={"Login"}
-              {...{
-                color: "inherit",
-                className: menuButton,
-              }}
-              onClick={LoginPopup}
-            >
-              {"Login"}
-            </Button>
+            <Button text="Login" type="Menubutton" handleClick={LoginPopup} />
           ) : (
             <Button
-              key={"Logout"}
-              {...{
-                color: "inherit",
-
-                className: menuButton,
-              }}
-              onClick={handleLogout}
-            >
-              {"Logout"}
-            </Button>
+              text="Logout"
+              type="Menubutton"
+              handleClick={handleLogout}
+            />
           )}
         </div>
       </Toolbar>
@@ -309,7 +214,7 @@ export function Header(props) {
         </Drawer>
 
         <div>{femmecubatorLogo}</div>
-        <div className={classesselect.heroContent}>{searchBar}</div>
+        <div className={classes.contentStyle}>{searchBar}</div>
       </Toolbar>
     );
   };
@@ -384,16 +289,11 @@ export function Header(props) {
     return headersData.map(({ label, href }) => {
       return (
         <Button
-          key={label}
-          {...{
-            color: "inherit",
-            to: href,
-            component: RouterLink,
-            className: menuButton,
-          }}
-        >
-          {label}
-        </Button>
+          text={label}
+          type="Menubutton"
+          component={RouterLink}
+          to={href}
+        />
       );
     });
   };
@@ -419,7 +319,7 @@ export function Header(props) {
               <Box flexGrow={1}></Box>
               <Box>
                 <IconButton onClick={handleClose}>
-                  <CloseIcon />
+                  <Close />
                 </IconButton>
               </Box>
             </Box>
@@ -439,13 +339,9 @@ export function Header(props) {
                   >
                     <div className={mobileviewButton}>
                       <Button
-                        variant="contained"
-                        color="secondary"
-                        onClick={handleLogin}
-                        className={buttonmargin}
-                      >
-                        Signin with Google
-                      </Button>
+                        text="Signin with Google"
+                        handelClick={handleLogin}
+                      />
                       <Typography
                         variant="body2"
                         gutterBottom
@@ -476,9 +372,9 @@ export function Header(props) {
                           Connect with us via
                         </Typography>
                         <div justifyContent="center">
-                          <FacebookIcon fontSize="large" />
-                          <TwitterIcon fontSize="large" />
-                          <EmailIcon fontSize="large" />
+                          <Facebook fontSize="large" />
+                          <Twitter fontSize="large" />
+                          <Email fontSize="large" />
                         </div>
                       </div>
                     </div>
@@ -552,13 +448,9 @@ export function Header(props) {
                   >
                     <div className={button}>
                       <Button
-                        variant="contained"
-                        color="secondary"
-                        onClick={handleLogin}
-                        className={buttonmargin}
-                      >
-                        Signin with Google
-                      </Button>
+                        text="Signin with Google"
+                        handelClick={handleLogin}
+                      />
                       <Typography
                         variant="body2"
                         gutterBottom
@@ -589,9 +481,9 @@ export function Header(props) {
                           Connect with us via
                         </Typography>
                         <div justifyContent="center">
-                          <FacebookIcon fontSize="large" />
-                          <TwitterIcon fontSize="large" />
-                          <EmailIcon fontSize="large" />
+                          <Facebook fontSize="large" />
+                          <Twitter fontSize="large" />
+                          <Email fontSize="large" />
                         </div>
                       </div>
                     </div>
@@ -600,7 +492,7 @@ export function Header(props) {
                     <Box flexGrow={1}></Box>
                     <Box>
                       <IconButton onClick={handleClose}>
-                        <CloseIcon />
+                        <Close />
                       </IconButton>
                     </Box>
                   </Box>
