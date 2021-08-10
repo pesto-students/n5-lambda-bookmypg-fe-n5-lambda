@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(8, 0, 6),
     paddingTop: "100px",
   },
-  contentButtons: {
+  buttonStyle: {
     marginTop: theme.spacing(4),
     "&:hover": {
       color: "#40a9ff",

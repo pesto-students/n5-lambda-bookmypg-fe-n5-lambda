@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(8, 0, 6),
     paddingTop: "100px",
   },
-  contentButtons: {
+  buttonStyle: {
     marginTop: theme.spacing(4),
   },
   cardGrid: {
@@ -124,7 +124,7 @@ export default function Content() {
         <Typography component="h1" variant="h6" color="secondary" gutterBottom>
           Who are we?
         </Typography>
-        contentButtons
+        buttonStyle
         <Grid container spacing={4}>
           <Grid item xs={12} sm={6}>
             <Typography
@@ -156,7 +156,7 @@ export default function Content() {
         maxWidth="md"
         style={{ borderTop: `1px solid rgba(0, 0, 0, 0.12)` }}
       >
-        contentButtons
+        buttonStyle
         <Grid container spacing={4}>
           <Grid item xs={12} sm={6}>
             <ImageList cols={1}>
@@ -206,7 +206,7 @@ export default function Content() {
         >
           Popular properties
         </Typography>
-        contentButtons
+        buttonStyle
         <Grid container spacing={5}>
           {cards.map((card) => (
             <Grid item key={card} xs={12} sm={6} md={3}>
