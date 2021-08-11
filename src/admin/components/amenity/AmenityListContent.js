@@ -13,13 +13,19 @@ import UserSelector from "../../../user/helpers/UserSelector";
 export function AmenityListContent(props) {
   const classes = useStyles();
 
+  const [pagenumber, setPagenumber] = React.useState(1);
+  const [countperpage, setCountperpage] = React.useState(10);
+  const [search, setSearch] = React.useState("");
+
   useEffect(() => {
     props.resetAmenities();
   }, []);
 
   useEffect(() => {
-    props.getAmenities(props.user);
-  }, []);
+    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}`;
+    const user = props.user;
+    props.getAmenities({ extraParams, user });
+  }, [pagenumber, countperpage, search]);
 
   return (
     <div className="Table">
@@ -35,13 +41,21 @@ export function AmenityListContent(props) {
                   id="standard-basic"
                   label="Search by amenity name"
                   className={classes.textfieldStyle}
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                 />
               </Grid>
               <Addamenity />
             </Grid>
             <Tablecomponent amenities={props.amenities} />
           </Grid>
-          <Pagination />
+          <Pagination
+            pagenumber={pagenumber}
+            setPagenumber={setPagenumber}
+            countperpage={countperpage}
+            setCountperpage={setCountperpage}
+            count={props.amenities.length}
+          />
         </Grid>
       </ResponsiveDrawer>
     </div>

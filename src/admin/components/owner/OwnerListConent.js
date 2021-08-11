@@ -20,6 +20,10 @@ export function OwnerlistContent(props) {
   const [selectedDate, setSelectedDate] = React.useState(new Date());
   const [enabled, setEnabled] = React.useState(false);
 
+  const [pagenumber, setPagenumber] = React.useState(1);
+  const [countperpage, setCountperpage] = React.useState(10);
+  const [search, setSearch] = React.useState("");
+
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
@@ -29,8 +33,9 @@ export function OwnerlistContent(props) {
   }, []);
 
   useEffect(() => {
-    props.getTenants();
-  }, [enabled, setEnabled]);
+    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}`;
+    props.getTenants({ extraParams });
+  }, [pagenumber, countperpage, search, enabled, setEnabled]);
 
   let owners;
   if (
@@ -68,6 +73,8 @@ export function OwnerlistContent(props) {
                   id="standard-basic"
                   label="Search by Owner name"
                   className={classes.textfieldStyle}
+                  value={search}
+                  onChange={(e)=>setSearch(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} md={6} className={classes.datepickerStyle}>
@@ -111,9 +118,17 @@ export function OwnerlistContent(props) {
               owners={owners}
               updateOwner={props.updateTenant}
               setEnabled={setEnabled}
+              search={search}
+              setSearch={setSearch}
             />
           </Grid>
-          <Pagination />
+          <Pagination
+            pagenumber={pagenumber}
+            setPagenumber={setPagenumber}
+            countperpage={countperpage}
+            setCountperpage={setCountperpage}
+            count={props.tenants.length}
+          />
         </Grid>
       </ResponsiveDrawer>
     </div>
@@ -132,7 +147,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getTenants: () => dispatch(tenantsActions.getTenants()),
+    getTenants: (payload) => dispatch(tenantsActions.getTenants(payload)),
     updateTenant: (id) => dispatch(tenantsActions.updateTenant(id)),
     resetTenants: () => dispatch(tenantsActions.resetState()),
   };

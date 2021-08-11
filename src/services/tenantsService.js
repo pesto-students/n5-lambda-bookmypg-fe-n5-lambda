@@ -1,10 +1,10 @@
 import httpInterceptor from "../network/interceptor";
 
 const TenantsService = {
-  getTenants: async () => {
+  getTenants: async (payload) => {
     const URL = "http://localhost:4000/api/users/";
     const response = await httpInterceptor({
-      url: URL,
+      url: `${URL}${payload && payload.extraParams ? payload.extraParams : ""}`,
       method: "GET",
     });
 

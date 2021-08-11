@@ -47,7 +47,6 @@ export default function ScheduleVisit(props) {
     event.preventDefault();
     const payload = {
       email: email,
-      phone: phone,
       type: EMAIL_TYPE.VISIT,
       from: email,
       to: props.owner,
