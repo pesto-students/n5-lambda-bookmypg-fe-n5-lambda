@@ -49,10 +49,10 @@ export default function Tablecomponent(props) {
       <Table style={{ minWidth: "340px" }}>
         <TableHead>
           <TableRow>
+            <TableCell align="center">Property</TableCell>
             <TableCell align="center">Tenant Name</TableCell>
             <TableCell align="center">Email</TableCell>
             <TableCell align="center">Phone</TableCell>
-            <TableCell align="center">Property</TableCell>
             <TableCell align="center">
               Complaint Date
               <span className={classes.sorting}>
@@ -73,6 +73,7 @@ export default function Tablecomponent(props) {
             complaints.length &&
             complaints.map((complaint) => (
               <TableRow>
+                <TableCell align="center">{complaint.property.name}</TableCell>
                 <TableCell align="center">
                   {complaint.raisedby.firstName +
                     " " +
@@ -80,7 +81,6 @@ export default function Tablecomponent(props) {
                 </TableCell>
                 <TableCell align="center">{complaint.raisedby.email}</TableCell>
                 <TableCell align="center">{complaint.raisedby.phone}</TableCell>
-                <TableCell align="center">{complaint.property.name}</TableCell>
                 <TableCell align="center">{complaint.createdAt}</TableCell>
                 <TableCell align="center">
                   <div className={classes.viewlinkStyle}>
