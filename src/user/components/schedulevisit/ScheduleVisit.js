@@ -77,7 +77,7 @@ export default function ScheduleVisit(props) {
   const date = new Date();
   date.setDate(date.getDate() + 7);
   return (
-    <div>
+    <React.Fragment>
       <Button variant="contained" color="secondary" onClick={handleClickOpen}>
         Schedule Visit
       </Button>
@@ -186,6 +186,6 @@ export default function ScheduleVisit(props) {
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </React.Fragment>
   );
 }

@@ -11,6 +11,7 @@ import Rating from "../rating/rating";
 import Pagination from "../pagination/pagination";
 import { S3_BUCKET_URL } from "../../../constant";
 import useStyles from "./styles/PropertyListContent.styles";
+import ScheduleVisit from "../schedulevisit/ScheduleVisit";
 
 export default function PropertyListContent(props) {
   const classes = useStyles();
@@ -67,13 +68,10 @@ export default function PropertyListContent(props) {
                       <div className={classes.heroButtons}>
                         <Grid container spacing={2}>
                           <Box>
-                            <Button
-                              variant="contained"
-                              color="secondary"
-                              className={classes.buttonStyle}
-                            >
-                              Schedule Visit
-                            </Button>
+                            <ScheduleVisit
+                              owner={property.owner.email}
+                              property_name={property.name}
+                            />
                             <Button
                               variant="contained"
                               color="secondary"
@@ -83,8 +81,9 @@ export default function PropertyListContent(props) {
                                   `/property-details/${property._id}`
                                 )
                               }
+                              style={{ textTransform: "none" }}
                             >
-                              More Details
+                              MORE DETAILS
                             </Button>
                           </Box>
                         </Grid>
@@ -148,24 +147,22 @@ export default function PropertyListContent(props) {
                       <div className={classes.buttonsMobile}>
                         <Grid container spacing={2}>
                           <Box className={classes.buttonAlign}>
+                            <ScheduleVisit
+                              owner={property.owner.email}
+                              property_name={property.name}
+                            />
                             <Button
                               variant="contained"
                               color="secondary"
                               className={classes.buttonStyle}
-                            >
-                              Schedule Visit
-                            </Button>
-                            <Button
-                              variant="contained"
-                              color="secondary"
-                              className={classes.buttonStyle}
+                              style={{ textTransform: "none" }}
                               onClick={() =>
                                 history.push(
                                   `/property-details/${property._id}`
                                 )
                               }
                             >
-                              More Details
+                              MORE DETAILS
                             </Button>
                           </Box>
                         </Grid>
