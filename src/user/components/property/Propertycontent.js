@@ -261,7 +261,7 @@ export default function PropertyContent(props) {
                   <Bookproperty />
                 </Grid>
                 <Grid item xl={12} sm={6} md={3}>
-                  <ScheduleVisit />
+                  <ScheduleVisit owner={property.owner.email} property_name={property.name} />
                 </Grid>
               </Grid>
             </Grid>

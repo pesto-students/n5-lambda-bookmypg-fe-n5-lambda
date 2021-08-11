@@ -56,3 +56,10 @@ export const GET_SELECTED_LOCATION_REQUEST_MADE = "GET_SELECTED_LOCATION_REQUEST
 
 export const S3_BUCKET_URL =
   "https://bookmypg-photos.s3.us-east-2.amazonaws.com";
+
+export const EMAIL_TYPE = {
+  VISIT: "visit",
+  USER_RATING: "userrating",
+  PROPERTY_RATING: "propertyrating",
+  QUERY: "query"
+};
