@@ -14,7 +14,7 @@ import useStyles from "./styles/OwnerListContent.styles";
 import UserSelector from "../../../user/helpers/UserSelector";
 import TenantsSelector from "../../../owner/components/TenantsSelector";
 import tenantsActions from "../../../redux-store/actions/tenantsActions";
-import { DATE } from "../../../constant";
+import { DATE, ORDER_BY } from "../../../constant";
 
 export function OwnerlistContent(props) {
   const classes = useStyles();
@@ -25,15 +25,16 @@ export function OwnerlistContent(props) {
   const [pagenumber, setPagenumber] = React.useState(1);
   const [countperpage, setCountperpage] = React.useState(10);
   const [search, setSearch] = React.useState("");
-  
+  const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC); 
+
   useEffect(() => {
     props.resetTenants();
   }, []);
 
   useEffect(() => {
-    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&from_date=${from_date}&to_date=${to_date}`;
+    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&from_date=${from_date}&to_date=${to_date}&columnname=onboardedAt&orderby=${order_by}`;
     props.getTenants({ extraParams });
-  }, [pagenumber, countperpage, search, enabled, setEnabled, from_date, to_date]);
+  }, [pagenumber, countperpage, search, enabled, setEnabled, from_date, to_date, order_by]);
 
   let owners;
   if (
@@ -116,6 +117,8 @@ export function OwnerlistContent(props) {
               setEnabled={setEnabled}
               search={search}
               setSearch={setSearch}
+              order_by={order_by}
+              setOrderBy={setOrderBy}
             />
           </Grid>
           <Pagination

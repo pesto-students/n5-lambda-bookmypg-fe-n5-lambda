@@ -12,6 +12,7 @@ import { ReactComponent as SortingUpIcon } from "../../../assets/svg/sortingUp.s
 import { ReactComponent as SortingDownIcon } from "../../../assets/svg/sortingDown.svg";
 import Viewproperty from "./ViewProperty";
 import useStyles from "./styles/OwnerTable.styles";
+import { ORDER_BY } from "../../../constant";
 
 export default function OwnerTable(props) {
   const [state, setState] = React.useState({
@@ -30,6 +31,10 @@ export default function OwnerTable(props) {
 
   const owners = props.owners;
 
+  const handleCellClick = (e) => {
+    return props.order_by === ORDER_BY.DSC ? props.setOrderBy(ORDER_BY.ASC) : props.setOrderBy(ORDER_BY.DSC);
+  }
+
   return (
     <Paper className={classes.paperStyle}>
       <Table className={classes.tableStyle}>
@@ -42,10 +47,16 @@ export default function OwnerTable(props) {
               Registered Date
               <span className={classes.sorting}>
                 <span>
-                  <SortingUpIcon className={classes.sortUp} />
+                  <SortingUpIcon
+                    className={classes.sortUp}
+                    onClick={handleCellClick}
+                  />
                 </span>
                 <span>
-                  <SortingDownIcon className={classes.sortDown} />
+                  <SortingDownIcon
+                    className={classes.sortDown}
+                    onClick={handleCellClick}
+                  />
                 </span>
               </span>
             </TableCell>

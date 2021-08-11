@@ -10,6 +10,7 @@ import {
 import { ReactComponent as SortingUpIcon } from "../../../assets/svg/sortingUp.svg";
 import { ReactComponent as SortingDownIcon } from "../../../assets/svg/sortingDown.svg";
 import useStyles from "./styles/propertytable.styles";
+import { ORDER_BY } from "../../../constant";
 
 const Tabledata = [
   {
@@ -45,6 +46,12 @@ export default function Tablecomponent(props) {
   });
   const classes = useStyles();
 
+  const handleCellClick = (e) => {
+    return props.order_by === ORDER_BY.DSC
+      ? props.setOrderBy(ORDER_BY.ASC)
+      : props.setOrderBy(ORDER_BY.DSC);
+  };
+
   const properties = props.properties;
 
   return (
@@ -60,10 +67,16 @@ export default function Tablecomponent(props) {
               Registered Date
               <span className={classes.sorting}>
                 <span>
-                  <SortingUpIcon className={classes.sortUp} />
+                  <SortingUpIcon
+                    className={classes.sortUp}
+                    onClick={handleCellClick}
+                  />
                 </span>
                 <span>
-                  <SortingDownIcon className={classes.sortDown} />
+                  <SortingDownIcon
+                    className={classes.sortDown}
+                    onClick={handleCellClick}
+                  />
                 </span>
               </span>
             </TableCell>

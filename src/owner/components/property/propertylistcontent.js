@@ -11,6 +11,7 @@ import PropertiesSelector from "../../../user/helpers/PropertiesSelector";
 import propertiesActions from "../../../redux-store/actions/propertiesActions";
 import UserSelector from "../../../user/helpers/UserSelector";
 import useStyles from "./styles/propertylistcontent.styles";
+import { DATE, ORDER_BY } from "../../../constant";
 
 export function PropertyListContent(props) {
   const classes = useStyles();
@@ -18,15 +19,16 @@ export function PropertyListContent(props) {
   const [pagenumber, setPagenumber] = React.useState(1);
   const [countperpage, setCountperpage] = React.useState(10);
   const [search, setSearch] = React.useState("");
+  const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC); 
 
   useEffect(() => {
     props.resetProperties();
   }, []);
 
   useEffect(() => {
-    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}`;
+    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&columnname=createdAt&orderby=${order_by}`;
     props.getProperties({ extraParams });
-  }, [pagenumber, countperpage, search]);
+  }, [pagenumber, countperpage, search, order_by]);
 
   let properties;
   if(props.properties && props.properties.length){
@@ -57,7 +59,11 @@ export function PropertyListContent(props) {
                 <Addproperty />
               </Grid>
             </Grid>
-            <Tablecomponent properties={properties} />
+            <Tablecomponent
+              properties={properties}
+              order_by={order_by}
+              setOrderBy={setOrderBy}
+            />
           </Grid>
           <Pagination
             pagenumber={pagenumber}

@@ -9,6 +9,7 @@ import useStyles from "./styles/AmenityListContent.styles";
 import AmenitiesSelector from "../../helpers/AmenitiesSelector";
 import amenitiesActions from "../../../redux-store/actions/amenitiesActions";
 import UserSelector from "../../../user/helpers/UserSelector";
+import { DATE, ORDER_BY } from "../../../constant";
 
 export function AmenityListContent(props) {
   const classes = useStyles();
@@ -16,16 +17,17 @@ export function AmenityListContent(props) {
   const [pagenumber, setPagenumber] = React.useState(1);
   const [countperpage, setCountperpage] = React.useState(10);
   const [search, setSearch] = React.useState("");
+  const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC); 
 
   useEffect(() => {
     props.resetAmenities();
   }, []);
 
   useEffect(() => {
-    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}`;
+    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&columnname=createdAt&orderby=${order_by}`;
     const user = props.user;
     props.getAmenities({ extraParams, user });
-  }, [pagenumber, countperpage, search]);
+  }, [pagenumber, countperpage, search, order_by]);
 
   return (
     <div className="Table">
@@ -47,7 +49,11 @@ export function AmenityListContent(props) {
               </Grid>
               <Addamenity />
             </Grid>
-            <Tablecomponent amenities={props.amenities} />
+            <Tablecomponent
+              amenities={props.amenities}
+              order_by={order_by}
+              setOrderBy={setOrderBy}
+            />
           </Grid>
           <Pagination
             pagenumber={pagenumber}

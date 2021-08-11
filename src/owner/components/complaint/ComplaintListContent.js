@@ -14,7 +14,7 @@ import complainsActions from "../../../redux-store/actions/complaintsActions";
 import PropertiesSelector from "../../../user/helpers/PropertiesSelector";
 import UserSelector from "../../../user/helpers/UserSelector";
 import useStyles from "./styles/ComplaintListContent";
-import { DATE } from "../../../constant";
+import { DATE, ORDER_BY } from "../../../constant";
 
 export function ComplaintsContent(props) {
   const classes = useStyles();
@@ -24,16 +24,17 @@ export function ComplaintsContent(props) {
   const [pagenumber, setPagenumber] = React.useState(1);
   const [countperpage, setCountperpage] = React.useState(10);
   const [search, setSearch] = React.useState("");
+  const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC); 
 
   useEffect(() => {
     props.resetComplaints();
   }, []);
 
   useEffect(() => {
-    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&from_date=${from_date}&to_date=${to_date}`;
+    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&from_date=${from_date}&to_date=${to_date}&columnname=createdAt&orderby=${order_by}`;
     const user = props.user;
     props.getComplaints({ extraParams, user });
-  }, [pagenumber, countperpage, search, from_date, to_date]);
+  }, [pagenumber, countperpage, search, from_date, to_date, order_by]);
 
   let properties;
   let complaints;
@@ -105,7 +106,11 @@ export function ComplaintsContent(props) {
                 </MuiPickersUtilsProvider>
               </Grid>
             </Grid>
-            <Tablecomponent complaints={complaints} />
+            <Tablecomponent
+              complaints={complaints}
+              order_by={order_by}
+              setOrderBy={setOrderBy}
+            />
           </Grid>
           <Pagination
             pagenumber={pagenumber}

@@ -13,6 +13,7 @@ import { ReactComponent as SortingDownIcon } from "../../../assets/svg/sortingDo
 import Addamenity from "./AddAmenity";
 import useStyles from "./styles/AmenityTable.styles";
 import { S3_BUCKET_URL } from "../../../constant";
+import { ORDER_BY } from "../../../constant";
 
 const Tabledata = [
   {
@@ -42,6 +43,12 @@ export default function AmenityTable(props) {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
 
+  const handleCellClick = (e) => {
+    return props.order_by === ORDER_BY.DSC
+      ? props.setOrderBy(ORDER_BY.ASC)
+      : props.setOrderBy(ORDER_BY.DSC);
+  };
+    
   const amenities = props.amenities;
 
   return (
@@ -55,10 +62,16 @@ export default function AmenityTable(props) {
               Registered Date
               <span className={classes.sorting}>
                 <span>
-                  <SortingUpIcon className={classes.sortUp} />
+                  <SortingUpIcon
+                    className={classes.sortUp}
+                    onClick={handleCellClick}
+                  />
                 </span>
                 <span>
-                  <SortingDownIcon className={classes.sortDown} />
+                  <SortingDownIcon
+                    className={classes.sortDown}
+                    onClick={handleCellClick}
+                  />
                 </span>
               </span>
             </TableCell>
