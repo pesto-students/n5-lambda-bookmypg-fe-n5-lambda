@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
     height: 210,
   },
   buttonStyle: {
-    margin: "10px",
+    marginLeft: "10px",
     textTransform: "none",
   },
   controls: {

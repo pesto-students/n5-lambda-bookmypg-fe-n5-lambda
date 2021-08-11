@@ -21,6 +21,9 @@ import {
 import DateFnsUtils from "@date-io/date-fns";
 import { Phone, AccountBox } from "@material-ui/icons";
 import EmailIcon from "@material-ui/icons/Email";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import useStyles from "./ScheduleVisit.styles";
 import { EMAIL_TYPE } from "../../../constant";
 
@@ -68,6 +71,7 @@ export default function ScheduleVisit(props) {
     setName("");
     setEmail("");
     setPhone("");
+    toast("Visit has been scheduled successfully!");
   }
 
   const handleDateChange = (date) => {
@@ -185,6 +189,7 @@ export default function ScheduleVisit(props) {
           </Button>
         </DialogActions>
       </Dialog>
+      <ToastContainer />
     </React.Fragment>
   );
 }

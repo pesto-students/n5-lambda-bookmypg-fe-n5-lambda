@@ -73,6 +73,8 @@ export default function PropertyListContent(props) {
                               property_name={property.name}
                               property_id={property._id}
                             />
+                            </Box>
+                            <Box>
                             <Button
                               variant="contained"
                               color="secondary"
@@ -152,6 +154,8 @@ export default function PropertyListContent(props) {
                               owner={property.owner.email}
                               property_name={property.name}
                             />
+                          </Box>
+                          <Box>
                             <Button
                               variant="contained"
                               color="secondary"
