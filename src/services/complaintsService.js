@@ -1,13 +1,13 @@
 import httpInterceptor from "../network/interceptor";
 
 const ComplaintsService = {
-  getComplaints: async (user) => {
+  getComplaints: async (payload) => {
     const URL = "http://localhost:4000/api/complaints/";
     const response = await httpInterceptor({
-      url: URL,
+      url: `${URL}${payload && payload.extraParams ? payload.extraParams : ""}`,
       method: "GET",
       headers: {
-        "x-auth-token": user.token,
+        "x-auth-token": payload.user.token,
       },
     });
 

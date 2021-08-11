@@ -18,13 +18,20 @@ import useStyles from "./styles/ComplaintListContent";
 export function ComplaintsContent(props) {
   const [selectedDate, setSelectedDate] = React.useState(new Date());
   const classes = useStyles();
+
+  const [pagenumber, setPagenumber] = React.useState(1);
+  const [countperpage, setCountperpage] = React.useState(10);
+  const [search, setSearch] = React.useState("");
+
   useEffect(() => {
     props.resetComplaints();
   }, []);
 
   useEffect(() => {
-    props.getComplaints(props.user);
-  }, []);
+    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}`;
+    const user = props.user;
+    props.getComplaints({ extraParams, user });
+  }, [pagenumber, countperpage, search]);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -60,8 +67,10 @@ export function ComplaintsContent(props) {
               <Grid item xs={12} md={4} className={classes.searchboxStyle}>
                 <TextField
                   id="standard-basic"
-                  label="Search by tenant name"
+                  label="Search by property name"
                   className={classes.textfieldStyle}
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} md={6} className={classes.datepickerStyle}>
@@ -102,7 +111,13 @@ export function ComplaintsContent(props) {
             </Grid>
             <Tablecomponent complaints={complaints} />
           </Grid>
-          <Pagination />
+          <Pagination
+            pagenumber={pagenumber}
+            setPagenumber={setPagenumber}
+            countperpage={countperpage}
+            setCountperpage={setCountperpage}
+            count={props.complaints.length}
+          />
         </Grid>
       </ResponsiveDrawer>
     </div>

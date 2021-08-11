@@ -14,13 +14,19 @@ import useStyles from "./styles/propertylistcontent.styles";
 
 export function PropertyListContent(props) {
   const classes = useStyles();
+
+  const [pagenumber, setPagenumber] = React.useState(1);
+  const [countperpage, setCountperpage] = React.useState(10);
+  const [search, setSearch] = React.useState("");
+
   useEffect(() => {
     props.resetProperties();
   }, []);
 
   useEffect(() => {
-    props.getProperties();
-  }, []);
+    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}`;
+    props.getProperties({ extraParams });
+  }, [pagenumber, countperpage, search]);
 
   let properties;
   if(props.properties && props.properties.length){
@@ -41,8 +47,10 @@ export function PropertyListContent(props) {
               <Grid item xs={12} md={4} className={classes.searchboxStyle}>
                 <TextField
                   id="standard-basic"
-                  label="Search by property name"
+                  label="Search by property location"
                   className={classes.textfieldStyle}
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} md={6} className={classes.propertybuttonStyle}>
@@ -51,7 +59,13 @@ export function PropertyListContent(props) {
             </Grid>
             <Tablecomponent properties={properties} />
           </Grid>
-          <Pagination />
+          <Pagination
+            pagenumber={pagenumber}
+            setPagenumber={setPagenumber}
+            countperpage={countperpage}
+            setCountperpage={setCountperpage}
+            count={props.properties.length}
+          />
         </Grid>
       </ResponsiveDrawer>
     </div>
@@ -70,8 +84,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getProperties: () =>
-      dispatch(propertiesActions.getProperties()),
+    getProperties: (payload) =>
+      dispatch(propertiesActions.getProperties(payload)),
     // updateProperty: (id) => dispatch(propertiesActions.updateProperty(id)),
     resetProperties: () => dispatch(propertiesActions.resetState()),
   };

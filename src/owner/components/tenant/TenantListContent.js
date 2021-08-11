@@ -29,13 +29,18 @@ export function Tenantcontent(props) {
     setSelectedDate(date);
   };
 
+  const [pagenumber, setPagenumber] = React.useState(1);
+  const [countperpage, setCountperpage] = React.useState(10);
+  const [search, setSearch] = React.useState("");
+
   useEffect(() => {
     props.resetTenants();
   }, []);
 
   useEffect(() => {
-    props.getTenants();
-  }, [enabled, setEnabled]);
+    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}`;
+    props.getTenants({ extraParams });
+  }, [enabled, setEnabled, pagenumber, countperpage, search]);
 
   let properties;
   let tenants;
@@ -73,6 +78,8 @@ export function Tenantcontent(props) {
                   id="standard-basic"
                   label="Search by tenant name"
                   className={classes.textfieldStyle}
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} md={6} className={classes.datepickerStyle}>
@@ -117,7 +124,13 @@ export function Tenantcontent(props) {
               setEnabled={setEnabled}
             />
           </Grid>
-          <Pagination />
+          <Pagination
+            pagenumber={pagenumber}
+            setPagenumber={setPagenumber}
+            countperpage={countperpage}
+            setCountperpage={setCountperpage}
+            count={props.tenants.length}
+          />
         </Grid>
       </ResponsiveDrawer>
     </div>
@@ -138,7 +151,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getTenants: () => dispatch(tenantsActions.getTenants()),
+    getTenants: (payload) => dispatch(tenantsActions.getTenants(payload)),
     updateTenant: (id) => dispatch(tenantsActions.updateTenant(id)),
     resetTenants: () => dispatch(tenantsActions.resetState()),
   };

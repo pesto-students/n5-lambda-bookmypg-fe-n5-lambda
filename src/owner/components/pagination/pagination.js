@@ -1,15 +1,16 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import TablePagination from "@material-ui/core/TablePagination";
 
-export default function Paginationcomponent() {
+export default function Paginationcomponent(props) {
   return (
     <TablePagination
       rowsPerPageOptions={[5, 10]}
       component="div"
-      count="1"
-      rowsPerPage="10"
-      page="1"
+      count={100}
+      rowsPerPage={props.countperpage}
+      page={props.pagenumber}
+      onPageChange={(event, value) => props.setPagenumber(value)}
+      onRowsPerPageChange={(event) => props.setCountperpage(event.target.value)}
     />
   );
 }
