@@ -14,28 +14,26 @@ import useStyles from "./styles/OwnerListContent.styles";
 import UserSelector from "../../../user/helpers/UserSelector";
 import TenantsSelector from "../../../owner/components/TenantsSelector";
 import tenantsActions from "../../../redux-store/actions/tenantsActions";
+import { DATE } from "../../../constant";
 
 export function OwnerlistContent(props) {
   const classes = useStyles();
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
   const [enabled, setEnabled] = React.useState(false);
 
+  const [from_date, setFromDate] = React.useState(DATE.FROM_DATE);
+  const [to_date, setToDate] = React.useState(DATE.TO_DATE); 
   const [pagenumber, setPagenumber] = React.useState(1);
   const [countperpage, setCountperpage] = React.useState(10);
   const [search, setSearch] = React.useState("");
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
   
   useEffect(() => {
     props.resetTenants();
   }, []);
 
   useEffect(() => {
-    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}`;
+    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&from_date=${from_date}&to_date=${to_date}`;
     props.getTenants({ extraParams });
-  }, [pagenumber, countperpage, search, enabled, setEnabled]);
+  }, [pagenumber, countperpage, search, enabled, setEnabled, from_date, to_date]);
 
   let owners;
   if (
@@ -74,7 +72,7 @@ export function OwnerlistContent(props) {
                   label="Search by Owner name"
                   className={classes.textfieldStyle}
                   value={search}
-                  onChange={(e)=>setSearch(e.target.value)}
+                  onChange={(e) => setSearch(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} md={6} className={classes.datepickerStyle}>
@@ -86,12 +84,11 @@ export function OwnerlistContent(props) {
                     margin="normal"
                     id="date-picker-inline"
                     label="From Date:"
-                    value={selectedDate}
-                    onChange={handleDateChange}
+                    value={from_date}
+                    onChange={(date) => setFromDate(date.toISOString())}
                     KeyboardButtonProps={{
                       "aria-label": "change date",
                     }}
-                    disablePast={true}
                   />
                 </MuiPickersUtilsProvider>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -102,12 +99,11 @@ export function OwnerlistContent(props) {
                     margin="normal"
                     id="date-picker-inline"
                     label="To Date:"
-                    value={selectedDate}
-                    onChange={handleDateChange}
+                    value={to_date}
+                    onChange={(date) => setToDate(date.toISOString())}
                     KeyboardButtonProps={{
                       "aria-label": "change date",
                     }}
-                    disablePast={true}
                     style={{ marginLeft: "10px" }}
                   />
                 </MuiPickersUtilsProvider>

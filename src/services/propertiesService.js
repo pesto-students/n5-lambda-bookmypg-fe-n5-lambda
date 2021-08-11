@@ -17,7 +17,7 @@ const PropertiesService = {
 
   getLatestProperties: async () => {
     const response = await httpInterceptor({
-      url: "http://localhost:4000/api/properties?pagenumber=1&countperpage=10",
+      url: "http://localhost:4000/api/properties?pagenumber=1&countperpage=10&columnname=createdAt&orderby=dsc",
       method: "GET",
     });
 

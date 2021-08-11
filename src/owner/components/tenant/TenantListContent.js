@@ -14,6 +14,7 @@ import tenantsActions from "../../../redux-store/actions/tenantsActions";
 import useStyles from "./styles/TenantListContent.styles";
 import UserSelector from "../../../user/helpers/UserSelector";
 import PropertiesSelector from "../../../user/helpers/PropertiesSelector";
+import { DATE } from "../../../constant";
 
 export function Tenantcontent(props) {
   const classes = useStyles();
@@ -22,13 +23,10 @@ export function Tenantcontent(props) {
     checkedB: true,
   });
 
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
   const [enabled, setEnabled] = React.useState(false);
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
-
+  const [from_date, setFromDate] = React.useState(DATE.FROM_DATE);
+  const [to_date, setToDate] = React.useState(DATE.TO_DATE); 
   const [pagenumber, setPagenumber] = React.useState(1);
   const [countperpage, setCountperpage] = React.useState(10);
   const [search, setSearch] = React.useState("");
@@ -38,9 +36,17 @@ export function Tenantcontent(props) {
   }, []);
 
   useEffect(() => {
-    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}`;
+    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&from_date=${from_date}&to_date=${to_date}`;
     props.getTenants({ extraParams });
-  }, [enabled, setEnabled, pagenumber, countperpage, search]);
+  }, [
+    enabled,
+    setEnabled,
+    pagenumber,
+    countperpage,
+    search,
+    from_date,
+    to_date,
+  ]);
 
   let properties;
   let tenants;
@@ -91,12 +97,11 @@ export function Tenantcontent(props) {
                     margin="normal"
                     id="date-picker-inline"
                     label="From Date:"
-                    value={selectedDate}
-                    onChange={handleDateChange}
+                    value={from_date}
+                    onChange={(date) => setFromDate(date.toISOString())}
                     KeyboardButtonProps={{
                       "aria-label": "change date",
                     }}
-                    disableFuture={true}
                   />
                 </MuiPickersUtilsProvider>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -107,12 +112,11 @@ export function Tenantcontent(props) {
                     margin="normal"
                     id="date-picker-inline"
                     label="To Date:"
-                    value={selectedDate}
-                    onChange={handleDateChange}
+                    value={to_date}
+                    onChange={(date) => setToDate(date.toISOString())}
                     KeyboardButtonProps={{
                       "aria-label": "change date",
                     }}
-                    disableFuture={true}
                     style={{ marginLeft: "10px" }}
                   />
                 </MuiPickersUtilsProvider>

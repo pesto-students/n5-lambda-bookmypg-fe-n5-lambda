@@ -58,8 +58,13 @@ export const S3_BUCKET_URL =
   "https://bookmypg-photos.s3.us-east-2.amazonaws.com";
 
 export const EMAIL_TYPE = {
-  VISIT: "visit",
-  USER_RATING: "userrating",
-  PROPERTY_RATING: "propertyrating",
-  QUERY: "query"
+  VISIT: "visitTemplate",
+  USER_RATING: "userratingTemplate",
+  PROPERTY_RATING: "propertyratingTemplate",
+  QUERY: "queryTemplate",
 };
+
+export const DATE = {
+  FROM_DATE: "2021-06-25T16:00:00.000Z",
+  TO_DATE: "2099-12-31T16:00:00.000Z"
+}

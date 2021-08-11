@@ -71,6 +71,7 @@ export default function PropertyListContent(props) {
                             <ScheduleVisit
                               owner={property.owner.email}
                               property_name={property.name}
+                              property_id={property._id}
                             />
                             <Button
                               variant="contained"

@@ -46,11 +46,11 @@ export default function ScheduleVisit(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const payload = {
-      email: email,
+      user_email: email,
       type: EMAIL_TYPE.VISIT,
-      from: email,
-      to: props.owner,
-      property: props.property_name,
+      owner_email: props.owner,
+      property_name: props.property_name,
+      property_id: props.property_id,
       date: selectedDate,
       from_time: FROM_TIME,
       to_time: TO_TIME,

@@ -14,11 +14,13 @@ import complainsActions from "../../../redux-store/actions/complaintsActions";
 import PropertiesSelector from "../../../user/helpers/PropertiesSelector";
 import UserSelector from "../../../user/helpers/UserSelector";
 import useStyles from "./styles/ComplaintListContent";
+import { DATE } from "../../../constant";
 
 export function ComplaintsContent(props) {
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
   const classes = useStyles();
 
+  const [from_date, setFromDate] = React.useState(DATE.FROM_DATE);
+  const [to_date, setToDate] = React.useState(DATE.TO_DATE); 
   const [pagenumber, setPagenumber] = React.useState(1);
   const [countperpage, setCountperpage] = React.useState(10);
   const [search, setSearch] = React.useState("");
@@ -28,14 +30,10 @@ export function ComplaintsContent(props) {
   }, []);
 
   useEffect(() => {
-    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}`;
+    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&from_date=${from_date}&to_date=${to_date}`;
     const user = props.user;
     props.getComplaints({ extraParams, user });
-  }, [pagenumber, countperpage, search]);
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
+  }, [pagenumber, countperpage, search, from_date, to_date]);
 
   let properties;
   let complaints;
@@ -82,12 +80,11 @@ export function ComplaintsContent(props) {
                     margin="normal"
                     id="date-picker-inline"
                     label="From Date:"
-                    value={selectedDate}
-                    onChange={handleDateChange}
+                    value={from_date}
+                    onChange={(date) => setFromDate(date.toISOString())}
                     KeyboardButtonProps={{
                       "aria-label": "change date",
                     }}
-                    disableFuture={true}
                   />
                 </MuiPickersUtilsProvider>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -98,12 +95,11 @@ export function ComplaintsContent(props) {
                     margin="normal"
                     id="date-picker-inline"
                     label="To Date:"
-                    value={selectedDate}
-                    onChange={handleDateChange}
+                    value={to_date}
+                    onChange={(date) => setToDate(date.toISOString())}
                     KeyboardButtonProps={{
                       "aria-label": "change date",
                     }}
-                    disableFuture={true}
                     style={{ marginLeft: "10px" }}
                   />
                 </MuiPickersUtilsProvider>
