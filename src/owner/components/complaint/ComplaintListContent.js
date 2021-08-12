@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import ResponsiveDrawer from "../responsivedrawer/responsivedrawer";
 import { Grid } from "@material-ui/core";
-import Tablecomponent from "./ComplaintTable";
+import Tablecomponent from "components/table/Table";
 import Pagination from "../pagination/pagination";
 import ComplaintsSelector from "../ComplaintsSelector";
 import complainsActions from "../../../redux-store/actions/complaintsActions";
@@ -25,6 +25,7 @@ export function ComplaintsContent(props) {
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
+
   return (
     <div className="Table">
       <ResponsiveDrawer>
@@ -51,7 +52,11 @@ export function ComplaintsContent(props) {
                 />
               </Grid>
             </Grid>
-            <Tablecomponent complaints={props.complaints} />
+            <Tablecomponent
+              complaints={props.complaints}
+              switchData="name"
+              sortingColumn="complaintdate"
+            />
           </Grid>
           <Pagination />
         </Grid>

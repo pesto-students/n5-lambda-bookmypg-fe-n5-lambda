@@ -5,7 +5,7 @@ export default function Switch(props) {
   return (
     <Switch
       //checked={state.checkedA}
-      // onChange={handleChange}
+      onChange={props.handleChange}
       name="checkedA"
       inputProps={{ "aria-label": "secondary checkbox" }}
     />
