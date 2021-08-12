@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   formControl: {
-    margin: theme.spacing(2),
+    //margin: theme.spacing(2),
     minWidth: "80%",
   },
   selectEmpty: {

@@ -5,6 +5,7 @@ import Header from "user/components/header/header";
 import Content from "user/components/home/Content";
 import Footer from "../components/footer/footer";
 import Theme from "user/theme/theme";
+
 const headersData = [
   {
     label: "Home",

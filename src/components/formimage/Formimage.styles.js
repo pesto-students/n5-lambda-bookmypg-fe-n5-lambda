@@ -1,11 +1,11 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
-  dateComponentSize: {
-    width: "calc(278px + 0.5vw)",
+  imgStyle: {
+    width: "70px",
   },
-  marginStyle: {
-    marginLeft: "20px",
+  alignStyle: {
+    textAlign: "center",
   },
 }));
 

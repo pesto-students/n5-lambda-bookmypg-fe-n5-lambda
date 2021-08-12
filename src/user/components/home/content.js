@@ -6,6 +6,7 @@ import PropertiesSelector from "../../helpers/PropertiesSelector";
 import propertiesActions from "../../../redux-store/actions/propertiesActions";
 import Similarproperties from "../similarproperties/similarproperties";
 import useStyles from "./Content.styles";
+import { S3_BUCKET_IMAGES_BASEURL } from "constant";
 
 export function Content(props) {
   const classes = useStyles();
@@ -47,7 +48,10 @@ export function Content(props) {
           <Grid item xs={12} sm={6}>
             <ImageList cols={1}>
               <ImageListItem>
-                <img src="images/Hostel Images/img.jpg" alt={"Not available"} />
+                <img
+                  src={`${S3_BUCKET_IMAGES_BASEURL}/Homepage-1.jpg`}
+                  alt={"Not available"}
+                />
               </ImageListItem>
             </ImageList>
           </Grid>
@@ -58,7 +62,10 @@ export function Content(props) {
           <Grid item xs={12} sm={6}>
             <ImageList cols={1}>
               <ImageListItem>
-                <img src="images/Hostel Images/1.jpg" alt={"Not available"} />
+                <img
+                  src={`${S3_BUCKET_IMAGES_BASEURL}/Homepage-2.jpg`}
+                  alt={"Not available"}
+                />
               </ImageListItem>
             </ImageList>
           </Grid>

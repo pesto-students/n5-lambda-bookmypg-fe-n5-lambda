@@ -16,6 +16,7 @@ import Button from "../../../components/button/Button";
 import CloseButton from "../../../components/closebutton/CloseButton";
 import Typography from "../../../components/typography/Typography";
 import TextField from "../../../components/textfield/Textfield";
+import FormImage from "components/formimage/FormImage";
 
 export default function FormDialog(props) {
   const classes = useStyles();
@@ -59,11 +60,7 @@ export default function FormDialog(props) {
         <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
           <div>
             <Typography type="FormTitle" text="Add New Property" />
-            <img
-              src="addproperty.png"
-              alt="No image available"
-              className={classes.imgStyle}
-            />
+            <FormImage imageName="Addproperty.png" />
           </div>
         </DialogTitle>
 

@@ -6,7 +6,7 @@ import Tablecomponent from "./ComplaintTable";
 import Pagination from "../pagination/pagination";
 import ComplaintsSelector from "../ComplaintsSelector";
 import complainsActions from "../../../redux-store/actions/complaintsActions";
-import useStyles from "./styles/ComplaintListContent";
+import useStyles from "./styles/ComplaintListContent.styles";
 import Datepicker from "../../../components/datepicker/Datepicker";
 import Typography from "../../../components/typography/Typography";
 import TextField from "../../../components/textfield/Textfield";

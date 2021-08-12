@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(8, 0, 6),
     paddingTop: "100px",
   },
-  buttonStyle: {
+  buttonMarginStyle: {
     paddingTop: "80px",
   },
   buttonsMobile: {

@@ -29,11 +29,6 @@ const useStyles = makeStyles((theme) => ({
   dateComponentSize: {
     width: "calc(278px + 0.5vw)",
   },
-  imgStyle: {
-    width: "70px",
-    alignContent: "center",
-    paddingLeft: "35px",
-  },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,

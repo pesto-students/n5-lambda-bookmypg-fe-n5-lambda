@@ -2,6 +2,7 @@ import React from "react";
 import { Grid, Box, Typography, Avatar } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
 import useStyles from "./styles/DisplayReview.styles";
+import ReviewBar from "components/progressbar/Progressbar";
 
 export default function DisplayReviewContent(props) {
   const reviews = [
@@ -83,7 +84,7 @@ export default function DisplayReviewContent(props) {
           ))}
         </Grid>
         <Grid item xs={12} sm={1}></Grid>
-        <Grid item xs={12} sm={2}>
+        <Grid item xs={12} sm={4}>
           <Typography
             component="h1"
             variant="subtitle1"
@@ -93,59 +94,99 @@ export default function DisplayReviewContent(props) {
             Review Analysis
           </Typography>
           <div className={classes.graphboxStyle}>
-            <Box display="flex" p={1}>
-              <Rating value={5} readOnly />
+            <Box p={1} display="flex">
               <Typography
-                component="h1"
                 variant="subtitle1"
                 color="secondary"
                 align="justify"
+                style={{ paddingRight: "10px" }}
               >
-                71%
+                5 stars
+              </Typography>
+              <ReviewBar value={15} />
+              <Typography
+                variant="subtitle2"
+                color="secondary"
+                align="justify"
+                style={{ paddingLeft: "5px" }}
+              >
+                15%
               </Typography>
             </Box>
-            <Box display="flex" p={1}>
-              <Rating value={4} readOnly />
+            <Box p={1} display="flex">
               <Typography
-                component="h1"
                 variant="subtitle1"
                 color="secondary"
                 align="justify"
+                style={{ paddingRight: "10px" }}
               >
-                9%
+                4 stars
+              </Typography>
+              <ReviewBar value={40} />
+              <Typography
+                variant="subtitle2"
+                color="secondary"
+                align="justify"
+                style={{ paddingLeft: "5px" }}
+              >
+                40%
               </Typography>
             </Box>
-            <Box display="flex" p={1}>
-              <Rating value={3} readOnly />
+            <Box p={1} display="flex">
               <Typography
-                component="h1"
                 variant="subtitle1"
                 color="secondary"
                 align="justify"
+                style={{ paddingRight: "10px" }}
               >
-                10%
+                3 stars
+              </Typography>
+              <ReviewBar value={25} />
+              <Typography
+                variant="subtitle2"
+                color="secondary"
+                align="justify"
+                style={{ paddingLeft: "5px" }}
+              >
+                25%
               </Typography>
             </Box>
-            <Box display="flex" p={1}>
-              <Rating value={2} readOnly />
+            <Box p={1} display="flex">
               <Typography
-                component="h1"
                 variant="subtitle1"
                 color="secondary"
                 align="justify"
+                style={{ paddingRight: "10px" }}
               >
-                6%
+                2 stars
+              </Typography>
+              <ReviewBar value={15} />
+              <Typography
+                variant="subtitle2"
+                color="secondary"
+                align="justify"
+                style={{ paddingLeft: "5px" }}
+              >
+                15%
               </Typography>
             </Box>
-            <Box display="flex" p={1}>
-              <Rating value={1} readOnly />
+            <Box p={1} display="flex">
               <Typography
-                component="h1"
                 variant="subtitle1"
                 color="secondary"
                 align="justify"
+                style={{ paddingRight: "20px" }}
               >
-                4%
+                1 star
+              </Typography>
+              <ReviewBar value={5} />
+              <Typography
+                variant="subtitle2"
+                color="secondary"
+                align="justify"
+                style={{ paddingLeft: "5px" }}
+              >
+                5%
               </Typography>
             </Box>
           </div>

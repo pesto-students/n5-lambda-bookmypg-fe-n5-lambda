@@ -65,18 +65,28 @@ export default function PropertyListContent(props) {
                         ₹{property.rent}
                       </Typography>
 
-                      <div className={classes.buttonStyle}>
-                        <Grid container spacing={2}>
+                      <div>
+                        <Grid
+                          container
+                          //spacing={2}
+                          className={classes.buttonMarginStyle}
+                        >
                           <Box>
                             <Button text="Schedule Visit" />
                             <MoreButton
+                              variant="contained"
+                              color="secondary"
+                              style={{
+                                marginLeft: "10px",
+                                textTransform: "none",
+                              }}
                               onClick={() =>
                                 history.push(
                                   `/property-details/${property._id}`
                                 )
                               }
                             >
-                              More
+                              More Details
                             </MoreButton>
                           </Box>
                         </Grid>
