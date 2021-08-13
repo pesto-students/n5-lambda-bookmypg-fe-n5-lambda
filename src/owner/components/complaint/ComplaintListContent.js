@@ -10,6 +10,38 @@ import useStyles from "./styles/ComplaintListContent.styles";
 import Datepicker from "../../../components/datepicker/Datepicker";
 import Typography from "../../../components/typography/Typography";
 import TextField from "../../../components/textfield/Textfield";
+import Viewcomplaint from "./ViewComplaint";
+import SwitchComponent from "components/switch/Switch";
+
+const TableData = [
+  {
+    name: "def",
+    email: "abc@gmail.com",
+    phone: "123",
+    property: "abc",
+    createdAt: "12/07/2021",
+    status: "Pending",
+    test: "new",
+  },
+  {
+    name: "def",
+    email: "abc@gmail.com",
+    phone: "123",
+    property: "abc",
+    createdAt: "12/07/2021",
+    status: "Pending",
+    test: "new",
+  },
+  {
+    name: "pqr",
+    email: "abc@gmail.com",
+    phone: "123",
+    property: "abc",
+    createdAt: "12/07/2021",
+    status: "Pending",
+    test: "new",
+  },
+];
 
 export function ComplaintsContent(props) {
   const [selectedDate, setSelectedDate] = React.useState(new Date());
@@ -26,6 +58,7 @@ export function ComplaintsContent(props) {
     setSelectedDate(date);
   };
 
+  console.log(props.complaints);
   return (
     <div className="Table">
       <ResponsiveDrawer>
@@ -53,9 +86,10 @@ export function ComplaintsContent(props) {
               </Grid>
             </Grid>
             <Tablecomponent
-              complaints={props.complaints}
+              tableData={TableData}
               switchData="name"
-              sortingColumn="complaintdate"
+              sortingColumn="createdAt"
+              list_type="Complaints"
             />
           </Grid>
           <Pagination />

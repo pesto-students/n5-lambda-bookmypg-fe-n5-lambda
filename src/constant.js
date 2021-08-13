@@ -45,3 +45,50 @@ export const S3_BUCKET_URL =
 
 export const S3_BUCKET_IMAGES_BASEURL =
   "https://bookmypg-public.s3.us-east-2.amazonaws.com/images";
+
+export const COMPLAINT_LIST_HEADERS = {
+  name: "Tanant name",
+  email: "Email",
+  phone: "Contact no",
+  property: "Property Name",
+  createdAt: "Complaint Date",
+  status: "Status",
+};
+
+export const PROPERTY_LIST_HEADERS = {
+  name: "Property name",
+  location: "Location",
+  address: "Address",
+  freebeds: "Free Beds",
+  createdAt: "Registered Date",
+};
+
+export const OWNER_LIST_HEADERS = {
+  name: "Owner name",
+  email: "Email",
+  phone: "Contact no",
+  property: "Property Names",
+  createdAt: "Registered Date",
+};
+
+export const AMENITY_LIST_HEADERS = {
+  name: "Amenity name",
+  logo: "Logo",
+  createdAt: "Registered Date",
+};
+
+export const TENANT_LIST_HEADERS = {
+  name: "Tanant name",
+  email: "Email",
+  phone: "Contact no",
+  property: "Property Name",
+  createdAt: "Onboarding Date",
+};
+
+export const PAYMENT_LIST_HEADERS = {
+  property: "Property name",
+  owner: "Email",
+  amount: "Amount",
+  chargeid: "Charge ID",
+  createdAt: "Payment Date",
+};

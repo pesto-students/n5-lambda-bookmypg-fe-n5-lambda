@@ -1,12 +1,31 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
-import Tablecomponent from "./AmenityTable";
 import Pagination from "../pagination/Pagination";
 import Addamenity from "./AddAmenity";
 import ResponsiveDrawer from "../responsivedrawer/ResponsiveDrawer";
 import useStyles from "./styles/AmenityListContent.styles";
 import Typography from "../../../components/typography/Typography";
 import TextField from "../../../components/textfield/Textfield";
+//import Tablecomponent from "./AmenityTable";
+import TableComponent from "components/table/Table";
+
+const Tabledata = [
+  {
+    name: "Washing Machine",
+    logo: "images/Hostel images/washing-machine.png",
+    createdAt: "12/07/2021",
+  },
+  {
+    name: "Washing Machine",
+    logo: "images/Hostel images/washing-machine.png",
+    createdAt: "12/07/2021",
+  },
+  {
+    name: "Washing Machine",
+    logo: "images/Hostel images/washing-machine.png",
+    createdAt: "12/07/2021",
+  },
+];
 
 export function AmenityListContent(props) {
   const classes = useStyles();
@@ -22,7 +41,13 @@ export function AmenityListContent(props) {
               </Grid>
               <Addamenity />
             </Grid>
-            <Tablecomponent complaints={props.complaints} />
+            {/*<Tablecomponent complaints={props.complaints} />*/}
+            <TableComponent
+              switchData="name"
+              sortingColumn="createdAt"
+              tableData={Tabledata}
+              list_type="Amenities"
+            />
           </Grid>
           <Pagination />
         </Grid>

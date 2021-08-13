@@ -4,12 +4,40 @@ import ResponsiveDrawer from "../responsivedrawer/responsivedrawer";
 import Grid from "@material-ui/core/Grid/Grid";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
-import Tablecomponent from "./PropertyTable";
+//import Tablecomponent from "./PropertyTable";
 import Pagination from "../pagination/pagination";
 import Addproperty from "./AddProperty";
 import PropertiesSelector from "../../../user/helpers/PropertiesSelector";
 import propertiesActions from "../../../redux-store/actions/propertiesActions";
 import useStyles from "./styles/PropertyListContent.styles.js";
+import Tablecomponent from "components/table/Table";
+
+const Tabledata = [
+  {
+    name: "abc",
+    location: "Mumbai",
+    address: "Sion",
+    pincode: "12345",
+    freebeds: "10",
+    createdAt: "12/07/2021",
+  },
+  {
+    name: "def",
+    location: "Delhi",
+    address: "123",
+    pincode: "abc",
+    freebeds: "abc",
+    createdAt: "12/07/2021",
+  },
+  {
+    name: "pqr",
+    location: "Chennai",
+    address: "123",
+    pincode: "abc",
+    freebeds: "abc",
+    createdAt: "12/07/2021",
+  },
+];
 
 export function PropertyListContent(props) {
   const classes = useStyles();
@@ -41,7 +69,12 @@ export function PropertyListContent(props) {
                 <Addproperty />
               </Grid>
             </Grid>
-            <Tablecomponent properties={props.properties} />
+            <Tablecomponent
+              tableData={Tabledata}
+              switchData="name"
+              list_type="Properties"
+            />
+            {/* <Tablecomponent properties={props.properties} />*/}
           </Grid>
           <Pagination />
         </Grid>

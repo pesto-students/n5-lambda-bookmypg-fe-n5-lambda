@@ -1,11 +1,12 @@
 import React from "react";
 import { Switch } from "@material-ui/core";
 
-export default function Switch(props) {
+// action=="tenant"?do thing:do other
+export default function SwitchComponent(props) {
   return (
     <Switch
       //checked={state.checkedA}
-      onChange={props.handleChange}
+      //onChange={handleChange(action)}
       name="checkedA"
       inputProps={{ "aria-label": "secondary checkbox" }}
     />

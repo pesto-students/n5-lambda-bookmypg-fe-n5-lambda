@@ -18,6 +18,7 @@ import Button from "../../../components/button/Button";
 import Link from "../../../components/link/Link";
 import Typography from "../../../components/typography/Typography";
 import TextField from "../../../components/textfield/Textfield";
+import FormImage from "components/formimage/FormImage";
 
 export default function FormDialog(props) {
   const classes = useStyles();
@@ -40,7 +41,7 @@ export default function FormDialog(props) {
   date.setDate(date.getDate() + 7);
   return (
     <div>
-      <Link text="View" handelClick={handleClickOpen} href="#" />
+      <Link text={props.value} handelClick={handleClickOpen} href="#" />
       <Dialog
         open={open}
         onClose={handleClose}
@@ -60,66 +61,54 @@ export default function FormDialog(props) {
         <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
           <div>
             <Typography type="FormTitle" text="Complaint Details" />
-            <img
-              src="complaint.jpg"
-              alt="No image available"
-              className={classes.imgStyle}
-            />
+            <FormImage imageName="Raisecomplaint.jpg" />
           </div>
         </DialogTitle>
 
         <DialogContent className={classes.formAlign}>
           <Grid spacing={3} className={classes.containerStyle}>
-            <Grid item>
-              <TextField label="Complaint Raisedby" defaultValue="Monali" />
-            </Grid>
-            <Grid item>
-              <TextField label="Email" defaultValue="abc@gmail.com" />
-            </Grid>
-            <Grid item>
-              <TextField label="Phone" defaultValue="12345" />
-            </Grid>
-            <Grid item>
-              <TextField label="Complaint Date" defaultValue="12/07/2021" />
-            </Grid>
-            <Grid item>
-              <TextField
-                label="Description"
-                defaultValue="Air conditioner is not working."
-                maxrows={4}
-                multiline={true}
-              />
-            </Grid>
-            <Grid item>
-              <FormControl className={classes.formControl}>
-                <InputLabel
-                  shrink
-                  id="demo-simple-select-placeholder-label-label"
-                >
-                  Status
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-placeholder-label-label"
-                  id="demo-simple-select-placeholder-label"
-                  value={status}
-                  onChange={handleChange}
-                  displayEmpty
-                  className={classes.selectEmpty}
-                >
-                  <MenuItem value="Pending">Pending</MenuItem>
-                  <MenuItem value="Resolved">Resolved</MenuItem>
-                </Select>
-                <FormHelperText>Complaint Status</FormHelperText>
-              </FormControl>
-            </Grid>
-            <Grid item>
-              <TextField
-                label="Remarks"
-                defaultValue="-"
-                maxrows={4}
-                multiline={true}
-              />
-            </Grid>
+            <TextField label="Complaint Raisedby" defaultValue="Monali" />
+
+            <TextField label="Email" defaultValue="abc@gmail.com" />
+
+            <TextField label="Phone" defaultValue="12345" />
+
+            <TextField label="Complaint Date" defaultValue="12/07/2021" />
+
+            <TextField
+              label="Description"
+              defaultValue="Air conditioner is not working."
+              maxrows={4}
+              multiline={true}
+            />
+
+            <FormControl className={classes.formControl}>
+              <InputLabel
+                shrink
+                id="demo-simple-select-placeholder-label-label"
+              >
+                Status
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-placeholder-label-label"
+                id="demo-simple-select-placeholder-label"
+                value={status}
+                onChange={handleChange}
+                displayEmpty
+                className={classes.selectEmpty}
+              >
+                <MenuItem value="Pending">Pending</MenuItem>
+                <MenuItem value="Resolved">Resolved</MenuItem>
+              </Select>
+              <FormHelperText>Complaint Status</FormHelperText>
+            </FormControl>
+
+            <TextField
+              label="Remarks"
+              defaultValue="-"
+              maxrows={4}
+              multiline={true}
+            />
           </Grid>
         </DialogContent>
         <DialogActions className={classes.button}>

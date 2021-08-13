@@ -44,7 +44,7 @@ export default function Tablecomponent(props) {
     checkedB: true,
   });
   const classes = useStyles();
-
+  console.log(props.properties);
   const properties = props.properties;
 
   return (

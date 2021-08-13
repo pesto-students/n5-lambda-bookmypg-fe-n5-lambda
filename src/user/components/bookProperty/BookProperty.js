@@ -22,6 +22,7 @@ import DateFnsUtils from "@date-io/date-fns";
 import Button from "../../../components/button/Button";
 import useStyles from "./BookProperty.styles";
 import CloseButton from "../../../components/closebutton/CloseButton";
+import FormImage from "components/formimage/FormImage";
 
 export default function FormDialog() {
   const classes = useStyles();
@@ -79,11 +80,7 @@ export default function FormDialog() {
               Book Property
             </Typography>
           </div>
-          <img
-            src="Bookproperty.jpg"
-            alt="No image available"
-            className={classes.imgStyle}
-          />
+          <FormImage imageName="Bookproperty.jpg" />
         </DialogTitle>
         <DialogContent className={classes.formAlign}>
           <FormControl component="fieldset">

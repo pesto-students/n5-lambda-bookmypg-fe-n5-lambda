@@ -7,6 +7,9 @@ const useStyles = makeStyles(() => ({
   alignStyle: {
     textAlign: "center",
   },
+  logoimgStyle: {
+    width: "30px",
+  },
 }));
 
 export default useStyles;

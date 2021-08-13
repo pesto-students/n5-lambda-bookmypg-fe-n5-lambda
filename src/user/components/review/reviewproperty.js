@@ -14,6 +14,7 @@ import Rating from "@material-ui/lab/Rating";
 import useStyles from "./styles/ReviewProperty.styles";
 import Button from "../../../components/button/Button";
 import CloseButton from "../../../components/closebutton/CloseButton";
+import FormImage from "components/formimage/FormImage";
 
 export default function ReviewProperty(props) {
   const classes = useStyles();
@@ -56,11 +57,7 @@ export default function ReviewProperty(props) {
               Review {props.value}
             </Typography>
 
-            <img
-              src="ratetenant.png"
-              alt="Not available"
-              className={classes.imgStyle}
-            />
+            <FormImage imageName="Ratetenant.png" />
           </div>
         </DialogTitle>
 

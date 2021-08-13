@@ -11,7 +11,8 @@ import useStyles from "./styles/AddOwner.styles";
 import Button from "../../../components/button/Button";
 import CloseButton from "../../../components/closebutton/CloseButton";
 import Typography from "../../../components/typography/Typography";
-import TextField from "../../../components/textfield/Textfield";
+import TextField from "components/textfield/Textfield";
+import FormImage from "components/formimage/FormImage";
 
 export default function AddOwner(props) {
   const classes = useStyles();
@@ -30,6 +31,7 @@ export default function AddOwner(props) {
   return (
     <div className={classes.buttonStyle}>
       <Button text="Add Owner" handleClick={handleClickOpen} />
+
       <Dialog
         open={open}
         onClose={handleClose}
@@ -40,7 +42,7 @@ export default function AddOwner(props) {
           },
         }}
       >
-        <Box className={classes.boxStyle}>
+        <Box display="flex" alignItems="flex-start">
           <Box flexGrow={1}></Box>
           <Box>
             <CloseButton handleClick={handleClose} />
@@ -49,24 +51,12 @@ export default function AddOwner(props) {
         <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
           <div>
             <Typography type="FormTitle" text="Add New Owner" />
-            <img
-              src="addowner.jpg"
-              alt="No image available"
-              className={classes.imgStyle}
-            />
+            <FormImage imageName="Addowner.jpg" />
           </div>
         </DialogTitle>
 
         <DialogContent className={classes.formAlign}>
-          <Grid
-            container
-            spacing={3}
-            style={{
-              textAlign: "center",
-              borderRadius: "10px",
-              padding: "10px",
-            }}
-          >
+          <Grid container spacing={3} className={classes.containerStyle}>
             <Grid item>
               <TextField type="standardForm" label="Name" />
               <TextField type="standardForm" label="Email" />

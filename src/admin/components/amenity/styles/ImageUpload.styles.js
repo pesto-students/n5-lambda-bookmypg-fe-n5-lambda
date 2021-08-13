@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   imgStyle: {
-    width: "30px",
+    //width: "30px",
   },
   labelStyle: {
     paddingTop: "14px",

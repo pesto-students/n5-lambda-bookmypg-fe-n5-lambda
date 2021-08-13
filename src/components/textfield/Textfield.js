@@ -6,7 +6,6 @@ export default function TextFieldComponent(props) {
   const classes = useStyles();
   switch (props.type) {
     case "standardForm":
-      console.log("here");
       return (
         <TextField
           id="standard-basic"
@@ -17,6 +16,7 @@ export default function TextFieldComponent(props) {
           multiline={props.multiline}
           maxRows={props.maxrows}
           value={props.value}
+          disabled={props.disabled}
         />
       );
 

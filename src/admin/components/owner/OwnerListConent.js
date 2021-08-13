@@ -1,13 +1,38 @@
 import React from "react";
 import ResponsiveDrawer from "../responsivedrawer/ResponsiveDrawer";
 import { Grid } from "@material-ui/core";
-import Tablecomponent from "./OwnerTable";
 import Pagination from "../pagination/Pagination";
 import Addowner from "./AddOwner";
 import useStyles from "./styles/OwnerListContent.styles";
 import Datepicker from "../../../components/datepicker/Datepicker";
 import Typography from "../../../components/typography/Typography";
 import TextField from "../../../components/textfield/Textfield";
+//import Tablecomponent from "./OwnerTable";
+import TableComponent from "components/table/Table";
+
+const Tabledata = [
+  {
+    name: "abc",
+    email: "Mumbai",
+    phone: 1234,
+    property: "Sion",
+    createdAt: "12/07/2021",
+  },
+  {
+    name: "abc",
+    email: "Mumbai",
+    phone: 1234,
+    property: "Sion",
+    createdAt: "12/07/2021",
+  },
+  {
+    name: "abc",
+    email: "Mumbai",
+    phone: 1234,
+    property: "Sion",
+    createdAt: "12/07/2021",
+  },
+];
 
 export function OwnerlistContent(props) {
   const classes = useStyles();
@@ -52,7 +77,13 @@ export function OwnerlistContent(props) {
               </Grid>
               <Addowner />
             </Grid>
-            <Tablecomponent complaints={props.complaints} />
+            {/* <Tablecomponent complaints={props.complaints} />*/}
+            <TableComponent
+              switchData="name"
+              sortingColumn="createdAt"
+              tableData={Tabledata}
+              list_type="Owners"
+            />
           </Grid>
           <Pagination />
         </Grid>

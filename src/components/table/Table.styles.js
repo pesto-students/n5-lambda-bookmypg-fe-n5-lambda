@@ -34,6 +34,11 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "5px",
     alignItems: "center",
   },
+  switchCellStyle: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 }));
 
 export default useStyles;

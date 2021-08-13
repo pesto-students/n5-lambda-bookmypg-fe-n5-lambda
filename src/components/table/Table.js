@@ -9,21 +9,24 @@ import {
   TableCell,
   TableBody,
   Paper,
-  Switch,
 } from "@material-ui/core";
+import { getHeadersData, getComponent } from "./utility";
 
 export default function TableComponent(props) {
   const classes = useStyles();
-  const headers = Object.keys(props.tableData[0]);
+  const headersData = getHeadersData(props.list_type);
+  const headers = Object.keys(headersData);
+  console.log(headers);
+  console.log(props.tableData);
   return (
     <Paper style={{ overflowX: "auto" }}>
       <Table style={{ minWidth: "340px" }}>
         <TableHead>
           <TableRow>
-            {headers.map((header) =>
+            {Object.keys(headersData).map((header) =>
               header === props.sortingColumn ? (
                 <TableCell align="center">
-                  {header.charAt(0).toUpperCase() + header.slice(1)}
+                  {headersData[header]}
                   <span className={classes.sorting}>
                     <span>
                       <SortingUpIcon className={classes.sortUp} />
@@ -34,9 +37,7 @@ export default function TableComponent(props) {
                   </span>
                 </TableCell>
               ) : (
-                <TableCell align="center">
-                  {header.charAt(0).toUpperCase() + header.slice(1)}
-                </TableCell>
+                <TableCell align="center">{headersData[header]}</TableCell>
               )
             )}
           </TableRow>
@@ -45,19 +46,8 @@ export default function TableComponent(props) {
           {props.tableData.map((emp, index) => (
             <TableRow key={index}>
               {headers.map((header) =>
-                header === props.switchData ? (
-                  <TableCell align="center">
-                    {emp[header]}
-                    <Switch
-                      //checked={state.checkedA}
-                      // onChange={handleChange}
-                      name="checkedA"
-                      inputProps={{ "aria-label": "secondary checkbox" }}
-                    />
-                  </TableCell>
-                ) : (
-                  <TableCell align="center">{emp[header]}</TableCell>
-                )
+                //call a func expect component in return --> function takes case as param --> return equivalent component in table cell
+                getComponent(emp, header, props.list_type)
               )}
             </TableRow>
           ))}

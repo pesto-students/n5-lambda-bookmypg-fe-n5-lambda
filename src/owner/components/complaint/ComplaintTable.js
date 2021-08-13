@@ -11,7 +11,7 @@ import Viewcomplaint from "./ViewComplaint";
 import { ReactComponent as SortingUpIcon } from "../../../assets/svg/sortingUp.svg";
 import { ReactComponent as SortingDownIcon } from "../../../assets/svg/sortingDown.svg";
 import useStyles from "./styles/ComplaintTable.styles";
-import TableNew from "components/table/Table";
+import Tablecomponent from "components/table/Table";
 
 const TableData = [
   {
@@ -47,7 +47,7 @@ export default function Tablecomponent(props) {
   const complaints = props.complaints;
 
   return (
-    <TableNew
+    <Tablecomponent
       switchData="name"
       sortingColumn="complaintdate"
       tableData={TableData}

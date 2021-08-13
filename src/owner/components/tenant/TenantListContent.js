@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import ResponsiveDrawer from "../responsivedrawer/responsivedrawer";
 import { Grid } from "@material-ui/core";
-import Tablecomponent from "./TenantTable";
+//import Tablecomponent from "./TenantTable";
+import Tablecomponent from "components/table/Table";
 import Pagination from "../pagination/pagination";
 import TenantsSelector from "../TenantsSelector";
 import tenantsActions from "../../../redux-store/actions/tenantsActions";
@@ -63,10 +64,16 @@ export function Tenantcontent(props) {
                 />
               </Grid>
             </Grid>
-            <Tablecomponent
+            {/* <Tablecomponent
               tenants={tenants}
               updateTenant={props.updateTenant}
               setEnabled={setEnabled}
+           />*/}
+            <Tablecomponent
+              switchData="name"
+              sortingColumn="onboardingDate"
+              tableData={tenants}
+              list_type="Tenants"
             />
           </Grid>
           <Pagination />

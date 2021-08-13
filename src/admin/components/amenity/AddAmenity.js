@@ -14,6 +14,7 @@ import CloseButton from "../../../components/closebutton/CloseButton";
 import Link from "../../../components/link/Link";
 import Typography from "../../../components/typography/Typography";
 import TextField from "../../../components/textfield/Textfield";
+import FormImage from "components/formimage/FormImage";
 
 export default function AddAmenity(props) {
   const classes = useStyles();
@@ -33,7 +34,7 @@ export default function AddAmenity(props) {
   return (
     <div className={classes.buttonStyle}>
       {props.mode === "Edit" ? (
-        <Link text={props.value} handelClick={handleClickOpen} href="#" />
+        <Link text={props.name} handelClick={handleClickOpen} href="#" />
       ) : (
         <Button text="Add Amenity" handleClick={handleClickOpen} />
       )}
@@ -59,11 +60,7 @@ export default function AddAmenity(props) {
               type="FormTitle"
               text={props.mode === "Edit" ? "Edit Amenity" : "Add New Amenity"}
             />
-            <img
-              src="addamenity.png"
-              alt="No image available"
-              className={classes.imgStyle}
-            />
+            <FormImage imageName="Addamenity.png" />
           </div>
         </DialogTitle>
 
