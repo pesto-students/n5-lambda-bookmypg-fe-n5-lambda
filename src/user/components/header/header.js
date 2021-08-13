@@ -270,6 +270,11 @@ export function Header(props) {
             label="Location"
             style={{ color: "inherit" }}
             variant="outlined"
+            InputProps={{
+              classes: {
+                notchedOutline: classes.notchedOutline,
+              },
+            }}
           >
             <MenuItem value="All">
               <em>All</em>

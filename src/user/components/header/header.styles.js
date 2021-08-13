@@ -71,6 +71,19 @@ const useStyles = makeStyles((theme) => ({
   contentStyle: {
     width: "250px",
   },
+  select: {
+    "&:before": {
+      borderColor: "white",
+      color: "white",
+    },
+    "&:hover:not(.Mui-disabled):before": {
+      borderColor: "var(--galaxy-blue)",
+    },
+  },
+  notchedOutline: {
+    borderWidth: "1px",
+    borderColor: "green",
+  },
 }));
 
 export default useStyles;
