@@ -30,14 +30,65 @@ export const GET_COMPLAINTS_REQUEST_FAILED = "GET_COMPLAINTS_REQUEST_FAILED";
 export const RESET_COMPLAINTS_STATE = "RESET_COMPLAINTS_STATE";
 
 export const GET_LOCATIONS_REQUEST_MADE = "GET_LOCATIONS_REQUEST_MADE";
-export const GET_LOCATIONS_REQUEST_RESOLVED =
-  "GET_LOCATIONS_REQUEST_RESOLVED";
+export const GET_LOCATIONS_REQUEST_RESOLVED = "GET_LOCATIONS_REQUEST_RESOLVED";
 export const GET_LOCATIONS_REQUEST_FAILED = "GET_LOCATIONS_REQUEST_FAILED";
 export const RESET_LOCATIONS_STATE = "RESET_LOCATIONS_STATE";
 
-export const SET_SELECTED_LOCATION_REQUEST_MADE = "SET_SELECTED_LOCATION_REQUEST_MADE";
+export const SET_SELECTED_LOCATION_REQUEST_MADE =
+  "SET_SELECTED_LOCATION_REQUEST_MADE";
 
-export const GET_SELECTED_LOCATION_REQUEST_MADE = "GET_SELECTED_LOCATION_REQUEST_MADE";
+export const GET_SELECTED_LOCATION_REQUEST_MADE =
+  "GET_SELECTED_LOCATION_REQUEST_MADE";
 
 export const S3_BUCKET_URL =
   "https://bookmypg-photos.s3.us-east-2.amazonaws.com";
+
+export const S3_BUCKET_IMAGES_BASEURL =
+  "https://bookmypg-public.s3.us-east-2.amazonaws.com/images";
+
+export const COMPLAINT_LIST_HEADERS = {
+  name: "Tanant name",
+  email: "Email",
+  phone: "Contact no",
+  property: "Property Name",
+  createdAt: "Complaint Date",
+  status: "Status",
+};
+
+export const PROPERTY_LIST_HEADERS = {
+  name: "Property name",
+  location: "Location",
+  address: "Address",
+  freebeds: "Free Beds",
+  createdAt: "Registered Date",
+};
+
+export const OWNER_LIST_HEADERS = {
+  name: "Owner name",
+  email: "Email",
+  phone: "Contact no",
+  property: "Property Names",
+  createdAt: "Registered Date",
+};
+
+export const AMENITY_LIST_HEADERS = {
+  name: "Amenity name",
+  logo: "Logo",
+  createdAt: "Registered Date",
+};
+
+export const TENANT_LIST_HEADERS = {
+  name: "Tanant name",
+  email: "Email",
+  phone: "Contact no",
+  property: "Property Name",
+  createdAt: "Onboarding Date",
+};
+
+export const PAYMENT_LIST_HEADERS = {
+  property: "Property name",
+  owner: "Email",
+  amount: "Amount",
+  chargeid: "Charge ID",
+  createdAt: "Payment Date",
+};

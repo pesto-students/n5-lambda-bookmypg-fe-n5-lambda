@@ -44,7 +44,7 @@ export default function DatepickerComponent(props) {
               "aria-label": "change date",
             }}
             disableFuture={true}
-            className={classes.paddingStyle}
+            className={classes.marginStyle}
           />
         </MuiPickersUtilsProvider>
       );

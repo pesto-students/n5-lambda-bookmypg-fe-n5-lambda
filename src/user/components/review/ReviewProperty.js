@@ -1,20 +1,22 @@
 import React from "react";
 import {
-  Grid,
-  Box,
+  Link,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
+  Box,
+  Grid,
+  Typography,
+  TextField,
 } from "@material-ui/core";
-import useStyles from "./styles/AddOwner.styles";
+import Rating from "@material-ui/lab/Rating";
+import useStyles from "./styles/ReviewProperty.styles";
 import Button from "../../../components/button/Button";
 import CloseButton from "../../../components/closebutton/CloseButton";
-import Typography from "../../../components/typography/Typography";
-import TextField from "components/textfield/Textfield";
 import FormImage from "components/formimage/FormImage";
 
-export default function AddOwner(props) {
+export default function ReviewProperty(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -25,13 +27,14 @@ export default function AddOwner(props) {
   const handleClose = () => {
     setOpen(false);
   };
+
   const date = new Date();
   date.setDate(date.getDate() + 7);
-
   return (
-    <div className={classes.buttonStyle}>
-      <Button text="Add Owner" handleClick={handleClickOpen} />
-
+    <div>
+      <Link href="#" onClick={handleClickOpen}>
+        Click here
+      </Link>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -50,18 +53,33 @@ export default function AddOwner(props) {
         </Box>
         <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
           <div>
-            <Typography type="FormTitle" text="Add New Owner" />
-            <FormImage imageName="Addowner.jpg" />
+            <Typography component="h1" variant="h6" color="primary">
+              Review {props.value}
+            </Typography>
+
+            <FormImage imageName="Ratetenant.png" />
           </div>
         </DialogTitle>
 
         <DialogContent className={classes.formAlign}>
-          <Grid container spacing={3} className={classes.containerStyle}>
+          <Grid spacing={3} className={classes.mainboxStyle}>
             <Grid item>
-              <TextField type="standardForm" label="Name" />
-              <TextField type="standardForm" label="Email" />
-              <TextField type="standardForm" label="Contact no" />
+              <Typography component="h1" variant="subtitle1" color="primary">
+                Please share your experience with the property!
+              </Typography>
             </Grid>
+            <Grid item>
+              <Rating size="large" />
+            </Grid>
+            <TextField
+              id="outlined-basic"
+              label="Write your review here"
+              variant="outlined"
+              multiline
+              rows={2}
+              maxRows={4}
+              fullWidth
+            />
           </Grid>
         </DialogContent>
         <DialogActions className={classes.button}>

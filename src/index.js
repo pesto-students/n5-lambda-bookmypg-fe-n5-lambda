@@ -3,7 +3,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Userpaymenthistory from "./views/Userprofile/Userpaymenthistory";
 import { Provider } from "react-redux";
 import { store } from "./redux-store/Store";
 import Ownertenantlist from "./owner/pages/Tenantlist";
@@ -13,12 +12,12 @@ import OwnerHomepage from "./owner/pages/Homepage";
 import AdminHomepage from "./admin/pages/Homepage";
 import Ownerlist from "./admin/pages/Ownerlist";
 import Amenitylist from "./admin/pages/Amenitylist";
-import PaymentList from "./user/pages/myprofile/PaymentList";
-import MyPropertyDetails from "./user/pages/myprofile/MyPropertyDetails";
-import MyProfile from "./user/pages/myprofile/MyProfile";
-import PropertyDetails from "./user/pages/PropertyDetails";
-import PropertyList from "./user/pages/PropertyList";
-import HomePage from "./user/pages/HomePage";
+import PaymentList from "./user/pages/myprofile/Paymentlist";
+import MyPropertyDetails from "./user/pages/myprofile/Mypropertydetails";
+import MyProfile from "./user/pages/myprofile/Myprofile";
+import PropertyDetails from "./user/pages/Propertydetails";
+import PropertyList from "./user/pages/Propertylist";
+import HomePage from "./user/pages/Homepage";
 
 const hist = createBrowserHistory();
 
@@ -46,7 +45,6 @@ ReactDOM.render(
         <Route exact path="/owner-list" component={Ownerlist} />
         <Route exact path="/amenity-list" component={Amenitylist} />
         <Route exact path="/myprofile" component={MyProfile} />
-        <Route exact path="/paymenthistory" component={Userpaymenthistory} />
         <Route exact path="/" component={HomePage} />
       </Switch>
     </BrowserRouter>

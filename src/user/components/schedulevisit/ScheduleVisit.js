@@ -16,6 +16,7 @@ import useStyles from "./ScheduleVisit.styles";
 import Button from "../../../components/button/Button";
 import Datepicker from "../../../components/datepicker/Datepicker";
 import CloseButton from "../../../components/closebutton/CloseButton";
+import FormImage from "components/formimage/FormImage";
 
 export default function ScheduleVisit() {
   const classes = useStyles();
@@ -60,11 +61,7 @@ export default function ScheduleVisit() {
               Schedule Visit
             </Typography>
 
-            <img
-              src="schedulevisit.png"
-              alt="Not available"
-              className={classes.imgStyle}
-            />
+            <FormImage imageName="Schedulevisit.png" />
           </div>
         </DialogTitle>
 

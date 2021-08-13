@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   formControl: {
-    margin: theme.spacing(2),
+    //margin: theme.spacing(2),
     minWidth: "80%",
   },
   selectEmpty: {
@@ -70,6 +70,19 @@ const useStyles = makeStyles((theme) => ({
   },
   contentStyle: {
     width: "250px",
+  },
+  select: {
+    "&:before": {
+      borderColor: "white",
+      color: "white",
+    },
+    "&:hover:not(.Mui-disabled):before": {
+      borderColor: "var(--galaxy-blue)",
+    },
+  },
+  notchedOutline: {
+    borderWidth: "1px",
+    borderColor: "green",
   },
 }));
 
