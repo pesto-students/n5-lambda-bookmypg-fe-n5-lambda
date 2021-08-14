@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import useStyles from "./styles/MyProfileContent.styles";
 import Button from "../../../components/button/Button";
+import ProfilePhoto from "../profilephoto/ProfilePhoto";
 
 const data = {
   propertyname: "Zolo House 1",
@@ -28,11 +29,11 @@ export default function MyProfileContent() {
   return (
     <div className="Table">
       <ResponsiveDrawer>
-        <Grid container>
-          <Grid item xs={12} sm={3}>
-            <p>Profile photo</p>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={3} sm={12}>
+            <ProfilePhoto imageName="DefaultPic.png" />
           </Grid>
-          <Grid item xs={12} sm={5}>
+          <Grid item xs={10} md={4} sm={10}>
             <Grid item>
               <TextField
                 id="standard-basic"

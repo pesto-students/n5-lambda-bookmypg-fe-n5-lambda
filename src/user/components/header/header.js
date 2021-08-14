@@ -26,12 +26,14 @@ import LocationsSelector from "../../helpers/LocationsSelector";
 import locationsActions from "../../../redux-store/actions/locationsActions";
 import UserSelector from "../../helpers/UserSelector";
 import userActions from "../../../redux-store/actions/userActions";
-import Button from "../../../components/button/Button";
+import Button from "components/button/Button";
 import useStyles from "./header.styles";
 import TenantsSelector from "../../../owner/components/TenantsSelector";
 import tenantsActions from "../../../redux-store/actions/tenantsActions";
 import { useAuth } from "../../../contexts/AuthContext";
 
+import PopupMenu from "components/popupmenu/PopupMenu";
+import SigninButton from "@material-ui/core/Button";
 const headersData = [
   {
     label: "Home",
@@ -63,6 +65,17 @@ const locationItems = [
   {
     id: "3",
     name: "Chennai",
+  },
+];
+
+const listitems = [
+  {
+    label: "My Profile",
+    href: "/MyProfile",
+  },
+  {
+    label: "Logout",
+    href: "/",
   },
 ];
 
@@ -135,7 +148,9 @@ export function Header(props) {
     const provider = new firebase.auth.GoogleAuthProvider();
     const response = await firebase.auth().signInWithPopup(provider);
     props.getUser(response.user.email);
-    const existingUser = props.tenants.filter((tenant) => tenant.email === response.user.email)[0];
+    const existingUser = props.tenants.filter(
+      (tenant) => tenant.email === response.user.email
+    )[0];
     setOpen(false);
     if (existingUser) {
       existingUser.role == "owner"
@@ -160,11 +175,14 @@ export function Header(props) {
           {!props.user || Object.keys(props.user).length === 0 ? (
             <Button text="Login" type="Menubutton" handleClick={LoginPopup} />
           ) : (
-            <Button
-              text={props.user.firstName + " " + props.user.lastName}
-              type="Menubutton"
-              handleClick={handleLogout}
-            />
+            <>
+              <Button
+                text={props.user.firstName + " " + props.user.lastName}
+                type="Menubutton"
+                handleClick={handleLogout}
+              />
+              <PopupMenu listitems={listitems} />
+            </>
           )}
         </div>
       </Toolbar>
@@ -212,16 +230,30 @@ export function Header(props) {
                 <MenuItem>{"Login"}</MenuItem>
               </Link>
             ) : (
-              <Link
-                key={"Logout"}
-                {...{
-                  color: "inherit",
-                  style: { textDecoration: "none" },
-                }}
-                onClick={handleLogout}
-              >
-                <MenuItem>{"Logout"}</MenuItem>
-              </Link>
+              <div>
+                <Link
+                  key={"MyProfile"}
+                  {...{
+                    color: "inherit",
+                    style: { textDecoration: "none" },
+                    component: RouterLink,
+                    to: "/myprofile",
+                  }}
+                  onClick={handleLogout}
+                >
+                  <MenuItem>{"My Profile"}</MenuItem>
+                </Link>
+                <Link
+                  key={"Logout"}
+                  {...{
+                    color: "inherit",
+                    style: { textDecoration: "none" },
+                  }}
+                  onClick={handleLogout}
+                >
+                  <MenuItem>{"Logout"}</MenuItem>
+                </Link>
+              </div>
             )}
           </div>
         </Drawer>
@@ -346,7 +378,7 @@ export function Header(props) {
                 <Grid
                   item
                   xs={12}
-                  style={{ "justify-content": "center", display: "flex" }}
+                  style={{ justifyContent: "center", display: "flex" }}
                 >
                   <Box
                     p={2}
@@ -356,10 +388,14 @@ export function Header(props) {
                     textAlign="center"
                   >
                     <div className={mobileviewButton}>
-                      <Button
-                        text="Signin with Google"
-                        handelClick={handleLogin}
-                      />
+                      <SigninButton
+                        onClick={handleLogin}
+                        variant="contained"
+                        color="secondary"
+                        key="Signin"
+                      >
+                        Signin with Google
+                      </SigninButton>
                       <Typography
                         variant="body2"
                         gutterBottom
@@ -455,7 +491,7 @@ export function Header(props) {
                   item
                   xs={12}
                   sm={6}
-                  style={{ "justify-content": "center", display: "flex" }}
+                  style={{ justifyContent: "center", display: "flex" }}
                 >
                   <Box
                     p={2}
@@ -465,10 +501,14 @@ export function Header(props) {
                     textAlign="center"
                   >
                     <div className={button}>
-                      <Button
-                        text="Signin with Google"
-                        handelClick={handleLogin}
-                      />
+                      <SigninButton
+                        onClick={handleLogin}
+                        variant="contained"
+                        color="secondary"
+                        key="Signin"
+                      >
+                        Signin with Google
+                      </SigninButton>
                       <Typography
                         variant="body2"
                         gutterBottom

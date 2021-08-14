@@ -25,6 +25,12 @@ export default function TypographyComponent(props) {
           {props.text}
         </Typography>
       );
+    case "BodyText":
+      return (
+        <Typography variant="body2" color="textSecondary">
+          {props.text}
+        </Typography>
+      );
     default:
       return (
         <Typography component="h1" variant="h6" color="primary">

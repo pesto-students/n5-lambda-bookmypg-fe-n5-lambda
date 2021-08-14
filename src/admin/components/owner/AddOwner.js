@@ -10,9 +10,9 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useStyles from "./styles/AddOwner.styles";
-import Button from "../../../components/button/Button";
-import CloseButton from "../../../components/closebutton/CloseButton";
-import Typography from "../../../components/typography/Typography";
+import Button from "components/button/Button";
+import CloseButton from "components/closebutton/CloseButton";
+import Typography from "components/typography/Typography";
 import TextField from "components/textfield/Textfield";
 import FormImage from "components/formimage/FormImage";
 
@@ -33,7 +33,14 @@ export default function AddOwner(props) {
   };
 
   const handleSubmit = () => {
-    props.addOwner({firstName, lastName, email, phone, role: "owner", onboardedAt: new Date()});
+    props.addOwner({
+      firstName,
+      lastName,
+      email,
+      phone,
+      role: "owner",
+      onboardedAt: new Date(),
+    });
     setOpen(false);
     toast("Owner has been added successfully!");
     setFirstName("");
@@ -80,24 +87,28 @@ export default function AddOwner(props) {
                 label="First Name"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
+                icon="Name"
               />
               <TextField
                 type="standardForm"
                 label="Last Name"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
+                icon="Name"
               />
               <TextField
                 type="standardForm"
                 label="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                icon="Email"
               />
               <TextField
                 type="standardForm"
                 label="Contact no"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
+                icon="Phone"
               />
             </Grid>
           </Grid>

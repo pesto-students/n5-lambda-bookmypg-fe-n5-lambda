@@ -67,7 +67,7 @@ export default function AddAmenity(props) {
         <DialogContent className={classes.formAlign}>
           <Grid container spacing={3} className={classes.containerStyle}>
             <Grid item>
-              <TextField type="standardForm" label="Name" />
+              <TextField type="standardForm" label="Name" icon="Name" />
               <ImageUpload />
             </Grid>
           </Grid>
