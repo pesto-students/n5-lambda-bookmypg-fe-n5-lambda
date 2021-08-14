@@ -11,7 +11,6 @@ import {
   FormLabel,
   FormControl,
   Grid,
-  Typography,
   Box,
 } from "@material-ui/core";
 import {
@@ -23,6 +22,9 @@ import Button from "../../../components/button/Button";
 import useStyles from "./BookProperty.styles";
 import CloseButton from "../../../components/closebutton/CloseButton";
 import FormImage from "components/formimage/FormImage";
+import TextFieldNew from "components/textfield/Textfield";
+import Typography from "../../../components/typography/Typography";
+import Datepicker from "../../../components/datepicker/Datepicker";
 
 export default function FormDialog() {
   const classes = useStyles();
@@ -76,38 +78,33 @@ export default function FormDialog() {
         </Box>
         <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
           <div className={classes.textAlign}>
-            <Typography component="h1" variant="h6" color="primary" paragraph>
-              Book Property
-            </Typography>
+            <Typography type="FormTitle" text="Book Property" />
           </div>
           <FormImage imageName="Bookproperty.jpg" />
         </DialogTitle>
         <DialogContent className={classes.formAlign}>
           <FormControl component="fieldset">
             <FormLabel component="legend"></FormLabel>
-            <TextField
+            <TextFieldNew
+              type="standardForm"
+              label="Email"
+              value={email}
+              onChange={setEmail}
+              icon="Email"
+            />
+            {/*<TextField
               id="standard-disabled"
               label="Email"
               value={email}
               fullwidth
               onChange={(e) => setEmail(e.target.value)}
-            />
+            />*/}
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <Grid container>
-                <KeyboardDatePicker
-                  disableToolbar
-                  variant="inline"
-                  format="MM/dd/yyyy"
-                  margin="normal"
-                  id="date-picker-inline"
+                <Datepicker
+                  selectedDate={selectedDate}
+                  handleDateChange={handleDateChange}
                   label="When you want to move in?"
-                  value={selectedDate}
-                  onChange={handleDateChange}
-                  KeyboardButtonProps={{
-                    "aria-label": "change date",
-                  }}
-                  disablePast={true}
-                  className={classes.dateComponentSize}
                 />
               </Grid>
             </MuiPickersUtilsProvider>
@@ -120,10 +117,7 @@ export default function FormDialog() {
                 fullwidth
                 InputProps={{
                   endAdornment: (
-                    <img
-                      src="../inrIcon.jpg"
-                      className={classes.monetizationStyle}
-                    />
+                    <FormImage imageName="RupeesIcon.jpg" type="icon" />
                   ),
                 }}
                 className={classes.textfieldStyle}

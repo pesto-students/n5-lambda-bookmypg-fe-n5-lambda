@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import ResponsiveDrawer from "../responsivedrawer/responsivedrawer";
 import { Grid } from "@material-ui/core";
-//import Tablecomponent from "./TenantTable";
 import Tablecomponent from "components/table/Table";
 import Pagination from "../pagination/pagination";
 import TenantsSelector from "../TenantsSelector";
@@ -71,7 +70,7 @@ export function Tenantcontent(props) {
            />*/}
             <Tablecomponent
               switchData="name"
-              sortingColumn="onboardingDate"
+              sortingColumn="onboardedAt"
               tableData={tenants}
               list_type="Tenants"
             />

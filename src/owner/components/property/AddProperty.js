@@ -5,11 +5,7 @@ import {
   DialogContent,
   DialogTitle,
   Box,
-  FormControl,
   Grid,
-  MenuItem,
-  Select,
-  FormHelperText,
 } from "@material-ui/core";
 import useStyles from "./styles/AddProperty.styles";
 import Button from "../../../components/button/Button";
@@ -18,8 +14,10 @@ import Typography from "../../../components/typography/Typography";
 import TextField from "../../../components/textfield/Textfield";
 import FormImage from "components/formimage/FormImage";
 import Link from "../../../components/link/Link";
+import MultiSelect from "components/multiselect/Multiselect";
+import Select from "components/select/Select";
 
-export default function FormDialog(props) {
+export default function AddProperty(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -44,9 +42,10 @@ export default function FormDialog(props) {
 
   const [status, setStatus] = React.useState("");
 
-  const handleChange = (event) => {
-    setStatus(event.target.value);
-  };
+  const listitems = ["Washing Machine", "Refrigerator", "Air Conditioner"];
+  const locationitems = ["Mumbai", "Delhi", "Chennai"];
+
+  const [value, setValue] = React.useState([]);
 
   return (
     <div>
@@ -87,21 +86,12 @@ export default function FormDialog(props) {
                     multiline={true}
                     rows={4}
                   />
-
-                  <FormControl className={classes.formControl}>
-                    <Select
-                      labelId="demo-simple-select-placeholder-label-label"
-                      id="demo-simple-select-placeholder-label"
-                      value={status}
-                      onChange={handleChange}
-                      displayEmpty
-                      className={classes.selectEmpty}
-                    >
-                      <MenuItem value="Mumbai">Mumbai</MenuItem>
-                      <MenuItem value="Delhi">Delhi</MenuItem>
-                    </Select>
-                  </FormControl>
-                  <FormHelperText>Location</FormHelperText>
+                  <Select
+                    name="Location"
+                    value={status}
+                    setValue={setStatus}
+                    listitems={locationitems}
+                  />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField type="standardForm" label="Rent" />
@@ -112,21 +102,12 @@ export default function FormDialog(props) {
                     multiline={true}
                     rows={4}
                   />
-
-                  <FormControl className={classes.formControl}>
-                    <Select
-                      labelId="demo-simple-select-placeholder-label-label"
-                      id="demo-simple-select-placeholder-label"
-                      value={status}
-                      onChange={handleChange}
-                      displayEmpty
-                      className={classes.selectEmpty}
-                    >
-                      <MenuItem value="Mumbai">Air Conditioner</MenuItem>
-                      <MenuItem value="Delhi">Washing Machine</MenuItem>
-                    </Select>
-                  </FormControl>
-                  <FormHelperText>Amenities</FormHelperText>
+                  <MultiSelect
+                    name="Amenities"
+                    listitems={listitems}
+                    value={value}
+                    setValue={setValue}
+                  />
                 </Grid>
               </Grid>
             </DialogContent>
@@ -173,21 +154,12 @@ export default function FormDialog(props) {
                     multiline={true}
                     rows={4}
                   />
-
-                  <FormControl className={classes.formControl}>
-                    <Select
-                      labelId="demo-simple-select-placeholder-label-label"
-                      id="demo-simple-select-placeholder-label"
-                      value={status}
-                      onChange={handleChange}
-                      displayEmpty
-                      className={classes.selectEmpty}
-                    >
-                      <MenuItem value="Mumbai">Mumbai</MenuItem>
-                      <MenuItem value="Delhi">Delhi</MenuItem>
-                    </Select>
-                  </FormControl>
-                  <FormHelperText>Location</FormHelperText>
+                  <Select
+                    name="Location"
+                    value={status}
+                    setValue={setStatus}
+                    listitems={locationitems}
+                  />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField type="standardForm" label="Rent" />
@@ -199,20 +171,12 @@ export default function FormDialog(props) {
                     rows={4}
                   />
 
-                  <FormControl className={classes.formControl}>
-                    <Select
-                      labelId="demo-simple-select-placeholder-label-label"
-                      id="demo-simple-select-placeholder-label"
-                      value={status}
-                      onChange={handleChange}
-                      displayEmpty
-                      className={classes.selectEmpty}
-                    >
-                      <MenuItem value="Mumbai">Air Conditioner</MenuItem>
-                      <MenuItem value="Delhi">Washing Machine</MenuItem>
-                    </Select>
-                  </FormControl>
-                  <FormHelperText>Amenities</FormHelperText>
+                  <MultiSelect
+                    name="Amenities"
+                    listitems={listitems}
+                    value={value}
+                    setValue={setValue}
+                  />
                 </Grid>
               </Grid>
             </DialogContent>

@@ -10,6 +10,10 @@ const useStyles = makeStyles(() => ({
   logoimgStyle: {
     width: "30px",
   },
+  iconStyle: {
+    paddingRight: "10px",
+    width: "25px",
+  },
 }));
 
 export default useStyles;

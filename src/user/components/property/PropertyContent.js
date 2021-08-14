@@ -274,7 +274,7 @@ export default function PropertyContent(props) {
         <Grid
           item
           xl={12}
-          className={classes.cardGrid}
+          className={classes.SimilarpropertiesStyle}
           maxWidth="md"
           style={{ borderTop: "1px solid rgba(0, 0, 0, 0.12)" }}
         >

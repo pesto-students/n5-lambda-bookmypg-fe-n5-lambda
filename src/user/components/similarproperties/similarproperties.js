@@ -64,14 +64,15 @@ export default function SimilarProperties(props) {
         >
           {props.title}
         </Typography>
-        <Grid className={classes.responsivegrid}>
+        {/*<Grid className={classes.responsivegrid}>*/}
+        <Grid>
           <Swiper slidesPerView={4}>
             <Grid container spacing={5}>
               {latestProperties &&
                 latestProperties.length &&
                 latestProperties.map((property) => (
                   <Grid item key={property._id} xs={12} sm={6} md={3}>
-                    <SwiperSlide>
+                    <SwiperSlide style={{ height: "400px" }}>
                       <Card className={classes.card}>
                         <CardMedia
                           className={classes.cardMedia}
