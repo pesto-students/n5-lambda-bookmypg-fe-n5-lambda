@@ -18,6 +18,8 @@ import MyProfile from "./user/pages/myprofile/Myprofile";
 import PropertyDetails from "./user/pages/Propertydetails";
 import PropertyList from "./user/pages/Propertylist";
 import HomePage from "./user/pages/Homepage";
+import OwnerProtectedRoute from "./ProtectedRoutes/OwnerProtectedRoute";
+import AdminProtectedRoute from "./ProtectedRoutes/AdminProtectedRoute";
 
 const hist = createBrowserHistory();
 
@@ -25,25 +27,20 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter history={hist}>
       <Switch>
-        <Route exact path="/tenant-list" component={Ownertenantlist} />
-        <Route
-          exact
-          path="/owner-property-list"
-          component={Ownerpropertylist}
-        />
-        <Route
-          exact
-          path="/owner-complaint-list"
-          component={Ownercomplaintlist}
-        />
         <Route exact path="/mypropertydetails" component={MyPropertyDetails} />
         <Route exact path="/property-details/:id" component={PropertyDetails} />
         <Route exact path="/property-list" component={PropertyList} />
         <Route exact path="/payment-list" component={PaymentList} />
-        <Route exact path="/owner-home" component={OwnerHomepage} />
+
+        <Route path="/owner-home" component={OwnerHomepage} />
+        <OwnerProtectedRoute exact path="/tenant-list" component={Ownertenantlist} />
+        <OwnerProtectedRoute exact path="/owner-property-list" component={Ownerpropertylist} />
+        <OwnerProtectedRoute exact path="/owner-complaint-list" component={Ownercomplaintlist} />
+
         <Route exact path="/admin-home" component={AdminHomepage} />
-        <Route exact path="/owner-list" component={Ownerlist} />
-        <Route exact path="/amenity-list" component={Amenitylist} />
+        <AdminProtectedRoute exact path="/owner-list" component={Ownerlist} />
+        <AdminProtectedRoute exact path="/amenity-list" component={Amenitylist} />
+
         <Route exact path="/myprofile" component={MyProfile} />
         <Route exact path="/" component={HomePage} />
       </Switch>
