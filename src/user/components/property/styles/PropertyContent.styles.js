@@ -23,9 +23,15 @@ const useStyles = makeStyles((theme) => ({
       color: "#40a9ff",
     },
   },
+
   cardGrid: {
     paddingTop: theme.spacing(10),
     paddingBottom: theme.spacing(8),
+    maxWidth: "1400px",
+  },
+  SimilarpropertiesStyle: {
+    paddingTop: theme.spacing(4),
+    //paddingBottom: theme.spacing(8),
     maxWidth: "1400px",
   },
   card: {

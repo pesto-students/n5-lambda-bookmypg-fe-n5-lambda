@@ -15,6 +15,16 @@ export default function FormImages(props) {
           />
         </div>
       );
+    case "icon":
+      return (
+        <div className={classes.alignStyle}>
+          <img
+            src={`${S3_BUCKET_IMAGES_BASEURL}/${props.imageName}`}
+            alt={"Not available"}
+            className={classes.iconStyle}
+          />
+        </div>
+      );
     default:
       return (
         <div className={classes.alignStyle}>

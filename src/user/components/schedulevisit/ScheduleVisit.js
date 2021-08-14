@@ -4,19 +4,17 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  TextField,
   FormLabel,
   FormControl,
-  Typography,
   Box,
 } from "@material-ui/core";
-import { Phone, AccountBox } from "@material-ui/icons";
-import EmailIcon from "@material-ui/icons/Email";
 import useStyles from "./ScheduleVisit.styles";
 import Button from "../../../components/button/Button";
 import Datepicker from "../../../components/datepicker/Datepicker";
 import CloseButton from "../../../components/closebutton/CloseButton";
 import FormImage from "components/formimage/FormImage";
+import TextField from "components/textfield/Textfield";
+import Typography from "../../../components/typography/Typography";
 
 export default function ScheduleVisit() {
   const classes = useStyles();
@@ -57,57 +55,40 @@ export default function ScheduleVisit() {
         </Box>
         <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
           <div className={classes.textAlign}>
-            <Typography component="h1" variant="h6" color="primary">
-              Schedule Visit
-            </Typography>
+            <Typography type="FormTitle" text="Schedule Visit" />
 
             <FormImage imageName="Schedulevisit.png" />
           </div>
         </DialogTitle>
 
         <DialogContent className={classes.formAlign}>
-          <Typography
-            component="h1"
-            variant="subtitle1"
-            color="primary"
-            className={classes.textAlign}
-          >
-            Open from 10:00am to 06:00pm
-          </Typography>
+          <div className={classes.textAlign}>
+            <Typography
+              type="SubTitleText"
+              text="Open from 10:00am to 06:00pm"
+            />
+          </div>
           <FormControl component="fieldset">
             <FormLabel component="legend"></FormLabel>
             <Datepicker
               selectedDate={selectedDate}
               handleDateChange={handleDateChange}
               maxdate={date}
+              label="When you want to visit the place?"
             />
+            <TextField type="standardForm" label="Name" value="" icon="Name" />
 
             <TextField
-              id="standard-basic"
-              label="Name"
-              defaultValue=""
-              fullwidth
-              InputProps={{
-                endAdornment: <AccountBox className={classes.iconStyle} />,
-              }}
-            />
-            <TextField
-              id="standard-basic"
+              type="standardForm"
               label="Email"
-              defaultValue=""
-              fullwidth
-              InputProps={{
-                endAdornment: <EmailIcon className={classes.iconStyle} />,
-              }}
+              value=""
+              icon="Email"
             />
             <TextField
-              id="standard-basic"
+              type="standardForm"
               label="Phone"
-              defaultValue=""
-              fullwidth
-              InputProps={{
-                endAdornment: <Phone className={classes.iconStyle} />,
-              }}
+              value=""
+              icon="Phone"
             />
           </FormControl>
         </DialogContent>
