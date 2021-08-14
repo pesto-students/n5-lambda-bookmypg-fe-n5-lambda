@@ -3,6 +3,9 @@ import {
   GET_TENANTS_REQUEST_RESOLVED,
   GET_TENANTS_REQUEST_FAILED,
   RESET_TENANTS_STATE,
+  GET_TENANTS_BY_OWNER_REQUEST_MADE,
+  GET_TENANTS_BY_OWNER_REQUEST_RESOLVED,
+  GET_TENANTS_BY_OWNER_REQUEST_FAILED,
   UPDATE_TENANT_REQUEST_MADE,
   UPDATE_TENANT_REQUEST_RESOLVED,
   UPDATE_TENANT_REQUEST_FAILED,
@@ -46,6 +49,35 @@ const resetState = (state = {}) => {
     ...state,
     getTenantsRequestState: {},
     tenants: {},
+  };
+};
+
+const getTenantsByOwnerRequestMadeResolver = (state = {}, payload = {}) => {
+  return {
+    ...state,
+    getTenantsByOwnerRequestState: {
+      ...requestState.processing,
+    },
+  };
+};
+
+const getTenantsByOwnerRequestResolvedResolver = (state = {}, payload) => {
+  return {
+    ...state,
+    getTenantsByOwnerRequestState: {
+      ...requestState.resolved,
+    },
+    tenants: payload,
+  };
+};
+
+const getTenantsByOwnerRequestFailedResolver = (state = {}, payload = {}) => {
+  return {
+    ...state,
+    getTenantsByOwnerRequestState: {
+      ...requestState.failed,
+    },
+    ...payload,
   };
 };
 
@@ -110,6 +142,9 @@ const actionToResolverMap = {
   [GET_TENANTS_REQUEST_RESOLVED]: getTenantsRequestResolvedResolver,
   [GET_TENANTS_REQUEST_FAILED]: getTenantsRequestFailedResolver,
   [RESET_TENANTS_STATE]: resetState,
+  [GET_TENANTS_BY_OWNER_REQUEST_MADE]: getTenantsByOwnerRequestMadeResolver,
+  [GET_TENANTS_BY_OWNER_REQUEST_RESOLVED]: getTenantsByOwnerRequestResolvedResolver,
+  [GET_TENANTS_BY_OWNER_REQUEST_FAILED]: getTenantsByOwnerRequestFailedResolver,
   [UPDATE_TENANT_REQUEST_MADE]: updateTenantRequestMadeResolver,
   [UPDATE_TENANT_REQUEST_RESOLVED]: updateTenantRequestResolvedResolver,
   [UPDATE_TENANT_REQUEST_FAILED]: updateTenantRequestFailedResolver,

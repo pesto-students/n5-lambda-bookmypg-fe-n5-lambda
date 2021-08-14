@@ -3,6 +3,9 @@ import {
   GET_PROPERTIES_REQUEST_RESOLVED,
   GET_PROPERTIES_REQUEST_FAILED,
   RESET_PROPERTIES_STATE,
+  GET_PROPERTIES_BY_OWNER_REQUEST_MADE,
+  GET_PROPERTIES_BY_OWNER_REQUEST_RESOLVED,
+  GET_PROPERTIES_BY_OWNER_REQUEST_FAILED,
   GET_LATEST_PROPERTIES_REQUEST_MADE,
   GET_LATEST_PROPERTIES_REQUEST_RESOLVED,
   GET_LATEST_PROPERTIES_REQUEST_FAILED,
@@ -44,6 +47,35 @@ const resetState = (state = {}) => {
     ...state,
     getPropertiesRequestState: {},
     properties: {},
+  };
+};
+
+const getPropertiesByOwnerRequestMadeResolver = (state = {}, payload = {}) => {
+  return {
+    ...state,
+    getPropertiesByOwnerRequestState: {
+      ...requestState.processing,
+    },
+  };
+};
+
+const getPropertiesByOwnerRequestResolvedResolver = (state = {}, payload) => {
+  return {
+    ...state,
+    getPropertiesByOwnerRequestState: {
+      ...requestState.resolved,
+    },
+    properties: payload,
+  };
+};
+
+const getPropertiesByOwnerRequestFailedResolver = (state = {}, payload = {}) => {
+  return {
+    ...state,
+    getPropertiesByOwnerRequestState: {
+      ...requestState.failed,
+    },
+    ...payload,
   };
 };
 
@@ -89,6 +121,12 @@ const actionToResolverMap = {
   [GET_PROPERTIES_REQUEST_RESOLVED]: getPropertiesRequestResolvedResolver,
   [GET_PROPERTIES_REQUEST_FAILED]: getPropertiesRequestFailedResolver,
   [RESET_PROPERTIES_STATE]: resetState,
+  [GET_PROPERTIES_BY_OWNER_REQUEST_MADE]:
+    getPropertiesByOwnerRequestMadeResolver,
+  [GET_PROPERTIES_BY_OWNER_REQUEST_RESOLVED]:
+    getPropertiesByOwnerRequestResolvedResolver,
+  [GET_PROPERTIES_BY_OWNER_REQUEST_FAILED]:
+    getPropertiesByOwnerRequestFailedResolver,
   [GET_LATEST_PROPERTIES_REQUEST_MADE]: getLatestPropertiesRequestMadeResolver,
   [GET_LATEST_PROPERTIES_REQUEST_RESOLVED]:
     getLatestPropertiesRequestResolvedResolver,
