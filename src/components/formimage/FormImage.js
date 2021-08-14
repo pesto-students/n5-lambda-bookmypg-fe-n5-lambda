@@ -1,6 +1,6 @@
 import React from "react";
 import useStyles from "./Formimage.styles";
-import { S3_BUCKET_IMAGES_BASEURL } from "constant";
+import { S3_BUCKET_IMAGES_BASEURL, S3_BUCKET_URL } from "constant";
 
 export default function FormImages(props) {
   const classes = useStyles();
@@ -9,7 +9,7 @@ export default function FormImages(props) {
       return (
         <div className={classes.alignStyle}>
           <img
-            src={props.imageName}
+            src={`${S3_BUCKET_URL}/${props.imageName}`}
             alt={"Not available"}
             className={classes.logoimgStyle}
           />
