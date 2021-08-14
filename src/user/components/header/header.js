@@ -26,10 +26,10 @@ import LocationsSelector from "../../helpers/LocationsSelector";
 import locationsActions from "../../../redux-store/actions/locationsActions";
 import UserSelector from "../../helpers/UserSelector";
 import userActions from "../../../redux-store/actions/userActions";
-import Button from "../../../components/button/Button";
+import Button from "components/button/Button";
 import useStyles from "./header.styles";
 import PopupMenu from "components/popupmenu/PopupMenu";
-
+import SigninButton from "@material-ui/core/Button";
 const headersData = [
   {
     label: "Home",
@@ -359,7 +359,7 @@ export function Header(props) {
                 <Grid
                   item
                   xs={12}
-                  style={{ "justify-content": "center", display: "flex" }}
+                  style={{ justifyContent: "center", display: "flex" }}
                 >
                   <Box
                     p={2}
@@ -369,10 +369,14 @@ export function Header(props) {
                     textAlign="center"
                   >
                     <div className={mobileviewButton}>
-                      <Button
-                        text="Signin with Google"
-                        handelClick={handleLogin}
-                      />
+                      <SigninButton
+                        onClick={handleLogin}
+                        variant="contained"
+                        color="secondary"
+                        key="Signin"
+                      >
+                        Signin with Google
+                      </SigninButton>
                       <Typography
                         variant="body2"
                         gutterBottom
@@ -468,7 +472,7 @@ export function Header(props) {
                   item
                   xs={12}
                   sm={6}
-                  style={{ "justify-content": "center", display: "flex" }}
+                  style={{ justifyContent: "center", display: "flex" }}
                 >
                   <Box
                     p={2}
@@ -478,10 +482,14 @@ export function Header(props) {
                     textAlign="center"
                   >
                     <div className={button}>
-                      <Button
-                        text="Signin with Google"
-                        handelClick={handleLogin}
-                      />
+                      <SigninButton
+                        onClick={handleLogin}
+                        variant="contained"
+                        color="secondary"
+                        key="Signin"
+                      >
+                        Signin with Google
+                      </SigninButton>
                       <Typography
                         variant="body2"
                         gutterBottom

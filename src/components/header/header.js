@@ -21,6 +21,7 @@ import { Facebook, Twitter, Email, Close } from "@material-ui/icons";
 import Button from "components/button/Button";
 import useStyles from "./header.styles";
 import PopupMenu from "components/popupmenu/PopupMenu";
+import SigninButton from "@material-ui/core/Button";
 
 export function Header(props) {
   const {
@@ -273,7 +274,7 @@ export function Header(props) {
                 <Grid
                   item
                   xs={12}
-                  style={{ "justify-content": "center", display: "flex" }}
+                  style={{ justifyContent: "center", display: "flex" }}
                 >
                   <Box
                     p={2}
@@ -283,10 +284,14 @@ export function Header(props) {
                     textAlign="center"
                   >
                     <div className={mobileviewButton}>
-                      <Button
-                        text="Signin with Google"
-                        handelClick={handleLogin}
-                      />
+                      <SigninButton
+                        onClick={handleLogin}
+                        variant="contained"
+                        color="secondary"
+                        key="Signin"
+                      >
+                        Signin with Google
+                      </SigninButton>
                       <Typography
                         variant="body2"
                         gutterBottom
@@ -382,7 +387,7 @@ export function Header(props) {
                   item
                   xs={12}
                   sm={6}
-                  style={{ "justify-content": "center", display: "flex" }}
+                  style={{ justifyContent: "center", display: "flex" }}
                 >
                   <Box
                     p={2}
@@ -392,10 +397,14 @@ export function Header(props) {
                     textAlign="center"
                   >
                     <div className={button}>
-                      <Button
-                        text="Signin with Google"
-                        handelClick={handleLogin}
-                      />
+                      <SigninButton
+                        onClick={handleLogin}
+                        variant="contained"
+                        color="secondary"
+                        key="Signin"
+                      >
+                        Signin with Google
+                      </SigninButton>
                       <Typography
                         variant="body2"
                         gutterBottom
