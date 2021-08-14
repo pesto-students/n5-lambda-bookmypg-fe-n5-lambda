@@ -3,7 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import Header from "user/components/header/header";
 import Content from "user/components/home/Content";
-import Footer from "../components/footer/footer";
+import Footer from "components/footer/footer";
 import Theme from "user/theme/theme";
 
 const headersData = [
@@ -54,7 +54,7 @@ export default function HomePage() {
             locationItems={locationItems}
           />
           <Content />
-          <Footer />
+          <Footer type="center" />
         </Grid>
       </MuiThemeProvider>
     </div>

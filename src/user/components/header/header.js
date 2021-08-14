@@ -28,6 +28,7 @@ import UserSelector from "../../helpers/UserSelector";
 import userActions from "../../../redux-store/actions/userActions";
 import Button from "../../../components/button/Button";
 import useStyles from "./header.styles";
+import PopupMenu from "components/popupmenu/PopupMenu";
 
 const headersData = [
   {
@@ -60,6 +61,17 @@ const locationItems = [
   {
     id: "3",
     name: "Chennai",
+  },
+];
+
+const listitems = [
+  {
+    label: "My Profile",
+    href: "/MyProfile",
+  },
+  {
+    label: "Logout",
+    href: "/",
   },
 ];
 
@@ -147,11 +159,11 @@ export function Header(props) {
           {props.loggedUser == "" ? (
             <Button text="Login" type="Menubutton" handleClick={LoginPopup} />
           ) : (
-            <Button
+            /* <Button
               text="Logout"
               type="Menubutton"
-              handleClick={handleLogout}
-            />
+           handleClick={handleLogout}/>*/
+            <PopupMenu listitems={listitems} />
           )}
         </div>
       </Toolbar>
@@ -199,16 +211,30 @@ export function Header(props) {
                 <MenuItem>{"Login"}</MenuItem>
               </Link>
             ) : (
-              <Link
-                key={"Logout"}
-                {...{
-                  color: "inherit",
-                  style: { textDecoration: "none" },
-                }}
-                onClick={handleLogout}
-              >
-                <MenuItem>{"Logout"}</MenuItem>
-              </Link>
+              <div>
+                <Link
+                  key={"MyProfile"}
+                  {...{
+                    color: "inherit",
+                    style: { textDecoration: "none" },
+                    component: RouterLink,
+                    to: "/myprofile",
+                  }}
+                  onClick={handleLogout}
+                >
+                  <MenuItem>{"My Profile"}</MenuItem>
+                </Link>
+                <Link
+                  key={"Logout"}
+                  {...{
+                    color: "inherit",
+                    style: { textDecoration: "none" },
+                  }}
+                  onClick={handleLogout}
+                >
+                  <MenuItem>{"Logout"}</MenuItem>
+                </Link>
+              </div>
             )}
           </div>
         </Drawer>

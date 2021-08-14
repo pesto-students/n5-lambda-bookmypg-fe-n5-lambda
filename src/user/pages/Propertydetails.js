@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import Propertycontent from "../components/property/PropertyContent";
 import Header from "../components/header/header";
-import Footer from "../components/footer/footer";
+import Footer from "components/footer/footer";
 import Theme from "../theme/theme";
 import PropertiesSelector from "../helpers/PropertiesSelector";
 import propertiesActions from "../../redux-store/actions/propertiesActions";
@@ -22,7 +22,7 @@ export function PropertyDetails(props) {
         <Grid container alignItems="center">
           <Header />
           <Propertycontent property={property} properties={props.properties} />
-          <Footer />
+          <Footer type="center" />
         </Grid>
       </MuiThemeProvider>
     </div>

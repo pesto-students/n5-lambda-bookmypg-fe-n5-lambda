@@ -7,7 +7,6 @@ import { Link as RouterLink, useHistory } from "react-router-dom";
 import { GoogleLoginButton } from "react-social-login-buttons";
 import firebase from "firebase/app";
 import "firebase/auth";
-import { useAuth } from "../../contexts/AuthContext";
 import UserSelector from "../helpers/UserSelector";
 import userActions from "../../redux-store/actions/userActions";
 
@@ -43,7 +42,7 @@ export function Login(props) {
     const provider = new firebase.auth.GoogleAuthProvider();
     const response = await firebase.auth().signInWithPopup(provider);
     props.setLoggedUser(response.user);
-    console.log("User=>",response.user)
+    console.log("User=>", response.user);
     // props.getUser(response.user);
     setOpen(false);
     history.push("/");
