@@ -73,6 +73,7 @@ export function PropertyListContent(props) {
               tableData={Tabledata}
               switchData="name"
               list_type="Properties"
+              sortingColumn="name"
             />
             {/* <Tablecomponent properties={props.properties} />*/}
           </Grid>

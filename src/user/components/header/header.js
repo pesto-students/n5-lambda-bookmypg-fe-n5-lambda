@@ -11,10 +11,10 @@ import {
   DialogContent,
   FormControl,
   InputLabel,
-  Select,
   Grid,
   Box,
   Container,
+  Select,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import Dialog from "@material-ui/core/Dialog";
@@ -28,6 +28,7 @@ import UserSelector from "../../helpers/UserSelector";
 import userActions from "../../../redux-store/actions/userActions";
 import Button from "../../../components/button/Button";
 import useStyles from "./header.styles";
+//import Select from "components/select/Select";
 
 const headersData = [
   {
@@ -286,6 +287,13 @@ export function Header(props) {
               ))}
           </Select>
         </FormControl>
+        {/*  <Select
+          name="Location"
+          value={location}
+          onChange={handleChange}
+          listitems={locations}
+          type="LocationSearch"
+        />*/}
       </Grid>
     </Container>
   );
