@@ -259,7 +259,7 @@ export function Header(props) {
               }}
               onClick={handleLogout}
             >
-              {"Logout"}
+              {props.user.firstName + " " + props.user.lastName}
             </Button>
           )}
         </div>

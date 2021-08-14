@@ -6,6 +6,9 @@ import {
   UPDATE_TENANT_REQUEST_MADE,
   UPDATE_TENANT_REQUEST_RESOLVED,
   UPDATE_TENANT_REQUEST_FAILED,
+  ADD_TENANT_REQUEST_MADE,
+  ADD_TENANT_REQUEST_RESOLVED,
+  ADD_TENANT_REQUEST_FAILED,
 } from "../../constant";
 import requestState from "../utils/request";
 
@@ -74,6 +77,34 @@ const updateTenantRequestFailedResolver = (state = {}, payload = {}) => {
   };
 };
 
+const addTenantRequestMadeResolver = (state = {}, payload = {}) => {
+  return {
+    ...state,
+    addTenantRequestState: {
+      ...requestState.processing,
+    },
+  };
+};
+
+const addTenantRequestResolvedResolver = (state = {}, payload) => {
+  return {
+    ...state,
+    addTenantRequestState: {
+      ...requestState.resolved,
+    },
+  };
+};
+
+const addTenantRequestFailedResolver = (state = {}, payload = {}) => {
+  return {
+    ...state,
+    addTenantRequestState: {
+      ...requestState.failed,
+    },
+    ...payload,
+  };
+};
+
 const actionToResolverMap = {
   [GET_TENANTS_REQUEST_MADE]: getTenantsRequestMadeResolver,
   [GET_TENANTS_REQUEST_RESOLVED]: getTenantsRequestResolvedResolver,
@@ -82,6 +113,9 @@ const actionToResolverMap = {
   [UPDATE_TENANT_REQUEST_MADE]: updateTenantRequestMadeResolver,
   [UPDATE_TENANT_REQUEST_RESOLVED]: updateTenantRequestResolvedResolver,
   [UPDATE_TENANT_REQUEST_FAILED]: updateTenantRequestFailedResolver,
+  [ADD_TENANT_REQUEST_MADE]: addTenantRequestMadeResolver,
+  [ADD_TENANT_REQUEST_RESOLVED]: addTenantRequestResolvedResolver,
+  [ADD_TENANT_REQUEST_FAILED]: addTenantRequestFailedResolver,
 };
 
 export default (state = {}, action = {}) => {

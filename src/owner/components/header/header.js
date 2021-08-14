@@ -26,6 +26,8 @@ import CloseIcon from "@material-ui/icons/Close";
 import useStyles from "./header.styles";
 import UserSelector from "../../../user/helpers/UserSelector";
 import userActions from "../../../redux-store/actions/userActions";
+import TenantsSelector from "../../components/TenantsSelector";
+import tenantsActions from "../../../redux-store/actions/tenantsActions";
 
 const headersData = [
   {
@@ -86,6 +88,10 @@ export function Header(props) {
   const { mobileView, drawerOpen } = state;
 
   useEffect(() => {
+    props.verifyAdmin();
+  }, []);
+
+  useEffect(() => {
     const setResponsiveness = () => {
       return window.innerWidth < 900
         ? setState((prevState) => ({ ...prevState, mobileView: true }))
@@ -106,7 +112,8 @@ export function Header(props) {
   };
 
   const handleLogout = () => {
-    history.push("/");
+    props.logoutUser();
+    history.push("/owner-home");
   };
 
   const handleClose = () => {
@@ -116,8 +123,21 @@ export function Header(props) {
   const handleLogin = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     const response = await firebase.auth().signInWithPopup(provider);
+    props.getUser(response.user.email);
+    const existingUser = props.tenants.filter(
+      (tenant) => tenant.email === response.user.email
+    )[0];
+
     setOpen(false);
-    history.push("/");
+    if (existingUser) {
+      existingUser.role == "owner"
+        ? history.push("/owner-home")
+        : existingUser.role == "admin"
+        ? history.push("/admin-home")
+        : history.push("/");
+    } else {
+      history.push("/");
+    }
   };
 
   const displayDesktop = () => {
@@ -474,9 +494,11 @@ export function Header(props) {
 
 const mapStateToProps = (state) => {
   const userSelector = UserSelector(state.user);
+  const tenantsSelector = TenantsSelector(state.tenants);
 
   return {
     user: userSelector.getUserData().data,
+    tenants: tenantsSelector.getTenantsData().data,
   };
 };
 
@@ -484,6 +506,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getUser: (payload) => dispatch(userActions.getUser(payload)),
     logoutUser: () => dispatch(userActions.resetState()),
+    verifyAdmin: () => dispatch(tenantsActions.getTenants()),
   };
 };
 

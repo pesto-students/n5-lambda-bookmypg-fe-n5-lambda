@@ -26,6 +26,7 @@ export function OwnerlistContent(props) {
   const [countperpage, setCountperpage] = React.useState(10);
   const [search, setSearch] = React.useState("");
   const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC); 
+  const [owner, setOwner] = React.useState(false);
 
   useEffect(() => {
     props.resetTenants();
@@ -34,7 +35,17 @@ export function OwnerlistContent(props) {
   useEffect(() => {
     const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&from_date=${from_date}&to_date=${to_date}&columnname=onboardedAt&orderby=${order_by}`;
     props.getTenants({ extraParams });
-  }, [pagenumber, countperpage, search, enabled, setEnabled, from_date, to_date, order_by]);
+  }, [
+    pagenumber,
+    countperpage,
+    search,
+    enabled,
+    setEnabled,
+    from_date,
+    to_date,
+    order_by,
+    owner,
+  ]);
 
   let owners;
   if (
@@ -109,7 +120,7 @@ export function OwnerlistContent(props) {
                   />
                 </MuiPickersUtilsProvider>
               </Grid>
-              <Addowner />
+              <Addowner addOwner={props.addOwner} setOwner={setOwner} />
             </Grid>
             <Tablecomponent
               owners={owners}
@@ -148,6 +159,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getTenants: (payload) => dispatch(tenantsActions.getTenants(payload)),
     updateTenant: (id) => dispatch(tenantsActions.updateTenant(id)),
+    addOwner: (payload) => dispatch(tenantsActions.addTenant(payload)),
     resetTenants: () => dispatch(tenantsActions.resetState()),
   };
 };

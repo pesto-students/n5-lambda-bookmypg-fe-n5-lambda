@@ -7,6 +7,9 @@ import {
   UPDATE_TENANT_REQUEST_MADE,
   UPDATE_TENANT_REQUEST_RESOLVED,
   UPDATE_TENANT_REQUEST_FAILED,
+  ADD_TENANT_REQUEST_MADE,
+  ADD_TENANT_REQUEST_RESOLVED,
+  ADD_TENANT_REQUEST_FAILED,
 } from "../../constant";
 
 export default {
@@ -17,6 +20,9 @@ export default {
 
   updateTenant: (payload) => action(UPDATE_TENANT_REQUEST_MADE, payload),
   tenantUpdated: (payload) => action(UPDATE_TENANT_REQUEST_RESOLVED, payload),
-  updateTenantFailed: (payload) =>
-    action(UPDATE_TENANT_REQUEST_FAILED, payload),
+  updateTenantFailed: (payload) => action(UPDATE_TENANT_REQUEST_FAILED, payload),
+
+  addTenant: (payload) => action(ADD_TENANT_REQUEST_MADE, payload),
+  tenantAdded: (payload) => action(ADD_TENANT_REQUEST_RESOLVED, payload),
+  addTenantFailed: (payload) => action(ADD_TENANT_REQUEST_FAILED, payload),
 };

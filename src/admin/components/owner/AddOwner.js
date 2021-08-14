@@ -12,11 +12,18 @@ import {
   TextField,
   Button,
 } from "@material-ui/core";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import useStyles from "./styles/AddOwner.styles";
 
 export default function AddOwner(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+
+  const [firstName, setFirstName] = React.useState("");
+  const [lastName, setLastName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [phone, setPhone] = React.useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -25,6 +32,25 @@ export default function AddOwner(props) {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleSubmit = () => {
+    props.addOwner({
+      firstName,
+      lastName,
+      email,
+      phone,
+      role: 'owner',
+      onboardedAt: new Date(),
+    });
+    setOpen(false);
+    toast("Owner has been added successfully!");
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setPhone("");
+    props.setOwner(true);
+  }
+
   const date = new Date();
   date.setDate(date.getDate() + 7);
 
@@ -77,34 +103,45 @@ export default function AddOwner(props) {
             <Grid item>
               <TextField
                 id="standard-basic"
-                label="Name"
-                defaultValue=""
+                label="First Name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className={classes.textfieldStyle}
+              />
+              <TextField
+                id="standard-basic"
+                label="Last Name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
                 className={classes.textfieldStyle}
               />
               <TextField
                 id="standard-basic"
                 label="Email"
-                defaultValue=""
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className={classes.textfieldStyle}
               />
               <TextField
                 id="standard-basic"
                 label="Contact no"
-                defaultValue=""
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
                 className={classes.textfieldStyle}
               />
             </Grid>
           </Grid>
         </DialogContent>
         <DialogActions className={classes.button}>
-          <Button variant="contained" color="secondary">
+          <Button variant="contained" color="secondary" onClick={handleSubmit}>
             Submit
           </Button>
-          <Button variant="contained" color="secondary">
+          <Button variant="contained" color="secondary" onClick={handleClose}>
             Cancel
           </Button>
         </DialogActions>
       </Dialog>
+      <ToastContainer />
     </div>
   );
 }

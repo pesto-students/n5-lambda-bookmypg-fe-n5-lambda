@@ -28,5 +28,23 @@ const TenantsService = {
     }
     throw new Error(response);
   },
+
+  addTenant: async (payload) => {
+    const URL = `http://localhost:4000/api/users`;
+    const response = await httpInterceptor({
+      url: URL,
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    }
+    throw new Error(response);
+  },
 };
 export default TenantsService;
