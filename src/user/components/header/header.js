@@ -71,7 +71,7 @@ const locationItems = [
 const listitems = [
   {
     label: "My Profile",
-    href: "/MyProfile",
+    href: "/myprofile",
   },
   {
     label: "Logout",
