@@ -8,9 +8,9 @@ import {
   DialogTitle,
 } from "@material-ui/core";
 import useStyles from "./styles/AddOwner.styles";
-import Button from "../../../components/button/Button";
-import CloseButton from "../../../components/closebutton/CloseButton";
-import Typography from "../../../components/typography/Typography";
+import Button from "components/button/Button";
+import CloseButton from "components/closebutton/CloseButton";
+import Typography from "components/typography/Typography";
 import TextField from "components/textfield/Textfield";
 import FormImage from "components/formimage/FormImage";
 
@@ -58,9 +58,9 @@ export default function AddOwner(props) {
         <DialogContent className={classes.formAlign}>
           <Grid container spacing={3} className={classes.containerStyle}>
             <Grid item>
-              <TextField type="standardForm" label="Name" />
-              <TextField type="standardForm" label="Email" />
-              <TextField type="standardForm" label="Contact no" />
+              <TextField type="standardForm" label="Name" icon="Name" />
+              <TextField type="standardForm" label="Email" icon="Email" />
+              <TextField type="standardForm" label="Contact no" icon="Phone" />
             </Grid>
           </Grid>
         </DialogContent>
