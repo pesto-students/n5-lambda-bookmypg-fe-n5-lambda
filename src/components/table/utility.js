@@ -12,6 +12,7 @@ import AddAmenity from "admin/components/amenity/AddAmenity";
 import AddOwner from "admin/components/owner/AddOwner";
 import SwitchComponent from "components/switch/Switch";
 import FormImage from "components/formimage/FormImage";
+import { S3_BUCKET_URL } from "constant";
 
 export const getHeadersData = (list_type) => {
   switch (list_type) {
@@ -64,7 +65,10 @@ export const getComponent = (emp, header, list_type) => {
       } else if (header === "logo") {
         return (
           <TableCell align="center">
-            <FormImage type="logo" imageName={emp[header]} />
+            <FormImage
+              type="logo"
+              imageName={`${S3_BUCKET_URL}/${emp[header]}`}
+            />
           </TableCell>
         );
       } else {
