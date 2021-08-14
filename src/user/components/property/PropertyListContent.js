@@ -10,9 +10,9 @@ import Rating from "../rating/rating";
 import Pagination from "../pagination/pagination";
 import { S3_BUCKET_URL } from "../../../constant";
 import useStyles from "./styles/PropertyListContent.styles";
-import Button from "../../../components/button/Button";
 import MoreButton from "@material-ui/core/Button";
-
+import Button from "../../../components/button/Button";
+import ScheduleVisit from "../schedulevisit/ScheduleVisit";
 export default function PropertyListContent(props) {
   const classes = useStyles();
 
@@ -66,13 +66,15 @@ export default function PropertyListContent(props) {
                       </Typography>
 
                       <div>
-                        <Grid
-                          container
-                          //spacing={2}
-                          className={classes.buttonMarginStyle}
-                        >
+                        <Grid container spacing={2}>
                           <Box>
-                            <Button text="Schedule Visit" />
+                            <ScheduleVisit
+                              owner={property.owner.email}
+                              property_name={property.name}
+                              property_id={property._id}
+                            />
+                          </Box>
+                          <Box>
                             <MoreButton
                               variant="contained"
                               color="secondary"
@@ -150,23 +152,39 @@ export default function PropertyListContent(props) {
                       <div className={classes.buttonsMobile}>
                         <Grid container spacing={2}>
                           <Box className={classes.buttonAlign}>
-                            <Button text="Schedule Visit" />
-                            <MoreButton
+                            <ScheduleVisit
+                              owner={property.owner.email}
+                              property_name={property.name}
+                            />
+                          </Box>
+                          <Box>
+                            <Button
+                              variant="contained"
+                              color="secondary"
+                              className={classes.buttonStyle}
+                              style={{ textTransform: "none" }}
                               onClick={() =>
                                 history.push(
                                   `/property-details/${property._id}`
                                 )
                               }
-                            />
+                            >
+                              MORE DETAILS
+                            </Button>
                           </Box>
                         </Grid>
                       </div>
                       <div className={classes.ratingStyle}>
                         <Rating value={4} number={property.numreviews || 0} />
+
                         <Button
-                          text="Schedule Visit"
+                          size="small"
+                          variant="contained"
                           color="ContainedSecondary"
-                        />
+                          style={{ textTransform: "none" }}
+                        >
+                          More Details
+                        </Button>
                       </div>
                     </CardContent>
                   </div>

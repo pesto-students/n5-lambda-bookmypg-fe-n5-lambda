@@ -261,7 +261,11 @@ export default function PropertyContent(props) {
                   <Bookproperty />
                 </Grid>
                 <Grid item xl={12} sm={6} md={3}>
-                  <ScheduleVisit />
+                  <ScheduleVisit
+                    owner={property.owner.email}
+                    property_name={property.name}
+                    property_id={property._id}
+                  />
                 </Grid>
               </Grid>
             </Grid>
@@ -275,8 +279,8 @@ export default function PropertyContent(props) {
           style={{ borderTop: "1px solid rgba(0, 0, 0, 0.12)" }}
         >
           <Similarproperties
-            title={"Similar properties"}
-            properties={props.properties}
+            title={"Recently Added Properties"}
+            latestProperties={props.latestProperties}
           />
         </Grid>
         <div ref={myRef}></div>

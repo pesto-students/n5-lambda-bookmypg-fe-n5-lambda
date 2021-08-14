@@ -1,11 +1,14 @@
 import httpInterceptor from "../network/interceptor";
 
-const PropertiesService = {
-  getProperties: async (payload) => {
-    const URL = "http://localhost:4000/api/properties";
+const AmenitiesService = {
+  getAmenities: async (payload) => {
+    const URL = "http://localhost:4000/api/amenities/";
     const response = await httpInterceptor({
       url: `${URL}${payload && payload.extraParams ? payload.extraParams : ""}`,
       method: "GET",
+      headers: {
+        "x-auth-token": payload.user.token,
+      },
     });
 
     if (response.ok) {
@@ -15,10 +18,15 @@ const PropertiesService = {
     throw new Error(response);
   },
 
-  getLatestProperties: async () => {
+  updateAmenity: async (payload) => {
+    const URL = `http://localhost:4000/api/amenities/${payload.id}`;
     const response = await httpInterceptor({
-      url: "http://localhost:4000/api/properties?pagenumber=1&countperpage=10&columnname=createdAt&orderby=dsc",
-      method: "GET",
+      url: URL,
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": payload.user.token,
+      },
     });
 
     if (response.ok) {
@@ -28,4 +36,4 @@ const PropertiesService = {
     throw new Error(response);
   },
 };
-export default PropertiesService;
+export default AmenitiesService;

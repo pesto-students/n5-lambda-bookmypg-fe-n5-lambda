@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Button,
   Card,
   CardContent,
   CardMedia,
@@ -13,7 +14,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
 import { S3_BUCKET_URL } from "../../../constant";
 import useStyles from "../similarproperties/similarproperties.styles";
-import Button from "../../../components/button/Button";
 
 const data = {
   propertyname: "Zolo House 1",
@@ -47,6 +47,12 @@ export default function SimilarProperties(props) {
     };
   }, []);
 
+  const handleMoreDetails = (property) => {
+    history.push(`/property-details/${property._id}`);
+  };
+
+  const latestProperties = props.latestProperties;
+
   const displayDesktop = () => {
     return (
       <React.Fragment>
@@ -61,9 +67,9 @@ export default function SimilarProperties(props) {
         <Grid className={classes.responsivegrid}>
           <Swiper slidesPerView={4}>
             <Grid container spacing={5}>
-              {props.properties &&
-                props.properties.length &&
-                props.properties.map((property) => (
+              {latestProperties &&
+                latestProperties.length &&
+                latestProperties.map((property) => (
                   <Grid item key={property._id} xs={12} sm={6} md={3}>
                     <SwiperSlide>
                       <Card className={classes.card}>
@@ -96,13 +102,16 @@ export default function SimilarProperties(props) {
                             number={property.numreviews || 0}
                           />
                           <Button
-                            text="More Details"
+                            size="small"
+                            variant="contained"
                             color="ContainedSecondary"
-                            handelClick={() =>
+                            className={classes.buttonStyle}
+                            onClick={() =>
                               history.push(`/property-details/${property._id}`)
                             }
-                            text="More Details"
-                          />
+                          >
+                            More Details
+                          </Button>
                         </div>
                       </Card>
                       <div></div>
@@ -129,9 +138,9 @@ export default function SimilarProperties(props) {
         </Typography>
         <Grid className={classes.responsivegrid}>
           <Grid container spacing={5}>
-            {props.properties &&
-              props.properties.length &&
-              props.properties.map((property) => (
+            {latestProperties &&
+              latestProperties.length &&
+              latestProperties.map((property) => (
                 <Grid item key={property._id} xs={12} sm={6} md={3}>
                   <Card className={classes.card}>
                     <CardMedia
@@ -158,7 +167,6 @@ export default function SimilarProperties(props) {
                         value={data.rating}
                         number={property.numreviews || 0}
                       />
-
                       <Button
                         size="small"
                         variant="contained"

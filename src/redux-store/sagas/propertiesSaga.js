@@ -15,3 +15,16 @@ export function* getPropertiesSaga(propertiesApi, action) {
     );
   }
 }
+
+export function* getLatestPropertiesSaga(propertiesApi, action) {
+  try {
+    const response = yield call(propertiesApi.getLatestProperties, action.payload);
+    yield put(propertiesActions.latestPropertiesReceived(response));
+  } catch (e) {
+    yield put(
+      propertiesActions.getLatestPropetiesFailed({
+        message: e.message,
+      })
+    );
+  }
+}

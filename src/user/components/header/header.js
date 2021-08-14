@@ -28,6 +28,9 @@ import UserSelector from "../../helpers/UserSelector";
 import userActions from "../../../redux-store/actions/userActions";
 import Button from "../../../components/button/Button";
 import useStyles from "./header.styles";
+import TenantsSelector from "../../../owner/components/TenantsSelector";
+import tenantsActions from "../../../redux-store/actions/tenantsActions";
+import { useAuth } from "../../../contexts/AuthContext";
 
 const headersData = [
   {
@@ -112,6 +115,7 @@ export function Header(props) {
 
   useEffect(() => {
     props.getLocations();
+    props.verifyAdmin();
   }, []);
 
   const LoginPopup = () => {
@@ -119,7 +123,8 @@ export function Header(props) {
   };
 
   const handleLogout = () => {
-    props.setLoggedUser("");
+    props.logoutUser();
+    history.push("/");
   };
 
   const handleClose = () => {
@@ -129,10 +134,18 @@ export function Header(props) {
   const handleLogin = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     const response = await firebase.auth().signInWithPopup(provider);
-    props.setLoggedUser(response.user);
     props.getUser(response.user.email);
+    const existingUser = props.tenants.filter((tenant) => tenant.email === response.user.email)[0];
     setOpen(false);
-    history.push("/");
+    if (existingUser) {
+      existingUser.role == "owner"
+        ? history.push("/owner-home")
+        : existingUser.role == "admin"
+        ? history.push("/admin-home")
+        : history.push("/");
+    } else {
+      history.push("/");
+    }
   };
 
   const locations = props.locations;
@@ -144,11 +157,11 @@ export function Header(props) {
         <div className={classes.contentStyle}>{searchBar}</div>
         <div>
           {getMenuButtons()}
-          {props.loggedUser == "" ? (
+          {!props.user || Object.keys(props.user).length === 0 ? (
             <Button text="Login" type="Menubutton" handleClick={LoginPopup} />
           ) : (
             <Button
-              text="Logout"
+              text={props.user.firstName + " " + props.user.lastName}
               type="Menubutton"
               handleClick={handleLogout}
             />
@@ -187,7 +200,7 @@ export function Header(props) {
         >
           <div className={drawerContainer}>
             {getDrawerChoices()}
-            {props.loggedUser == "" ? (
+            {!props.user || Object.keys(props.user).length === 0 ? (
               <Link
                 key={"Login"}
                 {...{
@@ -514,11 +527,13 @@ export function Header(props) {
 const mapStateToProps = (state) => {
   const locationsSelector = LocationsSelector(state.locations);
   const userSelector = UserSelector(state.user);
+  const tenantsSelector = TenantsSelector(state.tenants);
 
   return {
     user: userSelector.getUserData().data,
     locations: locationsSelector.getLocationsData().data,
     selectedLocation: locationsSelector.getSelectedLocation().selectedLocation,
+    tenants: tenantsSelector.getTenantsData().data,
   };
 };
 
@@ -529,7 +544,9 @@ const mapDispatchToProps = (dispatch) => {
     setSelectedLocation: (payload) =>
       dispatch(locationsActions.setSelectedLocation(payload)),
     getSelectedLocation: () => dispatch(locationsActions.getSelectedLocation()),
+    verifyAdmin: () => dispatch(tenantsActions.getTenants()),
     resetLocations: () => dispatch(locationsActions.resetState()),
+    logoutUser: () => dispatch(userActions.resetState()),
   };
 };
 

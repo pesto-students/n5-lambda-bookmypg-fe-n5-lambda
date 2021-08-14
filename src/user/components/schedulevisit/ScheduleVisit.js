@@ -12,13 +12,19 @@ import {
 } from "@material-ui/core";
 import { Phone, AccountBox } from "@material-ui/icons";
 import EmailIcon from "@material-ui/icons/Email";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import useStyles from "./ScheduleVisit.styles";
 import Button from "../../../components/button/Button";
 import Datepicker from "../../../components/datepicker/Datepicker";
 import CloseButton from "../../../components/closebutton/CloseButton";
 import FormImage from "components/formimage/FormImage";
+import { EMAIL_TYPE } from "../../../constant";
 
-export default function ScheduleVisit() {
+const FROM_TIME = "10:00am";
+const TO_TIME = "06:00pm";
+
+export default function ScheduleVisit(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -30,6 +36,37 @@ export default function ScheduleVisit() {
     setOpen(false);
   };
   const [selectedDate, setSelectedDate] = React.useState(new Date());
+  const [name, setName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [phone, setPhone] = React.useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const payload = {
+      user_email: email,
+      type: EMAIL_TYPE.VISIT,
+      owner_email: props.owner,
+      property_name: props.property_name,
+      property_id: props.property_id,
+      date: selectedDate,
+      from_time: FROM_TIME,
+      to_time: TO_TIME,
+    };
+    fetch("http://localhost:4000/api/emails/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    })
+      .then((response) => response.json())
+      .catch((error) => {
+        console.error(error);
+      });
+    setOpen(false);
+    setName("");
+    setEmail("");
+    setPhone("");
+    toast("Visit has been scheduled successfully!");
+  };
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -37,7 +74,7 @@ export default function ScheduleVisit() {
   const date = new Date();
   date.setDate(date.getDate() + 7);
   return (
-    <div>
+    <React.Fragment>
       <Button text="Schedule Visit" handleClick={handleClickOpen} />
       <Dialog
         open={open}
@@ -85,37 +122,41 @@ export default function ScheduleVisit() {
             <TextField
               id="standard-basic"
               label="Name"
-              defaultValue=""
+              value={name}
               fullwidth
               InputProps={{
                 endAdornment: <AccountBox className={classes.iconStyle} />,
               }}
+              onChange={(e) => setName(e.target.value)}
             />
             <TextField
               id="standard-basic"
               label="Email"
-              defaultValue=""
+              value={email}
               fullwidth
               InputProps={{
                 endAdornment: <EmailIcon className={classes.iconStyle} />,
               }}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               id="standard-basic"
               label="Phone"
-              defaultValue=""
+              value={phone}
               fullwidth
               InputProps={{
                 endAdornment: <Phone className={classes.iconStyle} />,
               }}
+              onChange={(e) => setPhone(e.target.value)}
             />
           </FormControl>
         </DialogContent>
         <DialogActions className={classes.button}>
-          <Button text="Submit" />
-          <Button text="Cancel" />
+          <Button text="Submit" handleClick={handleSubmit} />
+          <Button text="Cancel" handleClick={handleClose} />
         </DialogActions>
       </Dialog>
-    </div>
+      <ToastContainer />
+    </React.Fragment>
   );
 }
