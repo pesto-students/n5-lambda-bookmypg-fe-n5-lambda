@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import ResponsiveDrawer from "../responsivedrawer/responsivedrawer";
 import { Grid } from "@material-ui/core";
+import { get } from 'lodash';
 import Tablecomponent from "components/table/Table";
 import Pagination from "../pagination/pagination";
 import TenantsSelector from "../TenantsSelector";
@@ -10,6 +11,9 @@ import useStyles from "./styles/TenantListContent.styles";
 import Datepicker from "../../../components/datepicker/Datepicker";
 import Typography from "../../../components/typography/Typography";
 import TextField from "../../../components/textfield/Textfield";
+import UserSelector from "../../../user/helpers/UserSelector";
+import PropertiesSelector from "../../../user/helpers/PropertiesSelector";
+import { DATE, ORDER_BY } from "../../../constant";
 
 export function Tenantcontent(props) {
   const classes = useStyles();
@@ -20,6 +24,12 @@ export function Tenantcontent(props) {
 
   const [selectedDate, setSelectedDate] = React.useState(new Date());
   const [enabled, setEnabled] = React.useState(false);
+  const [from_date, setFromDate] = React.useState(DATE.FROM_DATE);
+  const [to_date, setToDate] = React.useState(DATE.TO_DATE);
+  const [pagenumber, setPagenumber] = React.useState(1);
+  const [countperpage, setCountperpage] = React.useState(10);
+  const [search, setSearch] = React.useState("");
+  const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC); 
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -30,15 +40,50 @@ export function Tenantcontent(props) {
   }, []);
 
   useEffect(() => {
-    props.getTenants();
-  }, [enabled, setEnabled]);
+    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&from_date=${from_date}&to_date=${to_date}&columnname=onboardedAt&orderby=${order_by}`;
+    props.getTenants({ extraParams });
+  }, [
+    enabled,
+    setEnabled,
+    pagenumber,
+    countperpage,
+    search,
+    from_date,
+    to_date,
+    order_by,
+  ]);
 
-  const tenants =
-    props.tenants && props.tenants.length
-      ? props.tenants.filter(
-          (tenant) => tenant.property && tenant.role === "user"
-        )
-      : [];
+  let properties;
+  let tenants;
+  let TableData = [];
+  if (get(props, "properties.length") && get(props,'tenants.length')) {
+    properties = props.properties.filter(
+      (property) => property.owner._id === props.user._id
+    );
+    properties = properties.map((property) => property._id);
+    tenants =
+      props.tenants && props.tenants.length
+        ? props.tenants.filter(
+            (tenant) => tenant.property && tenant.role === "user"
+          )
+        : [];
+
+    tenants = tenants.filter((tenant) =>
+      properties.includes(tenant.property._id)
+    );
+
+    console.log("tenants==>", tenants);
+
+    tenants.map((tenant) => {
+      TableData.push({
+        name: tenant.firstName + " " + tenant.lastName,
+        email: tenant.email,
+        phone: tenant.phone,
+        property: tenant.property.name,
+        onboardedAt: tenant.onboardedAt,
+      });
+    });
+  }
 
   return (
     <div className="Table">
@@ -48,18 +93,23 @@ export function Tenantcontent(props) {
             <Typography text="Tenant List" type="ListTitle" />
             <Grid container justify={"space-between"}>
               <Grid item xs={12} md={4} className={classes.searchboxStyle}>
-                <TextField type="standardForm" label="Search by tenant name" />
+                <TextField
+                  type="standardForm"
+                  label="Search by tenant name"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
               </Grid>
               <Grid item xs={12} md={6} className={classes.datepickerStyle}>
                 <Datepicker
                   type="DisableFuture"
-                  selectedDate={selectedDate}
-                  handleDateChange={handleDateChange}
+                  selectedDate={from_date}
+                  handleDateChange={(date) => setFromDate(date.toISOString())}
                 />
                 <Datepicker
                   type="DisableFutureMargin"
-                  selectedDate={selectedDate}
-                  handleDateChange={handleDateChange}
+                  selectedDate={to_date}
+                  handleDateChange={(date) => setToDate(date.toISOString())}
                 />
               </Grid>
             </Grid>
@@ -71,11 +121,19 @@ export function Tenantcontent(props) {
             <Tablecomponent
               switchData="name"
               sortingColumn="onboardedAt"
-              tableData={tenants}
+              tableData={TableData}
               list_type="Tenants"
+              order_by={order_by}
+              setOrderBy={setOrderBy}
             />
           </Grid>
-          <Pagination />
+          <Pagination
+            pagenumber={pagenumber}
+            setPagenumber={setPagenumber}
+            countperpage={countperpage}
+            setCountperpage={setCountperpage}
+            count={props.tenants.length}
+          />
         </Grid>
       </ResponsiveDrawer>
     </div>
@@ -84,15 +142,19 @@ export function Tenantcontent(props) {
 
 const mapStateToProps = (state) => {
   const tenantsSelector = TenantsSelector(state.tenants);
+  const userSelector = UserSelector(state.user);
+  const propertiesSelector = PropertiesSelector(state.properties);
 
   return {
     tenants: tenantsSelector.getTenantsData().data,
+    user: userSelector.getUserData().data,
+    properties: propertiesSelector.getPropertiesData().data,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getTenants: () => dispatch(tenantsActions.getTenants()),
+    getTenants: (payload) => dispatch(tenantsActions.getTenants(payload)),
     updateTenant: (id) => dispatch(tenantsActions.updateTenant(id)),
     resetTenants: () => dispatch(tenantsActions.resetState()),
   };

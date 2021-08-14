@@ -104,7 +104,7 @@ export const TENANT_LIST_HEADERS = {
   email: "Email",
   phone: "Contact no",
   property: "Property Name",
-  createdAt: "Onboarding Date",
+  onboardedAt: "Onboarding Date",
 };
 
 export const PAYMENT_LIST_HEADERS = {
