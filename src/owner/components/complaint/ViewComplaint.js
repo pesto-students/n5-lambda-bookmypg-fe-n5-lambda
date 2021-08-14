@@ -5,20 +5,18 @@ import {
   DialogContent,
   DialogTitle,
   Box,
-  FormControl,
   Grid,
-  InputLabel,
-  Select,
-  MenuItem,
-  FormHelperText,
 } from "@material-ui/core";
 import useStyles from "./styles/ViewComplaint.styles";
-import CloseButton from "../../../components/closebutton/CloseButton";
-import Button from "../../../components/button/Button";
-import Link from "../../../components/link/Link";
-import Typography from "../../../components/typography/Typography";
-import TextField from "../../../components/textfield/Textfield";
+import CloseButton from "components/closebutton/CloseButton";
+import Button from "components/button/Button";
+import Link from "components/link/Link";
+import Typography from "components/typography/Typography";
+import TextField from "components/textfield/Textfield";
 import FormImage from "components/formimage/FormImage";
+import Select from "components/select/Select";
+
+const listitems = ["Pending", "Resolved"];
 
 export default function FormDialog(props) {
   const classes = useStyles();
@@ -67,47 +65,48 @@ export default function FormDialog(props) {
 
         <DialogContent className={classes.formAlign}>
           <Grid spacing={3} className={classes.containerStyle}>
-            <TextField label="Complaint Raisedby" defaultValue="Monali" />
+            <TextField
+              label="Complaint Raisedby"
+              defaultValue="Monali"
+              icon="Name"
+            />
 
-            <TextField label="Email" defaultValue="abc@gmail.com" />
+            <TextField
+              label="Email"
+              defaultValue="abc@gmail.com"
+              icon="Email"
+            />
 
-            <TextField label="Phone" defaultValue="12345" />
+            <TextField label="Phone" defaultValue="12345" icon="Phone" />
 
-            <TextField label="Complaint Date" defaultValue="12/07/2021" />
+            <TextField
+              label="Complaint Date"
+              defaultValue="12/07/2021"
+              icon="Event"
+            />
 
             <TextField
               label="Description"
-              defaultValue="Air conditioner is not working."
-              maxrows={4}
+              value="Air conditioner is not working."
+              maxrows={2}
               multiline={true}
+              icon="Description"
             />
-
-            <FormControl className={classes.formControl}>
-              <InputLabel
-                shrink
-                id="demo-simple-select-placeholder-label-label"
-              >
-                Status
-              </InputLabel>
-              <Select
-                labelId="demo-simple-select-placeholder-label-label"
-                id="demo-simple-select-placeholder-label"
-                value={status}
-                onChange={handleChange}
-                displayEmpty
-                className={classes.selectEmpty}
-              >
-                <MenuItem value="Pending">Pending</MenuItem>
-                <MenuItem value="Resolved">Resolved</MenuItem>
-              </Select>
-              <FormHelperText>Complaint Status</FormHelperText>
-            </FormControl>
 
             <TextField
               label="Remarks"
               defaultValue="-"
               maxrows={4}
               multiline={true}
+              icon="Comment"
+              type="standardForm"
+            />
+
+            <Select
+              name="Complaint Status"
+              value={status}
+              setValue={setStatus}
+              listitems={listitems}
             />
           </Grid>
         </DialogContent>

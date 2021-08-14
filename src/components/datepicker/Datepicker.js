@@ -57,7 +57,7 @@ export default function DatepickerComponent(props) {
             format="MM/dd/yyyy"
             margin="normal"
             id="date-picker-inline"
-            label="When you want to move in?"
+            label={props.label}
             value={props.selectedDate}
             onChange={props.handleDateChange}
             KeyboardButtonProps={{
