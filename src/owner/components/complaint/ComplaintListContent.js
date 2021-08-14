@@ -79,7 +79,6 @@ export function ComplaintsContent(props) {
                 <Datepicker
                   type="DisableFuture"
                   selectedDate={from_date}
-                  value={from_date}
                   handleDateChange={(date) => setFromDate(date.toISOString())}
                 />
                 <Datepicker

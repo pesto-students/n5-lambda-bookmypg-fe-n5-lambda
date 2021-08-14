@@ -7,6 +7,8 @@ import {
   DialogContent,
   DialogTitle,
 } from "@material-ui/core";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import useStyles from "./styles/AddOwner.styles";
 import Button from "../../../components/button/Button";
 import CloseButton from "../../../components/closebutton/CloseButton";
@@ -17,6 +19,10 @@ import FormImage from "components/formimage/FormImage";
 export default function AddOwner(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [firstName, setFirstName] = React.useState("");
+  const [lastName, setLastName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [phone, setPhone] = React.useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -24,6 +30,17 @@ export default function AddOwner(props) {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleSubmit = () => {
+    props.addOwner({firstName, lastName, email, phone, role: "owner", onboardedAt: new Date()});
+    setOpen(false);
+    toast("Owner has been added successfully!");
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setPhone("");
+    props.setOwner(true);
   };
   const date = new Date();
   date.setDate(date.getDate() + 7);
@@ -58,17 +75,39 @@ export default function AddOwner(props) {
         <DialogContent className={classes.formAlign}>
           <Grid container spacing={3} className={classes.containerStyle}>
             <Grid item>
-              <TextField type="standardForm" label="Name" />
-              <TextField type="standardForm" label="Email" />
-              <TextField type="standardForm" label="Contact no" />
+              <TextField
+                type="standardForm"
+                label="First Name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+              <TextField
+                type="standardForm"
+                label="Last Name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+              <TextField
+                type="standardForm"
+                label="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <TextField
+                type="standardForm"
+                label="Contact no"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
             </Grid>
           </Grid>
         </DialogContent>
         <DialogActions className={classes.button}>
-          <Button text="Submit" />
-          <Button text="Cancel" />
+          <Button text="Submit" handleClick={handleSubmit} />
+          <Button text="Cancel" handleClick={handleClose} />
         </DialogActions>
       </Dialog>
+      <ToastContainer />
     </div>
   );
 }
