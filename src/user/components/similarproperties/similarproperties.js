@@ -102,7 +102,6 @@ export default function SimilarProperties(props) {
                             handelClick={() =>
                               history.push(`/property-details/${property._id}`)
                             }
-                            text="More Details"
                           />
                         </div>
                       </Card>

@@ -11,10 +11,9 @@ export default function CenteredGrid(props) {
 
   const imageRef = useRef();
   const handleClick = () => {
-    console.log("clicked");
-
     imageRef.current.click();
   };
+
   // On each change let user have access to a selected file
   const handleChange = (event) => {
     const file = URL.createObjectURL(event.target.files[0]);

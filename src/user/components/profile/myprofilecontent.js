@@ -29,11 +29,11 @@ export default function MyProfileContent() {
   return (
     <div className="Table">
       <ResponsiveDrawer>
-        <Grid container>
-          <Grid item xs={12} sm={3}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={3} sm={12}>
             <ProfilePhoto imageName="DefaultPic.png" />
           </Grid>
-          <Grid item xs={12} sm={5}>
+          <Grid item xs={10} md={4} sm={10}>
             <Grid item>
               <TextField
                 id="standard-basic"
