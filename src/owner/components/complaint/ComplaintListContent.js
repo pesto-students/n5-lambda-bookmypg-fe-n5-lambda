@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import ResponsiveDrawer from "../responsivedrawer/responsivedrawer";
 import { Grid } from "@material-ui/core";
+import { get } from 'lodash';
+import ResponsiveDrawer from "../responsivedrawer/responsivedrawer";
 import Tablecomponent from "components/table/Table";
 import Pagination from "../pagination/pagination";
 import ComplaintsSelector from "../ComplaintsSelector";
@@ -12,53 +13,53 @@ import Typography from "../../../components/typography/Typography";
 import TextField from "../../../components/textfield/Textfield";
 import Viewcomplaint from "./ViewComplaint";
 import SwitchComponent from "components/switch/Switch";
-
-const TableData = [
-  {
-    name: "def",
-    email: "abc@gmail.com",
-    phone: "123",
-    property: "abc",
-    createdAt: "12/07/2021",
-    status: "Pending",
-    test: "new",
-  },
-  {
-    name: "def",
-    email: "abc@gmail.com",
-    phone: "123",
-    property: "abc",
-    createdAt: "12/07/2021",
-    status: "Pending",
-    test: "new",
-  },
-  {
-    name: "pqr",
-    email: "abc@gmail.com",
-    phone: "123",
-    property: "abc",
-    createdAt: "12/07/2021",
-    status: "Pending",
-    test: "new",
-  },
-];
+import PropertiesSelector from "../../../user/helpers/PropertiesSelector";
+import UserSelector from "../../../user/helpers/UserSelector";
+import { DATE, ORDER_BY } from "../../../constant";
 
 export function ComplaintsContent(props) {
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
+  
+  const [from_date, setFromDate] = React.useState(DATE.FROM_DATE);
+  const [to_date, setToDate] = React.useState(DATE.TO_DATE);
+  const [pagenumber, setPagenumber] = React.useState(1);
+  const [countperpage, setCountperpage] = React.useState(10);
+  const [search, setSearch] = React.useState("");
+  const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC); 
+  
   const classes = useStyles();
   useEffect(() => {
     props.resetComplaints();
   }, []);
 
   useEffect(() => {
-    props.getComplaints();
-  }, []);
+    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&from_date=${from_date}&to_date=${to_date}&columnname=createdAt&orderby=${order_by}`;
+    const user = props.user;
+    props.getComplaints({ extraParams, user });
+  }, [pagenumber, countperpage, search, from_date, to_date, order_by]);
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
+  let properties;
+  let complaints;
+  let TableData = [];
+  if (get(props, "properties.length") && get(props, "complaints.length")) {
+    properties = props.properties.filter(
+      (property) => property.owner._id === props.user._id
+    );
+    properties = properties.map((property) => property._id);
+    complaints = props.complaints.filter((complaint) =>
+      properties.includes(complaint.property._id)
+    );
+    complaints.map((complaint) => {
+      TableData.push({
+        name: complaint.raisedby.firstName + " " + complaint.raisedby.lastName,
+        email: complaint.raisedby.email,
+        phone: complaint.raisedby.phone,
+        property: complaint.property.name,
+        createdAt: complaint.createdAt,
+        status: complaint.status,
+      });
+    });
+  }
 
-  console.log(props.complaints);
   return (
     <div className="Table">
       <ResponsiveDrawer>
@@ -70,18 +71,21 @@ export function ComplaintsContent(props) {
                 <TextField
                   type="standardForm"
                   label="Search by property name"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} md={6} className={classes.datepickerStyle}>
                 <Datepicker
                   type="DisableFuture"
-                  selectedDate={selectedDate}
-                  handleDateChange={handleDateChange}
+                  selectedDate={from_date}
+                  value={from_date}
+                  handleDateChange={(date) => setFromDate(date.toISOString())}
                 />
                 <Datepicker
                   type="DisableFutureMargin"
-                  selectedDate={selectedDate}
-                  handleDateChange={handleDateChange}
+                  selectedDate={to_date}
+                  handleDateChange={(date) => setToDate(date.toISOString())}
                 />
               </Grid>
             </Grid>
@@ -90,9 +94,17 @@ export function ComplaintsContent(props) {
               switchData="name"
               sortingColumn="createdAt"
               list_type="Complaints"
+              order_by={order_by}
+              setOrderBy={setOrderBy}
             />
           </Grid>
-          <Pagination />
+          <Pagination
+            pagenumber={pagenumber}
+            setPagenumber={setPagenumber}
+            countperpage={countperpage}
+            setCountperpage={setCountperpage}
+            count={props.complaints.length}
+          />
         </Grid>
       </ResponsiveDrawer>
     </div>
@@ -101,15 +113,20 @@ export function ComplaintsContent(props) {
 
 const mapStateToProps = (state) => {
   const complaintsSelector = ComplaintsSelector(state.complaints);
+  const propertiesSelector = PropertiesSelector(state.properties);
+  const userSelector = UserSelector(state.user);
 
   return {
+    user: userSelector.getUserData().data,
     complaints: complaintsSelector.getComplaintsData().data,
+    properties: propertiesSelector.getPropertiesData().data,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getComplaints: () => dispatch(complainsActions.getComplaints()),
+    getComplaints: (payload) =>
+      dispatch(complainsActions.getComplaints(payload)),
     // updateComplaint: (id) => dispatch(complainsActions.updateComplaint(id)),
     resetComplaints: () => dispatch(complainsActions.resetState()),
   };

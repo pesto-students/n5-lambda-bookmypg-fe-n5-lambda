@@ -24,7 +24,6 @@ export default function DatepickerComponent(props) {
             KeyboardButtonProps={{
               "aria-label": "change date",
             }}
-            disableFuture={true}
           />
         </MuiPickersUtilsProvider>
       );
@@ -43,7 +42,6 @@ export default function DatepickerComponent(props) {
             KeyboardButtonProps={{
               "aria-label": "change date",
             }}
-            disableFuture={true}
             className={classes.marginStyle}
           />
         </MuiPickersUtilsProvider>
