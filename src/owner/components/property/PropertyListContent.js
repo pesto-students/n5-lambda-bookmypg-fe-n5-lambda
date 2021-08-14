@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { get } from 'lodash';
 import ResponsiveDrawer from "../responsivedrawer/responsivedrawer";
 import Grid from "@material-ui/core/Grid/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -11,43 +12,43 @@ import PropertiesSelector from "../../../user/helpers/PropertiesSelector";
 import propertiesActions from "../../../redux-store/actions/propertiesActions";
 import useStyles from "./styles/PropertyListContent.styles.js";
 import Tablecomponent from "components/table/Table";
-
-const Tabledata = [
-  {
-    name: "abc",
-    location: "Mumbai",
-    address: "Sion",
-    pincode: "12345",
-    freebeds: "10",
-    createdAt: "12/07/2021",
-  },
-  {
-    name: "def",
-    location: "Delhi",
-    address: "123",
-    pincode: "abc",
-    freebeds: "abc",
-    createdAt: "12/07/2021",
-  },
-  {
-    name: "pqr",
-    location: "Chennai",
-    address: "123",
-    pincode: "abc",
-    freebeds: "abc",
-    createdAt: "12/07/2021",
-  },
-];
+import UserSelector from "../../../user/helpers/UserSelector";
+import { ORDER_BY } from "../../../constant";
 
 export function PropertyListContent(props) {
   const classes = useStyles();
+
+  const [pagenumber, setPagenumber] = React.useState(1);
+  const [countperpage, setCountperpage] = React.useState(10);
+  const [search, setSearch] = React.useState("");
+  const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC); 
+
   useEffect(() => {
     props.resetProperties();
   }, []);
 
   useEffect(() => {
-    props.getProperties();
-  }, []);
+    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&columnname=createdAt&orderby=${order_by}`;
+    props.getProperties({ extraParams });
+  }, [pagenumber, countperpage, search, order_by]);
+
+  let properties;
+  let TableData = [];
+  if (get(props, 'properties.length')) {
+    properties = props.properties.filter(
+      (property) => property.owner._id === props.user._id
+    );
+
+    properties.map((property) => {
+      TableData.push({
+        name: property.name,
+        location: property.location.name,
+        address: property.address,
+        freebeds: property.totalbeds,
+        createdAt: property.createdAt,
+      });
+    });
+  }
 
   return (
     <div className="Table">
@@ -63,6 +64,8 @@ export function PropertyListContent(props) {
                   id="standard-basic"
                   label="Search by property name"
                   className={classes.textfieldStyle}
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} md={6} className={classes.propertybuttonStyle}>
@@ -70,14 +73,22 @@ export function PropertyListContent(props) {
               </Grid>
             </Grid>
             <Tablecomponent
-              tableData={Tabledata}
+              tableData={TableData}
               switchData="name"
               list_type="Properties"
-              sortingColumn="name"
+              sortingColumn="createdAt"
+              order_by={order_by}
+              setOrderBy={setOrderBy}
             />
             {/* <Tablecomponent properties={props.properties} />*/}
           </Grid>
-          <Pagination />
+          <Pagination
+            pagenumber={pagenumber}
+            setPagenumber={setPagenumber}
+            countperpage={countperpage}
+            setCountperpage={setCountperpage}
+            count={props.properties.length}
+          />
         </Grid>
       </ResponsiveDrawer>
     </div>
@@ -86,15 +97,18 @@ export function PropertyListContent(props) {
 
 const mapStateToProps = (state) => {
   const propertiesSelector = PropertiesSelector(state.properties);
+  const userSelector = UserSelector(state.user);
 
   return {
+    user: userSelector.getUserData().data,
     properties: propertiesSelector.getPropertiesData().data,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getProperties: () => dispatch(propertiesActions.getProperties()),
+    getProperties: (payload) =>
+      dispatch(propertiesActions.getProperties(payload)),
     // updateProperty: (id) => dispatch(propertiesActions.updateProperty(id)),
     resetProperties: () => dispatch(propertiesActions.resetState()),
   };
