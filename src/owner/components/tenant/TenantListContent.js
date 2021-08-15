@@ -12,7 +12,6 @@ import Datepicker from "../../../components/datepicker/Datepicker";
 import Typography from "../../../components/typography/Typography";
 import TextField from "../../../components/textfield/Textfield";
 import UserSelector from "../../../user/helpers/UserSelector";
-import PropertiesSelector from "../../../user/helpers/PropertiesSelector";
 import { DATE, ORDER_BY } from "../../../constant";
 
 export function Tenantcontent(props) {
@@ -40,8 +39,8 @@ export function Tenantcontent(props) {
   }, []);
 
   useEffect(() => {
-    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&from_date=${from_date}&to_date=${to_date}&columnname=onboardedAt&orderby=${order_by}`;
-    props.getTenants({ extraParams });
+    const extraParams = `${props.user._id}?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&from_date=${from_date}&to_date=${to_date}&columnname=onboardedAt&orderby=${order_by}`;
+    props.getTenantsByOwner({ extraParams });
   }, [
     enabled,
     setEnabled,
@@ -53,33 +52,16 @@ export function Tenantcontent(props) {
     order_by,
   ]);
 
-  let properties;
-  let tenants;
+  console.log("props.tenants",props.tenants)
+
   let TableData = [];
-  if (get(props, "properties.length") && get(props,'tenants.length')) {
-    properties = props.properties.filter(
-      (property) => property.owner._id === props.user._id
-    );
-    properties = properties.map((property) => property._id);
-    tenants =
-      props.tenants && props.tenants.length
-        ? props.tenants.filter(
-            (tenant) => tenant.property && tenant.role === "user"
-          )
-        : [];
-
-    tenants = tenants.filter((tenant) =>
-      properties.includes(tenant.property._id)
-    );
-
-    console.log("tenants==>", tenants);
-
-    tenants.map((tenant) => {
+  if (get(props,'tenants.length')) {
+    props.tenants.map((tenant) => {
       TableData.push({
         name: tenant.firstName + " " + tenant.lastName,
         email: tenant.email,
         phone: tenant.phone,
-        property: tenant.property.name,
+        property: tenant.property ? tenant.property.name : '',
         onboardedAt: tenant.onboardedAt,
       });
     });
@@ -143,18 +125,16 @@ export function Tenantcontent(props) {
 const mapStateToProps = (state) => {
   const tenantsSelector = TenantsSelector(state.tenants);
   const userSelector = UserSelector(state.user);
-  const propertiesSelector = PropertiesSelector(state.properties);
 
   return {
     tenants: tenantsSelector.getTenantsData().data,
     user: userSelector.getUserData().data,
-    properties: propertiesSelector.getPropertiesData().data,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getTenants: (payload) => dispatch(tenantsActions.getTenants(payload)),
+    getTenantsByOwner: (payload) => dispatch(tenantsActions.getTenantsByOwner(payload)),
     updateTenant: (id) => dispatch(tenantsActions.updateTenant(id)),
     resetTenants: () => dispatch(tenantsActions.resetState()),
   };

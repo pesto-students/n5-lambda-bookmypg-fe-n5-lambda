@@ -28,18 +28,14 @@ export function PropertyListContent(props) {
   }, []);
 
   useEffect(() => {
-    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&columnname=createdAt&orderby=${order_by}`;
-    props.getProperties({ extraParams });
+    const extraParams = `${props.user._id}?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&columnname=createdAt&orderby=${order_by}`;
+    props.getPropertiesByOwner({ extraParams });
   }, [pagenumber, countperpage, search, order_by]);
 
   let properties;
   let TableData = [];
   if (get(props, 'properties.length')) {
-    properties = props.properties.filter(
-      (property) => property.owner._id === props.user._id
-    );
-
-    properties.map((property) => {
+    props.properties.map((property) => {
       TableData.push({
         name: property.name,
         location: property.location.name,
@@ -107,8 +103,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getProperties: (payload) =>
-      dispatch(propertiesActions.getProperties(payload)),
+    getPropertiesByOwner: (payload) => dispatch(propertiesActions.getPropertiesByOwner(payload)),
     // updateProperty: (id) => dispatch(propertiesActions.updateProperty(id)),
     resetProperties: () => dispatch(propertiesActions.resetState()),
   };

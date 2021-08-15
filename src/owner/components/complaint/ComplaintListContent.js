@@ -13,7 +13,6 @@ import Typography from "../../../components/typography/Typography";
 import TextField from "../../../components/textfield/Textfield";
 import Viewcomplaint from "./ViewComplaint";
 import SwitchComponent from "components/switch/Switch";
-import PropertiesSelector from "../../../user/helpers/PropertiesSelector";
 import UserSelector from "../../../user/helpers/UserSelector";
 import { DATE, ORDER_BY } from "../../../constant";
 
@@ -32,23 +31,14 @@ export function ComplaintsContent(props) {
   }, []);
 
   useEffect(() => {
-    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&from_date=${from_date}&to_date=${to_date}&columnname=createdAt&orderby=${order_by}`;
     const user = props.user;
+    const extraParams = `${user._id}?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&from_date=${from_date}&to_date=${to_date}&columnname=createdAt&orderby=${order_by}`;
     props.getComplaints({ extraParams, user });
   }, [pagenumber, countperpage, search, from_date, to_date, order_by]);
 
-  let properties;
-  let complaints;
   let TableData = [];
-  if (get(props, "properties.length") && get(props, "complaints.length")) {
-    properties = props.properties.filter(
-      (property) => property.owner._id === props.user._id
-    );
-    properties = properties.map((property) => property._id);
-    complaints = props.complaints.filter((complaint) =>
-      properties.includes(complaint.property._id)
-    );
-    complaints.map((complaint) => {
+  if (get(props, "complaints.length")) {
+    props.complaints.map((complaint) => {
       TableData.push({
         name: complaint.raisedby.firstName + " " + complaint.raisedby.lastName,
         email: complaint.raisedby.email,
@@ -112,13 +102,11 @@ export function ComplaintsContent(props) {
 
 const mapStateToProps = (state) => {
   const complaintsSelector = ComplaintsSelector(state.complaints);
-  const propertiesSelector = PropertiesSelector(state.properties);
   const userSelector = UserSelector(state.user);
 
   return {
     user: userSelector.getUserData().data,
     complaints: complaintsSelector.getComplaintsData().data,
-    properties: propertiesSelector.getPropertiesData().data,
   };
 };
 
