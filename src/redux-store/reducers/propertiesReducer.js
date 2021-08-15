@@ -10,6 +10,9 @@ import {
   GET_LATEST_PROPERTIES_REQUEST_RESOLVED,
   GET_LATEST_PROPERTIES_REQUEST_FAILED,
   RESET_LATEST_PROPERTIES_STATE,
+  ADD_PROPERTY_REQUEST_MADE,
+  ADD_PROPERTY_REQUEST_RESOLVED,
+  ADD_PROPERTY_REQUEST_FAILED,
 } from "../../constant";
 import requestState from "../utils/request";
 
@@ -116,6 +119,35 @@ const resetLatestPropertiesState = (state = {}) => {
   };
 };
 
+
+const addPropertyRequestMadeResolver = (state = {}, payload = {}) => {
+  return {
+    ...state,
+    addPropertyRequestState: {
+      ...requestState.processing,
+    },
+  };
+};
+
+const addPropertyRequestResolvedResolver = (state = {}, payload) => {
+  return {
+    ...state,
+    addPropertyRequestState: {
+      ...requestState.resolved,
+    },
+  };
+};
+
+const addPropertyRequestFailedResolver = (state = {}, payload = {}) => {
+  return {
+    ...state,
+    addPropertyRequestState: {
+      ...requestState.failed,
+    },
+    ...payload,
+  };
+};
+
 const actionToResolverMap = {
   [GET_PROPERTIES_REQUEST_MADE]: getPropertiesRequestMadeResolver,
   [GET_PROPERTIES_REQUEST_RESOLVED]: getPropertiesRequestResolvedResolver,
@@ -133,6 +165,9 @@ const actionToResolverMap = {
   [GET_LATEST_PROPERTIES_REQUEST_FAILED]:
     getLatestPropertiesRequestFailedResolver,
   [RESET_LATEST_PROPERTIES_STATE]: resetLatestPropertiesState,
+  [ADD_PROPERTY_REQUEST_MADE]: addPropertyRequestMadeResolver,
+  [ADD_PROPERTY_REQUEST_RESOLVED]: addPropertyRequestResolvedResolver,
+  [ADD_PROPERTY_REQUEST_FAILED]: addPropertyRequestFailedResolver,
 };
 
 export default (state = {}, action = {}) => {

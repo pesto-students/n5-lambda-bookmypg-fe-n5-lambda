@@ -41,7 +41,6 @@ const TableData = [
 ];
 
 export default function Tablecomponent(props) {
-  console.log(props.complaints);
   const classes = useStyles();
 
   const complaints = props.complaints;

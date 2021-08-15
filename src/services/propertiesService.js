@@ -41,5 +41,24 @@ const PropertiesService = {
     }
     throw new Error(response);
   },
+
+  addProperty: async (payload) => {
+    const URL = `http://localhost:4000/api/properties/`;
+    const response = await httpInterceptor({
+      url: URL,
+      method: "POST",
+      body: JSON.stringify(payload.params),
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": payload.user.token,
+      },
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    }
+    throw new Error(response);
+  },
 };
 export default PropertiesService;

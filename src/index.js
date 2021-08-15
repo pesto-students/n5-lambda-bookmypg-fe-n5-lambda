@@ -20,7 +20,8 @@ import PropertyList from "./user/pages/Propertylist";
 import HomePage from "./user/pages/Homepage";
 import OwnerProtectedRoute from "./ProtectedRoutes/OwnerProtectedRoute";
 import AdminProtectedRoute from "./ProtectedRoutes/AdminProtectedRoute";
-
+import _env from 'dotenv';
+_env.config();
 const hist = createBrowserHistory();
 
 ReactDOM.render(

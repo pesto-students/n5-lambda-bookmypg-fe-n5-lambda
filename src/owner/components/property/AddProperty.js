@@ -7,6 +7,9 @@ import {
   Box,
   Grid,
 } from "@material-ui/core";
+import { isEmpty, get } from 'lodash';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import useStyles from "./styles/AddProperty.styles";
 import Button from "../../../components/button/Button";
 import CloseButton from "../../../components/closebutton/CloseButton";
@@ -23,6 +26,16 @@ export default function AddProperty(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
+  const [name, setName] = React.useState("");
+  const [address, setAddress] = React.useState("");
+  const [description, setDescription] = React.useState("");
+  const [totalbeds, setTotalBeds] = React.useState("");
+  const [location, setLocation] = React.useState("");
+  const [amenities, setAmenitis] = React.useState([]);
+  const [rent, setRent] = React.useState("");
+  const [photos, setPhotos] = React.useState([]);
+  const [gender, setGender] = React.useState("");
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -35,7 +48,6 @@ export default function AddProperty(props) {
 
   const handleClickOpenEdit = () => {
     setOpenEdit(true);
-    console.log(openEdit);
   };
 
   const handleCloseEdit = () => {
@@ -44,12 +56,65 @@ export default function AddProperty(props) {
 
   const [status, setStatus] = React.useState("");
 
-  const listitems = ["Washing Machine", "Refrigerator", "Air Conditioner"];
-  const genderlist = ["Male", "Female", "Other"];
-  const locationitems = ["Mumbai", "Delhi", "Chennai"];
+  let amenitiesList = [];
+  if (get(props, "amenities.length") && isEmpty(amenitiesList)) {
+    props.amenities.map((amenity) => {
+      amenitiesList.push({ value: amenity._id, label: amenity.name });
+    });
+  }
 
-  const [value, setValue] = React.useState([]);
-  const [gender, setGender] = React.useState("");
+  let locationsList = [];
+  if (get(props, "locations.length") && isEmpty(locationsList)) {
+    props.locations.map((location) => {
+      locationsList.push({ value: location._id, label: location.name });
+    });
+  }
+
+  const genderlist = ["Male", "Female", "Other"];
+
+  const getLocationId = () => {
+    const selectedLocation = props.locations.filter(l=>l.name===location)[0]._id;
+    return selectedLocation;
+  }
+
+  const getAmenityIds = () => {
+    const selectedAmenities = [];
+    amenities.map((amenity) => {
+      selectedAmenities.push(
+        props.amenities.filter((a) => a.name === amenity)[0]._id
+      );
+    });
+    return selectedAmenities;
+  };
+
+  const handleSubmit = () => {
+    const params = {
+      name,
+      totalbeds,
+      isactive: true,
+      location: getLocationId(),
+      address,
+      description,
+      rent,
+      gender,
+      photos,
+      owner: props.user._id,
+      amenities: getAmenityIds(),
+    };
+    const user = props.user;
+    props.addProperty({ params, user });
+    setOpen(false);
+    toast("Property has been added successfully!");
+    setName("");
+    setTotalBeds("");
+    setLocation("");
+    setAddress("");
+    setDescription("");
+    setRent("");
+    setGender("");
+    setAmenitis([]);
+    setPhotos([]);
+  };
 
   return (
     <div>
@@ -82,8 +147,18 @@ export default function AddProperty(props) {
             <DialogContent className={classes.formAlign}>
               <Grid container spacing={3} className={classes.containerStyle}>
                 <Grid item xs={12} sm={6}>
-                  <TextField type="standardForm" label="Name" />
-                  <TextField type="standardForm" label="Total Beds" />
+                  <TextField
+                    type="standardForm"
+                    label="Name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                  <TextField
+                    type="standardForm"
+                    label="Total Beds"
+                    value={totalbeds}
+                    onChange={(e) => setTotalBeds(e.target.value)}
+                  />
                   <TextField
                     type="standardForm"
                     label="Address"
@@ -94,12 +169,22 @@ export default function AddProperty(props) {
                     name="Location"
                     value={status}
                     setValue={setStatus}
-                    listitems={locationitems}
+                    listitems={locationsList.map((l) => l.label)}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <TextField type="standardForm" label="Rent" />
-                  <TextField type="standardForm" label="Total Beds" />
+                  <TextField
+                    type="standardForm"
+                    label="Rent"
+                    value={rent}
+                    onChange={(e) => setRent(e.target.value)}
+                  />
+                  <TextField
+                    type="standardForm"
+                    label="Total Beds"
+                    value={totalbeds}
+                    onChange={(e) => setTotalBeds(e.target.value)}
+                  />
                   <TextField
                     type="standardForm"
                     label="Description"
@@ -108,16 +193,16 @@ export default function AddProperty(props) {
                   />
                   <MultiSelect
                     name="Amenities"
-                    listitems={listitems}
-                    value={value}
-                    setValue={setValue}
+                    listitems={amenitiesList.map((a) => a.label)}
+                    value={amenities}
+                    setValue={setAmenitis}
                   />
                 </Grid>
               </Grid>
             </DialogContent>
             <DialogActions className={classes.button}>
-              <Button text="Submit" />
-              <Button text="Cancel" />
+              <Button text="Submit" handleClick={handleSubmit} />
+              <Button text="Cancel" handleClick={handleClose} />
             </DialogActions>
           </Dialog>
         </div>
@@ -150,19 +235,26 @@ export default function AddProperty(props) {
             <DialogContent className={classes.formAlign}>
               <Grid container spacing={3} className={classes.containerStyle}>
                 <Grid item xs={12} sm={6}>
-                  <TextField type="standardForm" label="Name" />
+                  <TextField
+                    type="standardForm"
+                    label="Name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
 
                   <TextField
                     type="standardForm"
                     label="Address"
                     multiline={true}
                     rows={4}
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
                   />
                   <Select
                     name="Location"
-                    value={status}
-                    setValue={setStatus}
-                    listitems={locationitems}
+                    value={location}
+                    setValue={setLocation}
+                    listitems={locationsList.map((l) => l.label)}
                   />
                   <Select
                     name="Gender"
@@ -172,32 +264,45 @@ export default function AddProperty(props) {
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <TextField type="standardForm" label="Total Beds" />
+                  <TextField
+                    type="standardForm"
+                    label="Total Beds"
+                    value={totalbeds}
+                    onChange={(e) => setTotalBeds(e.target.value)}
+                  />
                   <TextField
                     type="standardForm"
                     label="Description"
                     multiline={true}
                     rows={4}
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
                   />
                   <MultiSelect
                     name="Amenities"
-                    listitems={listitems}
-                    value={value}
-                    setValue={setValue}
+                    listitems={amenitiesList.map((a) => a.label)}
+                    value={amenities}
+                    setValue={setAmenitis}
                   />
-                  <TextField type="standardForm" label="Rent" />
+                  <TextField
+                    type="standardForm"
+                    label="Rent"
+                    value={rent}
+                    onChange={(e) => setRent(e.target.value)}
+                  />
                 </Grid>
 
-                <UploadPhotos name="Upload Property Photos" />
+                <UploadPhotos name="Upload Property Photos" setPhotos={setPhotos}/>
               </Grid>
             </DialogContent>
             <DialogActions className={classes.button}>
-              <Button text="Submit" />
-              <Button text="Cancel" />
+              <Button text="Submit" handleClick={handleSubmit} />
+              <Button text="Cancel" handleClick={handleClose} />
             </DialogActions>
           </Dialog>
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 }

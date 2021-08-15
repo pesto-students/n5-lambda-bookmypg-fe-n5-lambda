@@ -41,3 +41,16 @@ export function* getLatestPropertiesSaga(propertiesApi, action) {
     );
   }
 }
+
+export function* addPropertySaga(propertiesApi, action) {
+  try {
+    const response = yield call(propertiesApi.addProperty, action.payload);
+    yield put(propertiesActions.propertyAdded(response));
+  } catch (e) {
+    yield put(
+      propertiesActions.addPropertyFailed({
+        message: e.message,
+      })
+    );
+  }
+}
