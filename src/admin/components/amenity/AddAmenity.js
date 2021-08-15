@@ -7,6 +7,8 @@ import {
   DialogContent,
   DialogTitle,
 } from "@material-ui/core";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import ImageUpload from "./ImageUpload";
 import useStyles from "./styles/AddAmenity.styles";
 import Button from "../../../components/button/Button";
@@ -20,6 +22,9 @@ export default function AddAmenity(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
+  const [name, setName] = React.useState("");
+  const [logo, setLogo] = React.useState("");
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -27,6 +32,17 @@ export default function AddAmenity(props) {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleSubmit = () => {
+    const params = { name, logo, isactive: true };
+    const user = props.user;
+    props.addAmenity({params,user});
+    setOpen(false);
+    toast("Amenity has been added successfully!");
+    setName("");
+    setLogo("");
+    props.setAddAmenityState(!props.addAmenityState);
+  }
 
   const date = new Date();
   date.setDate(date.getDate() + 7);
@@ -67,16 +83,23 @@ export default function AddAmenity(props) {
         <DialogContent className={classes.formAlign}>
           <Grid container spacing={3} className={classes.containerStyle}>
             <Grid item>
-              <TextField type="standardForm" label="Name" icon="Name" />
-              <ImageUpload />
+              <TextField
+                type="standardForm"
+                label="Name"
+                icon="Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+              <ImageUpload setLogo={setLogo} />
             </Grid>
           </Grid>
         </DialogContent>
         <DialogActions className={classes.button}>
-          <Button text="Submit" />
-          <Button text="Cancel" />
+          <Button text="Submit" handleClick={handleSubmit} />
+          <Button text="Cancel" handleClick={handleClose} />
         </DialogActions>
       </Dialog>
+      <ToastContainer />
     </div>
   );
 }

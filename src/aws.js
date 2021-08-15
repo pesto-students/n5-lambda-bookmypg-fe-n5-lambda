@@ -1,13 +1,12 @@
-// import s3_bucket from "./config";
 const aws = require("aws-sdk");
-const config = require("./config.json");
-export default async function getImages() {
+
+export async function getImages() {
   try {
     aws.config.setPromisesDependency();
     aws.config.update({
-      accessKeyId: config.accessKeyId,
-      secretAccessKey: config.secretAccessKey,
-      region: config.region,
+      accessKeyId: process.env.accessKeyId,
+      secretAccessKey: process.env.secretAccessKey,
+      region: process.env.region,
     });
 
     const s3 = new aws.S3();
@@ -22,4 +21,29 @@ export default async function getImages() {
       mimetype: file.ContentType,
     };
   } catch (ex) {}
+}
+
+export async function uploadImage(file, dirName) {
+    aws.config.setPromisesDependency();
+    aws.config.update({
+      accessKeyId: process.env.accessKeyId,
+      secretAccessKey: process.env.secretAccessKey,
+      region: process.env.region,
+    });
+
+    const s3 = new aws.S3();
+
+    const params = {
+      Bucket: "bookmypg-photos",
+      ACL: "public-read",
+      Key: `${dirName}${file.name}`,
+      ContentType: file.type,
+      Body: file,
+    };
+    const responseKey = params.Key;
+    s3.upload(params, (err,data)=>{
+      if(err) return err
+      return data;
+    })
+    return responseKey;
 }

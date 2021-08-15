@@ -16,6 +16,19 @@ export function* getAmenitiesSaga(amenitiesApi, action) {
   }
 }
 
+export function* addAmenitySaga(amenitiesApi, action) {
+  try {
+    const response = yield call(amenitiesApi.addAmenity, action.payload);
+    yield put(amenitiesActions.amenityAdded(response));
+  } catch (e) {
+    yield put(
+      amenitiesActions.addAmenityFailed({
+        message: e.message,
+      })
+    );
+  }
+}
+
 export function* updateAmenitySaga(amenitiesApi, action) {
   try {
     const response = yield call(amenitiesApi.updateAmenity, action.payload);
