@@ -33,13 +33,29 @@ ReactDOM.render(
         <Route exact path="/payment-list" component={PaymentList} />
 
         <Route path="/owner-home" component={OwnerHomepage} />
-        <OwnerProtectedRoute exact path="/tenant-list" component={Ownertenantlist} />
-        <OwnerProtectedRoute exact path="/owner-property-list" component={Ownerpropertylist} />
-        <OwnerProtectedRoute exact path="/owner-complaint-list" component={Ownercomplaintlist} />
+        <OwnerProtectedRoute
+          exact
+          path="/tenant-list"
+          component={Ownertenantlist}
+        />
+        <OwnerProtectedRoute
+          exact
+          path="/owner-property-list"
+          component={Ownerpropertylist}
+        />
+        <OwnerProtectedRoute
+          exact
+          path="/owner-complaint-list"
+          component={Ownercomplaintlist}
+        />
 
         <Route exact path="/admin-home" component={AdminHomepage} />
         <AdminProtectedRoute exact path="/owner-list" component={Ownerlist} />
-        <AdminProtectedRoute exact path="/amenity-list" component={Amenitylist} />
+        <AdminProtectedRoute
+          exact
+          path="/amenity-list"
+          component={Amenitylist}
+        />
 
         <Route exact path="/myprofile" component={MyProfile} />
         <Route exact path="/" component={HomePage} />

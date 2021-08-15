@@ -16,6 +16,8 @@ import FormImage from "components/formimage/FormImage";
 import Link from "../../../components/link/Link";
 import MultiSelect from "components/multiselect/Multiselect";
 import Select from "components/select/Select";
+import UploadPhotos from "components/multipleimageupload/MultipleImageUpload";
+import TimePicker from "components/datepicker/Datepicker";
 
 export default function AddProperty(props) {
   const classes = useStyles();
@@ -43,9 +45,11 @@ export default function AddProperty(props) {
   const [status, setStatus] = React.useState("");
 
   const listitems = ["Washing Machine", "Refrigerator", "Air Conditioner"];
+  const genderlist = ["Male", "Female", "Other"];
   const locationitems = ["Mumbai", "Delhi", "Chennai"];
 
   const [value, setValue] = React.useState([]);
+  const [gender, setGender] = React.useState("");
 
   return (
     <div>
@@ -147,7 +151,7 @@ export default function AddProperty(props) {
               <Grid container spacing={3} className={classes.containerStyle}>
                 <Grid item xs={12} sm={6}>
                   <TextField type="standardForm" label="Name" />
-                  <TextField type="standardForm" label="Total Beds" />
+
                   <TextField
                     type="standardForm"
                     label="Address"
@@ -160,9 +164,14 @@ export default function AddProperty(props) {
                     setValue={setStatus}
                     listitems={locationitems}
                   />
+                  <Select
+                    name="Gender"
+                    listitems={genderlist}
+                    value={gender}
+                    setValue={setGender}
+                  />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <TextField type="standardForm" label="Rent" />
                   <TextField type="standardForm" label="Total Beds" />
                   <TextField
                     type="standardForm"
@@ -170,14 +179,16 @@ export default function AddProperty(props) {
                     multiline={true}
                     rows={4}
                   />
-
                   <MultiSelect
                     name="Amenities"
                     listitems={listitems}
                     value={value}
                     setValue={setValue}
                   />
+                  <TextField type="standardForm" label="Rent" />
                 </Grid>
+
+                <UploadPhotos name="Upload Property Photos" />
               </Grid>
             </DialogContent>
             <DialogActions className={classes.button}>
