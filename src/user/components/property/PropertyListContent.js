@@ -64,11 +64,11 @@ export default function PropertyListContent(props) {
   const displayMobile = () => {
     return (
       <React.Fragment>
-        <Grid container spacing={5} className={classes.containerStyle}>
+        <Grid container spacing={5}>
           {props.properties &&
             props.properties.length &&
             props.properties.map((property) => (
-              <Grid item>
+              <Grid item className={classes.containerStyle}>
                 <PropertyCard type="PropertyListMobile" property={property} />
               </Grid>
             ))}

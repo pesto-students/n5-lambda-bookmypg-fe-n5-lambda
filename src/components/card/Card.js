@@ -60,7 +60,7 @@ export default function ButtonComponent(props) {
               </Typography>
 
               <div className={classes.buttonMarginStyle}>
-                <Grid container spacing={2}>
+                <Grid container spacing={3}>
                   <Box>
                     <ScheduleVisit
                       owner={props.property.owner.email}
