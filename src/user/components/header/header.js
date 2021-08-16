@@ -49,25 +49,6 @@ const headersData = [
   },
 ];
 
-const locationItems = [
-  {
-    id: "0",
-    name: "None",
-  },
-  {
-    id: "1",
-    name: "Delhi",
-  },
-  {
-    id: "2",
-    name: "Mumbai",
-  },
-  {
-    id: "3",
-    name: "Chennai",
-  },
-];
-
 const listitems = [
   {
     label: "My Profile",
@@ -179,9 +160,9 @@ export function Header(props) {
               <Button
                 text={props.user.firstName + " " + props.user.lastName}
                 type="Menubutton"
-                handleClick={handleLogout}
+                // handleClick={handleLogout}
               />
-              <PopupMenu listitems={listitems} />
+              <PopupMenu listitems={listitems} handleLogout={handleLogout} />
             </>
           )}
         </div>

@@ -21,38 +21,14 @@ const headersData = [
   },
 ];
 
-const locationItems = [
-  {
-    id: "0",
-    name: "None",
-  },
-  {
-    id: "1",
-    name: "Delhi",
-  },
-  {
-    id: "2",
-    name: "Mumbai",
-  },
-  {
-    id: "3",
-    name: "Chennai",
-  },
-];
 
 export default function HomePage() {
-  const [loggedUser, setLoggedUser] = React.useState("");
 
   return (
     <div>
       <MuiThemeProvider theme={Theme}>
         <Grid container alignItems="center">
-          <Header
-            loggedUser={loggedUser}
-            setLoggedUser={setLoggedUser}
-            headersData={headersData}
-            locationItems={locationItems}
-          />
+          <Header headersData={headersData} isUser={false} />
           <Content />
           <Footer type="center" />
         </Grid>
