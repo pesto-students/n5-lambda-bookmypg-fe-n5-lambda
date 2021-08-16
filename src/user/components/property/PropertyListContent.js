@@ -8,11 +8,11 @@ import Typography from "@material-ui/core/Typography";
 import { useHistory } from "react-router-dom";
 import Rating from "../rating/rating";
 import Pagination from "../pagination/pagination";
-import { S3_BUCKET_URL } from "../../../constant";
 import useStyles from "./styles/PropertyListContent.styles";
-import MoreButton from "@material-ui/core/Button";
 import Button from "../../../components/button/Button";
 import ScheduleVisit from "../schedulevisit/ScheduleVisit";
+import PropertyCard from "components/card/Card";
+
 export default function PropertyListContent(props) {
   const classes = useStyles();
 
@@ -45,63 +45,7 @@ export default function PropertyListContent(props) {
             props.properties.length &&
             props.properties.map((property) => (
               <Grid item xs={12} spacing={1}>
-                <Card className={classes.root} style={{ height: "230px" }}>
-                  <Box>
-                    <CardMedia
-                      className={classes.cover}
-                      image={`${S3_BUCKET_URL}/${property.photos[0]}`}
-                      title={property.photos[0]}
-                    />
-                  </Box>
-                  <div className={classes.details}>
-                    <CardContent className={classes.content}>
-                      <Typography component="h5" variant="h5">
-                        {property.name}
-                      </Typography>
-                      <Typography variant="subtitle1" color="textSecondary">
-                        {property.description}
-                      </Typography>
-                      <Typography variant="subtitle1" color="textSecondary">
-                        ₹{property.rent}
-                      </Typography>
-
-                      <div>
-                        <Grid container spacing={2}>
-                          <Box>
-                            <ScheduleVisit
-                              owner={property.owner.email}
-                              property_name={property.name}
-                              property_id={property._id}
-                            />
-                          </Box>
-                          <Box>
-                            <MoreButton
-                              variant="contained"
-                              color="secondary"
-                              style={{
-                                marginLeft: "10px",
-                                textTransform: "none",
-                              }}
-                              onClick={() =>
-                                history.push(
-                                  `/property-details/${property._id}`
-                                )
-                              }
-                            >
-                              More Details
-                            </MoreButton>
-                          </Box>
-                        </Grid>
-                      </div>
-                    </CardContent>
-                  </div>
-
-                  <Rating
-                    value={4}
-                    number={property.numreviews || 0}
-                    mobileView={true}
-                  />
-                </Card>
+                <PropertyCard type="PropertyList" property={property} />
               </Grid>
             ))}
           <Grid item xs={12} spacing={1}>
@@ -120,75 +64,12 @@ export default function PropertyListContent(props) {
   const displayMobile = () => {
     return (
       <React.Fragment>
-        <Grid container spacing={5}>
+        <Grid container spacing={5} className={classes.containerStyle}>
           {props.properties &&
             props.properties.length &&
             props.properties.map((property) => (
               <Grid item>
-                <Card className={classes.card}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image="images/Hostel Images/test.jpg"
-                    title="Image title"
-                  />
-                  <div className={classes.detailsMobile}>
-                    <CardContent className={classes.content}>
-                      <Grid>
-                        <Typography component="h5" variant="h5">
-                          {property.name}
-                        </Typography>
-                        <Typography
-                          variant="subtitle1"
-                          color="textSecondary"
-                          className={classes.descriptionStyle}
-                        >
-                          {property.description}
-                        </Typography>
-                        <Typography variant="subtitle1" color="textSecondary">
-                          ₹{property.rent}
-                        </Typography>
-                      </Grid>
-
-                      <div className={classes.buttonsMobile}>
-                        <Grid container spacing={2}>
-                          <Box className={classes.buttonAlign}>
-                            <ScheduleVisit
-                              owner={property.owner.email}
-                              property_name={property.name}
-                            />
-                          </Box>
-                          <Box>
-                            <Button
-                              variant="contained"
-                              color="secondary"
-                              className={classes.buttonStyle}
-                              style={{ textTransform: "none" }}
-                              onClick={() =>
-                                history.push(
-                                  `/property-details/${property._id}`
-                                )
-                              }
-                            >
-                              MORE DETAILS
-                            </Button>
-                          </Box>
-                        </Grid>
-                      </div>
-                      <div className={classes.ratingStyle}>
-                        <Rating value={4} number={property.numreviews || 0} />
-
-                        <Button
-                          size="small"
-                          variant="contained"
-                          color="ContainedSecondary"
-                          style={{ textTransform: "none" }}
-                        >
-                          More Details
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </div>
-                </Card>
+                <PropertyCard type="PropertyListMobile" property={property} />
               </Grid>
             ))}
         </Grid>

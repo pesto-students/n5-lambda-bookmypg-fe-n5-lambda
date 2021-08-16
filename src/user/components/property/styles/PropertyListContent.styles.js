@@ -92,6 +92,10 @@ const useStyles = makeStyles((theme) => ({
   descriptionStyle: {
     wordWrap: "break-word",
   },
+  containerStyle: {
+    width: "100%",
+    margin: "0px",
+  },
 }));
 
 export default useStyles;

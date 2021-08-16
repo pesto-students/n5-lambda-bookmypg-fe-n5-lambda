@@ -34,7 +34,13 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(6),
   },
   topPadding: {
-    marginTop: "80px",
+    marginTop: "60px",
+  },
+  paddingStyle: {
+    paddingLeft: "260px",
+    paddingRight: "260px",
+    marginTop: "40px",
+    marginBottom: "20px",
   },
 }));
 

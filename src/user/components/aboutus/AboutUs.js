@@ -3,8 +3,7 @@ import { Grid, Typography, ImageList, ImageListItem } from "@material-ui/core";
 import Container from "@material-ui/core/Container";
 import useStyles from "./AboutUs.styles";
 import { S3_BUCKET_IMAGES_BASEURL } from "constant";
-import theme from "theme/theme";
-import SimpleCard from "components/card/Card";
+import Card from "components/card/Card";
 
 export function Content(props) {
   const classes = useStyles();
@@ -18,11 +17,6 @@ export function Content(props) {
             xs={12}
             sm={12}
             style={{
-              //backgroundColor: theme.palette.primary.light,
-              //backgroundImage: `url(${S3_BUCKET_IMAGES_BASEURL}/Aboutus-5.jpg)`,
-              //backgroundSize: "cover",
-              //backgroundPosition: "center",
-              //background: "linear-gradient(to bottom, #232526, #414345)",
               textAlign: "center",
             }}
           >
@@ -32,7 +26,7 @@ export function Content(props) {
               color="primary"
               gutterBottom
             >
-              Struggling to find accomodation in new Location???
+              Struggling to find a new accomodation??
             </Typography>
             <Typography
               component="h1"
@@ -57,115 +51,122 @@ export function Content(props) {
           </Grid>
         </Grid>
 
-        <Grid container spacing={4}>
+        <Grid container className={classes.paddingStyle}>
           <Grid item>
             <Typography
               component="h1"
               variant="h6"
               color="secondary"
               paragraph
-              align="justify"
+              align="center"
             >
-              Our aim and motto are simple and singular. To provide the guests
-              with a PG that feels like home best fitting their needs and the
-              homeowners a guest who fits right in. To attain this we work with
-              homeowners and guests to give everyone involved the best possible
-              experience.Our aim and motto are simple and singular. To provide
-              the guests with a PG that feels like home best fitting their needs
-              and the homeowners a guest who fits right in. To attain this we
-              work with homeowners and guests to give everyone involved the best
-              possible experience.
+              BookMyPG is a platform to facilitate a PG-Owner to advertise his
+              property and find easily paying guest for his property. We also
+              aim to facilitate users to find a home-like accomodation. We value
+              our users and their needs. Our services doesnt end with only
+              finding an accomodation. We provide our users the platform to make
+              payments every month, raise complaints while their stay and shar
+              their reviews and experience.
             </Typography>
           </Grid>
         </Grid>
-
-        <Grid
-          container
-          spacing={4}
-          className={classes.topPadding}
-          style={{ background: theme.palette.primary.light }}
-        >
-          <Grid item xs={12} sm={12}>
-            <Typography
-              component="h1"
-              variant="h5"
-              color="primary"
-              gutterBottom
-            >
-              Our Services
-            </Typography>
-            <Grid container spacing={5}>
-              <Grid item xs={12} sm={3}>
-                <SimpleCard
-                  type="SimpleCard"
-                  title="Post your Property"
-                  description="Share your property details with us and we will help you find the Paying guests for your property."
-                />
-              </Grid>
-              <Grid item xs={12} sm={3}>
-                <SimpleCard
-                  type="SimpleCard"
-                  title="Find a cozy Accomodation"
-                  description="Explore various properties available at your location. Schdule a visit and book it from our platform."
-                />
-              </Grid>
-              <Grid item xs={12} sm={3}>
-                <SimpleCard
-                  type="SimpleCard"
-                  title="Make easy one click Payments"
-                  description="We allow paying guests to make easy and hasselfree payments on one click from our platform."
-                />
-              </Grid>
-              <Grid item xs={12} sm={3}>
-                <SimpleCard
-                  type="SimpleCard"
-                  title="We value our Users"
-                  description="Share your reviews and raise our complaints. We allow our user to share his experience by sharing the reviews of the proeprty he stayed at. Also we assure you that your complaints will be attended by the PG-Owner and resolved."
-                />
+        <Container className={classes.cardGrid} maxWidth="md">
+          <Grid container spacing={4}>
+            <Grid item xs={12} sm={12}>
+              <Typography
+                component="h1"
+                variant="h4"
+                color="primary"
+                gutterBottom
+                align="center"
+              >
+                Our Services
+              </Typography>
+              <Grid container spacing={5}>
+                <Grid item xs={12} sm={3}>
+                  <Card
+                    type="AboutUs"
+                    title="Post your Property"
+                    imageName="abt-3.png"
+                    description="Share your property details with us and we will help you find the Paying guests for your property."
+                  />
+                </Grid>
+                <Grid item xs={12} sm={3}>
+                  <Card
+                    type="AboutUs"
+                    title="Find a cozy Accomodation"
+                    imageName="abt-4.png"
+                    description="Explore various properties available at your location. Schdule a visit and book it from our platform."
+                  />
+                </Grid>
+                <Grid item xs={12} sm={3}>
+                  <Card
+                    type="AboutUs"
+                    title="One click Payments"
+                    imageName="abt-5.jpg"
+                    description="We allow paying guests to make easy and hasselfree payments on one click from our platform."
+                    color="secondary"
+                  />
+                </Grid>
+                <Grid item xs={12} sm={3}>
+                  <Card
+                    type="AboutUs"
+                    title="We value our Users"
+                    imageName="abt-2.jpg"
+                    description="We allow our user to share his experience by sharing the reviews of the property he stayed at. Also we assure you that your complaints will be attended by the PG-Owner and resolved."
+                  />
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
-        </Grid>
+        </Container>
       </Container>
-      <Container className={classes.cardGrid} maxWidth="md">
+      <Container className={classes.cardGrid}>
         <Grid container spacing={4}>
-          <Grid item xs={12} sm={6}>
-            <ImageList cols={1}>
-              <ImageListItem style={{ height: "400px" }}>
-                <img
-                  src={`${S3_BUCKET_IMAGES_BASEURL}/Aboutus-8.jpg`}
-                  alt={"Not available"}
-                />
-              </ImageListItem>
-            </ImageList>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Typography
-              component="h1"
-              variant="h5"
-              color="primary"
-              gutterBottom
+          <Grid item>
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              style={{
+                textAlign: "center",
+              }}
             >
-              What are we aiming at?
-            </Typography>
-            <Typography
-              component="h1"
-              variant="h6"
-              color="secondary"
-              paragraph
-              align="justify"
-            >
-              Our aim and motto are simple and singular. To provide the guests
-              with a PG that feels like home best fitting their needs and the
-              homeowners a guest who fits right in. To attain this we work with
-              homeowners and guests to give everyone involved the best possible
-              experience.Our aim and motto are simple and singular. To provide
-              the guests with a PG that feels like home best fitting their needs
-              and the homeowners a guest who fits right in. To attain this we
-              work with homeowners and guests to give everyone involved the best
-              possible experience.
-            </Typography>
+              <Typography
+                component="h1"
+                variant="h4"
+                color="primary"
+                gutterBottom
+                align="center"
+              >
+                Our Vision
+              </Typography>
+
+              <img
+                src={`${S3_BUCKET_IMAGES_BASEURL}/AboutusImg.jpg`}
+                alt={"Not available"}
+                style={{ maxWidth: "500px" }}
+              />
+            </Grid>
+
+            <Grid container className={classes.paddingStyle}>
+              <Typography
+                component="h1"
+                variant="h6"
+                color="secondary"
+                paragraph
+                align="center"
+              >
+                Our aim is to provide easy and hasselfree services to both
+                PG-Owners and users. We are here to solve a most common problem
+                of house hunting that a person faces when he moves in to a new
+                location. We connect PG-Owners and users to solve their needs of
+                finding paying guests for the property and finding a cozy
+                accomodation respectively.
+              </Typography>
+            </Grid>
           </Grid>
+          <Grid item xs={12} sm={6}></Grid>
         </Grid>
       </Container>
     </React.Fragment>

@@ -51,15 +51,13 @@ export const getComponent = (emp, header, list_type) => {
       if (header === "name") {
         return (
           <TableCell align="center">
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <AddAmenity mode="Edit" name={emp[header]} /> <SwitchComponent />
-            </div>
+            <AddAmenity mode="Edit" name={emp[header]} />
+          </TableCell>
+        );
+      } else if (header === "switch") {
+        return (
+          <TableCell align="center">
+            <SwitchComponent />
           </TableCell>
         );
       } else if (header === "logo") {
@@ -96,15 +94,13 @@ export const getComponent = (emp, header, list_type) => {
       if (header === "name") {
         return (
           <TableCell align="center">
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              {emp[header]} <SwitchComponent />
-            </div>
+            <AddOwner mode="Edit" name={emp[header]} />
+          </TableCell>
+        );
+      } else if (header === "switch") {
+        return (
+          <TableCell align="center">
+            <SwitchComponent />
           </TableCell>
         );
       } else {
@@ -112,17 +108,11 @@ export const getComponent = (emp, header, list_type) => {
       }
     case "Tenants":
       if (header === "name") {
+        return <TableCell align="center">{emp[header]}</TableCell>;
+      } else if (header === "switch") {
         return (
           <TableCell align="center">
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              {emp[header]} <SwitchComponent />
-            </div>
+            <SwitchComponent />
           </TableCell>
         );
       } else {

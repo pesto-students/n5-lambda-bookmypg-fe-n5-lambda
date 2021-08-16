@@ -11,11 +11,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useStyles from "./styles/AddOwner.styles";
 import Button from "components/button/Button";
+import Link from "components/link/Link";
 import CloseButton from "components/closebutton/CloseButton";
 import Typography from "components/typography/Typography";
 import TextField from "components/textfield/Textfield";
 import FormImage from "components/formimage/FormImage";
-import Theme from "theme/theme";
 
 export default function AddOwner(props) {
   const classes = useStyles();
@@ -55,7 +55,11 @@ export default function AddOwner(props) {
 
   return (
     <div className={classes.buttonStyle}>
-      <Button text="Add Owner" handleClick={handleClickOpen} />
+      {props.mode === "Edit" ? (
+        <Link text={props.name} handelClick={handleClickOpen} href="#" />
+      ) : (
+        <Button text="Add Owner" handleClick={handleClickOpen} />
+      )}
 
       <Dialog
         open={open}
@@ -75,7 +79,10 @@ export default function AddOwner(props) {
         </Box>
         <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
           <div>
-            <Typography type="FormTitle" text="Add New Owner" />
+            <Typography
+              type="FormTitle"
+              text={props.mode === "Edit" ? "Edit Owner" : "Add New Owner"}
+            />
             <FormImage imageName="Addowner.jpg" />
           </div>
         </DialogTitle>

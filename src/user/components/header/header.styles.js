@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: { height: "80%", width: "70%" },
 
-  root: {
+  backgroundStyle: {
     background: "linear-gradient(to bottom, #232526, #414345)",
   },
   titleStyle: {
@@ -71,19 +71,19 @@ const useStyles = makeStyles((theme) => ({
   contentStyle: {
     width: "250px",
   },
-  select: {
-    "&:before": {
-      borderColor: "white",
-      color: "white",
+  root: {
+    "& $notchedOutline": {
+      borderColor: "red",
     },
-    "&:hover:not(.Mui-disabled):before": {
-      borderColor: "var(--galaxy-blue)",
+    "&:hover $notchedOutline": {
+      borderColor: "blue",
+    },
+    "&$focused $notchedOutline": {
+      borderColor: "green",
     },
   },
-  notchedOutline: {
-    borderWidth: "1px",
-    borderColor: "green",
-  },
+  focused: {},
+  notchedOutline: {},
 }));
 
 export default useStyles;
