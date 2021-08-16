@@ -52,8 +52,6 @@ export function Tenantcontent(props) {
     order_by,
   ]);
 
-  console.log("props.tenants",props.tenants)
-
   let TableData = [];
   if (get(props,'tenants.length')) {
     props.tenants.map((tenant) => {

@@ -13,6 +13,9 @@ import propertiesActions from "../../../redux-store/actions/propertiesActions";
 import useStyles from "./styles/PropertyListContent.styles.js";
 import Tablecomponent from "components/table/Table";
 import UserSelector from "../../../user/helpers/UserSelector";
+import AmenitiesSelector from "../../../admin/helpers/AmenitiesSelector";
+import amenitiesActions from "../../../redux-store/actions/amenitiesActions";
+import LocationsSelector from "../../../user/helpers/LocationsSelector";
 import { ORDER_BY } from "../../../constant";
 
 export function PropertyListContent(props) {
@@ -25,6 +28,12 @@ export function PropertyListContent(props) {
 
   useEffect(() => {
     props.resetProperties();
+    props.resetAmenities();
+  }, []);
+
+  useEffect(() => {
+    const user = props.user;
+    props.getAmenities({ user });
   }, []);
 
   useEffect(() => {
@@ -32,7 +41,6 @@ export function PropertyListContent(props) {
     props.getPropertiesByOwner({ extraParams });
   }, [pagenumber, countperpage, search, order_by]);
 
-  let properties;
   let TableData = [];
   if (get(props, 'properties.length')) {
     props.properties.map((property) => {
@@ -65,7 +73,13 @@ export function PropertyListContent(props) {
                 />
               </Grid>
               <Grid item xs={12} md={6} className={classes.propertybuttonStyle}>
-                <Addproperty />
+                <Addproperty
+                  amenities={props.amenities}
+                  locations={props.locations}
+                  addAmenity={props.addAmenity}
+                  user={props.user}
+                  addProperty={props.addProperty}
+                />
               </Grid>
             </Grid>
             <Tablecomponent
@@ -94,18 +108,26 @@ export function PropertyListContent(props) {
 const mapStateToProps = (state) => {
   const propertiesSelector = PropertiesSelector(state.properties);
   const userSelector = UserSelector(state.user);
+  const amenitiesSelector = AmenitiesSelector(state.amenities);
+  const locationsSelector = LocationsSelector(state.locations);
 
   return {
     user: userSelector.getUserData().data,
     properties: propertiesSelector.getPropertiesData().data,
+    amenities: amenitiesSelector.getAmenitiesData().data,
+    locations: locationsSelector.getLocationsData().data,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getPropertiesByOwner: (payload) => dispatch(propertiesActions.getPropertiesByOwner(payload)),
+    getAmenities: (payload) => dispatch(amenitiesActions.getAmenities(payload)),
+    getPropertiesByOwner: (payload) =>
+      dispatch(propertiesActions.getPropertiesByOwner(payload)),
+    addProperty: (payload) => dispatch(propertiesActions.addProperty(payload)),
     // updateProperty: (id) => dispatch(propertiesActions.updateProperty(id)),
     resetProperties: () => dispatch(propertiesActions.resetState()),
+    resetAmenities: () => dispatch(amenitiesActions.resetState()),
   };
 };
 

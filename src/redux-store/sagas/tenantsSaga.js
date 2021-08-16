@@ -45,9 +45,7 @@ export function* updateTenantSaga(tenantsApi, action) {
 export function* addTenantSaga(tenantsApi, action) {
   try {
 
-    console.log("tenantSaga===");
     const response = yield call(tenantsApi.addTenant, action.payload);
-    console.log("response", response);
     yield put(tenantsActions.tenantAdded(response));
   } catch (e) {
     yield put(

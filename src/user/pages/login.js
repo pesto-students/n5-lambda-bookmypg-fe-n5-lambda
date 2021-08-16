@@ -42,7 +42,6 @@ export function Login(props) {
     const provider = new firebase.auth.GoogleAuthProvider();
     const response = await firebase.auth().signInWithPopup(provider);
     props.setLoggedUser(response.user);
-    console.log("User=>", response.user);
     // props.getUser(response.user);
     setOpen(false);
     history.push("/");

@@ -22,6 +22,8 @@ export function AmenityListContent(props) {
   const [search, setSearch] = React.useState("");
   const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC);
 
+  const [addAmenityState, setAddAmenityState] = React.useState(false);
+
   useEffect(() => {
     props.resetAmenities();
   }, []);
@@ -30,7 +32,7 @@ export function AmenityListContent(props) {
     const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&columnname=createdAt&orderby=${order_by}`;
     const user = props.user;
     props.getAmenities({ extraParams, user });
-  }, [pagenumber, countperpage, search, order_by]);
+  }, [pagenumber, countperpage, search, order_by, addAmenityState]);
 
   let TableData = [];
   if (get(props, "amenities.length")) {
@@ -58,7 +60,12 @@ export function AmenityListContent(props) {
                   onChange={(e) => setSearch(e.target.value)}
                 />
               </Grid>
-              <Addamenity />
+              <Addamenity
+                addAmenity={props.addAmenity}
+                user={props.user}
+                setAddAmenityState={setAddAmenityState}
+                addAmenityState={addAmenityState}
+              />
             </Grid>
             {/*<Tablecomponent complaints={props.complaints} />*/}
             <TableComponent
@@ -90,12 +97,14 @@ const mapStateToProps = (state) => {
   return {
     user: userSelector.getUserData().data,
     amenities: amenitiesSelector.getAmenitiesData().data,
+    addAmenityRequestState: amenitiesSelector.addAmenityRequestState()
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getAmenities: (payload) => dispatch(amenitiesActions.getAmenities(payload)),
+    addAmenity: (payload) => dispatch(amenitiesActions.addAmenity(payload)),
     resetAmenities: () => dispatch(amenitiesActions.resetState()),
   };
 };

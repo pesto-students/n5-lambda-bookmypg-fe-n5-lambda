@@ -21,7 +21,8 @@ import HomePage from "./user/pages/Homepage";
 import AboutUs from "./user/pages/AboutUs";
 import OwnerProtectedRoute from "./ProtectedRoutes/OwnerProtectedRoute";
 import AdminProtectedRoute from "./ProtectedRoutes/AdminProtectedRoute";
-import Theme from "theme/theme";
+import _env from "dotenv";
+_env.config();
 const hist = createBrowserHistory();
 
 ReactDOM.render(

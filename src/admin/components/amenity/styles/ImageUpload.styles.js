@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
   divStyle: {
     display: "flex",
-    margin: "auto",
+    marginTop: "20px",
     flexWrap: "wrap",
   },
   inputStyle: {
