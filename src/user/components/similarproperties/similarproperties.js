@@ -14,6 +14,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
 import { S3_BUCKET_URL } from "../../../constant";
 import useStyles from "../similarproperties/similarproperties.styles";
+import PropertyCard from "components/card/Card";
 
 const data = {
   propertyname: "Zolo House 1",
@@ -73,7 +74,8 @@ export default function SimilarProperties(props) {
                 latestProperties.map((property) => (
                   <Grid item key={property._id} xs={12} sm={6} md={3}>
                     <SwiperSlide style={{ height: "400px" }}>
-                      <Card className={classes.card}>
+                      <PropertyCard property={property} />
+                      {/*  <Card className={classes.card}>
                         <CardMedia
                           className={classes.cardMedia}
                           image={`${S3_BUCKET_URL}/${property.photos[0]}`}
@@ -114,8 +116,7 @@ export default function SimilarProperties(props) {
                             More Details
                           </Button>
                         </div>
-                      </Card>
-                      <div></div>
+                          </Card>*/}
                     </SwiperSlide>
                   </Grid>
                 ))}

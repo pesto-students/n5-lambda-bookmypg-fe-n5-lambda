@@ -31,6 +31,7 @@ export function Content(props) {
               variant="h5"
               color="primary"
               gutterBottom
+              align="center"
             >
               Who are we?
             </Typography>
@@ -39,12 +40,13 @@ export function Content(props) {
               variant="h6"
               color="secondary"
               paragraph
-              align="justify"
+              align="center"
             >
-              This platform is to facilitate both a property owner to share his
-              property details and Paying Guest to find suitable property with
-              one-click hassle-free payments.This platform is to facilitate both
-              a property owner to share.
+              We provide a common platform for both a property owner to share
+              his property details and Paying Guest to find suitable property
+              and make monthly rent payments with one-click hassle-free payment
+              facility. We also allow paying guests to share his reviews and
+              raise complaints from our platform.
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -77,6 +79,7 @@ export function Content(props) {
               variant="h5"
               color="primary"
               gutterBottom
+              align="center"
             >
               What are we aiming at?
             </Typography>
@@ -85,13 +88,13 @@ export function Content(props) {
               variant="h6"
               color="secondary"
               paragraph
-              align="justify"
+              align="center"
             >
-              Our aim and motto are simple and singular. To provide the guests
-              with a PG that feels like home best fitting their needs and the
-              homeowners a guest who fits right in. To attain this we work with
-              homeowners and guests to give everyone involved the best possible
-              experience.
+              Our aim is to allow Paying guest to search properties available at
+              more than 15 cities of India and explore all the amenities
+              available at the properties along with the photos. We allow Paying
+              guest to schedule a visit to the property before booking it and
+              once booked they can make monthly rent payments from the platform.
             </Typography>
           </Grid>
         </Grid>

@@ -431,7 +431,7 @@ export function Header(props) {
           >
             <DialogContent style={{ padding: "0px" }}>
               <Grid className={classes.responsivegrid}>
-                <Grid item xs={12} sm={6} className={classes.root}>
+                <Grid item xs={12} sm={6} className={classes.backgroundStyle}>
                   <Box
                     color="primary.contrastText"
                     height="100%"
