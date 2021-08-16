@@ -1,34 +1,35 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Grid, TextField } from "@material-ui/core";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import ResponsiveDrawer from "../common/responsivedrawer";
-import {
-  Grid,
-  TextField,
-  Radio,
-  RadioGroup,
-  FormControlLabel,
-  FormLabel,
-} from "@material-ui/core";
 import useStyles from "./styles/MyProfileContent.styles";
 import Button from "../../../components/button/Button";
 import ProfilePhoto from "../profilephoto/ProfilePhoto";
 import UserSelector from "../../helpers/UserSelector";
 import userActions from "../../../redux-store/actions/userActions";
 
-const data = {
-  propertyname: "Zolo House 1",
-  rent: "15000/month",
-  ownername: "Mr. Agarwal",
-  rating: 4,
-  numratings: 10,
-};
-
 export function MyProfileContent(props) {
   const classes = useStyles();
-  const [value, setValue] = React.useState("female");
-  const handleChange = (event) => {
-    setValue(event.target.value);
+
+  const user = props.user;
+
+  const [firstName, setFirstName] = React.useState(user ? user.firstName : "");
+  const [lastName, setLastName] = React.useState(user ? user.lastName : "");
+  const [email, setEmail] = React.useState(user ? user.email : "");
+  const [phone, setPhone] = React.useState(user ? user.phone : "");
+
+  const handleSubmit = () => {
+    let params = {
+      firstName,
+      lastName,
+      phone,
+    };
+    props.updateUser({ id: user._id, params });
+    toast("Profile has been updated successfully!");
   };
+
   return (
     <div className="Table">
       <ResponsiveDrawer>
@@ -40,8 +41,17 @@ export function MyProfileContent(props) {
             <Grid item>
               <TextField
                 id="standard-basic"
-                label="Name"
-                defaultValue="-"
+                label="FirstName"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                fullwidth
+                className={classes.textfieldStyle}
+              />
+              <TextField
+                id="standard-basic"
+                label="LastName"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
                 fullwidth
                 className={classes.textfieldStyle}
               />
@@ -49,7 +59,8 @@ export function MyProfileContent(props) {
                 disabled
                 id="standard-disabled"
                 label="Email"
-                defaultValue="-"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 fullwidth
                 className={classes.textfieldStyle}
                 InputProps={{
@@ -64,45 +75,19 @@ export function MyProfileContent(props) {
               <TextField
                 id="standard-basic"
                 label="Contact no"
-                defaultValue="-"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
                 fullwidth
                 className={classes.textfieldStyle}
               />
             </Grid>
-            <Grid item className={classes.radiogroupStyle}>
-              <FormLabel component="legend" className={classes.formlabelStyle}>
-                Gender:
-              </FormLabel>
-              <RadioGroup
-                aria-label="gender"
-                name="gender"
-                value={value}
-                onChange={handleChange}
-                row
-              >
-                <FormControlLabel
-                  value="Male"
-                  control={<Radio />}
-                  label="Male"
-                />
-                <FormControlLabel
-                  value="Female"
-                  control={<Radio />}
-                  label="Female"
-                />
-                <FormControlLabel
-                  value="Other"
-                  control={<Radio />}
-                  label="Other"
-                />
-              </RadioGroup>
-            </Grid>
             <Grid item className={classes.buttonSpacing}>
-              <Button text="Update" />
+              <Button text="Update" handleClick={handleSubmit} />
             </Grid>
           </Grid>
         </Grid>
       </ResponsiveDrawer>
+      <ToastContainer />
     </div>
   );
 }
@@ -118,10 +103,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getUser: (payload) => dispatch(userActions.getUser(payload)),
+    updateUser: (payload) => dispatch(userActions.updateUser(payload)),
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MyProfileContent);
+export default connect(mapStateToProps, mapDispatchToProps)(MyProfileContent);

@@ -14,8 +14,9 @@ import {
   GET_LOCATIONS_REQUEST_MADE,
   GET_LATEST_PROPERTIES_REQUEST_MADE,
   ADD_PROPERTY_REQUEST_MADE,
+  UPDATE_USER_REQUEST_MADE,
 } from "../../constant";
-import { getUserSaga } from "./userSaga";
+import { getUserSaga, updateUserSaga } from "./userSaga";
 import {
   getPropertiesSaga,
   getPropertiesByOwnerSaga,
@@ -52,5 +53,6 @@ export default function* rootSaga() {
     takeLatest(GET_COMPLAINTS_REQUEST_MADE, getComplaintsSaga, complaintsApi),
     takeLatest(GET_LOCATIONS_REQUEST_MADE, getLocationsSaga, locationsApi),
     takeLatest(GET_USER_REQUEST_MADE, getUserSaga, userpApi),
+    takeLatest(UPDATE_USER_REQUEST_MADE, updateUserSaga, userpApi),
   ]);
 }
