@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import ResponsiveDrawer from "../common/responsivedrawer";
 import {
   Grid,
@@ -11,6 +12,8 @@ import {
 import useStyles from "./styles/MyProfileContent.styles";
 import Button from "../../../components/button/Button";
 import ProfilePhoto from "../profilephoto/ProfilePhoto";
+import UserSelector from "../../helpers/UserSelector";
+import userActions from "../../../redux-store/actions/userActions";
 
 const data = {
   propertyname: "Zolo House 1",
@@ -20,7 +23,7 @@ const data = {
   numratings: 10,
 };
 
-export default function MyProfileContent() {
+export function MyProfileContent(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState("female");
   const handleChange = (event) => {
@@ -103,3 +106,22 @@ export default function MyProfileContent() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  const userSelector = UserSelector(state.user);
+
+  return {
+    user: userSelector.getUserData().data,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getUser: (payload) => dispatch(userActions.getUser(payload)),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MyProfileContent);

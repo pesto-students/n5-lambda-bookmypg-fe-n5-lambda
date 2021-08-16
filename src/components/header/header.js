@@ -15,6 +15,7 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 import Dialog from "@material-ui/core/Dialog";
 import { Link as RouterLink, useHistory } from "react-router-dom";
+import { get } from 'lodash';
 import firebase from "firebase/app";
 import "firebase/auth";
 import { Facebook, Twitter, Email, Close } from "@material-ui/icons";
@@ -22,6 +23,8 @@ import Button from "components/button/Button";
 import useStyles from "./header.styles";
 import PopupMenu from "components/popupmenu/PopupMenu";
 import SigninButton from "@material-ui/core/Button";
+import UserSelector from "../../user/helpers/UserSelector";
+import userActions from "../../redux-store/actions/userActions";
 
 export function Header(props) {
   const {
@@ -41,6 +44,17 @@ export function Header(props) {
     drawerOpen: false,
   });
 
+  const listitems = [
+    {
+      label: "My Profile",
+      href: "/myprofile",
+    },
+    {
+      label: "Logout",
+      href: "/",
+    },
+  ];
+  
   const classes = useStyles();
 
   const { mobileView, drawerOpen } = state;
@@ -71,7 +85,8 @@ export function Header(props) {
   };
 
   const handleLogout = () => {
-    props.setLoggedUser("");
+    props.logoutUser();
+    history.push("/");
   };
 
   const handleClose = () => {
@@ -81,29 +96,28 @@ export function Header(props) {
   const handleLogin = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     const response = await firebase.auth().signInWithPopup(provider);
-    props.setLoggedUser(response.user);
     props.getUser(response.user.email);
     setOpen(false);
     history.push("/");
   };
 
-  const locations = props.locations;
-
   const displayDesktop = () => {
     return (
       <Toolbar className={toolbar}>
         {femmecubatorLogo}
-
         <div>
           {getMenuButtons()}
-          {props.loggedUser == "" ? (
+          {!props.user || Object.keys(props.user).length === 0 ? (
             <Button text="Login" type="Menubutton" handleClick={LoginPopup} />
           ) : (
-            /* <Button
-              text="Logout"
-              type="Menubutton"
-           handleClick={handleLogout}/>*/
-            <PopupMenu listitems={props.listitems} />
+            <>
+              <Button
+                text={props.user.firstName + " " + props.user.lastName}
+                type="Menubutton"
+                // handleClick={handleLogout}
+              />
+              <PopupMenu listitems={listitems} handleLogout={handleLogout} />
+            </>
           )}
         </div>
       </Toolbar>
@@ -139,7 +153,7 @@ export function Header(props) {
         >
           <div className={drawerContainer}>
             {mobileView ? getresDrawerChoices() : getDrawerChoices()}
-            {props.loggedUser == "" ? (
+            {!props.user || Object.keys(props.user).length === 0 ? (
               <Link
                 key={"Login"}
                 {...{
@@ -185,21 +199,22 @@ export function Header(props) {
   };
 
   const getDrawerChoices = () => {
-    return props.headersData.map(({ label, href }) => {
-      return (
-        <Link
-          key={label}
-          {...{
-            component: RouterLink,
-            to: href,
-            color: "inherit",
-            style: { textDecoration: "none" },
-          }}
-        >
-          <MenuItem>{label}</MenuItem>
-        </Link>
-      );
-    });
+    if (get(props, "headersData.length"))
+      return props.headersData.map(({ label, href }) => {
+        return (
+          <Link
+            key={label}
+            {...{
+              component: RouterLink,
+              to: href,
+              color: "inherit",
+              style: { textDecoration: "none" },
+            }}
+          >
+            <MenuItem>{label}</MenuItem>
+          </Link>
+        );
+      });
   };
 
   const getresDrawerChoices = () => {
@@ -232,16 +247,17 @@ export function Header(props) {
   );
 
   const getMenuButtons = () => {
-    return props.headersData.map(({ label, href }) => {
-      return (
-        <Button
-          text={label}
-          type="Menubutton"
-          component={RouterLink}
-          to={href}
-        />
-      );
-    });
+    if (get(props, "headersData.length"))
+      return props.headersData.map(({ label, href }) => {
+        return (
+          <Button
+            text={label}
+            type="Menubutton"
+            component={RouterLink}
+            to={href}
+          />
+        );
+      });
   };
 
   return (
@@ -460,4 +476,18 @@ export function Header(props) {
   );
 }
 
-export default Header;
+const mapStateToProps = (state) => {
+  const userSelector = UserSelector(state.user);
+  return {
+    user: userSelector.getUserData().data,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getUser: (payload) => dispatch(userActions.getUser(payload)),
+    logoutUser: () => dispatch(userActions.resetState()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

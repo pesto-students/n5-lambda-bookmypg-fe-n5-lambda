@@ -1,6 +1,8 @@
 import React from "react";
 import IconButton from "@material-ui/core/IconButton";
-import { Menu, MenuItem } from "@material-ui/core";
+import { get } from 'lodash';
+import { Menu, MenuItem, Link } from "@material-ui/core";
+import { Link as RouterLink } from "react-router-dom";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import useStyles from "./PopupMenu.styles";
 
@@ -16,6 +18,41 @@ export default function MenuComponent(props) {
     setAnchorEl(null);
   };
 
+  const getProfileChoices = () => {
+    if (get(props, 'listitems.length'))
+      return props.listitems.map(({ label, href }) => {
+        if (label === "My Profile")
+          return (
+            <Link
+              key={label}
+              {...{
+                component: RouterLink,
+                to: href,
+                color: "inherit",
+                style: { textDecoration: "none" },
+              }}
+            >
+              <MenuItem>{label}</MenuItem>
+            </Link>
+          );
+        return (
+          <Link
+            {...{
+              component: RouterLink,
+              to: href,
+              color: "inherit",
+              style: { textDecoration: "none" },
+            }}
+            onClick={props.handleLogout}
+          >
+            <MenuItem>{label}</MenuItem>
+          </Link>
+        );
+      });
+  };
+
+
+                
   return (
     <div className={classes.containerStyle}>
       <IconButton
@@ -33,9 +70,7 @@ export default function MenuComponent(props) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        {props.listitems.map((name) => (
-          <MenuItem onClick={handleClose}>{name.label}</MenuItem>
-        ))}
+        {getProfileChoices()}
       </Menu>
     </div>
   );
