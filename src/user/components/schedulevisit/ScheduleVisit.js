@@ -115,37 +115,26 @@ export default function ScheduleVisit(props) {
               maxdate={date}
               label="When you want to visit the place?"
             />
-            <TextField type="standardForm" label="Name" value="" icon="Name" />
-
             <TextField
               id="standard-basic"
               label="Name"
               value={name}
-              fullwidth
-              InputProps={{
-                endAdornment: <AccountBox className={classes.iconStyle} />,
-              }}
               onChange={(e) => setName(e.target.value)}
+              icon="Name"
             />
             <TextField
               id="standard-basic"
               label="Email"
               value={email}
-              fullwidth
-              InputProps={{
-                endAdornment: <EmailIcon className={classes.iconStyle} />,
-              }}
               onChange={(e) => setEmail(e.target.value)}
+              icon="Email"
             />
             <TextField
               type="standardForm"
               label="Phone"
               value={phone}
-              fullwidth
-              InputProps={{
-                endAdornment: <Phone className={classes.iconStyle} />,
-              }}
               onChange={(e) => setPhone(e.target.value)}
+              icon="Phone"
             />
           </FormControl>
         </DialogContent>

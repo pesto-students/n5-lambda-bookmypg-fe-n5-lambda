@@ -15,6 +15,7 @@ import CloseButton from "components/closebutton/CloseButton";
 import Typography from "components/typography/Typography";
 import TextField from "components/textfield/Textfield";
 import FormImage from "components/formimage/FormImage";
+import Theme from "theme/theme";
 
 export default function AddOwner(props) {
   const classes = useStyles();

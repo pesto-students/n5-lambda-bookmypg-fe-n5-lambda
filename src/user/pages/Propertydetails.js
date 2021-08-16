@@ -5,7 +5,7 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import Propertycontent from "../components/property/PropertyContent";
 import Header from "../components/header/header";
 import Footer from "components/footer/footer";
-import Theme from "../theme/theme";
+import Theme from "theme/theme";
 import PropertiesSelector from "../helpers/PropertiesSelector";
 import propertiesActions from "../../redux-store/actions/propertiesActions";
 

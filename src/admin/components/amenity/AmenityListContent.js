@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Grid } from "@material-ui/core";
-import { get } from 'lodash';
+import { get } from "lodash";
 import Pagination from "../pagination/Pagination";
 import Addamenity from "./AddAmenity";
 import ResponsiveDrawer from "../responsivedrawer/ResponsiveDrawer";
 import useStyles from "./styles/AmenityListContent.styles";
 import Typography from "../../../components/typography/Typography";
 import TextField from "../../../components/textfield/Textfield";
-//import Tablecomponent from "./AmenityTable";
 import TableComponent from "components/table/Table";
 import AmenitiesSelector from "../../helpers/AmenitiesSelector";
 import amenitiesActions from "../../../redux-store/actions/amenitiesActions";
@@ -34,7 +33,7 @@ export function AmenityListContent(props) {
   }, [pagenumber, countperpage, search, order_by]);
 
   let TableData = [];
-  if(get(props, 'amenities.length')) {
+  if (get(props, "amenities.length")) {
     props.amenities.map((amenity) => {
       TableData.push({
         name: amenity.name,

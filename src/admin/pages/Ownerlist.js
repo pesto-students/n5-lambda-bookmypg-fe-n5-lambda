@@ -3,7 +3,7 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import Header from "components/header/header";
 import Content from "../components/owner/OwnerListConent";
 import Footer from "../../components/footer/footer";
-import Theme from "../theme/theme";
+import Theme from "theme/theme";
 
 const headersData = [
   {
@@ -52,7 +52,7 @@ const listitems = [
 
 export default function AmenityList() {
   const [loggedUser, setLoggedUser] = React.useState("");
-
+  console.log(Theme);
   return (
     <div>
       <MuiThemeProvider theme={Theme}>

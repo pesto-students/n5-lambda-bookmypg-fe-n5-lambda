@@ -4,7 +4,7 @@ import { Drawer, Hidden, Link } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
 import MenuItem from "@material-ui/core/MenuItem";
 import useStyles from "./ResponsiveDrawer.styles";
-import theme from "../../theme/theme";
+import theme from "theme/theme";
 
 const headersData = [
   {

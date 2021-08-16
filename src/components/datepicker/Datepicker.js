@@ -19,12 +19,13 @@ export default function DatepickerComponent(props) {
             format="MM/dd/yyyy"
             margin="normal"
             id="date-picker-inline"
-            label="From Date:"
+            label={props.label}
             value={props.selectedDate}
             onChange={props.handleDateChange}
             KeyboardButtonProps={{
               "aria-label": "change date",
             }}
+            disableFuture={true}
           />
         </MuiPickersUtilsProvider>
       );
@@ -37,13 +38,14 @@ export default function DatepickerComponent(props) {
             format="MM/dd/yyyy"
             margin="normal"
             id="date-picker-inline"
-            label="From Date:"
+            label={props.label}
             value={props.selectedDate}
             onChange={props.handleDateChange}
             KeyboardButtonProps={{
               "aria-label": "change date",
             }}
             className={classes.marginStyle}
+            disableFuture={true}
           />
         </MuiPickersUtilsProvider>
       );
@@ -53,12 +55,13 @@ export default function DatepickerComponent(props) {
           <KeyboardTimePicker
             margin="normal"
             id="time-picker"
-            label="Time picker"
+            label={props.label}
             value={props.selectedDate}
             onChange={props.handleDateChange}
             KeyboardButtonProps={{
               "aria-label": "change time",
             }}
+            fullWidth
           />
         </MuiPickersUtilsProvider>
       );

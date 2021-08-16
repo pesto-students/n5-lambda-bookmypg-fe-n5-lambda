@@ -49,9 +49,9 @@ export function Content(props) {
           </Grid>
           <Grid item xs={12} sm={6}>
             <ImageList cols={1}>
-              <ImageListItem>
+              <ImageListItem style={{ height: "300px" }}>
                 <img
-                  src={`${S3_BUCKET_IMAGES_BASEURL}/Homepage-1.jpg`}
+                  src={`${S3_BUCKET_IMAGES_BASEURL}/Aboutus-5.jpg`}
                   alt={"Not available"}
                 />
               </ImageListItem>
@@ -63,9 +63,9 @@ export function Content(props) {
         <Grid container spacing={4}>
           <Grid item xs={12} sm={6}>
             <ImageList cols={1}>
-              <ImageListItem>
+              <ImageListItem style={{ height: "300px" }}>
                 <img
-                  src={`${S3_BUCKET_IMAGES_BASEURL}/Homepage-2.jpg`}
+                  src={`${S3_BUCKET_IMAGES_BASEURL}/Aboutus-8.jpg`}
                   alt={"Not available"}
                 />
               </ImageListItem>

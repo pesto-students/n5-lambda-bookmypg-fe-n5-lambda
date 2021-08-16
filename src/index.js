@@ -18,9 +18,10 @@ import MyProfile from "./user/pages/myprofile/Myprofile";
 import PropertyDetails from "./user/pages/Propertydetails";
 import PropertyList from "./user/pages/Propertylist";
 import HomePage from "./user/pages/Homepage";
+import AboutUs from "./user/pages/AboutUs";
 import OwnerProtectedRoute from "./ProtectedRoutes/OwnerProtectedRoute";
 import AdminProtectedRoute from "./ProtectedRoutes/AdminProtectedRoute";
-
+import Theme from "theme/theme";
 const hist = createBrowserHistory();
 
 ReactDOM.render(
@@ -58,6 +59,7 @@ ReactDOM.render(
         />
 
         <Route exact path="/myprofile" component={MyProfile} />
+        <Route exact path="/aboutus" component={AboutUs} />
         <Route exact path="/" component={HomePage} />
       </Switch>
     </BrowserRouter>

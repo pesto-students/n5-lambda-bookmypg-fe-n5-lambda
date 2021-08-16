@@ -2,7 +2,7 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import Header from "user/components/header/header";
-import Content from "user/components/home/Content";
+import Content from "user/components/aboutus/AboutUs";
 import Footer from "components/footer/footer";
 import Theme from "theme/theme";
 

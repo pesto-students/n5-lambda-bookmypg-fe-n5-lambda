@@ -3,10 +3,11 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import Header from "components/header/header";
 import Content from "../components/home/Content";
 import Footer from "../../components/footer/footer";
-import Theme from "../theme/theme";
+import Theme from "theme/theme";
 import OverticalBar from "../Ocharts/OverticalBar";
 import OpieChart from "../Ocharts/Opiechart";
 import Grid from "@material-ui/core/Grid";
+
 const headersData = [
   {
     label: "About us",

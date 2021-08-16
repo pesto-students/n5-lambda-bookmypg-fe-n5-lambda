@@ -3,7 +3,7 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import Header from "components/header/header";
 import Content from "../components/amenity/AmenityListContent";
 import Footer from "../../components/footer/footer";
-import Theme from "../theme/theme";
+import Theme from "theme/theme";
 const headersData = [
   {
     label: "About us",

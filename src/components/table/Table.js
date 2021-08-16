@@ -25,7 +25,7 @@ export default function TableComponent(props) {
   };
 
   return (
-    <Paper style={{ overflowX: "auto" }}>
+    <Paper variant="outlined" square>
       <Table style={{ minWidth: "340px" }}>
         <TableHead>
           <TableRow>

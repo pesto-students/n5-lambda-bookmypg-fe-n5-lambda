@@ -151,7 +151,6 @@ export default function AddProperty(props) {
               <Grid container spacing={3} className={classes.containerStyle}>
                 <Grid item xs={12} sm={6}>
                   <TextField type="standardForm" label="Name" />
-
                   <TextField
                     type="standardForm"
                     label="Address"
@@ -170,6 +169,7 @@ export default function AddProperty(props) {
                     value={gender}
                     setValue={setGender}
                   />
+                  <TimePicker type="TimePicker" label="Visit Open From:" />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField type="standardForm" label="Total Beds" />
@@ -186,6 +186,7 @@ export default function AddProperty(props) {
                     setValue={setValue}
                   />
                   <TextField type="standardForm" label="Rent" />
+                  <TimePicker type="TimePicker" label="Visit Open Till:" />
                 </Grid>
 
                 <UploadPhotos name="Upload Property Photos" />

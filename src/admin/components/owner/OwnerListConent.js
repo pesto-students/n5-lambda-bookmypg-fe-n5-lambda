@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { get } from 'lodash';
+import { get } from "lodash";
 import ResponsiveDrawer from "../responsivedrawer/ResponsiveDrawer";
 import { Grid } from "@material-ui/core";
 import Pagination from "../pagination/Pagination";
@@ -9,7 +9,6 @@ import useStyles from "./styles/OwnerListContent.styles";
 import Datepicker from "../../../components/datepicker/Datepicker";
 import Typography from "../../../components/typography/Typography";
 import TextField from "../../../components/textfield/Textfield";
-//import Tablecomponent from "./OwnerTable";
 import TableComponent from "components/table/Table";
 import UserSelector from "../../../user/helpers/UserSelector";
 import TenantsSelector from "../../../owner/components/TenantsSelector";
@@ -73,8 +72,9 @@ export function OwnerlistContent(props) {
 
   let owners;
   let TableData = [];
-  if (get(props, 'tenants.length')) {
-    owners = props.tenants && props.tenants.length
+  if (get(props, "tenants.length")) {
+    owners =
+      props.tenants && props.tenants.length
         ? props.tenants.filter((tenant) => tenant.role === "owner")
         : [];
     owners.map((owner) => {
@@ -116,11 +116,13 @@ export function OwnerlistContent(props) {
                   type="DisableFuture"
                   selectedDate={from_date}
                   handleDateChange={(date) => setFromDate(date.toISOString())}
+                  label="From Date:"
                 />
                 <Datepicker
                   type="DisableFutureMargin"
                   selectedDate={to_date}
                   handleDateChange={(date) => setToDate(date.toISOString())}
+                  label="To Date:"
                 />
               </Grid>
               <Addowner addOwner={props.addOwner} setOwner={setOwner} />

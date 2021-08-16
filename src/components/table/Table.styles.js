@@ -39,6 +39,10 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
   },
+  customBorder: {
+    border: `3px solid grey`,
+    overflowX: "auto",
+  },
 }));
 
 export default useStyles;
