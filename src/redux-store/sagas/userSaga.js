@@ -15,3 +15,16 @@ export function* getUserSaga(userApi, action) {
     );
   }
 }
+
+export function* updateUserSaga(userApi, action) {
+  try {
+    const response = yield call(userApi.updateUser, action.payload);
+    yield put(userActions.userUpdated(response));
+  } catch (e) {
+    yield put(
+      userActions.updateUserFailed({
+        message: e.message,
+      })
+    );
+  }
+}
