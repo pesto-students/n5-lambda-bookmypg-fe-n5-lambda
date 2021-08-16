@@ -4,6 +4,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     marginTop: "80px",
+    [theme.breakpoints.up("sm")]: {
+      marginTop: "10px",
+    },
   },
   drawer: {
     [theme.breakpoints.up("sm")]: {
@@ -15,21 +18,25 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
   formControl: {
-    margin: theme.spacing(1),
+    //margin: theme.spacing(1),
+    marginLeft: "20px",
+    marginTop: "10px",
     width: "150px",
   },
   appBar: {
     [theme.breakpoints.up("sm")]: {
       width: `calc(100% - ${240}px)`,
       marginLeft: 240,
+      height: "0px",
     },
-    marginTop: "60px",
+    marginTop: "56px",
     backgroundColor: "white",
     color: "black",
   },
   searchsortButtons: {
-    justifyContent: "flex-end",
+    //justifyContent: "flex-end",
     display: "flex",
+    width: "100%",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -39,7 +46,10 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: 240,
-    marginTop: "60px",
+    marginTop: "58px",
+    [theme.breakpoints.up("sm")]: {
+      marginTop: "65px",
+    },
   },
   content: {
     flexGrow: 1,
@@ -52,6 +62,11 @@ const useStyles = makeStyles((theme) => ({
   },
   labelStyle: {
     fontSize: "14px",
+  },
+
+  typographyStyle: {
+    marginLeft: "20px",
+    marginTop: "20px",
   },
 }));
 
