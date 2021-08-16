@@ -3,6 +3,9 @@ import {
   GET_COMPLAINTS_REQUEST_RESOLVED,
   GET_COMPLAINTS_REQUEST_FAILED,
   RESET_COMPLAINTS_STATE,
+  RAISE_COMPLAINT_REQUEST_MADE,
+  RAISE_COMPLAINT_REQUEST_RESOLVED,
+  RAISE_COMPLAINT_REQUEST_FAILED,
 } from "../../constant";
 import requestState from "../utils/request";
 
@@ -43,10 +46,41 @@ const resetState = (state = {}) => {
   };
 };
 
+const raiseComplaintRequestMadeResolver = (state = {}, payload = {}) => {
+  return {
+    ...state,
+    raiseComplaintRequestState: {
+      ...requestState.processing,
+    },
+  };
+};
+
+const raiseComplaintRequestResolvedResolver = (state = {}, payload) => {
+  return {
+    ...state,
+    raiseComplaintRequestState: {
+      ...requestState.resolved,
+    },
+  };
+};
+
+const raiseComplaintRequestFailedResolver = (state = {}, payload = {}) => {
+  return {
+    ...state,
+    raiseComplaintRequestState: {
+      ...requestState.failed,
+    },
+    ...payload,
+  };
+};
+
 const actionToResolverMap = {
   [GET_COMPLAINTS_REQUEST_MADE]: getComplaintsRequestMadeResolver,
   [GET_COMPLAINTS_REQUEST_RESOLVED]: getComplaintsRequestResolvedResolver,
   [GET_COMPLAINTS_REQUEST_FAILED]: gettComplaintsRequestFailedResolver,
+  [RAISE_COMPLAINT_REQUEST_MADE]: raiseComplaintRequestMadeResolver,
+  [RAISE_COMPLAINT_REQUEST_RESOLVED]: raiseComplaintRequestResolvedResolver,
+  [RAISE_COMPLAINT_REQUEST_FAILED]: raiseComplaintRequestFailedResolver,
   [RESET_COMPLAINTS_STATE]: resetState,
 };
 

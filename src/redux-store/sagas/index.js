@@ -11,6 +11,7 @@ import {
   UPDATE_AMENITY_REQUEST_MADE,
   ADD_AMENITY_REQUEST_MADE,
   GET_COMPLAINTS_REQUEST_MADE,
+  RAISE_COMPLAINT_REQUEST_MADE,
   GET_LOCATIONS_REQUEST_MADE,
   GET_LATEST_PROPERTIES_REQUEST_MADE,
   ADD_PROPERTY_REQUEST_MADE,
@@ -25,7 +26,7 @@ import {
 } from "./propertiesSaga";
 import { getTenantsSaga, getTenantsByOwnerSaga, updateTenantSaga, addTenantSaga } from "./tenantsSaga";
 import { getAmenitiesSaga, addAmenitySaga, updateAmenitySaga} from "./amenitiesSaga";
-import { getComplaintsSaga } from "./complaintsSaga";
+import { getComplaintsSaga, raiseComplaintSaga } from "./complaintsSaga";
 import { getLocationsSaga } from "./locationsSaga";
 
 import AppService from "../../services/index";
@@ -51,6 +52,7 @@ export default function* rootSaga() {
     takeLatest(ADD_AMENITY_REQUEST_MADE, addAmenitySaga, amenitiesApi),
     takeLatest(UPDATE_AMENITY_REQUEST_MADE, updateAmenitySaga, amenitiesApi),
     takeLatest(GET_COMPLAINTS_REQUEST_MADE, getComplaintsSaga, complaintsApi),
+    takeLatest(RAISE_COMPLAINT_REQUEST_MADE, raiseComplaintSaga, complaintsApi),
     takeLatest(GET_LOCATIONS_REQUEST_MADE, getLocationsSaga, locationsApi),
     takeLatest(GET_USER_REQUEST_MADE, getUserSaga, userpApi),
     takeLatest(UPDATE_USER_REQUEST_MADE, updateUserSaga, userpApi),
