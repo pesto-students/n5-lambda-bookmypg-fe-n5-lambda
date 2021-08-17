@@ -83,8 +83,14 @@ export const getComponent = (emp, header, list_type) => {
                 justifyContent: "center",
               }}
             >
-              <AddProperty mode="Edit" name={emp[header]} /> <SwitchComponent />
+              <AddProperty mode="Edit" name={emp[header]} />
             </div>
+          </TableCell>
+        );
+      } else if (header === "switch") {
+        return (
+          <TableCell align="center">
+            <SwitchComponent />
           </TableCell>
         );
       } else {
