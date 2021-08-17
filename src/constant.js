@@ -139,9 +139,8 @@ export const TENANT_LIST_HEADERS = {
 
 export const PAYMENT_LIST_HEADERS = {
   property: "Property name",
-  owner: "Email",
   amount: "Amount",
-  chargeid: "Charge ID",
+  charge_id: "Charge ID",
   createdAt: "Payment Date",
 };
 

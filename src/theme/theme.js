@@ -25,7 +25,7 @@ const theme = createTheme({
         fontWeight: 550,
         fontSize: "1.00rem",
         lineHeight: "normal",
-        color: "#fff",
+        //color: "#fff",
       },
       root: {
         padding: "4px 16px 4px 24px",
@@ -34,10 +34,27 @@ const theme = createTheme({
     MuiTableRow: {
       head: {
         height: 50,
-        backgroundColor: "#616161",
+        //backgroundColor: "#616161",
       },
       root: {
         height: 50,
+      },
+    },
+    MuiMenuItem: {
+      root: {
+        minHeight: "24px",
+        lineHeight: "normal",
+      },
+    },
+    MuiListItem: {
+      root: {
+        paddingTop: "8px",
+        paddingBottom: "8px",
+      },
+    },
+    MuiListItemText: {
+      root: {
+        padding: "0px 0px",
       },
     },
   },
