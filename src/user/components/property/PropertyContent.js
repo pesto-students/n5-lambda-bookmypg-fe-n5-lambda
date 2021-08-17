@@ -252,7 +252,7 @@ export default function PropertyContent(props) {
                         <Rating
                           name="read-only"
                           value={data.ratings}
-                          number={property.reviewdata.reviews || 0}
+                          number={property.propertydata.numreviews || 0}
                           readOnly
                         />
                       </Link>

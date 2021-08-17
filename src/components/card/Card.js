@@ -12,7 +12,7 @@ import { useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import MoreButton from "@material-ui/core/Button";
-import Rating from "../rating/rating";
+import Rating from "user/components/rating/cardratings";
 import ScheduleVisit from "user/components/schedulevisit/ScheduleVisit";
 
 export default function ButtonComponent(props) {
@@ -147,6 +147,56 @@ export default function ButtonComponent(props) {
           </div>
         </Card>
       );
+    case "OwnerProperty":
+      return (
+        <Grid container className={classes.gridStyle}>
+          <Grid item xs={12} sm={6} md={3}>
+            <Card className={classes.card}>
+              <CardMedia
+                className={classes.cardMedia}
+                image={`${S3_BUCKET_URL}/${props.property.propertydata.photos[0]}`}
+                title="Image title"
+              />
+              <CardContent className={classes.cardContent}>
+                <div className={classes.propertydetailStyle}>
+                  <Typography variant="h6" component="h2">
+                    {props.property.propertydata.name}
+                  </Typography>
+                  <Typography variant="body2" className={classes.ownerStyle}>
+                    by{" "}
+                    {props.property.propertydata.owner.firstName +
+                      " " +
+                      props.property.propertydata.owner.lastName}
+                  </Typography>
+                </div>
+                <div>
+                  <Typography gutterBottom variant="subtitle2">
+                    ₹&nbsp;{props.property.propertydata.rent}
+                  </Typography>
+                </div>
+                <div className={classes.ratingboxStyle}>
+                  <Box display="flex" p={1}>
+                    <Rating
+                      //value={data.review.rating}
+                      type="Large"
+                      readonly={true}
+                    />
+                  </Box>
+                  <Typography
+                    gutterBottom
+                    variant="subtitle2"
+                    className={classes.descriptionStyle}
+                  >
+                    {
+                      //data.review.description
+                    }
+                  </Typography>
+                </div>
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
+      );
     default:
       return (
         <Card className={classes.card}>
@@ -170,10 +220,7 @@ export default function ButtonComponent(props) {
             </Typography>
           </CardContent>
           <div className={classes.ratingboxStyle}>
-            <Cardrating
-              //value={data.rating}
-              number={props.property.numreviews || 0}
-            />
+            <Cardrating value={4} number={props.property.numreviews || 0} />
             <Button
               size="small"
               variant="contained"

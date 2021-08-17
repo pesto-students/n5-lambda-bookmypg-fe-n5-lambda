@@ -2,9 +2,11 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   containerStyle: {
-    border: "1px solid rgba(0, 0, 0, 0.12)",
+    //border: "1px solid rgba(0, 0, 0, 0.12)",
     borderRadius: "10px",
-    paddingTop: "10px",
+    //paddingTop: "10px",
+    //minHeight: "100px",
+    marginBottom: "10px",
   },
   root: {
     flexGrow: 1,
