@@ -30,7 +30,8 @@ export function MyPropertiesContent(props) {
   const classes = useStyles();
 
   const [propertyId, setPropertyId] = React.useState(props.user&&props.user.property?props.user.property._id:[]);
-  const property = props.properties.filter(p=>p._id===propertyId)[0] || [];
+  const property =
+    props.properties.filter((p) => p.propertydata._id === propertyId)[0] || [];
 
   return (
     <div className="Table">
@@ -41,21 +42,21 @@ export function MyPropertiesContent(props) {
               <Card className={classes.card}>
                 <CardMedia
                   className={classes.cardMedia}
-                  image={`${S3_BUCKET_URL}/${property.photos[0]}`}
+                  image={`${S3_BUCKET_URL}/${property.propertydata.photos[0]}`}
                   title="Image title"
                 />
                 <CardContent className={classes.cardContent}>
                   <div className={classes.propertydetailStyle}>
                     <Typography variant="h6" component="h2">
-                      {property.name}
+                      {property.propertydata.name}
                     </Typography>
                     <Typography variant="body2" className={classes.ownerStyle}>
-                      by {property.owner.name}
+                      by {property.propertydata.owner.firstName+' '+property.propertydata.owner.lastName}
                     </Typography>
                   </div>
                   <div>
                     <Typography gutterBottom variant="subtitle2">
-                      ₹&nbsp;{property.rent}
+                      ₹&nbsp;{property.propertydata.rent}
                     </Typography>
                   </div>
 
@@ -81,7 +82,7 @@ export function MyPropertiesContent(props) {
                       <Box display="flex" p={1}>
                         <Typography gutterBottom variant="subtitle2">
                           You haven't reviewed this property yet. To Review it
-                          <ReviewProperty value={property.name} />
+                          <ReviewProperty value={property.propertydata.name} />
                         </Typography>
                       </Box>
                     </div>
@@ -89,7 +90,7 @@ export function MyPropertiesContent(props) {
                 </CardContent>
                 <div className={classes.buttonStyle}>
                   <Complaint
-                    property={property}
+                    property={property.propertydata}
                     user={props.user}
                     raiseComplaint={props.raiseComplaint}
                   />

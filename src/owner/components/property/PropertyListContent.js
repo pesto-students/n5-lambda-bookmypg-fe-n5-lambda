@@ -45,11 +45,11 @@ export function PropertyListContent(props) {
   if (get(props, 'properties.length')) {
     props.properties.map((property) => {
       TableData.push({
-        name: property.name,
-        location: property.location.name,
-        address: property.address,
-        freebeds: property.totalbeds,
-        createdAt: property.createdAt,
+        name: property.propertydata.name,
+        location: property.propertydata.location.name,
+        address: property.propertydata.address,
+        freebeds: property.propertydata.totalbeds,
+        createdAt: property.propertydata.createdAt,
       });
     });
   }

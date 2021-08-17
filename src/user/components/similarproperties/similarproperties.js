@@ -72,9 +72,15 @@ export default function SimilarProperties(props) {
               {latestProperties &&
                 latestProperties.length &&
                 latestProperties.map((property) => (
-                  <Grid item key={property._id} xs={12} sm={6} md={3}>
+                  <Grid
+                    item
+                    key={property.propertydata._id}
+                    xs={12}
+                    sm={6}
+                    md={3}
+                  >
                     <SwiperSlide style={{ height: "400px" }}>
-                      <PropertyCard property={property} />
+                      <PropertyCard property={property.propertydata} />
                       {/*  <Card className={classes.card}>
                         <CardMedia
                           className={classes.cardMedia}
@@ -143,31 +149,37 @@ export default function SimilarProperties(props) {
             {latestProperties &&
               latestProperties.length &&
               latestProperties.map((property) => (
-                <Grid item key={property._id} xs={12} sm={6} md={3}>
+                <Grid
+                  item
+                  key={property.propertydata._id}
+                  xs={12}
+                  sm={6}
+                  md={3}
+                >
                   <Card className={classes.card}>
                     <CardMedia
                       className={classes.cardMedia}
-                      image={`${S3_BUCKET_URL}/${property.photos[0]}`}
-                      title={property.photos[0]}
+                      image={`${S3_BUCKET_URL}/${property.propertydata.photos[0]}`}
+                      title={property.propertydata.photos[0]}
                     />
                     <CardContent className={classes.cardContent}>
                       <div className={classes.propertynameStyle}>
                         <Typography gutterBottom variant="h6" component="h2">
-                          {property.name}
+                          {property.propertydata.name}
                         </Typography>
                         <Typography gutterBottom variant="caption">
                           <LocationOnIcon />
-                          {property.location.name}
+                          {property.propertydata.location.name}
                         </Typography>
                       </div>
                       <Typography gutterBottom variant="body2">
-                        {property.description}
+                        {property.propertydata.description}
                       </Typography>
                     </CardContent>
                     <div className={classes.ratingboxStyle}>
                       <Cardrating
                         value={data.rating}
-                        number={property.numreviews || 0}
+                        number={property.reviewdata.reviews || 0}
                       />
                       <Button
                         size="small"
@@ -175,7 +187,9 @@ export default function SimilarProperties(props) {
                         color="ContainedSecondary"
                         className={classes.buttonStyle}
                         onClick={() =>
-                          history.push(`/property-details/${property._id}`)
+                          history.push(
+                            `/property-details/${property.propertydata._id}`
+                          )
                         }
                       >
                         More Details

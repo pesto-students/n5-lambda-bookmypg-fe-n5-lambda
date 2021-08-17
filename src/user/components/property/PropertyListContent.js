@@ -45,7 +45,10 @@ export default function PropertyListContent(props) {
             props.properties.length &&
             props.properties.map((property) => (
               <Grid item xs={12} spacing={1}>
-                <PropertyCard type="PropertyList" property={property} />
+                <PropertyCard
+                  type="PropertyList"
+                  property={property.propertydata}
+                />
               </Grid>
             ))}
           <Grid item xs={12} spacing={1}>
@@ -69,7 +72,10 @@ export default function PropertyListContent(props) {
             props.properties.length &&
             props.properties.map((property) => (
               <Grid item className={classes.containerStyle}>
-                <PropertyCard type="PropertyListMobile" property={property} />
+                <PropertyCard
+                  type="PropertyListMobile"
+                  property={property.propertydata}
+                />
               </Grid>
             ))}
         </Grid>
