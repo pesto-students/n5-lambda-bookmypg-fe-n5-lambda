@@ -73,11 +73,21 @@ export default function Tablecomponent(props) {
             properties.length &&
             properties.map((property) => (
               <TableRow>
-                <TableCell align="center">{property.name}</TableCell>
-                <TableCell align="center">{property.location.name}</TableCell>
-                <TableCell align="center">{property.address}</TableCell>
-                <TableCell align="center">{property.totalbeds}</TableCell>
-                <TableCell align="center">{property.createdAt}</TableCell>
+                <TableCell align="center">
+                  {property.propertydata.name}
+                </TableCell>
+                <TableCell align="center">
+                  {property.propertydata.location.name}
+                </TableCell>
+                <TableCell align="center">
+                  {property.propertydata.address}
+                </TableCell>
+                <TableCell align="center">
+                  {property.propertydata.totalbeds}
+                </TableCell>
+                <TableCell align="center">
+                  {property.propertydata.createdAt}
+                </TableCell>
               </TableRow>
             ))}
         </TableBody>

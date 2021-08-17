@@ -70,7 +70,7 @@ export default function PropertyContent(props) {
 
   const property = props.property;
 
-  const MyCollection = property.photos.map((photo) => {
+  const MyCollection = property.propertydata.photos.map((photo) => {
     return { label: photo, imgPath: `${S3_BUCKET_URL}/${photo}` };
   });
 
@@ -146,7 +146,7 @@ export default function PropertyContent(props) {
                   color="primary"
                   paragraph
                 >
-                  {property.name}
+                  {property.propertydata.name}
 
                   <Typography
                     style={{ display: "contents" }}
@@ -156,7 +156,9 @@ export default function PropertyContent(props) {
                     color="secondary"
                   >
                     &nbsp;&nbsp;by&nbsp;
-                    {property.owner.firstName + " " + property.owner.lastName}
+                    {property.propertydata.owner.firstName +
+                      " " +
+                      property.propertydata.owner.lastName}
                   </Typography>
                 </Typography>
               </div>
@@ -173,7 +175,7 @@ export default function PropertyContent(props) {
                     display="block"
                     className={classes.iconText}
                   >
-                    {property.description}
+                    {property.propertydata.description}
                   </Typography>
                 </Grid>
               </Grid>
@@ -190,7 +192,7 @@ export default function PropertyContent(props) {
                     display="block"
                     className={classes.iconText}
                   >
-                    {property.address}
+                    {property.propertydata.address}
                   </Typography>
                 </Grid>
               </Grid>
@@ -207,7 +209,7 @@ export default function PropertyContent(props) {
                     align="justify"
                     className={classes.iconText}
                   >
-                    ₹&nbsp;{property.rent}
+                    ₹&nbsp;{property.propertydata.rent}
                   </Typography>
                 </Grid>
               </Grid>
@@ -229,7 +231,7 @@ export default function PropertyContent(props) {
                     Amenities
                   </Typography>
                 </Grid>
-                <Amenities amenities={property.amenities} />
+                <Amenities amenities={property.propertydata.amenities} />
               </Grid>
 
               <Grid container alignItems="center" spacing={2}>
@@ -250,7 +252,7 @@ export default function PropertyContent(props) {
                         <Rating
                           name="read-only"
                           value={data.ratings}
-                          number={property.numreviews || 0}
+                          number={property.reviewdata.reviews || 0}
                           readOnly
                         />
                       </Link>
@@ -262,9 +264,9 @@ export default function PropertyContent(props) {
                 </Grid>
                 <Grid item xl={12} sm={6} md={3}>
                   <ScheduleVisit
-                    owner={property.owner.email}
-                    property_name={property.name}
-                    property_id={property._id}
+                    owner={property.propertydata.owner.email}
+                    property_name={property.propertydata.name}
+                    property_id={property.propertydata._id}
                   />
                 </Grid>
               </Grid>

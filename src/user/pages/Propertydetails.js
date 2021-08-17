@@ -13,7 +13,7 @@ export function PropertyDetails(props) {
   const property_id = props.match.params.id;
 
   const property = props.properties.filter(
-    (property) => property._id === property_id
+    (property) => property.propertydata._id === property_id
   )[0];
 
   return (
