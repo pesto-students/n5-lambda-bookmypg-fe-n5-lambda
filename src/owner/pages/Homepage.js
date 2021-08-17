@@ -81,7 +81,7 @@ export default function HomePage() {
               textAlign: "center",
             }}
           >
-            <VerticalBar />
+            <VerticalBar title={"Complaints"} />
           </Grid>
           <Grid
             item
@@ -93,7 +93,7 @@ export default function HomePage() {
               marginBottom: "20em",
             }}
           >
-            <PieChart />
+            <PieChart title={"Occupancy"} />
           </Grid>
         </Grid>
         <Footer />
