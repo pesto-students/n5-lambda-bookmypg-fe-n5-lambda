@@ -11,13 +11,29 @@ import {
   IconButton,
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import useStyles from "./RaiseComplaint.styles";
 import Button from "../../../components/button/Button";
+import { EMAIL_TYPE } from "../../../constant";
 
 export default function FormDialog(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [email, setEmail] = React.useState(props.user?props.user.email:"");
+  const [phone, setPhone] = React.useState(props.user?props.user.phone:"");
+  const [details, setDetails] = React.useState("");
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const params = { description: details, raisedby: props.user._id, property: props.property._id };
+    props.raiseComplaint({user:props.user,params});
+    setOpen(false);
+    setEmail("");
+    setPhone("");
+    setDetails("");
+    toast("Complaint has been registered successfully!");
+  };
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -76,7 +92,7 @@ export default function FormDialog(props) {
                 disabled
                 id="standard-disabled"
                 label="Property Name"
-                defaultValue="abc"
+                defaultValue={props.property.name}
                 fullwidth
                 className={classes.textfieldStyle}
                 InputProps={{
@@ -91,7 +107,8 @@ export default function FormDialog(props) {
               <TextField
                 id="standard-basic"
                 label="Email"
-                defaultValue="-"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 fullwidth
                 className={classes.textfieldStyle}
               />
@@ -100,7 +117,8 @@ export default function FormDialog(props) {
               <TextField
                 id="standard-basic"
                 label="Contact no"
-                defaultValue="-"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
                 fullwidth
                 className={classes.textfieldStyle}
               />
@@ -109,7 +127,8 @@ export default function FormDialog(props) {
               <TextField
                 id="standard-basic"
                 label="Details"
-                defaultValue=""
+                value={details}
+                onChange={(e) => setDetails(e.target.value)}
                 fullwidth
                 multiline
                 rows="4"
@@ -119,10 +138,11 @@ export default function FormDialog(props) {
           </Grid>
         </DialogContent>
         <DialogActions className={classes.button}>
-          <Button text="Submit" />
-          <Button text="Cancel" />
+          <Button text="Submit" handleClick={handleSubmit} />
+          <Button text="Cancel" handleClick={handleClose} />
         </DialogActions>
       </Dialog>
+      <ToastContainer />
     </div>
   );
 }

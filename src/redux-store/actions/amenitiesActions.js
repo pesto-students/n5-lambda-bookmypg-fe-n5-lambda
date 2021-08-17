@@ -22,8 +22,7 @@ export default {
 
   addAmenity: (payload) => action(ADD_AMENITY_REQUEST_MADE, payload),
   amenityAdded: (payload) => action(ADD_AMENITY_REQUEST_RESOLVED, payload),
-  addAmenityFailed: (payload) =>
-    action(ADD_AMENITY_REQUEST_FAILED, payload),
+  addAmenityFailed: (payload) => action(ADD_AMENITY_REQUEST_FAILED, payload),
 
   updateAmenity: (payload) => action(UPDATE_AMENITY_REQUEST_MADE, payload),
   amenityUpdated: (payload) => action(UPDATE_AMENITY_REQUEST_RESOLVED, payload),
