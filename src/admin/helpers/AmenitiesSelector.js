@@ -7,6 +7,14 @@ export const AmenitiesSelector = (state) => ({
           : {},
     };
   },
+  getAmenitiesCount: () => {
+    return {
+      count:
+        state && state.amenities && state.amenities.data
+          ? state.amenities.total_count
+          : {},
+    };
+  },
   getAmenitiesRequestState: () => {
     return state.getAmenitiesRequestState || {};
   },

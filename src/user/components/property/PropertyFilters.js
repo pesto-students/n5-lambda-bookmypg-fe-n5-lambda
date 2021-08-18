@@ -59,7 +59,7 @@ function PropertyFilters(props) {
     twoRent: false,
   });
 
-  const [pagenumber, setPagenumber] = React.useState(1);
+  const [pagenumber, setPagenumber] = React.useState(0);
   const [countperpage, setCountperpage] = React.useState(10);
 
   useEffect(() => {

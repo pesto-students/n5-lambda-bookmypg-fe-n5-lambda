@@ -27,8 +27,8 @@ export function PaymentContent(props) {
     props.tenants && props.tenants.length
       ? props.tenants.filter((tenant) => tenant.property)
       : [];
-  console.log(props);
-  return (
+
+      return (
     <div className="Table">
       <ResponsiveDrawer headersData={props.responsivedrawerData}>
         <Grid container justify={"center"}>

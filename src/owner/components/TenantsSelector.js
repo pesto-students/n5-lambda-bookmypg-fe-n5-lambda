@@ -5,6 +5,12 @@ export const TenantsSelector = (state) => ({
         state && state.tenants && state.tenants.data ? state.tenants.data : {},
     };
   },
+  getTenantsCount: () => {
+    return {
+      count:
+        state && state.tenants && state.tenants.data ? state.tenants.total_count : {},
+    };
+  },
   getTenantsRequestState: () => {
     return state.getTenantsRequestState || {};
   },

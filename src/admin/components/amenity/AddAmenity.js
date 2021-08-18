@@ -41,7 +41,7 @@ export default function AddAmenity(props) {
     toast("Amenity has been added successfully!");
     setName("");
     setLogo("");
-    props.setAddAmenityState(!props.addAmenityState);
+    setTimeout(()=>{props.setAddAmenityState(!props.addAmenityState);},500)
   };
 
   return (

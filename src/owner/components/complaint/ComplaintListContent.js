@@ -17,7 +17,7 @@ import { DATE, ORDER_BY } from "../../../constant";
 export function ComplaintsContent(props) {
   const [from_date, setFromDate] = React.useState(DATE.FROM_DATE);
   const [to_date, setToDate] = React.useState(DATE.TO_DATE);
-  const [pagenumber, setPagenumber] = React.useState(1);
+  const [pagenumber, setPagenumber] = React.useState(0);
   const [countperpage, setCountperpage] = React.useState(10);
   const [search, setSearch] = React.useState("");
   const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC);
@@ -89,7 +89,7 @@ export function ComplaintsContent(props) {
               setPagenumber={setPagenumber}
               countperpage={countperpage}
               setCountperpage={setCountperpage}
-              count={props.complaints.length}
+              count={props.total_complaints}
             />
           </Grid>
         </Grid>
@@ -105,6 +105,7 @@ const mapStateToProps = (state) => {
   return {
     user: userSelector.getUserData().data,
     complaints: complaintsSelector.getComplaintsData().data,
+    total_complaints: complaintsSelector.getComplaintsCount().count,
   };
 };
 

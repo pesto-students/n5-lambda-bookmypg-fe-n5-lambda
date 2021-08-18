@@ -7,6 +7,14 @@ export const ComplaintsSelector = (state) => ({
           : {},
     };
   },
+  getComplaintsCount: () => {
+    return {
+      count:
+        state && state.complaints && state.complaints.data
+          ? state.complaints.total_count
+          : {},
+    };
+  },
   getComplaintsRequestState: () => {
     return state.getComplaintsRequestState || {};
   },
