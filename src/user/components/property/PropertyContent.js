@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -22,6 +22,8 @@ import Amenities from "../amenity/amenities";
 import Reviews from "../review/DisplayReviews";
 import { S3_BUCKET_URL } from "../../../constant";
 import useStyles from "./styles/PropertyContent.styles";
+import ButtonComponent from "components/button/Button";
+import TypographyComponent from "components/typography/Typography";
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
 
@@ -59,6 +61,10 @@ export default function PropertyContent(props) {
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
+  const [bookProperty, showBookProperty] = React.useState(false);
+  const handleBookProperty = () => {
+    showBookProperty(!bookProperty);
+  };
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
@@ -73,13 +79,13 @@ export default function PropertyContent(props) {
   const MyCollection = property.propertydata.photos.map((photo) => {
     return { label: photo, imgPath: `${S3_BUCKET_URL}/${photo}` };
   });
-
+  console.log(props);
   const maxSteps = MyCollection.length;
   return (
     <React.Fragment>
       <Container className={classes.cardGrid} maxWidth="md">
         {property && (
-          <Grid container spacing={4}>
+          <Grid container spacing={2}>
             <Grid item xs={12} sm={5}>
               <div className={classes.imgboxStyle}>
                 <img
@@ -138,7 +144,7 @@ export default function PropertyContent(props) {
                 />
               </div>
             </Grid>
-            <Grid item xs={12} sm={7}>
+            <Grid item xs={12} sm={4}>
               <div>
                 <Typography
                   component="h1"
@@ -219,7 +225,6 @@ export default function PropertyContent(props) {
                 spacing={2}
                 class={classes.amenitiesBox}
               >
-                <Grid item></Grid>
                 <Grid item>
                   <Typography
                     component="h1"
@@ -235,7 +240,7 @@ export default function PropertyContent(props) {
               </Grid>
 
               <Grid container alignItems="center" spacing={2}>
-                <Grid item xl={12} sm={6} md={3}>
+                <Grid item xl={12} sm={6} md={4}>
                   <div>
                     <Box
                       borderColor="transparent"
@@ -259,21 +264,38 @@ export default function PropertyContent(props) {
                     </Box>
                   </div>
                 </Grid>
-                <Grid item xl={12} sm={6} md={3}>
-                  <Bookproperty
-                    property={property.propertydata._id}
-                    user={props.user._id}
+                {props.user && props.user._id ? (
+                  <>
+                    <Grid item xl={12} sm={6} md={4}>
+                      <ButtonComponent
+                        text="Book Property"
+                        handleClick={handleBookProperty}
+                      />
+                    </Grid>
+                    <Grid item xl={12} sm={6} md={4}>
+                      <ScheduleVisit
+                        owner={property.propertydata.owner.email}
+                        property_name={property.propertydata.name}
+                        property_id={property.propertydata._id}
+                      />
+                    </Grid>
+                  </>
+                ) : (
+                  <TypographyComponent
+                    type="BodyText"
+                    text="**Please login to book property or schedule visit"
                   />
-                </Grid>
-                <Grid item xl={12} sm={6} md={3}>
-                  <ScheduleVisit
-                    owner={property.propertydata.owner.email}
-                    property_name={property.propertydata.name}
-                    property_id={property.propertydata._id}
-                  />
-                </Grid>
+                )}
               </Grid>
             </Grid>
+            {bookProperty && (
+              <Grid item xs={12} sm={1}>
+                <Bookproperty
+                  property={property.propertydata._id}
+                  user={props.user._id}
+                />
+              </Grid>
+            )}
           </Grid>
         )}
         <Grid

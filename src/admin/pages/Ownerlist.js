@@ -52,11 +52,6 @@ const listitems = [
 
 const responsivedrawerData = [
   {
-    label: "Dashboard",
-    href: "/admin-home",
-    icon: "Graph",
-  },
-  {
     label: "Owners",
     href: "/owner-list",
     icon: "People",

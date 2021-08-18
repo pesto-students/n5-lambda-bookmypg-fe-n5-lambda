@@ -59,7 +59,7 @@ export default function BookProperty(props) {
 
   return (
     <div>
-      <Button text="Book Property" handleClick={handleClickOpen} />
+      {/*    <Button text="Book Property" handleClick={handleClickOpen} />
       <CheckoutWithStripe
         rent={rent}
         property={props.property}
@@ -87,75 +87,70 @@ export default function BookProperty(props) {
           </div>
           <FormImage imageName="Bookproperty.jpg" />
         </DialogTitle>
-        <DialogContent className={classes.formAlign}>
-          <FormControl component="fieldset">
-            <FormLabel component="legend"></FormLabel>
-            <TextFieldNew
-              type="standardForm"
-              label="Email"
-              value={email}
-              onChange={setEmail}
-              icon="Email"
-            />
-            {/*<TextField
-              id="standard-disabled"
-              label="Email"
-              value={email}
-              fullwidth
-              onChange={(e) => setEmail(e.target.value)}
-            />*/}
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <Grid container>
-                <Datepicker
-                  selectedDate={selectedDate}
-                  handleDateChange={handleDateChange}
-                  label="When you want to move in?"
-                />
-              </Grid>
-            </MuiPickersUtilsProvider>
-            <div style={{ display: "flex" }}>
-              <TextField
-                disabled
-                id="standard-disabled"
-                label="Rent"
-                defaultValue={rent}
-                fullwidth
-                InputProps={{
-                  endAdornment: (
-                    <FormImage imageName="RupeesIcon.jpg" type="icon" />
-                  ),
-                }}
-                className={classes.textfieldStyle}
-                onChange={(e) => setRent(e.target.value)}
-              />
-            </div>
+      <DialogContent className={classes.formAlign}>*/}
+      <FormControl component="fieldset">
+        <FormLabel component="legend"></FormLabel>
+        <TextFieldNew
+          type="standardForm"
+          label="Email"
+          value={email}
+          onChange={setEmail}
+          icon="Email"
+        />
 
-            <RadioGroup
-              aria-label="gender"
-              name="payment"
-              value={value}
-              onChange={handleChange}
-              row
-            >
-              <FormControlLabel
-                value="Pay Online"
-                control={<Radio />}
-                label="Pay Online"
-              />
-              <FormControlLabel
-                value="Pay at Property"
-                control={<Radio />}
-                label="Pay at Property"
-              />
-            </RadioGroup>
-          </FormControl>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <Grid container>
+            <Datepicker
+              selectedDate={selectedDate}
+              handleDateChange={handleDateChange}
+              label="When you want to move in?"
+            />
+          </Grid>
+        </MuiPickersUtilsProvider>
+        <div style={{ display: "flex" }}>
+          <TextField
+            disabled
+            id="standard-disabled"
+            label="Rent"
+            defaultValue={rent}
+            fullwidth
+            InputProps={{
+              endAdornment: (
+                <FormImage imageName="RupeesIcon.jpg" type="icon" />
+              ),
+            }}
+            className={classes.textfieldStyle}
+            onChange={(e) => setRent(e.target.value)}
+          />
+        </div>
+
+        {/*<RadioGroup
+          aria-label="gender"
+          name="payment"
+          value={value}
+          onChange={handleChange}
+          row
+        >
+          <FormControlLabel
+            value="Pay Online"
+            control={<Radio />}
+            label="Pay Online"
+          />
+          <FormControlLabel
+            value="Pay at Property"
+            control={<Radio />}
+            label="Pay at Property"
+          />
+        </RadioGroup>
+      
         </DialogContent>
 
         <DialogActions className={classes.button}>
           <Button text="Submit" />
           <Button text="Cancel" handleClick={handleClose} />
         </DialogActions>
-      </Dialog>
+              </Dialog>*/}
+      </FormControl>
     </div>
   );
 }
