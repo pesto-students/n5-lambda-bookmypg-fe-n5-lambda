@@ -179,7 +179,7 @@ export default function SimilarProperties(props) {
                     <div className={classes.ratingboxStyle}>
                       <Cardrating
                         value={data.rating}
-                        number={property.reviewdata.reviews || 0}
+                        number={0}
                       />
                       <Button
                         size="small"
