@@ -107,7 +107,7 @@ export default function BookProperty(props) {
             />
           </Grid>
         </MuiPickersUtilsProvider>
-        <div style={{ display: "flex" }}>
+        <div className={classes.bookpropertyStyle}>
           <TextField
             disabled
             id="standard-disabled"
@@ -150,6 +150,11 @@ export default function BookProperty(props) {
           <Button text="Cancel" handleClick={handleClose} />
         </DialogActions>
               </Dialog>*/}
+        <CheckoutWithStripe
+          rent={rent}
+          property={props.property}
+          user={props.user}
+        />
       </FormControl>
     </div>
   );

@@ -24,6 +24,7 @@ import { S3_BUCKET_URL } from "../../../constant";
 import useStyles from "./styles/PropertyContent.styles";
 import ButtonComponent from "components/button/Button";
 import TypographyComponent from "components/typography/Typography";
+import CheckoutWithStripe from "../payment/CheckoutWithStripe";
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
 
@@ -79,7 +80,7 @@ export default function PropertyContent(props) {
   const MyCollection = property.propertydata.photos.map((photo) => {
     return { label: photo, imgPath: `${S3_BUCKET_URL}/${photo}` };
   });
-  console.log(props);
+
   const maxSteps = MyCollection.length;
   return (
     <React.Fragment>
