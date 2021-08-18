@@ -108,7 +108,7 @@ export function OwnerlistContent(props) {
               setPagenumber={setPagenumber}
               countperpage={countperpage}
               setCountperpage={setCountperpage}
-              count={TableData.length || 10}
+              count={TableData && TableData.length ? TableData.length : 10}
             />
           </Grid>
         </Grid>
