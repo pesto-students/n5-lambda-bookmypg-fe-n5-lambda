@@ -68,7 +68,7 @@ export default function SimilarProperties(props) {
         {/*<Grid className={classes.responsivegrid}>*/}
         <Grid>
           <Swiper slidesPerView={4}>
-            <Grid container spacing={5}>
+            <Grid container spacing={4}>
               {latestProperties &&
                 latestProperties.length &&
                 latestProperties.map((property) => (

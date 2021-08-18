@@ -182,7 +182,7 @@ export default function ButtonComponent(props) {
       );
     default:
       return (
-        <Card className={classes.card}>
+        <Card className={classes.similarPropertyCard}>
           <CardMedia
             className={classes.cardMedia}
             image={`${S3_BUCKET_URL}/${props.property.photos[0]}`}
