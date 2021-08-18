@@ -26,6 +26,7 @@ export function OwnerlistContent(props) {
   const [search, setSearch] = React.useState("");
   const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC);
   const [owner, setOwner] = React.useState(false);
+  const [addOwnerState, setAddOwnerState] = React.useState(false);
 
   useEffect(() => {
     props.resetTenants();
@@ -44,6 +45,7 @@ export function OwnerlistContent(props) {
     to_date,
     order_by,
     owner,
+    addOwnerState,
   ]);
 
   let owners;
@@ -93,7 +95,12 @@ export function OwnerlistContent(props) {
                   label="To Date:"
                 />
               </Grid>
-              <Addowner addOwner={props.addOwner} setOwner={setOwner} />
+              <Addowner
+                addOwner={props.addOwner}
+                setOwner={setOwner}
+                addOwnerState={addOwnerState}
+                setAddOwnerState={setAddOwnerState}
+              />
             </Grid>
             <TableComponent
               switchData="name"

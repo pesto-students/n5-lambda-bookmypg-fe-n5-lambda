@@ -21,7 +21,6 @@ export function AmenityListContent(props) {
   const [countperpage, setCountperpage] = React.useState(10);
   const [search, setSearch] = React.useState("");
   const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC);
-
   const [addAmenityState, setAddAmenityState] = React.useState(false);
 
   useEffect(() => {

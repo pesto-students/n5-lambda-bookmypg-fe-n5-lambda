@@ -24,7 +24,7 @@ export function PropertyListContent(props) {
   const [countperpage, setCountperpage] = React.useState(10);
   const [search, setSearch] = React.useState("");
   const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC);
-
+  const [addPropertyState, setAddPropertyState] = React.useState(false);
   useEffect(() => {
     props.resetProperties();
     props.resetAmenities();
@@ -38,7 +38,7 @@ export function PropertyListContent(props) {
   useEffect(() => {
     const extraParams = `${props.user._id}?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&columnname=createdAt&orderby=${order_by}`;
     props.getPropertiesByOwner({ extraParams });
-  }, [pagenumber, countperpage, search, order_by]);
+  }, [pagenumber, countperpage, search, order_by, addPropertyState]);
 
   let TableData = [];
   if (get(props, "properties.length")) {
@@ -76,6 +76,8 @@ export function PropertyListContent(props) {
                 addAmenity={props.addAmenity}
                 user={props.user}
                 addProperty={props.addProperty}
+                addPropertyState={addPropertyState}
+                setAddPropertyState={setAddPropertyState}
               />
             </Grid>
             <Tablecomponent
