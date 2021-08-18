@@ -2,11 +2,11 @@ import React from "react";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import Header from "components/header/header";
 import Content from "../components/home/content";
-import VerticalBar from "../Charts/VerticalBar";
+// import VerticalBar from "../Charts/VerticalBar";
 import Footer from "../../components/footer/footer";
 import Theme from "theme/theme";
 import Grid from "@material-ui/core/Grid";
-import PieChart from "../Charts/Piechart";
+// import PieChart from "../Charts/Piechart";
 
 const headersData = [
   {
@@ -104,7 +104,7 @@ export default function HomePage() {
               textAlign: "center",
             }}
           >
-            <VerticalBar title={"Complaints"} />
+            {/* <VerticalBar title={"Complaints"} /> */}
           </Grid>
           <Grid
             item
@@ -116,7 +116,7 @@ export default function HomePage() {
               marginBottom: "20em",
             }}
           >
-            <PieChart title={"Occupancy"} />
+            {/* <PieChart title={"Occupancy"} /> */}
           </Grid>
         </Grid>
         <Footer />

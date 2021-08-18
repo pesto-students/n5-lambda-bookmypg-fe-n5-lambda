@@ -150,15 +150,15 @@ export const PAYMENT_LIST_HEADERS = {
 };
 
 export const EMAIL_TYPE = {
-  VISIT: "visitTemplate",
-  USER_RATING: "userratingTemplate",
-  PROPERTY_RATING: "propertyratingTemplate",
-  QUERY: "queryTemplate",
+  VISIT: "Visit",
+  USER_RATING: "Userrating",
+  PROPERTY_RATING: "Propertyrating",
+  QUERY: "Query",
 };
 
 export const DATE = {
   FROM_DATE: "2021-06-25T16:00:00.000Z",
-  TO_DATE: "2099-12-31T16:00:00.000Z",
+  TO_DATE: "2021-12-31T16:00:00.000Z",
 };
 
 export const ORDER_BY = {

@@ -43,14 +43,14 @@ export default function ScheduleVisit(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const payload = {
-      user_email: email,
+      useremail: email,
       type: EMAIL_TYPE.VISIT,
-      owner_email: props.owner,
+      owneremail: props.owner,
       property_name: props.property_name,
       property_id: props.property_id,
       date: selectedDate,
-      from_time: FROM_TIME,
-      to_time: TO_TIME,
+      fromtime: FROM_TIME,
+      totime: TO_TIME,
     };
     fetch("http://localhost:4000/api/emails/", {
       method: "POST",
@@ -117,6 +117,7 @@ export default function ScheduleVisit(props) {
             />
             <TextField
               id="standard-basic"
+              type="standardForm"
               label="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -124,6 +125,7 @@ export default function ScheduleVisit(props) {
             />
             <TextField
               id="standard-basic"
+              type="standardForm"
               label="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}

@@ -1,6 +1,5 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
-import { useState, useEffect } from "react";
 
 const data = {
   labels: ["Jan", "Feb", "March", "April", "May", "June"],
@@ -44,10 +43,9 @@ const options = {
 const VerticalBar = (props) => (
   <>
     <div className="header">
-      <h1 className="title">{props.title}</h1>
+      <h1 className="title">{props.name}</h1>
     </div>
     <div
-      data-testid="vertical-bar"
       id="bar-chart"
       style={{
         position: "relative",

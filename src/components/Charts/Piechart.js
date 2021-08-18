@@ -5,6 +5,7 @@ const data = {
   labels: ["PG1", "PG2", "PG3", "PG4"],
   datasets: [
     {
+      label: "No. of Beds",
       data: [12, 19, 3, 5],
       backgroundColor: [
         "rgba(255, 99, 132, 0.2)",
@@ -26,11 +27,10 @@ const data = {
 const PieChart = (props) => (
   <>
     <div className="header">
-      <h1 className="title">{props.title}</h1>
+      <h1 className="title">{props.name}</h1>
     </div>
     <div
       id="pie-chart"
-      data-testid="pie-chart"
       style={{
         width: 300,
         height: 250,
