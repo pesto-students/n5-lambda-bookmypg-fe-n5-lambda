@@ -1,8 +1,9 @@
-import httpInterceptor from '../network/interceptor';
+import httpInterceptor from "../network/interceptor";
+import { SERVER_URL } from "constant";
 
 const UserService = {
   getUser: async (email) => {
-    const URL = `http://localhost:4000/api/users/user/${email}`;
+    const URL = `${SERVER_URL}/api/users/user/${email}`;
     const response = await httpInterceptor({
       url: URL,
       method: "GET",
@@ -16,13 +17,13 @@ const UserService = {
   },
 
   updateUser: async (payload) => {
-    const URL = `http://localhost:4000/api/users/${payload.id}`;
+    const URL = `${SERVER_URL}/api/users/${payload.id}`;
     const response = await httpInterceptor({
       url: URL,
       method: "PUT",
       body: JSON.stringify(payload.params),
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
     });
 

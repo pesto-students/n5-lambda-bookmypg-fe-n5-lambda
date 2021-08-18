@@ -1,8 +1,9 @@
 import httpInterceptor from "../network/interceptor";
+import { SERVER_URL } from "constant";
 
 const AmenitiesService = {
   getAmenities: async (payload) => {
-    const URL = "http://localhost:4000/api/amenities";
+    const URL = `${SERVER_URL}/api/amenities`;
     const response = await httpInterceptor({
       url: `${URL}${payload && payload.extraParams ? payload.extraParams : ""}`,
       method: "GET",
@@ -19,7 +20,7 @@ const AmenitiesService = {
   },
 
   addAmenity: async (payload) => {
-    const URL = `http://localhost:4000/api/amenities/`;
+    const URL = `${SERVER_URL}/api/amenities/`;
     const response = await httpInterceptor({
       url: URL,
       method: "POST",
@@ -38,7 +39,7 @@ const AmenitiesService = {
   },
 
   updateAmenity: async (payload) => {
-    const URL = `http://localhost:4000/api/amenities/${payload.id}`;
+    const URL = `${SERVER_URL}/api/amenities/${payload.id}`;
     const response = await httpInterceptor({
       url: URL,
       method: "PUT",

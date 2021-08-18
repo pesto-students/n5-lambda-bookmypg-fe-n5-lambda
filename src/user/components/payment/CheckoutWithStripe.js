@@ -2,6 +2,7 @@ import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { SERVER_URL } from "constant";
 
 export default function CheckoutWithStripe(props) {
   const onToken = async (token) => {
@@ -9,7 +10,7 @@ export default function CheckoutWithStripe(props) {
     token.raisedby = props.user;
     token.property = props.property;
     token.charge_id = token.id;
-    await fetch("http://localhost:4000/api/payments/", {
+    await fetch(`${SERVER_URL}/api/payments/`, {
       method: "POST",
       body: JSON.stringify(token),
       headers: {
@@ -18,7 +19,8 @@ export default function CheckoutWithStripe(props) {
     });
     toast("Property has been booked successfully!");
   };
-  return (<>
+  return (
+    <>
       <StripeCheckout
         amount={props.rent}
         name="STRIPE_INTEGRATION"

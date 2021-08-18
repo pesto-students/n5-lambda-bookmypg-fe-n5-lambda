@@ -165,3 +165,6 @@ export const ORDER_BY = {
   DSC: "dsc",
   ASC: "asc",
 };
+
+export const SERVER_URL =
+  "http://bookmypglambdabackend-env.eba-pxbzun3k.us-east-2.elasticbeanstalk.com";

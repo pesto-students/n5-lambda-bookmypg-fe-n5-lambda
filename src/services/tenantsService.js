@@ -1,8 +1,9 @@
 import httpInterceptor from "../network/interceptor";
+import { SERVER_URL } from "constant";
 
 const TenantsService = {
   getTenants: async (payload) => {
-    const URL = "http://localhost:4000/api/users/";
+    const URL = `${SERVER_URL}/api/users/`;
     const response = await httpInterceptor({
       url: `${URL}${payload && payload.extraParams ? payload.extraParams : ""}`,
       method: "GET",
@@ -16,7 +17,7 @@ const TenantsService = {
   },
 
   getTenantsByOwner: async (payload) => {
-    const URL = "http://localhost:4000/api/users/owner/";
+    const URL = `${SERVER_URL}/api/users/owner/`;
     const response = await httpInterceptor({
       url: `${URL}${payload && payload.extraParams ? payload.extraParams : ""}`,
       method: "GET",
@@ -30,7 +31,7 @@ const TenantsService = {
   },
 
   updateTenant: async (id) => {
-    const URL = `http://localhost:4000/api/users/${id}`;
+    const URL = `${SERVER_URL}/api/users/${id}`;
     const response = await httpInterceptor({
       url: URL,
       method: "DELETE",
@@ -44,7 +45,7 @@ const TenantsService = {
   },
 
   addTenant: async (payload) => {
-    const URL = `http://localhost:4000/api/users`;
+    const URL = `${SERVER_URL}/api/users`;
     const response = await httpInterceptor({
       url: URL,
       method: "POST",

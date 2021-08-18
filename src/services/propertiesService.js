@@ -1,8 +1,9 @@
 import httpInterceptor from "../network/interceptor";
+import { SERVER_URL } from "constant";
 
 const PropertiesService = {
   getProperties: async (payload) => {
-    const URL = "http://localhost:4000/api/properties/";
+    const URL = `${SERVER_URL}/api/properties/`;
     const response = await httpInterceptor({
       url: `${URL}${payload && payload.extraParams ? payload.extraParams : ""}`,
       method: "GET",
@@ -16,7 +17,7 @@ const PropertiesService = {
   },
 
   getPropertiesByOwner: async (payload) => {
-    const URL = "http://localhost:4000/api/properties/owner/";
+    const URL = `${SERVER_URL}/api/properties/owner/`;
     const response = await httpInterceptor({
       url: `${URL}${payload && payload.extraParams ? payload.extraParams : ""}`,
       method: "GET",
@@ -31,7 +32,7 @@ const PropertiesService = {
 
   getLatestProperties: async () => {
     const response = await httpInterceptor({
-      url: "http://localhost:4000/api/properties?pagenumber=1&countperpage=10&columnname=createdAt&orderby=dsc",
+      url: `${SERVER_URL}/api/properties?pagenumber=1&countperpage=10&columnname=createdAt&orderby=dsc`,
       method: "GET",
     });
 
@@ -43,7 +44,7 @@ const PropertiesService = {
   },
 
   addProperty: async (payload) => {
-    const URL = `http://localhost:4000/api/properties/`;
+    const URL = `${SERVER_URL}/api/properties/`;
     const response = await httpInterceptor({
       url: URL,
       method: "POST",

@@ -20,6 +20,7 @@ import FormImage from "components/formimage/FormImage";
 import { EMAIL_TYPE } from "../../../constant";
 import TextField from "components/textfield/Textfield";
 import Typography from "../../../components/typography/Typography";
+import { SERVER_URL } from "constant";
 
 const FROM_TIME = "10:00am";
 const TO_TIME = "06:00pm";
@@ -52,7 +53,7 @@ export default function ScheduleVisit(props) {
       fromtime: FROM_TIME,
       totime: TO_TIME,
     };
-    fetch("http://localhost:4000/api/emails/", {
+    fetch(`${SERVER_URL}/api/emails/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),

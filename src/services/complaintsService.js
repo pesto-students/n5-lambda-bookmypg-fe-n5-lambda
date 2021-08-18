@@ -1,8 +1,9 @@
 import httpInterceptor from "../network/interceptor";
+import { SERVER_URL } from "constant";
 
 const ComplaintsService = {
   getComplaints: async (payload) => {
-    const URL = "http://localhost:4000/api/complaints/owner/";
+    const URL = `${SERVER_URL}/api/complaints/owner/`;
     const response = await httpInterceptor({
       url: `${URL}${payload && payload.extraParams ? payload.extraParams : ""}`,
       method: "GET",
@@ -19,7 +20,7 @@ const ComplaintsService = {
   },
 
   raiseComplaint: async (payload) => {
-    const URL = `http://localhost:4000/api/complaints/`;
+    const URL = `${SERVER_URL}/api/complaints/`;
     const response = await httpInterceptor({
       url: URL,
       method: "POST",
