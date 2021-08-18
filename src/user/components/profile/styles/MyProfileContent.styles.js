@@ -6,6 +6,10 @@ const useStyles = makeStyles((theme) => ({
       color: "#616161",
     },
   },
+  table: {
+    marginTop: "150px",
+    justifyContent: "center",
+  },
   disabled: {},
   notchedOutline: {},
   icon: {
@@ -67,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   gridStyle: {
-    marginLeft: "0px",
+    justifyContent: "center",
   },
   textfieldStyle: {
     width: "100%",

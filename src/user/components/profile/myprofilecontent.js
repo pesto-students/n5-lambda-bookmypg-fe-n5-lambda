@@ -30,11 +30,56 @@ export function MyProfileContent(props) {
     props.updateUser({ id: user._id, params });
     toast("Profile has been updated successfully!");
   };
-  console.log(props);
+
   return (
-    <div className="Table">
-      <ResponsiveDrawer headersData={props.responsivedrawerData}>
-        <Grid container spacing={2}>
+    <div className={classes.table}>
+      {user && user.role === "user" ? (
+        <ResponsiveDrawer headersData={props.responsivedrawerData}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={3} sm={12}>
+              <ProfilePhoto imageName="DefaultPic.png" />
+            </Grid>
+            <Grid item xs={10} md={4} sm={10}>
+              <Grid item>
+                <TextField
+                  type="standardForm"
+                  label="First Name"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  icon="Name"
+                />
+                <TextField
+                  type="standardForm"
+                  label="Last Name"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  icon="Name"
+                />
+
+                <TextField
+                  label="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  icon="Email"
+                />
+              </Grid>
+              <Grid item>
+                <TextField
+                  type="standardForm"
+                  label="Contact No"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  icon="Phone"
+                />
+              </Grid>
+              <Grid item className={classes.buttonSpacing}>
+                <Button text="Update" handleClick={handleSubmit} />
+              </Grid>
+            </Grid>
+          </Grid>
+        </ResponsiveDrawer>
+      ) : (
+        <Grid container spacing={2} className={classes.gridStyle}>
           <Grid item xs={12} md={3} sm={12}>
             <ProfilePhoto imageName="DefaultPic.png" />
           </Grid>
@@ -76,7 +121,8 @@ export function MyProfileContent(props) {
             </Grid>
           </Grid>
         </Grid>
-      </ResponsiveDrawer>
+      )}
+
       <ToastContainer />
     </div>
   );

@@ -121,52 +121,49 @@ export function Content(props) {
           </Grid>
         </Container>
       </Container>
-      <Container className={classes.cardGrid}>
+      <Container className={classes.cardGrid} maxWidth="md">
         <Grid container spacing={4}>
-          <Grid item>
-            <Grid
-              item
-              xs={12}
-              sm={12}
-              style={{
-                textAlign: "center",
-              }}
+          <Grid
+            item
+            xs={12}
+            sm={12}
+            style={{
+              textAlign: "center",
+            }}
+          >
+            <Typography
+              component="h1"
+              variant="h4"
+              color="primary"
+              gutterBottom
+              align="center"
             >
-              <Typography
-                component="h1"
-                variant="h4"
-                color="primary"
-                gutterBottom
-                align="center"
-              >
-                Our Vision
-              </Typography>
+              Our Vision
+            </Typography>
 
-              <img
-                src={`${S3_BUCKET_IMAGES_BASEURL}/AboutusImg.jpg`}
-                alt={"Not available"}
-                style={{ maxWidth: "500px" }}
-              />
-            </Grid>
-
-            <Grid container className={classes.paddingStyle}>
-              <Typography
-                component="h1"
-                variant="h6"
-                color="secondary"
-                paragraph
-                align="center"
-              >
-                Our aim is to provide easy and hasselfree services to both
-                PG-Owners and users. We are here to solve a most common problem
-                of house hunting that a person faces when he moves in to a new
-                location. We connect PG-Owners and users to solve their needs of
-                finding paying guests for the property and finding a cozy
-                accomodation respectively.
-              </Typography>
-            </Grid>
+            <img
+              src={`${S3_BUCKET_IMAGES_BASEURL}/AboutusImg.jpg`}
+              alt={"Not available"}
+              style={{ maxWidth: "500px", width: "100%" }}
+            />
           </Grid>
-          <Grid item xs={12} sm={6}></Grid>
+
+          <Grid container className={classes.paddingStyle}>
+            <Typography
+              component="h1"
+              variant="h6"
+              color="secondary"
+              paragraph
+              align="center"
+            >
+              Our aim is to provide easy and hasselfree services to both
+              PG-Owners and users. We are here to solve a most common problem of
+              house hunting that a person faces when he moves in to a new
+              location. We connect PG-Owners and users to solve their needs of
+              finding paying guests for the property and finding a cozy
+              accomodation respectively.
+            </Typography>
+          </Grid>
         </Grid>
       </Container>
     </React.Fragment>
