@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import ResponsiveDrawer from "../common/responsivedrawer";
+import ResponsiveDrawer from "admin/components/responsivedrawer/ResponsiveDrawer";
 import { Grid, Typography, TextField } from "@material-ui/core";
 import Tablecomponent from "./PaymentTable";
 import Pagination from "components/tablepagination/tablepagination";
@@ -27,10 +27,10 @@ export function PaymentContent(props) {
     props.tenants && props.tenants.length
       ? props.tenants.filter((tenant) => tenant.property)
       : [];
-
+  console.log(props);
   return (
     <div className="Table">
-      <ResponsiveDrawer>
+      <ResponsiveDrawer headersData={props.responsivedrawerData}>
         <Grid container justify={"center"}>
           <Grid item xs={12} md={10} className={classes.gridStyle}>
             <Typography component="h1" variant="h5">

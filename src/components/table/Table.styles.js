@@ -43,6 +43,11 @@ const useStyles = makeStyles((theme) => ({
     border: `3px solid grey`,
     overflowX: "auto",
   },
+  paperStyle: {
+    height: "200px",
+    overflowX: "auto",
+    border: "none",
+  },
 }));
 
 export default useStyles;

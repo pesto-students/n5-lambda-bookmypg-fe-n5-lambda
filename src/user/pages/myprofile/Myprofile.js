@@ -5,6 +5,24 @@ import Content from "../../components/profile/MyProfileContent";
 import Footer from "components/footer/footer";
 import Theme from "theme/theme";
 
+const responsivedrawerData = [
+  {
+    label: "Basic Details",
+    href: "/myprofile",
+    icon: "Profile",
+  },
+  {
+    label: "My Properties",
+    href: "/mypropertydetails",
+    icon: "Property",
+  },
+  {
+    label: "Payment History",
+    href: "/payment-list",
+    icon: "Payment",
+  },
+];
+
 export default function MyProfile() {
   const [loggedUser, setLoggedUser] = React.useState("");
 
@@ -12,7 +30,7 @@ export default function MyProfile() {
     <div>
       <MuiThemeProvider theme={Theme}>
         <Header loggedUser={loggedUser} setLoggedUser={setLoggedUser} />
-        <Content />
+        <Content responsivedrawerData={responsivedrawerData} />
         <Footer />
       </MuiThemeProvider>
     </div>

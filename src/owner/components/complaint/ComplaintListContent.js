@@ -1,30 +1,27 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Grid } from "@material-ui/core";
-import { get } from 'lodash';
-import ResponsiveDrawer from "../responsivedrawer/responsivedrawer";
+import { get } from "lodash";
+import ResponsiveDrawer from "admin/components/responsivedrawer/ResponsiveDrawer";
 import Tablecomponent from "components/table/Table";
 import Pagination from "../pagination/pagination";
 import ComplaintsSelector from "../ComplaintsSelector";
 import complainsActions from "../../../redux-store/actions/complaintsActions";
 import useStyles from "./styles/ComplaintListContent.styles";
-import Datepicker from "../../../components/datepicker/Datepicker";
-import Typography from "../../../components/typography/Typography";
-import TextField from "../../../components/textfield/Textfield";
-import Viewcomplaint from "./ViewComplaint";
-import SwitchComponent from "components/switch/Switch";
+import Datepicker from "components/datepicker/Datepicker";
+import Typography from "components/typography/Typography";
+import TextField from "components/textfield/Textfield";
 import UserSelector from "../../../user/helpers/UserSelector";
 import { DATE, ORDER_BY } from "../../../constant";
 
 export function ComplaintsContent(props) {
-  
   const [from_date, setFromDate] = React.useState(DATE.FROM_DATE);
   const [to_date, setToDate] = React.useState(DATE.TO_DATE);
   const [pagenumber, setPagenumber] = React.useState(1);
   const [countperpage, setCountperpage] = React.useState(10);
   const [search, setSearch] = React.useState("");
-  const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC); 
-  
+  const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC);
+
   const classes = useStyles();
   useEffect(() => {
     props.resetComplaints();
@@ -52,17 +49,18 @@ export function ComplaintsContent(props) {
 
   return (
     <div className="Table">
-      <ResponsiveDrawer>
+      <ResponsiveDrawer headersData={props.responsivedrawerData}>
         <Grid container justify={"center"}>
-          <Grid item xs={12} md={10} className={classes.containerStyle}>
-            <Typography text="Complaint List" type="ListTitle" />
+          <Grid item xs={12} md={10} className={classes.gridStyle}>
+            <Typography type="ListTitle" text="Complaint List" />
             <Grid container justify={"space-between"}>
-              <Grid item xs={12} md={4} className={classes.searchboxStyle}>
+              <Grid item xs={12} md={4} className={classes.textfieldStyle}>
                 <TextField
                   type="standardForm"
                   label="Search by property name"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
+                  icon="Search"
                 />
               </Grid>
               <Grid item xs={12} md={6} className={classes.datepickerStyle}>
@@ -86,14 +84,14 @@ export function ComplaintsContent(props) {
               order_by={order_by}
               setOrderBy={setOrderBy}
             />
+            <Pagination
+              pagenumber={pagenumber}
+              setPagenumber={setPagenumber}
+              countperpage={countperpage}
+              setCountperpage={setCountperpage}
+              count={props.complaints.length}
+            />
           </Grid>
-          <Pagination
-            pagenumber={pagenumber}
-            setPagenumber={setPagenumber}
-            countperpage={countperpage}
-            setCountperpage={setCountperpage}
-            count={props.complaints.length}
-          />
         </Grid>
       </ResponsiveDrawer>
     </div>

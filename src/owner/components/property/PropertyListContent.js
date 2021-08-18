@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { get } from 'lodash';
-import ResponsiveDrawer from "../responsivedrawer/responsivedrawer";
+import { get } from "lodash";
+import ResponsiveDrawer from "admin/components/responsivedrawer/ResponsiveDrawer";
 import Grid from "@material-ui/core/Grid/Grid";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
-//import Tablecomponent from "./PropertyTable";
+import Typography from "../../../components/typography/Typography";
+import TextField from "components/textfield/Textfield";
 import Pagination from "../pagination/pagination";
 import Addproperty from "./AddProperty";
 import PropertiesSelector from "../../../user/helpers/PropertiesSelector";
@@ -24,7 +23,7 @@ export function PropertyListContent(props) {
   const [pagenumber, setPagenumber] = React.useState(1);
   const [countperpage, setCountperpage] = React.useState(10);
   const [search, setSearch] = React.useState("");
-  const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC); 
+  const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC);
 
   useEffect(() => {
     props.resetProperties();
@@ -42,7 +41,7 @@ export function PropertyListContent(props) {
   }, [pagenumber, countperpage, search, order_by]);
 
   let TableData = [];
-  if (get(props, 'properties.length')) {
+  if (get(props, "properties.length")) {
     props.properties.map((property) => {
       TableData.push({
         name: property.propertydata.name,
@@ -56,31 +55,28 @@ export function PropertyListContent(props) {
 
   return (
     <div className="Table">
-      <ResponsiveDrawer>
+      <ResponsiveDrawer headersData={props.responsivedrawerData}>
         <Grid container justify={"center"}>
-          <Grid item xs={12} md={10} className={classes.containerStyle}>
-            <Typography component="h1" variant="h5">
-              Property List
-            </Typography>
+          <Grid item xs={12} md={10} className={classes.gridStyle}>
+            <Typography type="ListTitle" text="Property List" />
             <Grid container justify={"space-between"}>
-              <Grid item xs={12} md={4} className={classes.searchboxStyle}>
+              <Grid item xs={12} md={4} className={classes.textfieldStyle}>
                 <TextField
-                  id="standard-basic"
+                  type="standardForm"
                   label="Search by property name"
-                  className={classes.textfieldStyle}
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
+                  icon="Search"
                 />
               </Grid>
-              <Grid item xs={12} md={6} className={classes.propertybuttonStyle}>
-                <Addproperty
-                  amenities={props.amenities}
-                  locations={props.locations}
-                  addAmenity={props.addAmenity}
-                  user={props.user}
-                  addProperty={props.addProperty}
-                />
-              </Grid>
+
+              <Addproperty
+                amenities={props.amenities}
+                locations={props.locations}
+                addAmenity={props.addAmenity}
+                user={props.user}
+                addProperty={props.addProperty}
+              />
             </Grid>
             <Tablecomponent
               tableData={TableData}
@@ -90,15 +86,14 @@ export function PropertyListContent(props) {
               order_by={order_by}
               setOrderBy={setOrderBy}
             />
-            {/* <Tablecomponent properties={props.properties} />*/}
+            <Pagination
+              pagenumber={pagenumber}
+              setPagenumber={setPagenumber}
+              countperpage={countperpage}
+              setCountperpage={setCountperpage}
+              count={props.properties.length}
+            />
           </Grid>
-          <Pagination
-            pagenumber={pagenumber}
-            setPagenumber={setPagenumber}
-            countperpage={countperpage}
-            setCountperpage={setCountperpage}
-            count={props.properties.length}
-          />
         </Grid>
       </ResponsiveDrawer>
     </div>

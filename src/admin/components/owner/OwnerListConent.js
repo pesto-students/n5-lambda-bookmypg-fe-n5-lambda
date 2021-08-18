@@ -6,38 +6,14 @@ import { Grid } from "@material-ui/core";
 import Pagination from "../pagination/Pagination";
 import Addowner from "./AddOwner";
 import useStyles from "./styles/OwnerListContent.styles";
-import Datepicker from "../../../components/datepicker/Datepicker";
-import Typography from "../../../components/typography/Typography";
-import TextField from "../../../components/textfield/Textfield";
+import Datepicker from "components/datepicker/Datepicker";
+import Typography from "components/typography/Typography";
+import TextField from "components/textfield/Textfield";
 import TableComponent from "components/table/Table";
-import UserSelector from "../../../user/helpers/UserSelector";
-import TenantsSelector from "../../../owner/components/TenantsSelector";
+import UserSelector from "user/helpers/UserSelector";
+import TenantsSelector from "owner/components/TenantsSelector";
 import tenantsActions from "../../../redux-store/actions/tenantsActions";
 import { DATE, ORDER_BY } from "../../../constant";
-
-const Tabledata = [
-  {
-    name: "abc",
-    email: "Mumbai",
-    phone: 1234,
-    property: "Sion",
-    createdAt: "12/07/2021",
-  },
-  {
-    name: "abc",
-    email: "Mumbai",
-    phone: 1234,
-    property: "Sion",
-    createdAt: "12/07/2021",
-  },
-  {
-    name: "abc",
-    email: "Mumbai",
-    phone: 1234,
-    property: "Sion",
-    createdAt: "12/07/2021",
-  },
-];
 
 export function OwnerlistContent(props) {
   const classes = useStyles();
@@ -89,26 +65,18 @@ export function OwnerlistContent(props) {
 
   return (
     <div className="Table">
-      <ResponsiveDrawer>
+      <ResponsiveDrawer headersData={props.responsivedrawerData}>
         <Grid container justify={"center"}>
           <Grid item xs={12} md={10} className={classes.gridStyle}>
             <Typography type="ListTitle" text="Owner List" />
             <Grid container justify={"space-between"}>
-              <Grid
-                item
-                xs={12}
-                md={4}
-                style={{
-                  padding: "18px",
-                  paddingLeft: "0px",
-                  textAlign: "center",
-                }}
-              >
+              <Grid item xs={12} md={4} className={classes.textfieldStyle}>
                 <TextField
                   type="standardForm"
                   label="Search by owner name"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
+                  icon="Search"
                 />
               </Grid>
               <Grid item xs={12} md={6} className={classes.datepickerStyle}>
@@ -127,7 +95,6 @@ export function OwnerlistContent(props) {
               </Grid>
               <Addowner addOwner={props.addOwner} setOwner={setOwner} />
             </Grid>
-            {/* <Tablecomponent complaints={props.complaints} />*/}
             <TableComponent
               switchData="name"
               sortingColumn="createdAt"
@@ -136,14 +103,14 @@ export function OwnerlistContent(props) {
               order_by={order_by}
               setOrderBy={setOrderBy}
             />
+            <Pagination
+              pagenumber={pagenumber}
+              setPagenumber={setPagenumber}
+              countperpage={countperpage}
+              setCountperpage={setCountperpage}
+              count={props.tenants.length}
+            />
           </Grid>
-          <Pagination
-            pagenumber={pagenumber}
-            setPagenumber={setPagenumber}
-            countperpage={countperpage}
-            setCountperpage={setCountperpage}
-            count={props.tenants.length}
-          />
         </Grid>
       </ResponsiveDrawer>
     </div>

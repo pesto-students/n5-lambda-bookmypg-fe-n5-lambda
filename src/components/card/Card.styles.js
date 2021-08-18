@@ -63,6 +63,20 @@ const useStyles = makeStyles((theme) => ({
     padding: "10px",
     marginRight: "20px",
   },
+  aboutusCard: {
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    marginRight: "20px",
+  },
+  propertycard: {
+    //height: "350px",
+    height: "90%",
+    display: "flex",
+    flexDirection: "column",
+    padding: "10px",
+    //marginRight: "20px",
+  },
   cardMedia: {
     paddingTop: "56.25%", // 16:9
   },
@@ -83,6 +97,8 @@ const useStyles = makeStyles((theme) => ({
   ratingboxStyle: {
     display: "flex",
     paddingBottom: "10px",
+    paddingLeft: "16px",
+    paddingRight: "16px",
     justifyContent: "space-between",
   },
   propertylistRoot: {

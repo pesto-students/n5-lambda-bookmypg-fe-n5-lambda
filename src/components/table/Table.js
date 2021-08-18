@@ -25,8 +25,8 @@ export default function TableComponent(props) {
   };
 
   return (
-    <Paper variant="outlined" square>
-      <Table style={{ minWidth: "340px" }}>
+    <Paper variant="outlined" square className={classes.paperStyle}>
+      <Table style={{ minWidth: "340px" }} stickyHeader>
         <TableHead>
           <TableRow>
             {Object.keys(headersData).map((header) =>

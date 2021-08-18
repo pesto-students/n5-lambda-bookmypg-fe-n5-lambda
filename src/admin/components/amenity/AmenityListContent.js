@@ -44,20 +44,20 @@ export function AmenityListContent(props) {
       });
     });
   }
-
   return (
     <div className="Table">
-      <ResponsiveDrawer>
+      <ResponsiveDrawer headersData={props.responsivedrawerData}>
         <Grid container justify={"center"}>
           <Grid item xs={12} md={10} className={classes.gridStyle}>
             <Typography type="ListTitle" text="Amenity List" />
             <Grid container justify={"space-between"}>
-              <Grid item xs={12} md={4} className={classes.containerStyle}>
+              <Grid item xs={12} md={4} className={classes.textfieldStyle}>
                 <TextField
                   type="standardForm"
                   label="Search by amenity name"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
+                  icon="Search"
                 />
               </Grid>
               <Addamenity
@@ -76,14 +76,14 @@ export function AmenityListContent(props) {
               order_by={order_by}
               setOrderBy={setOrderBy}
             />
+            <Pagination
+              pagenumber={pagenumber}
+              setPagenumber={setPagenumber}
+              countperpage={countperpage}
+              setCountperpage={setCountperpage}
+              count={props.amenities.length}
+            />
           </Grid>
-          <Pagination
-            pagenumber={pagenumber}
-            setPagenumber={setPagenumber}
-            countperpage={countperpage}
-            setCountperpage={setCountperpage}
-            count={props.amenities.length}
-          />
         </Grid>
       </ResponsiveDrawer>
     </div>
@@ -97,7 +97,7 @@ const mapStateToProps = (state) => {
   return {
     user: userSelector.getUserData().data,
     amenities: amenitiesSelector.getAmenitiesData().data,
-    addAmenityRequestState: amenitiesSelector.addAmenityRequestState()
+    addAmenityRequestState: amenitiesSelector.addAmenityRequestState(),
   };
 };
 

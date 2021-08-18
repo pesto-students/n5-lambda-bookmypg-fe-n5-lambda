@@ -60,7 +60,7 @@ ReactDOM.render(
         />
 
         <Route exact path="/myprofile" component={MyProfile} />
-        <Route exact path="/aboutus" component={AboutUs} />
+        <Route exact path="/about" component={AboutUs} />
         <Route exact path="/" component={HomePage} />
       </Switch>
     </BrowserRouter>

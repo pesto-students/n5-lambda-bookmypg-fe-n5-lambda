@@ -48,6 +48,13 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "10px",
     padding: "10px",
   },
+  buttonStyle: {
+    display: "flex",
+    alignSelf: "center",
+    justifyContent: "center",
+    paddingRight: "10px",
+    paddingTop: "25px",
+  },
 }));
 
 export default useStyles;

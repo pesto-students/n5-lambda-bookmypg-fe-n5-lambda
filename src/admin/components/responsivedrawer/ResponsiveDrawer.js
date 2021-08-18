@@ -5,42 +5,33 @@ import { Link as RouterLink } from "react-router-dom";
 import MenuItem from "@material-ui/core/MenuItem";
 import useStyles from "./ResponsiveDrawer.styles";
 import theme from "theme/theme";
-
-const headersData = [
-  {
-    label: "Home",
-    href: "/admin-home",
-  },
-  {
-    label: "Owners",
-    href: "/owner-list",
-  },
-  {
-    label: "Amenities",
-    href: "/amenity-list",
-  },
-];
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import Icon from "components/icon/Icon";
 
 export default function ResponsiveDrawer(props) {
   const [mobileOpen, setmobileOpen] = useState(false);
   const handleDrawerToggle = () => {
     setmobileOpen(!mobileOpen);
   };
-
+  console.log(props);
   const classes = useStyles();
   const drawer = () => {
-    return headersData.map(({ label, href }) => {
+    return props.headersData.map(({ label, href, icon }) => {
       return (
         <Link
           key={label}
           {...{
             component: RouterLink,
             to: href,
-            color: "inherit",
             style: { textDecoration: "none" },
           }}
         >
-          <MenuItem>{label}</MenuItem>
+          <MenuItem>
+            <ListItemIcon>
+              <Icon type={icon} />
+            </ListItemIcon>
+            {label}
+          </MenuItem>
         </Link>
       );
     });

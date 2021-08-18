@@ -57,6 +57,29 @@ const listitems = [
   },
 ];
 
+const responsivedrawerData = [
+  {
+    label: "Dashboard",
+    href: "/owner-home",
+    icon: "Graph",
+  },
+  {
+    label: "My Properties",
+    href: "/owner-property-list",
+    icon: "Property",
+  },
+  {
+    label: "Tenants",
+    href: "/tenant-list",
+    icon: "People",
+  },
+  {
+    label: "Complaints",
+    href: "/owner-complaint-list",
+    icon: "Comment",
+  },
+];
+
 export default function HomePage() {
   const [loggedUser, setLoggedUser] = React.useState("");
 
@@ -70,7 +93,7 @@ export default function HomePage() {
           responsiveHeaderData={responsiveHeaderData}
           listitems={listitems}
         />
-        <Content />
+        <Content responsivedrawerData={responsivedrawerData} />
         <Grid container justify={"space-between"}>
           <Grid
             item

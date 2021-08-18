@@ -54,6 +54,29 @@ const listitems = [
   },
 ];
 
+const responsivedrawerData = [
+  {
+    label: "Dashboard",
+    href: "/owner-home",
+    icon: "Graph",
+  },
+  {
+    label: "My Properties",
+    href: "/owner-property-list",
+    icon: "Property",
+  },
+  {
+    label: "Tenants",
+    href: "/tenant-list",
+    icon: "People",
+  },
+  {
+    label: "Complaints",
+    href: "/owner-complaint-list",
+    icon: "Comment",
+  },
+];
+
 export default function PropertyList() {
   const [loggedUser, setLoggedUser] = React.useState("");
 
@@ -67,7 +90,7 @@ export default function PropertyList() {
           responsiveHeaderData={responsiveHeaderData}
           listitems={listitems}
         />
-        <Content />
+        <Content responsivedrawerData={responsivedrawerData} />
         <Footer />
       </MuiThemeProvider>
     </div>

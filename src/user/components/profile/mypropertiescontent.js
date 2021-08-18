@@ -2,14 +2,14 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ResponsiveDrawer from "../common/responsivedrawer";
+import ResponsiveDrawer from "admin/components/responsivedrawer/ResponsiveDrawer";
 import Typography from "@material-ui/core/Typography";
 import Complaint from "../complaint/RaiseComplaint";
 import ReviewProperty from "../review/ReviewProperty";
 import { Grid, Card, CardContent, CardMedia, Box } from "@material-ui/core";
 import useStyles from "./styles/MyPropertiesContent.styles";
-import Button from "../../../components/button/Button";
-import Rating from "../../../components/rating/rating";
+import Button from "components/button/Button";
+import Rating from "components/rating/rating";
 import UserSelector from "../../helpers/UserSelector";
 import userActions from "../../../redux-store/actions/userActions";
 import complaintSelector from "../../helpers/ComplaintSelector";
@@ -29,14 +29,16 @@ const data = {
 export function MyPropertiesContent(props) {
   const classes = useStyles();
 
-  const [propertyId, setPropertyId] = React.useState(props.user&&props.user.property?props.user.property._id:[]);
+  const [propertyId, setPropertyId] = React.useState(
+    props.user && props.user.property ? props.user.property._id : []
+  );
   const property =
     props.properties.filter((p) => p.propertydata._id === propertyId)[0] || [];
 
   return (
     <div className="Table">
       {property && (
-        <ResponsiveDrawer>
+        <ResponsiveDrawer headersData={props.responsivedrawerData}>
           <Grid container className={classes.gridStyle}>
             <Grid item xs={12} sm={6} md={3}>
               <Card className={classes.card}>
@@ -51,7 +53,10 @@ export function MyPropertiesContent(props) {
                       {property.propertydata.name}
                     </Typography>
                     <Typography variant="body2" className={classes.ownerStyle}>
-                      by {property.propertydata.owner.firstName+' '+property.propertydata.owner.lastName}
+                      by{" "}
+                      {property.propertydata.owner.firstName +
+                        " " +
+                        property.propertydata.owner.lastName}
                     </Typography>
                   </div>
                   <div>
@@ -118,7 +123,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getUser: (payload) => dispatch(userActions.getUser(payload)),
-    raiseComplaint: (payload) => dispatch(complaintsActions.raiseComplaint(payload)),
+    raiseComplaint: (payload) =>
+      dispatch(complaintsActions.raiseComplaint(payload)),
     resetProperties: () => dispatch(propertiesActions.resetState()),
   };
 };

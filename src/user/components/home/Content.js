@@ -67,7 +67,7 @@ export function Content(props) {
             <ImageList cols={1}>
               <ImageListItem style={{ height: "300px" }}>
                 <img
-                  src={`${S3_BUCKET_IMAGES_BASEURL}/Aboutus-8.jpg`}
+                  src={`${S3_BUCKET_IMAGES_BASEURL}/Aboutus-10.jpg`}
                   alt={"Not available"}
                 />
               </ImageListItem>
@@ -90,11 +90,12 @@ export function Content(props) {
               paragraph
               align="center"
             >
-              Our aim is to allow Paying guest to search properties available at
+              Our aim is to allow Paying guest to search properties available in
               more than 15 cities of India and explore all the amenities
-              available at the properties along with the photos. We allow Paying
-              guest to schedule a visit to the property before booking it and
-              once booked they can make monthly rent payments from the platform.
+              available at the properties along with the photos and find a cozy
+              home. We allow Paying guests to schedule a visit to the property
+              before booking it and once booked they can make monthly rent
+              payments from the platform.
             </Typography>
           </Grid>
         </Grid>

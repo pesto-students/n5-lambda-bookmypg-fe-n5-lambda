@@ -20,21 +20,16 @@ const useStyles = makeStyles((theme) => ({
     alignSelf: "center",
     overflow: "unset",
   },
-  imgStyle: {
-    width: "70px",
-    alignContent: "center",
-    paddingLeft: "35px",
-  },
-  textfieldStyle: {
-    width: "100%",
-  },
-  buttonStyle: {
-    alignSelf: "center",
-  },
   containerStyle: {
     textAlign: "center",
     borderRadius: "10px",
     padding: "10px",
+  },
+  buttonStyle: {
+    display: "flex",
+    alignSelf: "center",
+    justifyContent: "center",
+    paddingRight: "10px",
   },
 }));
 

@@ -60,13 +60,13 @@ export function Content(props) {
               paragraph
               align="center"
             >
-              BookMyPG is a platform to facilitate a PG-Owner to advertise his
-              property and find easily paying guest for his property. We also
-              aim to facilitate users to find a home-like accomodation. We value
-              our users and their needs. Our services doesnt end with only
-              finding an accomodation. We provide our users the platform to make
-              payments every month, raise complaints while their stay and shar
-              their reviews and experience.
+              BookMyPG is a platform to facilitate PG-Owner to advertise his
+              property and find easily paying guest for his property and Paying
+              guests to find a home-like accomodation. We value our users and
+              their needs. Our services are not only limited to finding an
+              accomodation. We provide our users the platform to make payments
+              every month, raise complaints while their stay and shar their
+              reviews and experience.
             </Typography>
           </Grid>
         </Grid>

@@ -15,7 +15,7 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 import Dialog from "@material-ui/core/Dialog";
 import { Link as RouterLink, useHistory } from "react-router-dom";
-import { get } from 'lodash';
+import { get } from "lodash";
 import firebase from "firebase/app";
 import "firebase/auth";
 import { Facebook, Twitter, Email, Close } from "@material-ui/icons";
@@ -25,6 +25,7 @@ import PopupMenu from "components/popupmenu/PopupMenu";
 import SigninButton from "@material-ui/core/Button";
 import UserSelector from "../../user/helpers/UserSelector";
 import userActions from "../../redux-store/actions/userActions";
+import FormImage from "components/formimage/FormImage";
 
 export function Header(props) {
   const {
@@ -54,7 +55,7 @@ export function Header(props) {
       href: "/",
     },
   ];
-  
+
   const classes = useStyles();
 
   const { mobileView, drawerOpen } = state;
@@ -306,6 +307,7 @@ export function Header(props) {
                         color="secondary"
                         key="Signin"
                       >
+                        <FormImage imageName="GoogleIcon.png" type="icon" />{" "}
                         Signin with Google
                       </SigninButton>
                       <Typography
@@ -419,6 +421,7 @@ export function Header(props) {
                         color="secondary"
                         key="Signin"
                       >
+                        <FormImage imageName="GoogleIcon.png" type="icon" />{" "}
                         Signin with Google
                       </SigninButton>
                       <Typography

@@ -49,6 +49,24 @@ const listitems = [
   },
 ];
 
+const responsivedrawerData = [
+  {
+    label: "Dashboard",
+    href: "/admin-home",
+    icon: "Graph",
+  },
+  {
+    label: "Owners",
+    href: "/owner-list",
+    icon: "People",
+  },
+  {
+    label: "Amenities",
+    href: "/amenity-list",
+    icon: "Amenity",
+  },
+];
+
 export default function AmenityList() {
   const [loggedUser, setLoggedUser] = React.useState("");
 
@@ -62,7 +80,7 @@ export default function AmenityList() {
           responsiveHeaderData={responsiveHeaderData}
           listitems={listitems}
         />
-        <Content />
+        <Content responsivedrawerData={responsivedrawerData} />
         <Footer />
       </MuiThemeProvider>
     </div>

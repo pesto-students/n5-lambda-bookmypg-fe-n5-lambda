@@ -20,6 +20,11 @@ const theme = createTheme({
   },
   spacing: 4,
   overrides: {
+    MuiButton: {
+      root: {
+        textTransform: "none",
+      },
+    },
     MuiTableCell: {
       head: {
         fontWeight: 550,

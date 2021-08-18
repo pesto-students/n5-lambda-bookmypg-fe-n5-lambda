@@ -1,14 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Grid, TextField } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ResponsiveDrawer from "../common/responsivedrawer";
+import ResponsiveDrawer from "admin/components/responsivedrawer/ResponsiveDrawer";
 import useStyles from "./styles/MyProfileContent.styles";
-import Button from "../../../components/button/Button";
+import Button from "components/button/Button";
 import ProfilePhoto from "../profilephoto/ProfilePhoto";
 import UserSelector from "../../helpers/UserSelector";
 import userActions from "../../../redux-store/actions/userActions";
+import TextField from "components/textfield/Textfield";
 
 export function MyProfileContent(props) {
   const classes = useStyles();
@@ -29,10 +30,10 @@ export function MyProfileContent(props) {
     props.updateUser({ id: user._id, params });
     toast("Profile has been updated successfully!");
   };
-
+  console.log(props);
   return (
     <div className="Table">
-      <ResponsiveDrawer>
+      <ResponsiveDrawer headersData={props.responsivedrawerData}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={3} sm={12}>
             <ProfilePhoto imageName="DefaultPic.png" />
@@ -40,45 +41,34 @@ export function MyProfileContent(props) {
           <Grid item xs={10} md={4} sm={10}>
             <Grid item>
               <TextField
-                id="standard-basic"
-                label="FirstName"
+                type="standardForm"
+                label="First Name"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                fullwidth
-                className={classes.textfieldStyle}
+                icon="Name"
               />
               <TextField
-                id="standard-basic"
-                label="LastName"
+                type="standardForm"
+                label="Last Name"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                fullwidth
-                className={classes.textfieldStyle}
+                icon="Name"
               />
+
               <TextField
-                disabled
-                id="standard-disabled"
                 label="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                fullwidth
-                className={classes.textfieldStyle}
-                InputProps={{
-                  classes: {
-                    root: classes.root,
-                    disabled: classes.disabled,
-                  },
-                }}
+                icon="Email"
               />
             </Grid>
             <Grid item>
               <TextField
-                id="standard-basic"
-                label="Contact no"
+                type="standardForm"
+                label="Contact No"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                fullwidth
-                className={classes.textfieldStyle}
+                icon="Phone"
               />
             </Grid>
             <Grid item className={classes.buttonSpacing}>

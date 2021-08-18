@@ -9,6 +9,7 @@ export default function Paginationcomponent() {
       count="1"
       rowsPerPage="10"
       page="1"
+      justify="center"
     />
   );
 }

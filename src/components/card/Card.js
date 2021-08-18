@@ -12,7 +12,7 @@ import { useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import MoreButton from "@material-ui/core/Button";
-import Rating from "user/components/rating/cardratings";
+import Rating from "user/components/rating/rating";
 import ScheduleVisit from "user/components/schedulevisit/ScheduleVisit";
 
 export default function ButtonComponent(props) {
@@ -21,7 +21,7 @@ export default function ButtonComponent(props) {
   switch (props.type) {
     case "AboutUs":
       return (
-        <Card className={classes.card}>
+        <Card className={classes.aboutusCard}>
           <CardMedia
             className={classes.cardMedia}
             image={`${S3_BUCKET_IMAGES_BASEURL}/${props.imageName}`}
@@ -149,53 +149,36 @@ export default function ButtonComponent(props) {
       );
     case "OwnerProperty":
       return (
-        <Grid container className={classes.gridStyle}>
-          <Grid item xs={12} sm={6} md={3}>
-            <Card className={classes.card}>
-              <CardMedia
-                className={classes.cardMedia}
-                image={`${S3_BUCKET_URL}/${props.property.propertydata.photos[0]}`}
-                title="Image title"
-              />
-              <CardContent className={classes.cardContent}>
-                <div className={classes.propertydetailStyle}>
-                  <Typography variant="h6" component="h2">
-                    {props.property.propertydata.name}
-                  </Typography>
-                  <Typography variant="body2" className={classes.ownerStyle}>
-                    by{" "}
-                    {props.property.propertydata.owner.firstName +
-                      " " +
-                      props.property.propertydata.owner.lastName}
-                  </Typography>
-                </div>
-                <div>
-                  <Typography gutterBottom variant="subtitle2">
-                    ₹&nbsp;{props.property.propertydata.rent}
-                  </Typography>
-                </div>
-                <div className={classes.ratingboxStyle}>
-                  <Box display="flex" p={1}>
-                    <Rating
-                      //value={data.review.rating}
-                      type="Large"
-                      readonly={true}
-                    />
-                  </Box>
-                  <Typography
-                    gutterBottom
-                    variant="subtitle2"
-                    className={classes.descriptionStyle}
-                  >
-                    {
-                      //data.review.description
-                    }
-                  </Typography>
-                </div>
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
+        <Card className={classes.propertycard}>
+          <CardMedia
+            className={classes.cardMedia}
+            image={`${S3_BUCKET_URL}/${props.property.propertydata.photos[0]}`}
+            title="Image title"
+          />
+          <CardContent className={classes.cardContent}>
+            <div className={classes.propertynameStyle}>
+              <Typography type="FormTitle">
+                {props.property.propertydata.name}
+              </Typography>
+              <Typography type="caption">
+                <LocationOnIcon />
+                {props.property.propertydata.location.name}
+              </Typography>
+            </div>
+            <Typography type="subtitle1" color="textSecondary">
+              {props.property.propertydata.description}
+            </Typography>
+          </CardContent>
+          <div className={classes.ratingboxStyle}>
+            <Typography type="subtitle1">
+              ₹{props.property.propertydata.rent}
+            </Typography>
+            <Cardrating
+              //value={data.rating}
+              number={props.property.propertydata.numreviews || 0}
+            />
+          </div>
+        </Card>
       );
     default:
       return (

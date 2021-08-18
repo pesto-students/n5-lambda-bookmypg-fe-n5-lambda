@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import ResponsiveDrawer from "../responsivedrawer/responsivedrawer";
+import ResponsiveDrawer from "admin/components/responsivedrawer/ResponsiveDrawer";
 import { Grid } from "@material-ui/core";
-import { get } from 'lodash';
+import { get } from "lodash";
 import Tablecomponent from "components/table/Table";
 import Pagination from "../pagination/pagination";
 import TenantsSelector from "../TenantsSelector";
 import tenantsActions from "../../../redux-store/actions/tenantsActions";
 import useStyles from "./styles/TenantListContent.styles";
-import Datepicker from "../../../components/datepicker/Datepicker";
-import Typography from "../../../components/typography/Typography";
-import TextField from "../../../components/textfield/Textfield";
+import Datepicker from "components/datepicker/Datepicker";
+import Typography from "components/typography/Typography";
+import TextField from "components/textfield/Textfield";
 import UserSelector from "../../../user/helpers/UserSelector";
 import { DATE, ORDER_BY } from "../../../constant";
 
@@ -28,7 +28,7 @@ export function Tenantcontent(props) {
   const [pagenumber, setPagenumber] = React.useState(1);
   const [countperpage, setCountperpage] = React.useState(10);
   const [search, setSearch] = React.useState("");
-  const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC); 
+  const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -53,13 +53,13 @@ export function Tenantcontent(props) {
   ]);
 
   let TableData = [];
-  if (get(props,'tenants.length')) {
+  if (get(props, "tenants.length")) {
     props.tenants.map((tenant) => {
       TableData.push({
         name: tenant.firstName + " " + tenant.lastName,
         email: tenant.email,
         phone: tenant.phone,
-        property: tenant.property ? tenant.property.name : '',
+        property: tenant.property ? tenant.property.name : "",
         onboardedAt: tenant.onboardedAt,
       });
     });
@@ -67,17 +67,18 @@ export function Tenantcontent(props) {
 
   return (
     <div className="Table">
-      <ResponsiveDrawer>
+      <ResponsiveDrawer headersData={props.responsivedrawerData}>
         <Grid container justify={"center"}>
-          <Grid item xs={12} md={10} className={classes.containerStyle}>
-            <Typography text="Tenant List" type="ListTitle" />
+          <Grid item xs={12} md={10} className={classes.gridStyle}>
+            <Typography type="ListTitle" text="Tenant List" />
             <Grid container justify={"space-between"}>
-              <Grid item xs={12} md={4} className={classes.searchboxStyle}>
+              <Grid item xs={12} md={4} className={classes.textfieldStyle}>
                 <TextField
                   type="standardForm"
                   label="Search by tenant name"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
+                  icon="Search"
                 />
               </Grid>
               <Grid item xs={12} md={6} className={classes.datepickerStyle}>
@@ -106,14 +107,14 @@ export function Tenantcontent(props) {
               order_by={order_by}
               setOrderBy={setOrderBy}
             />
+            <Pagination
+              pagenumber={pagenumber}
+              setPagenumber={setPagenumber}
+              countperpage={countperpage}
+              setCountperpage={setCountperpage}
+              count={props.tenants.length}
+            />
           </Grid>
-          <Pagination
-            pagenumber={pagenumber}
-            setPagenumber={setPagenumber}
-            countperpage={countperpage}
-            setCountperpage={setCountperpage}
-            count={props.tenants.length}
-          />
         </Grid>
       </ResponsiveDrawer>
     </div>
@@ -132,7 +133,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getTenantsByOwner: (payload) => dispatch(tenantsActions.getTenantsByOwner(payload)),
+    getTenantsByOwner: (payload) =>
+      dispatch(tenantsActions.getTenantsByOwner(payload)),
     updateTenant: (id) => dispatch(tenantsActions.updateTenant(id)),
     resetTenants: () => dispatch(tenantsActions.resetState()),
   };

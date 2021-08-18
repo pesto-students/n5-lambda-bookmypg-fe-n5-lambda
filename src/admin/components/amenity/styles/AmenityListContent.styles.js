@@ -1,16 +1,19 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  textfieldStyle: {
-    width: "100%",
-  },
-  containerStyle: {
-    textAlign: "center",
-    borderRadius: "10px",
-    padding: "10px",
-  },
   gridStyle: {
+    textAlign: "center",
+    border: "1px solid rgba(0, 0, 0, 0.12)",
+    paddingTop: "10px",
+    marginBottom: "100px",
+  },
+  datepickerStyle: {
     padding: "8px",
+    textAlign: "center",
+    display: "flex",
+  },
+  textfieldStyle: {
+    padding: "18px",
     textAlign: "center",
   },
 }));

@@ -36,16 +36,13 @@ export default function AddAmenity(props) {
   const handleSubmit = () => {
     const params = { name, logo, isactive: true };
     const user = props.user;
-    props.addAmenity({params,user});
+    props.addAmenity({ params, user });
     setOpen(false);
     toast("Amenity has been added successfully!");
     setName("");
     setLogo("");
     props.setAddAmenityState(!props.addAmenityState);
-  }
-
-  const date = new Date();
-  date.setDate(date.getDate() + 7);
+  };
 
   return (
     <div className={classes.buttonStyle}>
@@ -60,7 +57,7 @@ export default function AddAmenity(props) {
         aria-labelledby="form-dialog-title"
         PaperProps={{
           style: {
-            width: "calc(478px + 0.5vw)",
+            width: "calc(378px + 0.5vw)",
           },
         }}
       >

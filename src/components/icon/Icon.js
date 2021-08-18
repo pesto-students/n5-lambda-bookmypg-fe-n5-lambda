@@ -7,6 +7,14 @@ import {
   Event,
   Comment,
   Email,
+  Search,
+  Home,
+  PeopleAlt,
+  PlusOne,
+  Apartment,
+  TrendingUp,
+  AccountCircle,
+  Payment,
 } from "@material-ui/icons";
 
 export default function TextFieldComponent(props) {
@@ -24,6 +32,22 @@ export default function TextFieldComponent(props) {
       return <Event className={classes.iconStyle} />;
     case "Comment":
       return <Comment className={classes.iconStyle} />;
+    case "Search":
+      return <Search className={classes.iconStyle} />;
+    case "Home":
+      return <Home className={classes.iconStyle} />;
+    case "People":
+      return <PeopleAlt className={classes.iconStyle} />;
+    case "Amenity":
+      return <PlusOne className={classes.iconStyle} />;
+    case "Property":
+      return <Apartment className={classes.iconStyle} />;
+    case "Graph":
+      return <TrendingUp className={classes.iconStyle} />;
+    case "Profile":
+      return <AccountCircle className={classes.iconStyle} />;
+    case "Payment":
+      return <Payment className={classes.iconStyle} />;
     default:
       return <div></div>;
   }

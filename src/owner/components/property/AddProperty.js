@@ -121,7 +121,7 @@ export default function AddProperty(props) {
   return (
     <div>
       {props.mode === "Edit" ? (
-        <div>
+        <div className={classes.buttonStyle}>
           <Link text={props.name} handelClick={handleClickOpenEdit} href="#" />
           <Dialog
             open={openEdit}
@@ -209,7 +209,7 @@ export default function AddProperty(props) {
           </Dialog>
         </div>
       ) : (
-        <div>
+        <div className={classes.buttonStyle}>
           <Button text="Add Property" handleClick={handleClickOpen} />
           <Dialog
             open={open}
