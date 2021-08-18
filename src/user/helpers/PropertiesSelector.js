@@ -8,6 +8,15 @@ export const PropertiesSelector = (state) => ({
     };
   },
 
+  getPropertiesCount: () => {
+    return {
+      count:
+        state && state.properties && state.properties.data
+          ? state.properties.total_count
+          : {},
+    };
+  },
+
   getLatestPropertiesData: () => {
     return {
       data:

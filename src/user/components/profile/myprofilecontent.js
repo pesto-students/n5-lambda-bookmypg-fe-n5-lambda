@@ -30,7 +30,7 @@ export function MyProfileContent(props) {
     props.updateUser({ id: user._id, params });
     toast("Profile has been updated successfully!");
   };
-  console.log(props);
+
   return (
     <div className="Table">
       <ResponsiveDrawer headersData={props.responsivedrawerData}>

@@ -13,7 +13,7 @@ export default function ResponsiveDrawer(props) {
   const handleDrawerToggle = () => {
     setmobileOpen(!mobileOpen);
   };
-  console.log(props);
+  
   const classes = useStyles();
   const drawer = () => {
     return props.headersData.map(({ label, href, icon }) => {

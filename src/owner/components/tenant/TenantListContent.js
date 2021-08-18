@@ -25,7 +25,7 @@ export function Tenantcontent(props) {
   const [enabled, setEnabled] = React.useState(false);
   const [from_date, setFromDate] = React.useState(DATE.FROM_DATE);
   const [to_date, setToDate] = React.useState(DATE.TO_DATE);
-  const [pagenumber, setPagenumber] = React.useState(1);
+  const [pagenumber, setPagenumber] = React.useState(0);
   const [countperpage, setCountperpage] = React.useState(10);
   const [search, setSearch] = React.useState("");
   const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC);
@@ -112,7 +112,7 @@ export function Tenantcontent(props) {
               setPagenumber={setPagenumber}
               countperpage={countperpage}
               setCountperpage={setCountperpage}
-              count={props.tenants.length}
+              count={props.total_tenants}
             />
           </Grid>
         </Grid>
@@ -127,6 +127,7 @@ const mapStateToProps = (state) => {
 
   return {
     tenants: tenantsSelector.getTenantsData().data,
+    total_tenants: tenantsSelector.getTenantsCount().count,
     user: userSelector.getUserData().data,
   };
 };

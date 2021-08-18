@@ -21,7 +21,7 @@ export function OwnerlistContent(props) {
 
   const [from_date, setFromDate] = React.useState(DATE.FROM_DATE);
   const [to_date, setToDate] = React.useState(DATE.TO_DATE);
-  const [pagenumber, setPagenumber] = React.useState(1);
+  const [pagenumber, setPagenumber] = React.useState(0);
   const [countperpage, setCountperpage] = React.useState(10);
   const [search, setSearch] = React.useState("");
   const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC);
@@ -108,7 +108,7 @@ export function OwnerlistContent(props) {
               setPagenumber={setPagenumber}
               countperpage={countperpage}
               setCountperpage={setCountperpage}
-              count={props.tenants.length}
+              count={TableData.length || 10}
             />
           </Grid>
         </Grid>

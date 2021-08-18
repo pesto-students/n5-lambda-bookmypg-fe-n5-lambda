@@ -17,7 +17,7 @@ import { ORDER_BY } from "../../../constant";
 export function AmenityListContent(props) {
   const classes = useStyles();
 
-  const [pagenumber, setPagenumber] = React.useState(1);
+  const [pagenumber, setPagenumber] = React.useState(0);
   const [countperpage, setCountperpage] = React.useState(10);
   const [search, setSearch] = React.useState("");
   const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC);
@@ -81,7 +81,7 @@ export function AmenityListContent(props) {
               setPagenumber={setPagenumber}
               countperpage={countperpage}
               setCountperpage={setCountperpage}
-              count={props.amenities.length}
+              count={props.total_amenities}
             />
           </Grid>
         </Grid>
@@ -97,6 +97,7 @@ const mapStateToProps = (state) => {
   return {
     user: userSelector.getUserData().data,
     amenities: amenitiesSelector.getAmenitiesData().data,
+    total_amenities: amenitiesSelector.getAmenitiesCount().count,
     addAmenityRequestState: amenitiesSelector.addAmenityRequestState(),
   };
 };

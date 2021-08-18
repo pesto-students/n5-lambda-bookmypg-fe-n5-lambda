@@ -254,7 +254,7 @@ export default function AddOwner(props) {
   const handleClose = () => {
     setOpen(false);
   };
-  console.log(properties);
+
   return (
     <div className={classes.buttonStyle}>
       <Link text="View" handelClick={handleClickOpen} href="#" />

@@ -20,7 +20,7 @@ import { ORDER_BY } from "../../../constant";
 export function PropertyListContent(props) {
   const classes = useStyles();
 
-  const [pagenumber, setPagenumber] = React.useState(1);
+  const [pagenumber, setPagenumber] = React.useState(0);
   const [countperpage, setCountperpage] = React.useState(10);
   const [search, setSearch] = React.useState("");
   const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC);
@@ -91,7 +91,7 @@ export function PropertyListContent(props) {
               setPagenumber={setPagenumber}
               countperpage={countperpage}
               setCountperpage={setCountperpage}
-              count={props.properties.length}
+              count={props.total_properties}
             />
           </Grid>
         </Grid>
@@ -111,6 +111,7 @@ const mapStateToProps = (state) => {
     properties: propertiesSelector.getPropertiesData().data,
     amenities: amenitiesSelector.getAmenitiesData().data,
     locations: locationsSelector.getLocationsData().data,
+    total_properties: propertiesSelector.getPropertiesCount().count,
   };
 };
 

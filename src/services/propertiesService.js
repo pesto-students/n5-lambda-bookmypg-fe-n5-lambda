@@ -32,7 +32,7 @@ const PropertiesService = {
 
   getLatestProperties: async () => {
     const response = await httpInterceptor({
-      url: `${SERVER_URL}/api/properties?pagenumber=1&countperpage=10&columnname=createdAt&orderby=dsc`,
+      url: `${SERVER_URL}/api/properties?pagenumber=0&countperpage=10&columnname=createdAt&orderby=dsc`,
       method: "GET",
     });
 
