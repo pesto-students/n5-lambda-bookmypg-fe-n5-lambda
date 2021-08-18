@@ -260,7 +260,10 @@ export default function PropertyContent(props) {
                   </div>
                 </Grid>
                 <Grid item xl={12} sm={6} md={3}>
-                  <Bookproperty />
+                  <Bookproperty
+                    property={property.propertydata._id}
+                    user={props.user._id}
+                  />
                 </Grid>
                 <Grid item xl={12} sm={6} md={3}>
                   <ScheduleVisit

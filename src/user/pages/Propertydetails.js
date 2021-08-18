@@ -8,6 +8,7 @@ import Footer from "components/footer/footer";
 import Theme from "theme/theme";
 import PropertiesSelector from "../helpers/PropertiesSelector";
 import propertiesActions from "../../redux-store/actions/propertiesActions";
+import UserSelector from "../helpers/UserSelector";
 
 export function PropertyDetails(props) {
   const property_id = props.match.params.id;
@@ -25,6 +26,7 @@ export function PropertyDetails(props) {
             property={property}
             properties={props.properties}
             latestProperties={props.latestProperties}
+            user={props.user}
           />
           <Footer type="center" />
         </Grid>
@@ -35,10 +37,12 @@ export function PropertyDetails(props) {
 
 const mapStateToProps = (state) => {
   const propertiesSelector = PropertiesSelector(state.properties);
+  const userSelector = UserSelector(state.user);
 
   return {
     properties: propertiesSelector.getPropertiesData().data,
     latestProperties: propertiesSelector.getLatestPropertiesData().data,
+    user: userSelector.getUserData().data,
   };
 };
 

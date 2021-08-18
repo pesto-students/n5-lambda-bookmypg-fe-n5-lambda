@@ -4,9 +4,10 @@ import Header from "components/header/header";
 import Content from "../components/home/Content";
 import Footer from "../../components/footer/footer";
 import Theme from "theme/theme";
-import OverticalBar from "../Ocharts/OverticalBar";
-import OpieChart from "../Ocharts/Opiechart";
 import Grid from "@material-ui/core/Grid";
+// import OverticalBar from "../Ocharts/OverticalBar";
+// import OpieChart from "../Ocharts/Opiechart";
+// import Grid from "@material-ui/core/Grid";
 
 const headersData = [
   {
@@ -77,7 +78,7 @@ export default function AmenityList() {
               textAlign: "center",
             }}
           >
-            <OverticalBar />
+            {/* <OverticalBar /> */}
           </Grid>
           <Grid
             item
@@ -88,7 +89,7 @@ export default function AmenityList() {
               textAlign: "center",
             }}
           >
-            <OpieChart />
+            {/* <OpieChart /> */}
           </Grid>
         </Grid>
         <Footer />

@@ -25,8 +25,9 @@ import FormImage from "components/formimage/FormImage";
 import TextFieldNew from "components/textfield/Textfield";
 import Typography from "../../../components/typography/Typography";
 import Datepicker from "../../../components/datepicker/Datepicker";
+import CheckoutWithStripe from "../payment/CheckoutWithStripe";
 
-export default function FormDialog() {
+export default function BookProperty(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [email, setEmail] = React.useState("");
@@ -59,7 +60,11 @@ export default function FormDialog() {
   return (
     <div>
       <Button text="Book Property" handleClick={handleClickOpen} />
-      {/* <CheckoutWithStripe rent={rent} /> */}
+      <CheckoutWithStripe
+        rent={rent}
+        property={props.property}
+        user={props.user}
+      />
       <Dialog
         open={open}
         onClose={handleClose}
@@ -148,7 +153,7 @@ export default function FormDialog() {
 
         <DialogActions className={classes.button}>
           <Button text="Submit" />
-          <Button text="Cancel" />
+          <Button text="Cancel" handleClick={handleClose} />
         </DialogActions>
       </Dialog>
     </div>

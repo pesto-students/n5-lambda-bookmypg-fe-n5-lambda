@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import useStyles from "./ProfilePhoto.styles";
 import Avatar from "@material-ui/core/Avatar";
-import { S3_BUCKET_IMAGES_BASEURL } from "constant";
+import { S3_BUCKET_IMAGES_BASEURL, S3_BUCKET_URL } from "constant";
 
 export default function CenteredGrid(props) {
   const classes = useStyles();
   const [state, setState] = React.useState(
     `${S3_BUCKET_IMAGES_BASEURL}/${props.imageName}`
   );
+  const imageUrl = `${S3_BUCKET_URL}/profile-photos/profile_pic.jpg`;
 
   const imageRef = useRef();
   const handleClick = () => {
@@ -23,7 +24,7 @@ export default function CenteredGrid(props) {
   return (
     <div>
       <Avatar
-        src={state}
+        src={imageUrl}
         onClick={handleClick}
         className={classes.largeStyle}
       />
