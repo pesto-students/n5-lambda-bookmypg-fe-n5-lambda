@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { get } from "lodash";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -257,8 +258,8 @@ export default function PropertyContent(props) {
                       >
                         <Rating
                           name="read-only"
-                          value={data.ratings}
-                          number={property.propertydata.numreviews || 0}
+                          value={get(property,'reviewdata.avgratings') ? property.reviewdata.avgratings : 0}
+                          number={get(property,'reviewdata.reviews.length') ? property.reviewdata.reviews.length : 0}
                           readOnly
                         />
                       </Link>

@@ -1,4 +1,5 @@
 import React from "react";
+import { get } from "lodash";
 import {
   Button,
   Card,
@@ -80,7 +81,7 @@ export default function SimilarProperties(props) {
                     md={3}
                   >
                     <SwiperSlide style={{ height: "400px" }}>
-                      <PropertyCard property={property.propertydata} />
+                      <PropertyCard property={property.propertydata} reviewdata={property.reviewdata}/>
                       {/*  <Card className={classes.card}>
                         <CardMedia
                           className={classes.cardMedia}
@@ -178,8 +179,8 @@ export default function SimilarProperties(props) {
                     </CardContent>
                     <div className={classes.ratingboxStyle}>
                       <Cardrating
-                        value={data.rating}
-                        number={0}
+                        value={get(property,'reviewdata.avgratings') ? property.reviewdata.avgratings : 0}
+                        number={get(property,'reviewdata.reviews.length') ? property.reviewdata.reviews.length : 0}
                       />
                       <Button
                         size="small"

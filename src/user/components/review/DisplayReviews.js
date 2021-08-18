@@ -6,8 +6,6 @@ import ReviewBar from "components/progressbar/Progressbar";
 
 export default function DisplayReviewContent(props) {
 
-  console.log("props.property",props.property)
-
   const reviews = props.property.reviewdata.reviews || [];
   const reviewAnalysis = props.property.reviewdata.reviewanalysis || [];
 
