@@ -224,7 +224,7 @@ export default function PropertyContent(props) {
                 container
                 alignItems="center"
                 spacing={2}
-                class={classes.amenitiesBox}
+                className={classes.amenitiesBox}
               >
                 <Grid item>
                   <Typography
@@ -313,7 +313,7 @@ export default function PropertyContent(props) {
         </Grid>
         <div ref={myRef}></div>
         <Grid item xs={12} className={classes.reviewStyle}>
-          <Reviews />
+          <Reviews property={property} />
         </Grid>
       </Container>
     </React.Fragment>

@@ -5,29 +5,19 @@ import useStyles from "./styles/DisplayReview.styles";
 import ReviewBar from "components/progressbar/Progressbar";
 
 export default function DisplayReviewContent(props) {
-  const reviews = [
-    {
-      rating: "5",
-      discription:
-        "Awsome Property! Very pleasent stay and quite clean place. Also got very quick services by Owner to my any complaints.",
-      reviewedby: "Monali Doshi",
-      createdby: "12/07/2021",
-    },
-    {
-      rating: "4",
-      discription:
-        "Amazing Property! Owner was very helpful in case of any complaints",
-      reviewedby: "Mike",
-      createdby: "18/07/2021",
-    },
-    {
-      rating: "4",
-      discription:
-        "Pleasent place! Very pleasent stay and quite clean place. Also got very quick services by Owner to my any complaints.",
-      reviewedby: "Rachel",
-      createdby: "20/07/2021",
-    },
-  ];
+
+  console.log("props.property",props.property)
+
+  const reviews = props.property.reviewdata.reviews || [];
+  const reviewAnalysis = props.property.reviewdata.reviewanalysis || [];
+
+  const ids = reviewAnalysis.map(review=>review._id);
+
+  const getPercentage = (id) => {
+    const percentage = reviewAnalysis.filter(review=>review._id===id)[0].percentage;
+    return percentage;
+  } 
+
   const classes = useStyles();
   return (
     <React.Fragment>
@@ -42,46 +32,51 @@ export default function DisplayReviewContent(props) {
         }}
       >
         <Grid item xs={12} sm={7} className={classes.reviewgridStyle}>
-          {reviews.map((review) => (
-            <Grid item xs={12} className={classes.gridStyle}>
-              <Box display="flex">
-                <Avatar alt="Monali Doshi" src="/static/images/avatar/1.jpg" />
-                <Typography
-                  component="h1"
-                  variant="body1"
-                  color="secondary"
-                  align="justify"
-                  className={classes.usernameStyle}
-                >
-                  {review.reviewedby}
-                </Typography>
-              </Box>
+          {reviews &&
+            reviews.length &&
+            reviews.map((review) => (
+              <Grid item xs={12} className={classes.gridStyle}>
+                <Box display="flex">
+                  <Avatar
+                    alt="Monali Doshi"
+                    src="/static/images/avatar/1.jpg"
+                  />
+                  <Typography
+                    component="h1"
+                    variant="body1"
+                    color="secondary"
+                    align="justify"
+                    className={classes.usernameStyle}
+                  >
+                    {review.reviewedby.firstName +" " +review.reviewedby.lastName}
+                  </Typography>
+                </Box>
 
-              <Box display="flex">
-                <Rating value={review.rating} readOnly />
-              </Box>
-              <Box display="flex">
-                <Typography
-                  component="h1"
-                  variant="body1"
-                  color="secondary"
-                  align="justify"
-                >
-                  {review.discription}
-                </Typography>
-              </Box>
-              <Box display="flex">
-                <Typography
-                  component="h1"
-                  variant="caption"
-                  color="secondary"
-                  align="justify"
-                >
-                  Reviewed on {review.createdby}
-                </Typography>
-              </Box>
-            </Grid>
-          ))}
+                <Box display="flex">
+                  <Rating value={review.rating} readOnly />
+                </Box>
+                <Box display="flex">
+                  <Typography
+                    component="h1"
+                    variant="body1"
+                    color="secondary"
+                    align="justify"
+                  >
+                    {review.description}
+                  </Typography>
+                </Box>
+                <Box display="flex">
+                  <Typography
+                    component="h1"
+                    variant="caption"
+                    color="secondary"
+                    align="justify"
+                  >
+                    Reviewed on {review.createdAt}
+                  </Typography>
+                </Box>
+              </Grid>
+            ))}
         </Grid>
         <Grid item xs={12} sm={1}></Grid>
         <Grid item xs={12} sm={4}>
@@ -103,14 +98,14 @@ export default function DisplayReviewContent(props) {
               >
                 5 stars
               </Typography>
-              <ReviewBar value={15} />
+              <ReviewBar value={ids && ids.length && ids.includes(5) ? getPercentage(5) : 0} />
               <Typography
                 variant="subtitle2"
                 color="secondary"
                 align="justify"
                 style={{ paddingLeft: "5px" }}
               >
-                15%
+                {ids && ids.length && ids.includes(5) ? getPercentage(5)+"%" : "0%"}
               </Typography>
             </Box>
             <Box p={1} display="flex">
@@ -122,14 +117,14 @@ export default function DisplayReviewContent(props) {
               >
                 4 stars
               </Typography>
-              <ReviewBar value={40} />
+              <ReviewBar value={ids && ids.length && ids.includes(4) ? getPercentage(4) : 0} />
               <Typography
                 variant="subtitle2"
                 color="secondary"
                 align="justify"
                 style={{ paddingLeft: "5px" }}
               >
-                40%
+                {ids && ids.length && ids.includes(4) ? getPercentage(4)+"%" : "0%"}
               </Typography>
             </Box>
             <Box p={1} display="flex">
@@ -141,14 +136,14 @@ export default function DisplayReviewContent(props) {
               >
                 3 stars
               </Typography>
-              <ReviewBar value={25} />
+              <ReviewBar value={ids && ids.length && ids.includes(3) ? getPercentage(3) : 0} />
               <Typography
                 variant="subtitle2"
                 color="secondary"
                 align="justify"
                 style={{ paddingLeft: "5px" }}
               >
-                25%
+                {ids && ids.length && ids.includes(3) ? getPercentage(3)+"%" : "0%"}
               </Typography>
             </Box>
             <Box p={1} display="flex">
@@ -160,14 +155,14 @@ export default function DisplayReviewContent(props) {
               >
                 2 stars
               </Typography>
-              <ReviewBar value={15} />
+              <ReviewBar value={ids && ids.length && ids.includes(2) ? getPercentage(2) : 0} />
               <Typography
                 variant="subtitle2"
                 color="secondary"
                 align="justify"
                 style={{ paddingLeft: "5px" }}
               >
-                15%
+                {ids && ids.length && ids.includes(2) ? getPercentage(2)+"%" : "0%"}
               </Typography>
             </Box>
             <Box p={1} display="flex">
@@ -179,14 +174,14 @@ export default function DisplayReviewContent(props) {
               >
                 1 star
               </Typography>
-              <ReviewBar value={5} />
+              <ReviewBar value={ids && ids.length && ids.includes(1) ? getPercentage(1) : 0} />
               <Typography
                 variant="subtitle2"
                 color="secondary"
                 align="justify"
                 style={{ paddingLeft: "5px" }}
               >
-                5%
+                {ids && ids.length && ids.includes(1) ? getPercentage(1)+"%" : "0%"}
               </Typography>
             </Box>
           </div>
