@@ -30,11 +30,14 @@ const TenantsService = {
     throw new Error(response);
   },
 
-  updateTenant: async (id) => {
-    const URL = `${SERVER_URL}/api/users/${id}`;
+  updateTenant: async (payload) => {
+    const URL = `${SERVER_URL}/api/users/${payload.id}`;
     const response = await httpInterceptor({
       url: URL,
       method: "DELETE",
+      headers: {
+        "x-auth-token": payload.user.token,
+      },
     });
 
     if (response.ok) {

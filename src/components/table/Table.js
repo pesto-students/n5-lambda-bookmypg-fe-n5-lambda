@@ -48,7 +48,7 @@ export default function TableComponent(props) {
                     </span>
                   </span>
                 </TableCell>
-              ) : header === "switch" ? (
+              ) : header === "isactive" ? (
                 <TableCell align="center">Status</TableCell>
               ) : (
                 <TableCell align="center">{headersData[header]}</TableCell>
@@ -61,7 +61,15 @@ export default function TableComponent(props) {
             <TableRow key={index} hover>
               {headers.map((header) =>
                 //call a func expect component in return --> function takes case as param --> return equivalent component in table cell
-                getComponent(emp, header, props.list_type)
+                getComponent(
+                  emp,
+                  header,
+                  props.list_type,
+                  props.refresh,
+                  props.setRefresh,
+                  props.updateDocument,
+                  props.user
+                )
               )}
             </TableRow>
           ))}

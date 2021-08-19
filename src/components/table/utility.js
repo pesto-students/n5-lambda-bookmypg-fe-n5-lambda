@@ -33,13 +33,13 @@ export const getHeadersData = (list_type) => {
   }
 };
 
-export const getComponent = (emp, header, list_type) => {
+export const getComponent = (emp, header, list_type, refresh, setRefresh, updateDocument, user) => {
   switch (list_type) {
     case "Complaints":
       if (header === "name") {
         return (
           <TableCell align="center">
-            {emp[header]} <SwitchComponent />
+            {emp[header]}
           </TableCell>
         );
       } else if (header === "status") {
@@ -58,10 +58,17 @@ export const getComponent = (emp, header, list_type) => {
             <AddAmenity mode="Edit" name={emp[header]} />
           </TableCell>
         );
-      } else if (header === "switch") {
+      } else if (header === "isactive") {
         return (
           <TableCell align="center">
-            <SwitchComponent checked={emp[header]} />
+            <SwitchComponent
+              status={emp[header]}
+              refresh={refresh}
+              setRefresh={setRefresh}
+              updateDocument={updateDocument}
+              id={emp._id}
+              user={user}
+            />
           </TableCell>
         );
       } else if (header === "logo") {
@@ -91,10 +98,17 @@ export const getComponent = (emp, header, list_type) => {
             </div>
           </TableCell>
         );
-      } else if (header === "switch") {
+      } else if (header === "isactive") {
         return (
           <TableCell align="center">
-            <SwitchComponent />
+            <SwitchComponent
+              status={emp[header]}
+              refresh={refresh}
+              setRefresh={setRefresh}
+              updateDocument={updateDocument}
+              id={emp._id}
+              user={user}
+            />
           </TableCell>
         );
       } else {
@@ -107,10 +121,17 @@ export const getComponent = (emp, header, list_type) => {
             <AddOwner mode="Edit" name={emp[header]} />
           </TableCell>
         );
-      } else if (header === "switch") {
+      } else if (header === "isactive") {
         return (
           <TableCell align="center">
-            <SwitchComponent />
+            <SwitchComponent
+              status={emp[header]}
+              refresh={refresh}
+              setRefresh={setRefresh}
+              updateDocument={updateDocument}
+              id={emp._id}
+              user={user}
+            />
           </TableCell>
         );
       } else if (header === "property") {
@@ -123,10 +144,17 @@ export const getComponent = (emp, header, list_type) => {
         return <TableCell align="center">{emp[header]}</TableCell>;
       }
     case "Tenants":
-      if (header === "switch") {
+      if (header === "isactive") {
         return (
           <TableCell align="center">
-            <SwitchComponent />
+            <SwitchComponent
+              status={emp[header]}
+              refresh={refresh}
+              setRefresh={setRefresh}
+              updateDocument={updateDocument}
+              id={emp._id}
+              user={user}
+            />
           </TableCell>
         );
       } else {
