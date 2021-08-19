@@ -10,7 +10,10 @@ export default function CheckoutWithStripe(props) {
     toast("Property has been booked successfully!");
     token.amount = props.rent;
     token.raisedby = props.user._id;
-    token.property = props.property;
+    token.name = props.user.firstName + props.user.lastName;
+    token.property_name = props.property.name;
+    token.date = new Date();
+    token.property_id = props.property._id;
     token.charge_id = token.id;
     await fetch(`${SERVER_URL}/api/payments/`, {
       method: "POST",
@@ -28,9 +31,9 @@ export default function CheckoutWithStripe(props) {
   };
 
   const formatRent = (amount) => {
-    const rent = amount*100;
+    const rent = amount * 100;
     return rent;
-  }
+  };
 
   return (
     <>

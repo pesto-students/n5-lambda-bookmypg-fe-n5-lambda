@@ -15,19 +15,23 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useStyles from "./RaiseComplaint.styles";
 import Button from "../../../components/button/Button";
-import { EMAIL_TYPE } from "../../../constant";
+import FormImage from "components/formimage/FormImage";
 
 export default function FormDialog(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [email, setEmail] = React.useState(props.user?props.user.email:"");
-  const [phone, setPhone] = React.useState(props.user?props.user.phone:"");
+  const [email, setEmail] = React.useState(props.user ? props.user.email : "");
+  const [phone, setPhone] = React.useState(props.user ? props.user.phone : "");
   const [details, setDetails] = React.useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const params = { description: details, raisedby: props.user._id, property: props.property._id };
-    props.raiseComplaint({user:props.user,params});
+    const params = {
+      description: details,
+      raisedby: props.user._id,
+      property: props.property._id,
+    };
+    props.raiseComplaint({ user: props.user, params });
     setOpen(false);
     setEmail("");
     setPhone("");
@@ -69,11 +73,7 @@ export default function FormDialog(props) {
             <Typography component="h1" variant="h6" color="primary">
               Raise Complaint
             </Typography>
-            <img
-              src="complaint.jpg"
-              alt="No image available"
-              className={classes.imgStyle}
-            />
+            <FormImage imageName="Raisecomplaint.jpg" />
           </div>
         </DialogTitle>
 

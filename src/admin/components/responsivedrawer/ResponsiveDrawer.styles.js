@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: drawerWidth,
       width: `calc(100% - ${drawerWidth}px)`,
     },
-    marginTop: "80px",
+    marginTop: "50px",
   },
   menuitemStyle: {
     textDecoration: "none",

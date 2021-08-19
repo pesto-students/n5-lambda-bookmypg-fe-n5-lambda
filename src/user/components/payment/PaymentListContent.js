@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import ResponsiveDrawer from "admin/components/responsivedrawer/ResponsiveDrawer";
-import { Grid, Typography, TextField } from "@material-ui/core";
-import Tablecomponent from "./PaymentTable";
+import { Grid } from "@material-ui/core";
 import Pagination from "components/tablepagination/tablepagination";
 import useStyles from "./styles/PaymentListContent.styles";
 import Datepicker from "components/datepicker/Datepicker";
+import Typography from "components/typography/Typography";
+import TextField from "components/textfield/Textfield";
+import TableComponent from "components/table/Table";
 
 export function PaymentContent(props) {
   const classes = useStyles();
@@ -28,20 +30,20 @@ export function PaymentContent(props) {
       ? props.tenants.filter((tenant) => tenant.property)
       : [];
 
-      return (
+  return (
     <div className="Table">
       <ResponsiveDrawer headersData={props.responsivedrawerData}>
         <Grid container justify={"center"}>
           <Grid item xs={12} md={10} className={classes.gridStyle}>
-            <Typography component="h1" variant="h5">
-              Payment History
-            </Typography>
+            <Typography type="ListTitle" text="Payment History" />
             <Grid container justify={"space-between"}>
-              <Grid item xs={12} md={4} className={classes.searchfieldStyle}>
+              <Grid item xs={12} md={4} className={classes.textfieldStyle}>
                 <TextField
-                  id="standard-basic"
+                  type="standardForm"
                   label="Search by property name"
-                  style={{ width: "300px" }}
+                  //value={search}
+                  //onChange={(e) => setSearch(e.target.value)}
+                  icon="Search"
                 />
               </Grid>
               <Grid item xs={12} md={6} className={classes.datepickerStyle}>
@@ -57,13 +59,15 @@ export function PaymentContent(props) {
                 />
               </Grid>
             </Grid>
-            <Tablecomponent
-              tenants={tenants}
-              updateTenant={props.updateTenant}
-              setEnabled={setEnabled}
+            <TableComponent
+              sortingColumn="createdAt"
+              //tableData={TableData}
+              list_type="Payments"
+              //order_by={order_by}
+              //setOrderBy={setOrderBy}
             />
+            <Pagination />
           </Grid>
-          <Pagination />
         </Grid>
       </ResponsiveDrawer>
     </div>

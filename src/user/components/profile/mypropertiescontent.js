@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { get } from "lodash";
 import { connect } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ResponsiveDrawer from "admin/components/responsivedrawer/ResponsiveDrawer";
 import Typography from "@material-ui/core/Typography";
@@ -13,7 +12,6 @@ import Button from "components/button/Button";
 import Rating from "components/rating/rating";
 import UserSelector from "../../helpers/UserSelector";
 import userActions from "../../../redux-store/actions/userActions";
-import complaintSelector from "../../helpers/ComplaintSelector";
 import complaintsActions from "../../../redux-store/actions/complaintsActions";
 import PropertiesSelector from "../../helpers/PropertiesSelector";
 import propertiesActions from "../../../redux-store/actions/propertiesActions";
@@ -30,19 +28,17 @@ const data = {
 export function MyPropertiesContent(props) {
   const classes = useStyles();
 
-  useEffect(()=>{
+  useEffect(() => {
     props.getUser(props.user.email);
-  },[])
+  }, []);
 
   let property;
-  if(!property && get(props,'user.property._id')) {
-    property =  props.properties.filter((p) => p.propertydata._id === props.user.property._id)[0] || "";
+  if (!property && get(props, "user.property._id")) {
+    property =
+      props.properties.filter(
+        (p) => p.propertydata._id === props.user.property._id
+      )[0] || "";
   }
-
-    console.log("props.user", props.user);
-    console.log("property", property);
-    console.log("props.properties", props.properties);
-
   return (
     <div className="Table">
       {property && (
@@ -92,10 +88,11 @@ export function MyPropertiesContent(props) {
                     </div>
                   ) : (
                     <div>
-                      <Box display="flex" p={1}>
+                      <Box display="flex">
                         <Typography gutterBottom variant="subtitle2">
-                          You haven't reviewed this property yet. To Review it
-                          <ReviewProperty value={property.propertydata.name} />
+                          You haven't reviewed this property yet. Please{" "}
+                          <ReviewProperty value={property.propertydata.name} />{" "}
+                          to review it.
                         </Typography>
                       </Box>
                     </div>
@@ -107,7 +104,11 @@ export function MyPropertiesContent(props) {
                     user={props.user}
                     raiseComplaint={props.raiseComplaint}
                   />
-                  <Button text="Already Paid" type="Paybutton" disabled={true}/>
+                  <Button
+                    text="Already Paid"
+                    type="Paybutton"
+                    disabled={true}
+                  />
                 </div>
               </Card>
             </Grid>

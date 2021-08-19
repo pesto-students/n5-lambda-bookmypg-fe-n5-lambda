@@ -66,7 +66,6 @@ export function AmenityListContent(props) {
                 addAmenityState={addAmenityState}
               />
             </Grid>
-            {/*<Tablecomponent complaints={props.complaints} />*/}
             <TableComponent
               switchData="name"
               sortingColumn="createdAt"

@@ -120,9 +120,7 @@ export const getComponent = (emp, header, list_type) => {
         return <TableCell align="center">{emp[header]}</TableCell>;
       }
     case "Tenants":
-      if (header === "name") {
-        return <TableCell align="center">{emp[header]}</TableCell>;
-      } else if (header === "switch") {
+      if (header === "switch") {
         return (
           <TableCell align="center">
             <SwitchComponent />
@@ -131,6 +129,8 @@ export const getComponent = (emp, header, list_type) => {
       } else {
         return <TableCell align="center">{emp[header]}</TableCell>;
       }
+    case "Payments":
+      return <TableCell align="center">{emp[header]}</TableCell>;
     default:
       if (header === "name") {
         return (

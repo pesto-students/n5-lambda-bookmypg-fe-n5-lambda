@@ -29,8 +29,7 @@ export default function DisplayReviewContent(props) {
         }}
       >
         <Grid item xs={12} sm={7} className={classes.reviewgridStyle}>
-          {reviews &&
-            reviews.length &&
+          {reviews && reviews.length ? (
             reviews.map((review) => (
               <Grid item xs={12} className={classes.gridStyle}>
                 <Box className={classes.nameboxStyle}>
@@ -60,97 +59,104 @@ export default function DisplayReviewContent(props) {
                   />
                 </Box>
               </Grid>
-            ))}
+            ))
+          ) : (
+            <Typography type="BodyText" text="**No reviews available" />
+          )}
         </Grid>
         <Grid item xs={12} sm={1}></Grid>
-        <Grid item xs={12} sm={4}>
-          <Typography type="FormTitle" text="Review Analysis" />
+        {reviews && reviews.length ? (
+          <Grid item xs={12} sm={4}>
+            <Typography type="FormTitle" text="Review Analysis" />
 
-          <div className={classes.graphboxStyle}>
-            <Box p={1} pl={3} display="flex">
-              <Typography type="Bodywithpadding" text="5 stars" />
-              <ReviewBar
-                value={
-                  ids && ids.length && ids.includes(5) ? getPercentage(5) : 0
-                }
-              />
-              <Typography
-                type="BodyTextwithpadding"
-                text={
-                  ids && ids.length && ids.includes(5)
-                    ? getPercentage(5) + "%"
-                    : "0%"
-                }
-              />
-            </Box>
-            <Box p={1} pl={3} display="flex">
-              <Typography type="Bodywithpadding" text="4 stars" />
-              <ReviewBar
-                value={
-                  ids && ids.length && ids.includes(4) ? getPercentage(4) : 0
-                }
-              />
-              <Typography
-                type="BodyTextwithpadding"
-                text={
-                  ids && ids.length && ids.includes(4)
-                    ? getPercentage(4) + "%"
-                    : "0%"
-                }
-              />
-            </Box>
-            <Box p={1} pl={3} display="flex">
-              <Typography type="Bodywithpadding" text="3 stars" />
-              <ReviewBar
-                value={
-                  ids && ids.length && ids.includes(3) ? getPercentage(3) : 0
-                }
-              />
-              <Typography
-                type="BodyTextwithpadding"
-                text={
-                  ids && ids.length && ids.includes(3)
-                    ? getPercentage(3) + "%"
-                    : "0%"
-                }
-              />
-            </Box>
-            <Box p={1} pl={3} display="flex">
-              <Typography type="Bodywithpadding" text="2 stars" />
-              <ReviewBar
-                value={
-                  ids && ids.length && ids.includes(2) ? getPercentage(2) : 0
-                }
-              />
+            <div className={classes.graphboxStyle}>
+              <Box p={1} pl={3} display="flex">
+                <Typography type="Bodywithpadding" text="5 stars" />
+                <ReviewBar
+                  value={
+                    ids && ids.length && ids.includes(5) ? getPercentage(5) : 0
+                  }
+                />
+                <Typography
+                  type="BodyTextwithpadding"
+                  text={
+                    ids && ids.length && ids.includes(5)
+                      ? getPercentage(5) + "%"
+                      : "0%"
+                  }
+                />
+              </Box>
+              <Box p={1} pl={3} display="flex">
+                <Typography type="Bodywithpadding" text="4 stars" />
+                <ReviewBar
+                  value={
+                    ids && ids.length && ids.includes(4) ? getPercentage(4) : 0
+                  }
+                />
+                <Typography
+                  type="BodyTextwithpadding"
+                  text={
+                    ids && ids.length && ids.includes(4)
+                      ? getPercentage(4) + "%"
+                      : "0%"
+                  }
+                />
+              </Box>
+              <Box p={1} pl={3} display="flex">
+                <Typography type="Bodywithpadding" text="3 stars" />
+                <ReviewBar
+                  value={
+                    ids && ids.length && ids.includes(3) ? getPercentage(3) : 0
+                  }
+                />
+                <Typography
+                  type="BodyTextwithpadding"
+                  text={
+                    ids && ids.length && ids.includes(3)
+                      ? getPercentage(3) + "%"
+                      : "0%"
+                  }
+                />
+              </Box>
+              <Box p={1} pl={3} display="flex">
+                <Typography type="Bodywithpadding" text="2 stars" />
+                <ReviewBar
+                  value={
+                    ids && ids.length && ids.includes(2) ? getPercentage(2) : 0
+                  }
+                />
 
-              <Typography
-                type="BodyTextwithpadding"
-                text={
-                  ids && ids.length && ids.includes(2)
-                    ? getPercentage(2) + "%"
-                    : "0%"
-                }
-              />
-            </Box>
-            <Box p={1} pl={3} display="flex">
-              <Typography type="Bodywithpadding" text="1 stars" />
-              <ReviewBar
-                value={
-                  ids && ids.length && ids.includes(1) ? getPercentage(1) : 0
-                }
-              />
+                <Typography
+                  type="BodyTextwithpadding"
+                  text={
+                    ids && ids.length && ids.includes(2)
+                      ? getPercentage(2) + "%"
+                      : "0%"
+                  }
+                />
+              </Box>
+              <Box p={1} pl={3} display="flex">
+                <Typography type="Bodywithpadding" text="1 stars" />
+                <ReviewBar
+                  value={
+                    ids && ids.length && ids.includes(1) ? getPercentage(1) : 0
+                  }
+                />
 
-              <Typography
-                type="BodyTextwithpadding"
-                text={
-                  ids && ids.length && ids.includes(1)
-                    ? getPercentage(1) + "%"
-                    : "0%"
-                }
-              />
-            </Box>
-          </div>
-        </Grid>
+                <Typography
+                  type="BodyTextwithpadding"
+                  text={
+                    ids && ids.length && ids.includes(1)
+                      ? getPercentage(1) + "%"
+                      : "0%"
+                  }
+                />
+              </Box>
+            </div>
+          </Grid>
+        ) : (
+          ""
+        )}
       </Grid>
     </React.Fragment>
   );
