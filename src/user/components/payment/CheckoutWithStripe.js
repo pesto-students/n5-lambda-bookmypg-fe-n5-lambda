@@ -14,6 +14,7 @@ export default function CheckoutWithStripe(props) {
     token.property_name = props.property.name;
     token.date = new Date();
     token.property_id = props.property._id;
+    token.property = props.property._id;
     token.charge_id = token.id;
     await fetch(`${SERVER_URL}/api/payments/`, {
       method: "POST",
@@ -24,7 +25,7 @@ export default function CheckoutWithStripe(props) {
     });
     const params = {
       ...props.user,
-      property: props.property,
+      property: props.property._id,
       onboardedAt: new Date(),
     };
     props.updateUser({ id: props.user._id, params });
