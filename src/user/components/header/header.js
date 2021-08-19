@@ -281,7 +281,7 @@ export function Header(props) {
         <FormControl
           variant="outlined"
           className={classes.formControl}
-          style={{ width: "400px" }}
+          //style={{ width: "400px" }}
         >
           <InputLabel
             id="demo-simple-select-outlined-label"
@@ -295,13 +295,7 @@ export function Header(props) {
             value={location}
             onChange={handleChange}
             label="Location"
-            style={{ color: "inherit" }}
-            variant="outlined"
-            InputProps={{
-              classes: {
-                notchedOutline: classes.notchedOutline,
-              },
-            }}
+            className={classes.textfieldStyle}
           >
             <MenuItem value="All">
               <em>All</em>

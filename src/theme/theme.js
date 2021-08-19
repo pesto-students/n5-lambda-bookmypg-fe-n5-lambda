@@ -1,18 +1,23 @@
 import { createTheme } from "@material-ui/core/styles";
+import { responsiveFontSizes, colors } from "@material-ui/core";
 
 const theme = createTheme({
   palette: {
     primary: {
       light: "#C0C0C0",
-      main: "#212121",
+      main: "#252525",
       dark: "#002884",
       contrastText: "#fff",
     },
     secondary: {
-      light: "#424242",
-      main: "#616161",
-      dark: "#424242",
+      light: "#2C387E",
+      main: "#3f51b5",
+      dark: "#172DC1",
       contrastText: "#fff",
+    },
+    text: {
+      primary: "#1E1E1E",
+      secondary: "#252525",
     },
   },
   typography: {
@@ -25,6 +30,23 @@ const theme = createTheme({
         textTransform: "none",
       },
     },
+    MuiOutlinedInput: {
+      root: {
+        "&$focused $notchedOutline": {
+          borderColor: "#fff",
+        },
+        "&:hover $notchedOutline": {
+          borderColor: "#fff",
+        },
+        color: "white",
+        height: "50px",
+      },
+    },
+    MuiSelect: {
+      icon: {
+        color: "white",
+      },
+    },
     MuiTableCell: {
       head: {
         fontWeight: 550,
@@ -35,26 +57,50 @@ const theme = createTheme({
       root: {
         padding: "4px 16px 4px 24px",
       },
+      stickyHeader: {
+        backgroundColor: "#F7FBFF",
+      },
     },
     MuiTableRow: {
       head: {
         height: 50,
-        //backgroundColor: "#616161",
       },
       root: {
         height: 50,
+      },
+      hover: {
+        "&$hover:hover": {
+          backgroundColor: "#F3F9FF",
+        },
       },
     },
     MuiMenuItem: {
       root: {
         minHeight: "24px",
         lineHeight: "normal",
+        "&$selected": {
+          backgroundColor: "#3f51b5",
+          color: "white",
+        },
+        "&$selected:hover": {
+          backgroundColor: "#3f51b5",
+          color: "white",
+        },
+        "&:hover": {
+          backgroundColor: "#F3F9FF",
+          //color: "white",
+        },
       },
     },
     MuiListItem: {
       root: {
         paddingTop: "8px",
         paddingBottom: "8px",
+      },
+      hover: {
+        "&$hover:hover": {
+          backgroundColor: "#F3F9FF",
+        },
       },
     },
     MuiListItemText: {

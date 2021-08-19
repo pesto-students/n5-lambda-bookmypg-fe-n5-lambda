@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   header: {
-    backgroundColor: "#616161",
+    backgroundColor: theme.palette.secondary.main,
   },
   responsivegrid: {
     display: "flex",
@@ -84,6 +84,14 @@ const useStyles = makeStyles((theme) => ({
   },
   focused: {},
   notchedOutline: {},
+  textfieldStyle: {
+    "& .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#fff",
+    },
+    icon: {
+      color: "white",
+    },
+  },
 }));
 
 export default useStyles;

@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
@@ -23,8 +22,7 @@ import Reviews from "../review/DisplayReviews";
 import { S3_BUCKET_URL } from "../../../constant";
 import useStyles from "./styles/PropertyContent.styles";
 import ButtonComponent from "components/button/Button";
-import TypographyComponent from "components/typography/Typography";
-import CheckoutWithStripe from "../payment/CheckoutWithStripe";
+import Typography from "components/typography/Typography";
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
 
@@ -86,7 +84,7 @@ export default function PropertyContent(props) {
     <React.Fragment>
       <Container className={classes.cardGrid} maxWidth="md">
         {property && (
-          <Grid container spacing={2}>
+          <Grid container spacing={4}>
             <Grid item xs={12} sm={5}>
               <div className={classes.imgboxStyle}>
                 <img
@@ -148,26 +146,15 @@ export default function PropertyContent(props) {
             <Grid item xs={12} sm={4}>
               <div>
                 <Typography
-                  component="h1"
-                  variant="h6"
-                  color="primary"
-                  paragraph
-                >
-                  {property.propertydata.name}
-
-                  <Typography
-                    style={{ display: "contents" }}
-                    variant="caption"
-                    display="block"
-                    gutterBottom
-                    color="secondary"
-                  >
-                    &nbsp;&nbsp;by&nbsp;
-                    {property.propertydata.owner.firstName +
-                      " " +
-                      property.propertydata.owner.lastName}
-                  </Typography>
-                </Typography>
+                  type="Caption"
+                  text={property.propertydata.name}
+                  captiontext={
+                    " by " +
+                    property.propertydata.owner.firstName +
+                    " " +
+                    property.propertydata.owner.lastName
+                  }
+                />
               </div>
               <Grid container alignItems="center" spacing={2}>
                 <Grid item>
@@ -175,15 +162,9 @@ export default function PropertyContent(props) {
                 </Grid>
                 <Grid item>
                   <Typography
-                    component="h1"
-                    variant="body1"
-                    color="secondary"
-                    align="justify"
-                    display="block"
-                    className={classes.iconText}
-                  >
-                    {property.propertydata.description}
-                  </Typography>
+                    type="Body"
+                    text={property.propertydata.description}
+                  />
                 </Grid>
               </Grid>
               <Grid container alignItems="center" spacing={2}>
@@ -192,15 +173,9 @@ export default function PropertyContent(props) {
                 </Grid>
                 <Grid item>
                   <Typography
-                    component="h1"
-                    variant="body1"
-                    color="secondary"
-                    align="justify"
-                    display="block"
-                    className={classes.iconText}
-                  >
-                    {property.propertydata.address}
-                  </Typography>
+                    type="Body"
+                    text={property.propertydata.address}
+                  />
                 </Grid>
               </Grid>
               <Grid container alignItems="center" spacing={2}>
@@ -209,15 +184,9 @@ export default function PropertyContent(props) {
                 </Grid>
                 <Grid item>
                   <Typography
-                    component="h1"
-                    variant="body1"
-                    color="secondary"
-                    paragraph
-                    align="justify"
-                    className={classes.iconText}
-                  >
-                    ₹&nbsp;{property.propertydata.rent}
-                  </Typography>
+                    type="Body"
+                    text={"₹ " + property.propertydata.rent}
+                  />
                 </Grid>
               </Grid>
               <Grid
@@ -227,15 +196,7 @@ export default function PropertyContent(props) {
                 class={classes.amenitiesBox}
               >
                 <Grid item>
-                  <Typography
-                    component="h1"
-                    variant="body1"
-                    color="secondary"
-                    paragraph
-                    align="justify"
-                  >
-                    Amenities
-                  </Typography>
+                  <Typography type="Body" text={"Amenities"} />
                 </Grid>
                 <Amenities amenities={property.propertydata.amenities} />
               </Grid>
@@ -282,7 +243,7 @@ export default function PropertyContent(props) {
                     </Grid>
                   </>
                 ) : (
-                  <TypographyComponent
+                  <Typography
                     type="BodyText"
                     text="**Please login to book property or schedule visit"
                   />

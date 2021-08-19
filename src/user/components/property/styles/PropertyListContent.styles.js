@@ -22,17 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     display: "flex",
-    [theme.breakpoints.down("md")]: {
-      flexDirection: "column",
-      height: "100%",
-      padding: "10px",
-    },
     [theme.breakpoints.up("sm")]: {
-      flexDirection: "column",
-      height: "100%",
-      padding: "10px",
-    },
-    [theme.breakpoints.up("lg")]: {
       flexDirection: "column",
       height: "100%",
       padding: "10px",

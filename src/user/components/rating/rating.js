@@ -13,7 +13,7 @@ const displayMobile = (props) => {
   return (
     <Box borderColor="transparent" textAlign="center" display="flex">
       <Rating name="read-only" value={props.value} readOnly />
-      <Typography component="legend" color="secondary">
+      <Typography component="legend" color="primary">
         {props.number} Reviews
       </Typography>
     </Box>
@@ -29,7 +29,7 @@ const displayWeb = (props) => {
       flexDirection="column"
     >
       <Rating name="read-only" value={props.value} readOnly />
-      <Typography component="legend" color="secondary">
+      <Typography component="legend" color="primary">
         {props.number} Reviews
       </Typography>
     </Box>

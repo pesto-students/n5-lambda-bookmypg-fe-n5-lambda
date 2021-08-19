@@ -37,7 +37,7 @@ export default function SimilarProperties(props) {
   const { mobileView, drawerOpen } = state;
   React.useEffect(() => {
     const setResponsiveness = () => {
-      return window.innerWidth < 900
+      return window.innerWidth < 600
         ? setState((prevState) => ({ ...prevState, mobileView: true }))
         : setState((prevState) => ({ ...prevState, mobileView: false }));
     };
@@ -144,8 +144,8 @@ export default function SimilarProperties(props) {
         >
           {props.title}
         </Typography>
-        <Grid className={classes.responsivegrid}>
-          <Grid container spacing={5}>
+        <Swiper slidesPerView={1}>
+          <Grid container spacing={4}>
             {latestProperties &&
               latestProperties.length &&
               latestProperties.map((property) => (
@@ -156,50 +156,50 @@ export default function SimilarProperties(props) {
                   sm={6}
                   md={3}
                 >
-                  <Card className={classes.card}>
-                    <CardMedia
-                      className={classes.cardMedia}
-                      image={`${S3_BUCKET_URL}/${property.propertydata.photos[0]}`}
-                      title={property.propertydata.photos[0]}
-                    />
-                    <CardContent className={classes.cardContent}>
-                      <div className={classes.propertynameStyle}>
-                        <Typography gutterBottom variant="h6" component="h2">
-                          {property.propertydata.name}
-                        </Typography>
-                        <Typography gutterBottom variant="caption">
-                          <LocationOnIcon />
-                          {property.propertydata.location.name}
-                        </Typography>
-                      </div>
-                      <Typography gutterBottom variant="body2">
-                        {property.propertydata.description}
-                      </Typography>
-                    </CardContent>
-                    <div className={classes.ratingboxStyle}>
-                      <Cardrating
-                        value={data.rating}
-                        number={0}
+                  <SwiperSlide style={{ height: "400px" }}>
+                    <PropertyCard property={property.propertydata} />
+                    {/* <Card className={classes.card}>
+                      <CardMedia
+                        className={classes.cardMedia}
+                        image={`${S3_BUCKET_URL}/${property.propertydata.photos[0]}`}
+                        title={property.propertydata.photos[0]}
                       />
-                      <Button
-                        size="small"
-                        variant="contained"
-                        color="ContainedSecondary"
-                        className={classes.buttonStyle}
-                        onClick={() =>
-                          history.push(
-                            `/property-details/${property.propertydata._id}`
-                          )
-                        }
-                      >
-                        More Details
-                      </Button>
-                    </div>
-                  </Card>
+                      <CardContent className={classes.cardContent}>
+                        <div className={classes.propertynameStyle}>
+                          <Typography gutterBottom variant="h6" component="h2">
+                            {property.propertydata.name}
+                          </Typography>
+                          <Typography gutterBottom variant="caption">
+                            <LocationOnIcon />
+                            {property.propertydata.location.name}
+                          </Typography>
+                        </div>
+                        <Typography gutterBottom variant="body2">
+                          {property.propertydata.description}
+                        </Typography>
+                      </CardContent>
+                      <div className={classes.ratingboxStyle}>
+                        <Cardrating value={data.rating} number={0} />
+                        <Button
+                          size="small"
+                          variant="contained"
+                          color="ContainedSecondary"
+                          className={classes.buttonStyle}
+                          onClick={() =>
+                            history.push(
+                              `/property-details/${property.propertydata._id}`
+                            )
+                          }
+                        >
+                          More Details
+                        </Button>
+                      </div>
+                        </Card>*/}
+                  </SwiperSlide>
                 </Grid>
               ))}
           </Grid>
-        </Grid>
+        </Swiper>
       </React.Fragment>
     );
   };
