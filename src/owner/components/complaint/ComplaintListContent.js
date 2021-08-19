@@ -52,7 +52,7 @@ export function ComplaintsContent(props) {
       <ResponsiveDrawer headersData={props.responsivedrawerData}>
         <Grid container justify={"center"}>
           <Grid item xs={12} md={10} className={classes.gridStyle}>
-            <Typography type="ListTitle" text="Complaint List" />
+            <Typography type="ListTitle" text="Complaint List" align="center" />
             <Grid container justify={"space-between"}>
               <Grid item xs={12} md={4} className={classes.textfieldStyle}>
                 <TextField

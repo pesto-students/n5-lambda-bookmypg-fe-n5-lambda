@@ -55,7 +55,11 @@ export function PaymentContent(props) {
       <ResponsiveDrawer headersData={props.responsivedrawerData}>
         <Grid container justify={"center"}>
           <Grid item xs={12} md={10} className={classes.gridStyle}>
-            <Typography type="ListTitle" text="Payment History" />
+            <Typography
+              type="ListTitle"
+              text="Payment History"
+              align="center"
+            />
             <Grid container justify={"space-between"}>
               <Grid item xs={12} md={4} className={classes.textfieldStyle}>
                 <TextField
