@@ -9,7 +9,9 @@ import useStyles from "./styles/PaymentListContent.styles";
 import Datepicker from "components/datepicker/Datepicker";
 import PaymentsSelector from "../../helpers/PaymentsSelector";
 import paymentsActions from "../../../redux-store/actions/paymentsActions";
-import UserSelector from "../../../user/helpers/UserSelector";
+import UserSelector from "../../helpers/UserSelector";
+import userActions from "../../../redux-store/actions/userActions";
+
 import { DATE, ORDER_BY } from "constant";
 
 export function PaymentContent(props) {
@@ -23,6 +25,10 @@ export function PaymentContent(props) {
 
   useEffect(() => {
     props.resetPayments();
+  }, []);
+
+  useEffect(() => {
+    props.getUser(props.user.email);
   }, []);
 
   useEffect(() => {
@@ -43,6 +49,9 @@ export function PaymentContent(props) {
       });
     });
   }
+
+  console.log("props.payment", props.payments);
+  console.log("props.user", props.user);
 
   return (
     <div className="Table">
@@ -87,7 +96,6 @@ export function PaymentContent(props) {
               setCountperpage={setCountperpage}
               count={props.total_payments}
             />
-            <Pagination />
           </Grid>
         </Grid>
       </ResponsiveDrawer>
@@ -108,6 +116,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    getUser: (payload) => dispatch(userActions.getUser(payload)),
     getPayments: (payload) => dispatch(paymentsActions.getPayments(payload)),
     resetPayments: () => dispatch(paymentsActions.resetState()),
   };
