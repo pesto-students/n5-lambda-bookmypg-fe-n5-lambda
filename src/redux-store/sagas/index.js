@@ -17,6 +17,7 @@ import {
   GET_LATEST_PROPERTIES_REQUEST_MADE,
   ADD_PROPERTY_REQUEST_MADE,
   UPDATE_USER_REQUEST_MADE,
+  UPDATE_PROPERTY_REQUEST_MADE,
 } from "../../constant";
 import { getUserSaga, updateUserSaga } from "./userSaga";
 import {
@@ -24,6 +25,7 @@ import {
   getPropertiesByOwnerSaga,
   getLatestPropertiesSaga,
   addPropertySaga,
+  updatePropertySaga
 } from "./propertiesSaga";
 import { getTenantsSaga, getTenantsByOwnerSaga, updateTenantSaga, addTenantSaga } from "./tenantsSaga";
 import { getAmenitiesSaga, addAmenitySaga, updateAmenitySaga} from "./amenitiesSaga";
@@ -47,6 +49,7 @@ export default function* rootSaga() {
     takeLatest(GET_PROPERTIES_BY_OWNER_REQUEST_MADE, getPropertiesByOwnerSaga, propertiesApi),
     takeLatest(GET_LATEST_PROPERTIES_REQUEST_MADE, getLatestPropertiesSaga, propertiesApi),
     takeLatest(ADD_PROPERTY_REQUEST_MADE, addPropertySaga, propertiesApi),
+    takeLatest(UPDATE_PROPERTY_REQUEST_MADE, updatePropertySaga, propertiesApi),
     takeLatest(GET_TENANTS_REQUEST_MADE, getTenantsSaga, tenantsApi),
     takeLatest(GET_TENANTS_BY_OWNER_REQUEST_MADE, getTenantsByOwnerSaga, tenantsApi),
     takeLatest(UPDATE_TENANT_REQUEST_MADE, updateTenantSaga, tenantsApi),

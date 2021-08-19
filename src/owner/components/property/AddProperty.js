@@ -116,7 +116,7 @@ export default function AddProperty(props) {
     setGender("");
     setAmenitis([]);
     setPhotos([]);
-    setTimeout(() => {props.setAddPropertyState(!props.addPropertyState)}, 500);
+    setTimeout(() => {props.setRefresh(!props.refresh)}, 500);
   };
 
   return (
