@@ -145,14 +145,13 @@ const useStyles = makeStyles((theme) => ({
   ratingStyle: {
     display: "flex",
     paddingBottom: "10px",
-
     justifyContent: "space-evenly",
   },
   descriptionStyle: {
     wordWrap: "break-word",
   },
   buttonMarginStyle: {
-    paddingTop: "70px",
+    paddingTop: "60px",
   },
 }));
 

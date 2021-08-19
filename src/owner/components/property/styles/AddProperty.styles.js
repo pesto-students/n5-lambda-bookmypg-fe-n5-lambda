@@ -55,6 +55,12 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: "10px",
     paddingTop: "25px",
   },
+  gridStyle: {
+    display: "flex",
+    alignSelf: "center",
+    justifyContent: "center",
+    paddingRight: "10px",
+  },
 }));
 
 export default useStyles;

@@ -135,9 +135,9 @@ export function Header(props) {
     setOpen(false);
     if (existingUser) {
       existingUser.role == "owner"
-        ? history.push("/owner-home")
+        ? history.push("/owner-property-list")
         : existingUser.role == "admin"
-        ? history.push("/admin-home")
+        ? history.push("/owner-list")
         : history.push("/");
     } else {
       history.push("/");

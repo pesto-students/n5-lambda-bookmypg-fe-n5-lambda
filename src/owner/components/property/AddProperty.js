@@ -116,13 +116,15 @@ export default function AddProperty(props) {
     setGender("");
     setAmenitis([]);
     setPhotos([]);
-    setTimeout(() => {props.setRefresh(!props.refresh)}, 500);
+    setTimeout(() => {
+      props.setRefresh(!props.refresh);
+    }, 500);
   };
 
   return (
     <div>
       {props.mode === "Edit" ? (
-        <div className={classes.buttonStyle}>
+        <div className={classes.gridStyle}>
           <Link text={props.name} handelClick={handleClickOpenEdit} href="#" />
           <Dialog
             open={openEdit}

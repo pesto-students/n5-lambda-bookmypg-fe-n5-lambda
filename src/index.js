@@ -40,7 +40,7 @@ ReactDOM.render(
           path="/tenant-list"
           component={Ownertenantlist}
         />
-        <OwnerProtectedRoute
+        <Route
           exact
           path="/owner-property-list"
           component={Ownerpropertylist}
@@ -52,7 +52,7 @@ ReactDOM.render(
         />
 
         <Route path="/admin-home" component={AdminHomepage} />
-        <AdminProtectedRoute exact path="/owner-list" component={Ownerlist} />
+        <Route exact path="/owner-list" component={Ownerlist} />
         <AdminProtectedRoute
           exact
           path="/amenity-list"
