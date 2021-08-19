@@ -157,7 +157,12 @@ export default function PropertyContent(props) {
                   }
                 />
               </div>
-              <Grid container alignItems="center" spacing={2}>
+              <Grid
+                container
+                alignItems="center"
+                spacing={2}
+                className={classes.wrapStyle}
+              >
                 <Grid item>
                   <DescriptionIcon />
                 </Grid>
@@ -168,7 +173,12 @@ export default function PropertyContent(props) {
                   />
                 </Grid>
               </Grid>
-              <Grid container alignItems="center" spacing={2}>
+              <Grid
+                container
+                alignItems="center"
+                spacing={2}
+                className={classes.wrapStyle}
+              >
                 <Grid item>
                   <HomeIcon />
                 </Grid>

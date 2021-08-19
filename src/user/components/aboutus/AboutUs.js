@@ -17,6 +17,7 @@ export function Content(props) {
             <TypographyComponent
               type="ListTitle"
               text="Struggling to find a new accomodation??"
+              align="center"
             />
 
             <TypographyComponent
