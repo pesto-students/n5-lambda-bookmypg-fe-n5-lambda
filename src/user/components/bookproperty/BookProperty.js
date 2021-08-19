@@ -30,8 +30,8 @@ import CheckoutWithStripe from "../payment/CheckoutWithStripe";
 export default function BookProperty(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [email, setEmail] = React.useState("");
-  const [rent, setRent] = React.useState(15000.0);
+  const [email, setEmail] = React.useState(props.user.email || "");
+  const [rent, setRent] = React.useState(props.property.rent || 15000.0);
   const [stripeOpen, setStripeOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -94,8 +94,10 @@ export default function BookProperty(props) {
           type="standardForm"
           label="Email"
           value={email}
-          onChange={setEmail}
+          onChange={(e) => setEmail(e.target.value)}
           icon="Email"
+          id="standard-disabled"
+          disabled
         />
 
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -112,7 +114,7 @@ export default function BookProperty(props) {
             disabled
             id="standard-disabled"
             label="Rent"
-            defaultValue={rent}
+            value={props.property.rent}
             fullwidth
             InputProps={{
               endAdornment: (
@@ -152,8 +154,10 @@ export default function BookProperty(props) {
               </Dialog>*/}
         <CheckoutWithStripe
           rent={rent}
-          property={props.property}
+          property={props.property._id}
           user={props.user}
+          updateUser={props.updateUser}
+          handleBookProperty={props.handleBookProperty}
         />
       </FormControl>
     </div>

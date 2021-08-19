@@ -258,8 +258,16 @@ export default function PropertyContent(props) {
                       >
                         <Rating
                           name="read-only"
-                          value={get(property,'reviewdata.avgratings') ? property.reviewdata.avgratings : 0}
-                          number={get(property,'reviewdata.reviews.length') ? property.reviewdata.reviews.length : 0}
+                          value={
+                            get(property, "reviewdata.avgratings")
+                              ? property.reviewdata.avgratings
+                              : 0
+                          }
+                          number={
+                            get(property, "reviewdata.reviews.length")
+                              ? property.reviewdata.reviews.length
+                              : 0
+                          }
                           readOnly
                         />
                       </Link>
@@ -293,8 +301,10 @@ export default function PropertyContent(props) {
             {bookProperty && (
               <Grid item xs={12} sm={1}>
                 <Bookproperty
-                  property={property.propertydata._id}
-                  user={props.user._id}
+                  property={property.propertydata}
+                  user={props.user}
+                  updateUser={props.updateUser}
+                  handleBookProperty={handleBookProperty}
                 />
               </Grid>
             )}

@@ -9,6 +9,7 @@ import Theme from "theme/theme";
 import PropertiesSelector from "../helpers/PropertiesSelector";
 import propertiesActions from "../../redux-store/actions/propertiesActions";
 import UserSelector from "../helpers/UserSelector";
+import userActions from "../../redux-store/actions/userActions";
 
 export function PropertyDetails(props) {
   const property_id = props.match.params.id;
@@ -27,6 +28,7 @@ export function PropertyDetails(props) {
             properties={props.properties}
             latestProperties={props.latestProperties}
             user={props.user}
+            updateUser={props.updateUser}
           />
           <Footer type="center" />
         </Grid>
@@ -49,6 +51,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getProperties: () => dispatch(propertiesActions.getProperties()),
+    updateUser: (payload) => dispatch(userActions.updateUser(payload)),
   };
 };
 
