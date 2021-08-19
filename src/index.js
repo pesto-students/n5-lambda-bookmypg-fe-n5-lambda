@@ -50,7 +50,7 @@ ReactDOM.render(
           component={Ownercomplaintlist}
         />
 
-        <AdminProtectedRoute exact path="/owner-list" component={Ownerlist} />
+        <Route exact path="/owner-list" component={Ownerlist} />
         <AdminProtectedRoute
           exact
           path="/amenity-list"
