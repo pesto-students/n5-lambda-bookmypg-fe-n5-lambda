@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { Grid, Typography, ImageList, ImageListItem } from "@material-ui/core";
+import { Grid, ImageList, ImageListItem } from "@material-ui/core";
 import Container from "@material-ui/core/Container";
 import PropertiesSelector from "../../helpers/PropertiesSelector";
 import propertiesActions from "../../../redux-store/actions/propertiesActions";
@@ -27,15 +27,12 @@ export function Content(props) {
       <Container className={classes.cardGrid} maxWidth="md">
         <Grid container spacing={4} className={classes.topPadding}>
           <Grid item xs={12} sm={6}>
-            <Typography
-              component="h1"
-              variant="h5"
-              color="primary"
-              gutterBottom
+            <TypographyComponent
+              type="ListTitle"
               align="center"
-            >
-              Who are we?
-            </Typography>
+              text="Who are we?"
+            />
+
             <TypographyComponent
               type="FormTitle"
               align="center"
@@ -70,15 +67,11 @@ export function Content(props) {
             </ImageList>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Typography
-              component="h1"
-              variant="h5"
-              color="primary"
-              gutterBottom
+            <TypographyComponent
+              type="ListTitle"
               align="center"
-            >
-              What are we aiming at?
-            </Typography>
+              text="What are we aiming at?"
+            />
             <TypographyComponent
               type="FormTitle"
               align="center"

@@ -9,6 +9,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import UserSelector from "../helpers/UserSelector";
 import userActions from "../../redux-store/actions/userActions";
+import { useAuth } from "../../contexts/AuthContext";
 
 const useStyles = makeStyles(() => ({
   button: {

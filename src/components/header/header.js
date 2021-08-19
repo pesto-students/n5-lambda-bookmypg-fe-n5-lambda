@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import {
   AppBar,
   Toolbar,
-  Typography,
   IconButton,
   Drawer,
   Link,
@@ -11,6 +10,7 @@ import {
   DialogContent,
   Grid,
   Box,
+  Typography,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import Dialog from "@material-ui/core/Dialog";
@@ -26,18 +26,12 @@ import SigninButton from "@material-ui/core/Button";
 import UserSelector from "../../user/helpers/UserSelector";
 import userActions from "../../redux-store/actions/userActions";
 import FormImage from "components/formimage/FormImage";
+import { useAuth } from "../../contexts/AuthContext";
+import TypographyComponent from "components/typography/Typography";
 
 export function Header(props) {
-  const {
-    header,
-    logo,
-    menuButton,
-    toolbar,
-    drawerContainer,
-    button,
-    buttonmargin,
-    mobileviewButton,
-  } = useStyles();
+  const { header, logo, toolbar, drawerContainer, button, mobileviewButton } =
+    useStyles();
   const [open, setOpen] = React.useState(false);
   const history = useHistory();
   const [state, setState] = useState({
@@ -71,14 +65,6 @@ export function Header(props) {
     return () => {
       window.removeEventListener("resize", () => setResponsiveness());
     };
-  }, []);
-
-  useEffect(() => {
-    //props.resetLocations();
-  }, []);
-
-  useEffect(() => {
-    //props.getLocations();
   }, []);
 
   const LoginPopup = () => {
@@ -115,7 +101,6 @@ export function Header(props) {
               <Button
                 text={props.user.firstName + " " + props.user.lastName}
                 type="Menubutton"
-                // handleClick={handleLogout}
               />
               <PopupMenu listitems={listitems} handleLogout={handleLogout} />
             </>
@@ -288,11 +273,7 @@ export function Header(props) {
             </Box>
             <DialogContent style={{ padding: "0px" }}>
               <Grid className={classes.responsivegrid}>
-                <Grid
-                  item
-                  xs={12}
-                  style={{ justifyContent: "center", display: "flex" }}
-                >
+                <Grid item xs={12} className={classes.loginboxStyle}>
                   <Box
                     p={2}
                     display="flex"
@@ -307,7 +288,7 @@ export function Header(props) {
                         color="secondary"
                         key="Signin"
                       >
-                        <FormImage imageName="GoogleIcon.png" type="icon" />{" "}
+                        <FormImage imageName="GoogleIcon.png" type="icon" />
                         Signin with Google
                       </SigninButton>
                       <Typography
@@ -326,14 +307,7 @@ export function Header(props) {
                       <div
                         color="secondary"
                         gutterBottom
-                        style={{
-                          marginTop: "40px",
-                          alignContent: "center",
-                          display: "flex",
-                          flexDirection: "column",
-                          justifyContent: "center",
-                          textAlign: "center",
-                        }}
+                        className={classes.connectusStyle}
                       >
                         <div style={{ marginTop: "20px" }}></div>
                         <Typography color="secondary.contrastText">
@@ -398,12 +372,7 @@ export function Header(props) {
                     </Typography>
                   </Box>
                 </Grid>
-                <Grid
-                  item
-                  xs={12}
-                  sm={6}
-                  style={{ justifyContent: "center", display: "flex" }}
-                >
+                <Grid item xs={12} sm={6} className={classes.loginboxStyle}>
                   <Box
                     p={2}
                     display="flex"
@@ -437,14 +406,7 @@ export function Header(props) {
                       <div
                         color="secondary"
                         gutterBottom
-                        style={{
-                          marginTop: "40px",
-                          alignContent: "center",
-                          display: "flex",
-                          flexDirection: "column",
-                          justifyContent: "center",
-                          textAlign: "center",
-                        }}
+                        className={classes.connectusStyle}
                       >
                         <div style={{ marginTop: "20px" }}></div>
                         <Typography color="secondary.contrastText">

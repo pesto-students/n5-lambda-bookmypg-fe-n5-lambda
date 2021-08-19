@@ -18,7 +18,11 @@ export default function TypographyComponent(props) {
       );
     case "ListTitle":
       return (
-        <Typography component="h1" variant="h5">
+        <Typography
+          component="h1"
+          variant="h5"
+          align={props.align ? props.align : "left"}
+        >
           {props.text}
         </Typography>
       );

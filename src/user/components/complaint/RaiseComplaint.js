@@ -6,7 +6,6 @@ import {
   DialogTitle,
   TextField,
   Grid,
-  Typography,
   Box,
   IconButton,
 } from "@material-ui/core";
@@ -14,8 +13,9 @@ import CloseIcon from "@material-ui/icons/Close";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useStyles from "./RaiseComplaint.styles";
-import Button from "../../../components/button/Button";
+import Button from "components/button/Button";
 import FormImage from "components/formimage/FormImage";
+import Typography from "components/typography/Typography";
 
 export default function FormDialog(props) {
   const classes = useStyles();
@@ -70,23 +70,13 @@ export default function FormDialog(props) {
         </Box>
         <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
           <div>
-            <Typography component="h1" variant="h6" color="primary">
-              Raise Complaint
-            </Typography>
+            <Typography type="FormTitle" text="Raise Complaint" />
             <FormImage imageName="Raisecomplaint.jpg" />
           </div>
         </DialogTitle>
 
         <DialogContent className={classes.formAlign}>
-          <Grid
-            spacing={2}
-            style={{
-              textAlign: "center",
-
-              borderRadius: "10px",
-              padding: "10px",
-            }}
-          >
+          <Grid spacing={2} className={classes.gridStyle}>
             <Grid item>
               <TextField
                 disabled

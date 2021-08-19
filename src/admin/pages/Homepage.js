@@ -5,9 +5,6 @@ import Content from "../components/home/Content";
 import Footer from "../../components/footer/footer";
 import Theme from "theme/theme";
 import Grid from "@material-ui/core/Grid";
-// import OverticalBar from "../Ocharts/OverticalBar";
-// import OpieChart from "../Ocharts/Opiechart";
-// import Grid from "@material-ui/core/Grid";
 
 const headersData = [
   {

@@ -39,7 +39,6 @@ export default function ButtonComponent(props) {
           color={props.color ? props.color : "secondary"}
           key={props.text}
           onClick={props.handleClick}
-          className={classes.buttonStyle}
         >
           {props.text}
         </Button>

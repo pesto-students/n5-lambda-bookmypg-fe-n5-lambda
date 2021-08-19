@@ -1,93 +1,26 @@
 import React from "react";
-import {
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  TextField,
-  Radio,
-  RadioGroup,
-  FormControlLabel,
-  FormLabel,
-  FormControl,
-  Grid,
-  Box,
-} from "@material-ui/core";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
+import { TextField, FormLabel, FormControl, Grid } from "@material-ui/core";
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
-import Button from "../../../components/button/Button";
 import useStyles from "./BookProperty.styles";
-import CloseButton from "../../../components/closebutton/CloseButton";
 import FormImage from "components/formimage/FormImage";
 import TextFieldNew from "components/textfield/Textfield";
-import Typography from "../../../components/typography/Typography";
 import Datepicker from "../../../components/datepicker/Datepicker";
 import CheckoutWithStripe from "../payment/CheckoutWithStripe";
 
 export default function BookProperty(props) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
   const [email, setEmail] = React.useState(props.user.email || "");
   const [rent, setRent] = React.useState(props.property.rent || 15000.0);
-  const [stripeOpen, setStripeOpen] = React.useState(false);
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const [value, setValue] = React.useState("female");
-
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
   const [selectedDate, setSelectedDate] = React.useState(new Date());
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
 
-  const handlePayment = () => {
-    if (value === "Pay Online") {
-      setStripeOpen(true);
-    }
-  };
-
   return (
     <div>
-      {/*    <Button text="Book Property" handleClick={handleClickOpen} />
-      <CheckoutWithStripe
-        rent={rent}
-        property={props.property}
-        user={props.user}
-      />
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="form-dialog-title"
-        PaperProps={{
-          style: {
-            width: "calc(478px + 0.5vw)",
-          },
-        }}
-      >
-        <Box display="flex" alignItems="flex-start">
-          <Box flexGrow={1}></Box>
-          <Box>
-            <CloseButton handleClick={handleClose} />
-          </Box>
-        </Box>
-        <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
-          <div className={classes.textAlign}>
-            <Typography type="FormTitle" text="Book Property" />
-          </div>
-          <FormImage imageName="Bookproperty.jpg" />
-        </DialogTitle>
-      <DialogContent className={classes.formAlign}>*/}
       <FormControl component="fieldset">
         <FormLabel component="legend"></FormLabel>
         <TextFieldNew
@@ -99,7 +32,6 @@ export default function BookProperty(props) {
           id="standard-disabled"
           disabled
         />
-
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container>
             <Datepicker

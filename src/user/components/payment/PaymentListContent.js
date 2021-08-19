@@ -50,9 +50,6 @@ export function PaymentContent(props) {
     });
   }
 
-  console.log("props.payment", props.payments);
-  console.log("props.user", props.user);
-
   return (
     <div className="Table">
       <ResponsiveDrawer headersData={props.responsivedrawerData}>

@@ -30,7 +30,6 @@ import Button from "components/button/Button";
 import useStyles from "./header.styles";
 import TenantsSelector from "../../../owner/components/TenantsSelector";
 import tenantsActions from "../../../redux-store/actions/tenantsActions";
-import { useAuth } from "../../../contexts/AuthContext";
 import PopupMenu from "components/popupmenu/PopupMenu";
 import SigninButton from "@material-ui/core/Button";
 import FormImage from "components/formimage/FormImage";
@@ -438,10 +437,9 @@ export function Header(props) {
                     alignItems="center"
                     className={classes.boxStyle}
                   >
-                    <img
-                      src="BookMyPG-Logo.jpg"
-                      alt="No image available"
-                      className={classes.imageStyle}
+                    <FormImage
+                      imageName="BookMyPG-Logo.jpg"
+                      type="loginpageLogo"
                     />
                     <Typography
                       component="paragraph"

@@ -20,7 +20,6 @@ export default function CenteredGrid(props) {
                   imageName={`${S3_BUCKET_URL}/${amenity.logo}`}
                   type="logo"
                 />
-
                 <Typography type="Body" text={amenity.name} />
               </Box>
             </Grid>

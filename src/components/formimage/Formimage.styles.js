@@ -14,6 +14,9 @@ const useStyles = makeStyles(() => ({
     paddingRight: "10px",
     width: "25px",
   },
+  loginpageStyle: {
+    width: "150px",
+  },
 }));
 
 export default useStyles;

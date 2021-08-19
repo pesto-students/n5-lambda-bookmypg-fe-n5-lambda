@@ -13,14 +13,7 @@ export function Content(props) {
     <React.Fragment>
       <Container className={classes.cardGrid}>
         <Grid container className={classes.topPadding}>
-          <Grid
-            item
-            xs={12}
-            sm={12}
-            style={{
-              textAlign: "center",
-            }}
-          >
+          <Grid item xs={12} sm={12} className={classes.centerAlign}>
             <TypographyComponent
               type="ListTitle"
               text="Struggling to find a new accomodation??"
