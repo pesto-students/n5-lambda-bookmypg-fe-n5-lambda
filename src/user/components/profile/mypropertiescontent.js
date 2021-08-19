@@ -39,10 +39,6 @@ export function MyPropertiesContent(props) {
     property =  props.properties.filter((p) => p.propertydata._id === props.user.property._id)[0] || "";
   }
 
-    console.log("props.user", props.user);
-    console.log("property", property);
-    console.log("props.properties", props.properties);
-
   return (
     <div className="Table">
       {property && (
