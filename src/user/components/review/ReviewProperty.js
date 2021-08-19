@@ -74,7 +74,6 @@ export default function ReviewProperty(props) {
             <TextField
               id="outlined-basic"
               label="Write your review here"
-              variant="outlined"
               multiline
               rows={2}
               maxRows={4}
