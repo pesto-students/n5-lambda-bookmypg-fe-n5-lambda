@@ -42,7 +42,7 @@ export default function AddAmenity(props) {
     setName("");
     setLogo("");
     setTimeout(() => {
-      props.setAddAmenityState(!props.addAmenityState);
+      props.setRefresh(!props.refresh);
     }, 500);
   };
 

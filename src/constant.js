@@ -123,7 +123,7 @@ export const PAYMENT_LIST_HEADERS = {
 
 export const PROPERTY_LIST_HEADERS = {
   name: "Property name",
-  switch: "",
+  isactive: "Status",
   location: "Location",
   address: "Address",
   freebeds: "Free Beds",
@@ -132,7 +132,7 @@ export const PROPERTY_LIST_HEADERS = {
 
 export const OWNER_LIST_HEADERS = {
   name: "Owner name",
-  switch: "",
+  isactive: "Status",
   email: "Email",
   phone: "Contact no",
   property: "Property Names",
@@ -141,14 +141,14 @@ export const OWNER_LIST_HEADERS = {
 
 export const AMENITY_LIST_HEADERS = {
   name: "Amenity name",
-  switch: "",
+  isactive: "Status",
   logo: "Logo",
   createdAt: "Registered Date",
 };
 
 export const TENANT_LIST_HEADERS = {
   name: "Tenant name",
-  switch: "",
+  isactive: "Status",
   email: "Email",
   phone: "Contact no",
   property: "Property Name",

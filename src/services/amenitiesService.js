@@ -42,9 +42,8 @@ const AmenitiesService = {
     const URL = `${SERVER_URL}/api/amenities/${payload.id}`;
     const response = await httpInterceptor({
       url: URL,
-      method: "PUT",
+      method: "DELETE",
       headers: {
-        "Content-Type": "application/json",
         "x-auth-token": payload.user.token,
       },
     });

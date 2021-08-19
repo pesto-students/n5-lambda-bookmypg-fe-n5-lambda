@@ -21,7 +21,7 @@ export function AmenityListContent(props) {
   const [countperpage, setCountperpage] = React.useState(10);
   const [search, setSearch] = React.useState("");
   const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC);
-  const [addAmenityState, setAddAmenityState] = React.useState(false);
+  const [refresh, setRefresh] = React.useState(false);
 
   useEffect(() => {
     props.resetAmenities();
@@ -31,12 +31,13 @@ export function AmenityListContent(props) {
     const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&columnname=createdAt&orderby=${order_by}`;
     const user = props.user;
     props.getAmenities({ extraParams, user });
-  }, [pagenumber, countperpage, search, order_by, addAmenityState]);
+  }, [pagenumber, countperpage, search, order_by, refresh]);
 
   let TableData = [];
   if (get(props, "amenities.length")) {
     props.amenities.map((amenity) => {
       TableData.push({
+        _id: amenity._id,
         name: amenity.name,
         logo: amenity.logo,
         isactive: amenity.isactive,
@@ -63,8 +64,8 @@ export function AmenityListContent(props) {
               <Addamenity
                 addAmenity={props.addAmenity}
                 user={props.user}
-                setAddAmenityState={setAddAmenityState}
-                addAmenityState={addAmenityState}
+                setRefresh={setRefresh}
+                refresh={refresh}
               />
             </Grid>
             <TableComponent
@@ -74,6 +75,10 @@ export function AmenityListContent(props) {
               list_type="Amenities"
               order_by={order_by}
               setOrderBy={setOrderBy}
+              setRefresh={setRefresh}
+              refresh={refresh}
+              updateDocument={props.updateAmenity}
+              user={props.user}
             />
             <Pagination
               pagenumber={pagenumber}
@@ -105,6 +110,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getAmenities: (payload) => dispatch(amenitiesActions.getAmenities(payload)),
     addAmenity: (payload) => dispatch(amenitiesActions.addAmenity(payload)),
+    updateAmenity: (id) => dispatch(amenitiesActions.updateAmenity(id)),
     resetAmenities: () => dispatch(amenitiesActions.resetState()),
   };
 };

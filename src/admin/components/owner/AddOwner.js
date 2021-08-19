@@ -49,7 +49,7 @@ export default function AddOwner(props) {
     setEmail("");
     setPhone("");
     props.setOwner(true);
-    setTimeout(() => {props.setAddOwnerState(!props.addOwnerState)}, 500);
+    setTimeout(() => {props.setRefresh(!props.refresh)}, 500);
   };
   const date = new Date();
   date.setDate(date.getDate() + 7);

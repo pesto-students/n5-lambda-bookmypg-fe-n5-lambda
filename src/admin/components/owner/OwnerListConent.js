@@ -26,7 +26,7 @@ export function OwnerlistContent(props) {
   const [search, setSearch] = React.useState("");
   const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC);
   const [owner, setOwner] = React.useState(false);
-  const [addOwnerState, setAddOwnerState] = React.useState(false);
+  const [refresh, setRefresh] = React.useState(false);
 
   useEffect(() => {
     props.resetTenants();
@@ -45,7 +45,7 @@ export function OwnerlistContent(props) {
     to_date,
     order_by,
     owner,
-    addOwnerState,
+    refresh,
   ]);
 
   let owners;
@@ -57,9 +57,11 @@ export function OwnerlistContent(props) {
         : [];
     owners.map((owner) => {
       TableData.push({
+        _id: owner._id,
         name: owner.firstName + " " + owner.lastName,
         email: owner.email,
         phone: owner.phone,
+        isactive: owner.isactive,
         createdAt: owner.createdAt,
       });
     });
@@ -98,8 +100,8 @@ export function OwnerlistContent(props) {
               <Addowner
                 addOwner={props.addOwner}
                 setOwner={setOwner}
-                addOwnerState={addOwnerState}
-                setAddOwnerState={setAddOwnerState}
+                setRefresh={setRefresh}
+                refresh={refresh}
               />
             </Grid>
             <TableComponent
@@ -109,6 +111,10 @@ export function OwnerlistContent(props) {
               list_type="Owners"
               order_by={order_by}
               setOrderBy={setOrderBy}
+              setRefresh={setRefresh}
+              refresh={refresh}
+              updateDocument={props.updateTenant}
+              user={props.user}
             />
             <Pagination
               pagenumber={pagenumber}
