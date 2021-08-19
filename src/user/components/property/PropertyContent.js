@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { get } from "lodash";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
@@ -26,31 +26,6 @@ import ButtonComponent from "components/button/Button";
 import Typography from "components/typography/Typography";
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
-
-const data = {
-  propertyname: "Zolo House 1",
-  description:
-    "3 BHK Sharing Rooms for Men in Sion, Mumbai Fully Furnished, with Parking",
-  address: "Antop Avenue, sion main road, sion (east), Mumbai - 400 022.",
-  rent: "15,000",
-  owner: "Mr. Agarwal",
-  ratings: 4,
-  numrating: 10,
-  amenities: [
-    {
-      name: "Television",
-      logo: "https://bookmypg-photos.s3.us-east-2.amazonaws.com/amenity-logos/television-24.png",
-    },
-    {
-      name: "Refrigerator",
-      logo: "https://bookmypg-photos.s3.us-east-2.amazonaws.com/amenity-logos/refrigerator-5.png",
-    },
-    {
-      name: "Washing Machine",
-      logo: "",
-    },
-  ],
-};
 
 export default function PropertyContent(props) {
   const classes = useStyles();
@@ -157,7 +132,12 @@ export default function PropertyContent(props) {
                   }
                 />
               </div>
-              <Grid container alignItems="center" spacing={2}>
+              <Grid
+                container
+                alignItems="center"
+                spacing={2}
+                className={classes.wrapStyle}
+              >
                 <Grid item>
                   <DescriptionIcon />
                 </Grid>
@@ -168,7 +148,12 @@ export default function PropertyContent(props) {
                   />
                 </Grid>
               </Grid>
-              <Grid container alignItems="center" spacing={2}>
+              <Grid
+                container
+                alignItems="center"
+                spacing={2}
+                className={classes.wrapStyle}
+              >
                 <Grid item>
                   <HomeIcon />
                 </Grid>

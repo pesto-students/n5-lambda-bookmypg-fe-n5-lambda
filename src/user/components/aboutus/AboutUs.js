@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography, ImageList, ImageListItem } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import Container from "@material-ui/core/Container";
 import useStyles from "./AboutUs.styles";
 import { S3_BUCKET_IMAGES_BASEURL } from "constant";
@@ -17,6 +17,7 @@ export function Content(props) {
             <TypographyComponent
               type="ListTitle"
               text="Struggling to find a new accomodation??"
+              align="center"
             />
 
             <TypographyComponent

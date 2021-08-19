@@ -34,26 +34,9 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
   },
-  card: {
-    height: "380px",
-    display: "flex",
-    flexDirection: "column",
-    marginRight: "20px",
-  },
-  cardMedia: {
-    paddingTop: "56.25%", // 16:9
-    //height: "100px",
-  },
-  cardContent: {
-    flexGrow: 1,
-  },
   footer: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
-  },
-  cardGrid: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
   },
   card: {
     //height: "350px",
@@ -90,10 +73,6 @@ const useStyles = makeStyles((theme) => ({
   },
   cardContent: {
     flexGrow: 1,
-  },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
   },
   iconbuttons: {
     display: "flex",
@@ -145,14 +124,13 @@ const useStyles = makeStyles((theme) => ({
   ratingStyle: {
     display: "flex",
     paddingBottom: "10px",
-
     justifyContent: "space-evenly",
   },
   descriptionStyle: {
     wordWrap: "break-word",
   },
   buttonMarginStyle: {
-    paddingTop: "70px",
+    paddingTop: "60px",
   },
 }));
 

@@ -9,9 +9,6 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(8, 0, 6),
     paddingTop: "100px",
   },
-  buttonStyle: {
-    marginTop: theme.spacing(4),
-  },
   cardGrid: {
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),

@@ -27,7 +27,6 @@ import UserSelector from "../../user/helpers/UserSelector";
 import userActions from "../../redux-store/actions/userActions";
 import FormImage from "components/formimage/FormImage";
 import { useAuth } from "../../contexts/AuthContext";
-import TypographyComponent from "components/typography/Typography";
 
 export function Header(props) {
   const { header, logo, toolbar, drawerContainer, button, mobileviewButton } =
@@ -348,7 +347,10 @@ export function Header(props) {
                     alignItems="center"
                     className={classes.boxStyle}
                   >
-                    <FormImage imageName="BookMyPG-Logo.jpg" />
+                    <FormImage
+                      imageName="BookMyPG-Logo.jpg"
+                      type="loginpageLogo"
+                    />
 
                     <Typography
                       component="paragraph"

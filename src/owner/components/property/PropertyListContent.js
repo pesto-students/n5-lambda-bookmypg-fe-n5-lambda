@@ -39,7 +39,7 @@ export function PropertyListContent(props) {
   useEffect(() => {
     const extraParams = `${props.user._id}?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&columnname=createdAt&orderby=${order_by}`;
     props.getPropertiesByOwner({ extraParams });
-  }, [pagenumber, countperpage, search, order_by, refresh]);
+  }, [pagenumber, countperpage, search, order_by, refresh, props.user]);
 
   let TableData = [];
   if (get(props, "properties.length")) {
@@ -130,7 +130,8 @@ const mapDispatchToProps = (dispatch) => {
     getPropertiesByOwner: (payload) =>
       dispatch(propertiesActions.getPropertiesByOwner(payload)),
     addProperty: (payload) => dispatch(propertiesActions.addProperty(payload)),
-    updateProperty: (payload) => dispatch(propertiesActions.updateProperty(payload)),
+    updateProperty: (payload) =>
+      dispatch(propertiesActions.updateProperty(payload)),
     resetProperties: () => dispatch(propertiesActions.resetState()),
     resetAmenities: () => dispatch(amenitiesActions.resetState()),
   };

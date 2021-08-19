@@ -30,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: "35px",
   },
   formControl: {
-    margin: theme.spacing(1),
     minWidth: 120,
     width: "100%",
     textAlign: "left",

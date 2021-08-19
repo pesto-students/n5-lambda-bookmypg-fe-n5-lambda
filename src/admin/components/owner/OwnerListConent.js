@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { get } from "lodash";
-import ResponsiveDrawer from "../responsivedrawer/ResponsiveDrawer";
+import ResponsiveDrawer from "admin/components/responsivedrawer/ResponsiveDrawer";
 import { Grid } from "@material-ui/core";
 import Pagination from "../pagination/Pagination";
 import Addowner from "./AddOwner";
