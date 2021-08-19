@@ -1,30 +1,15 @@
 import React from "react";
-import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
-import CameraIcon from "@material-ui/icons/PhotoCamera";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
-import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import Link from "@material-ui/core/Link";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
-import ImageList from "@material-ui/core/ImageList";
-import ImageListItem from "@material-ui/core/ImageListItem";
-import ChevronRight from "@material-ui/icons/ChevronRight";
 import MobileStepper from "@material-ui/core/MobileStepper";
-import Paper from "@material-ui/core/Paper";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-
 import { useTheme } from "@material-ui/core/styles";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import Rating from "../LandingPage/rating";
@@ -66,12 +51,12 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: theme.spacing(2),
   },
-  heroContent: {
+  contentStyle: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(8, 0, 6),
     paddingTop: "100px",
   },
-  heroButtons: {
+  buttonStyle: {
     marginTop: theme.spacing(4),
   },
   cardGrid: {
@@ -97,10 +82,8 @@ const useStyles = makeStyles((theme) => ({
 
 const cards = [1, 2, 3, 4];
 
-export default function Album() {
+export default function PropertyContent() {
   const classes = useStyles();
-
-  const classesselect = useStylesselect();
 
   const [location, setLocation] = React.useState("");
   const handleChange = (event) => {
@@ -121,7 +104,7 @@ export default function Album() {
   return (
     <React.Fragment>
       <Container className={classes.cardGrid} maxWidth="md">
-        {/* End hero unit */}
+        buttonStyle
         <Grid container spacing={4}>
           <Grid item xs={12} sm={6}>
             <div
@@ -177,7 +160,7 @@ export default function Album() {
               />
             </div>
             <Rating value={4} number={10} />
-            <div className={classes.heroButtons}>
+            <div className={classes.buttonStyle}>
               <Grid container spacing={2} justifyContent="center">
                 <Grid item>
                   <Button variant="contained" color="secondary">
@@ -260,7 +243,7 @@ export default function Album() {
         >
           Similar results
         </Typography>
-        {/* End hero unit */}
+        buttonStyle
         <Grid container spacing={5}>
           {cards.map((card) => (
             <Grid item key={card} xs={12} sm={6} md={3}>
