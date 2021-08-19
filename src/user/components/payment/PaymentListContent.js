@@ -49,17 +49,15 @@ export function PaymentContent(props) {
       <ResponsiveDrawer headersData={props.responsivedrawerData}>
         <Grid container justify={"center"}>
           <Grid item xs={12} md={10} className={classes.gridStyle}>
-            <Typography component="h1" variant="h5">
-              Payment History
-            </Typography>
+            <Typography type="ListTitle" text="Payment History" />
             <Grid container justify={"space-between"}>
-              <Grid item xs={12} md={4} className={classes.searchfieldStyle}>
+              <Grid item xs={12} md={4} className={classes.textfieldStyle}>
                 <TextField
-                  id="standard-basic"
+                  type="standardForm"
                   label="Search by property name"
+                  icon="Search"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  style={{ width: "300px" }}
                 />
               </Grid>
               <Grid item xs={12} md={6} className={classes.datepickerStyle}>
@@ -77,7 +75,6 @@ export function PaymentContent(props) {
             </Grid>
             <Tablecomponent
               tableData={TableData}
-              switchData="name"
               sortingColumn="createdAt"
               list_type="Payments"
               order_by={order_by}
@@ -90,6 +87,7 @@ export function PaymentContent(props) {
               setCountperpage={setCountperpage}
               count={props.total_payments}
             />
+            <Pagination />
           </Grid>
         </Grid>
       </ResponsiveDrawer>

@@ -125,36 +125,9 @@ export default function BookProperty(props) {
             onChange={(e) => setRent(e.target.value)}
           />
         </div>
-
-        {/*<RadioGroup
-          aria-label="gender"
-          name="payment"
-          value={value}
-          onChange={handleChange}
-          row
-        >
-          <FormControlLabel
-            value="Pay Online"
-            control={<Radio />}
-            label="Pay Online"
-          />
-          <FormControlLabel
-            value="Pay at Property"
-            control={<Radio />}
-            label="Pay at Property"
-          />
-        </RadioGroup>
-      
-        </DialogContent>
-
-        <DialogActions className={classes.button}>
-          <Button text="Submit" />
-          <Button text="Cancel" handleClick={handleClose} />
-        </DialogActions>
-              </Dialog>*/}
         <CheckoutWithStripe
           rent={rent}
-          property={props.property._id}
+          property={props.property}
           user={props.user}
           updateUser={props.updateUser}
           handleBookProperty={props.handleBookProperty}

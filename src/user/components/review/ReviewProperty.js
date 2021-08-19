@@ -31,7 +31,7 @@ export default function ReviewProperty(props) {
   const date = new Date();
   date.setDate(date.getDate() + 7);
   return (
-    <div>
+    <>
       <Link href="#" onClick={handleClickOpen}>
         Click here
       </Link>
@@ -87,6 +87,6 @@ export default function ReviewProperty(props) {
           <Button text="Cancel" />
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   );
 }
