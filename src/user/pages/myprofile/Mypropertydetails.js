@@ -1,7 +1,7 @@
 import React from "react";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import Header from "../../components/header/header";
-import Content from "../../components/profile/mypropertiescontent";
+import Content from "../../components/profile/MyPropertiesContent";
 import Footer from "components/footer/footer";
 import Theme from "theme/theme";
 
