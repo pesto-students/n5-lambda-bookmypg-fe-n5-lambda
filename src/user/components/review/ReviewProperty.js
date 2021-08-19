@@ -10,15 +10,20 @@ import {
   Typography,
   TextField,
 } from "@material-ui/core";
+import { get } from "lodash";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Rating from "@material-ui/lab/Rating";
 import useStyles from "./styles/ReviewProperty.styles";
 import Button from "../../../components/button/Button";
 import CloseButton from "../../../components/closebutton/CloseButton";
 import FormImage from "components/formimage/FormImage";
+import { SERVER_URL } from "constant";
 
 export default function ReviewProperty(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [description, setDescription] = React.useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -27,6 +32,25 @@ export default function ReviewProperty(props) {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleSubmit = async () => {
+    const payload = {
+      description,
+      rating: 4,
+      reviewedby: props.user_id,
+      property: props.property_id,
+    };
+    await fetch(`${SERVER_URL}/api/reviews/`, {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    toast("Review has been posted successfully!");
+    setOpen(false);
+  }
+
 
   const date = new Date();
   date.setDate(date.getDate() + 7);
@@ -78,14 +102,17 @@ export default function ReviewProperty(props) {
               rows={2}
               maxRows={4}
               fullWidth
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
             />
           </Grid>
         </DialogContent>
         <DialogActions className={classes.button}>
-          <Button text="Submit" />
-          <Button text="Cancel" />
+          <Button text="Submit" handleClick={handleSubmit} />
+          <Button text="Cancel" handleClick={handleClose} />
         </DialogActions>
       </Dialog>
+      <ToastContainer />
     </>
   );
 }
