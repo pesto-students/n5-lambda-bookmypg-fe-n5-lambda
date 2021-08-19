@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import useStyles from "./ProfilePhoto.styles";
 import Avatar from "@material-ui/core/Avatar";
 import { S3_BUCKET_IMAGES_BASEURL, S3_BUCKET_URL } from "constant";
