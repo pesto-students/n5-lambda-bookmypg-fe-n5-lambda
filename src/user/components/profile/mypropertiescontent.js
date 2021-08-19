@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { get } from "lodash";
 import { connect } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -29,11 +30,18 @@ const data = {
 export function MyPropertiesContent(props) {
   const classes = useStyles();
 
-  const [propertyId, setPropertyId] = React.useState(
-    props.user && props.user.property ? props.user.property._id : []
-  );
-  const property =
-    props.properties.filter((p) => p.propertydata._id === propertyId)[0] || [];
+  useEffect(()=>{
+    props.getUser(props.user.email);
+  },[])
+
+  let property;
+  if(!property && get(props,'user.property._id')) {
+    property =  props.properties.filter((p) => p.propertydata._id === props.user.property._id)[0] || "";
+  }
+
+    console.log("props.user", props.user);
+    console.log("property", property);
+    console.log("props.properties", props.properties);
 
   return (
     <div className="Table">
@@ -99,7 +107,7 @@ export function MyPropertiesContent(props) {
                     user={props.user}
                     raiseComplaint={props.raiseComplaint}
                   />
-                  <Button text="Pay Rent" type="Paybutton" />
+                  <Button text="Already Paid" type="Paybutton" disabled={true}/>
                 </div>
               </Card>
             </Grid>

@@ -48,6 +48,7 @@ export default function PropertyListContent(props) {
                 <PropertyCard
                   type="PropertyList"
                   property={property.propertydata}
+                  reviewdata={property.reviewdata}
                 />
               </Grid>
             ))}

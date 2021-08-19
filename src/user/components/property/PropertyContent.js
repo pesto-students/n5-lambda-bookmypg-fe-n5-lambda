@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { get } from "lodash";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
@@ -193,7 +194,7 @@ export default function PropertyContent(props) {
                 container
                 alignItems="center"
                 spacing={2}
-                class={classes.amenitiesBox}
+                className={classes.amenitiesBox}
               >
                 <Grid item>
                   <Typography type="Body" text={"Amenities"} />
@@ -218,8 +219,16 @@ export default function PropertyContent(props) {
                       >
                         <Rating
                           name="read-only"
-                          value={data.ratings}
-                          number={property.propertydata.numreviews || 0}
+                          value={
+                            get(property, "reviewdata.avgratings")
+                              ? property.reviewdata.avgratings
+                              : 0
+                          }
+                          number={
+                            get(property, "reviewdata.reviews.length")
+                              ? property.reviewdata.reviews.length
+                              : 0
+                          }
                           readOnly
                         />
                       </Link>
@@ -253,8 +262,10 @@ export default function PropertyContent(props) {
             {bookProperty && (
               <Grid item xs={12} sm={1}>
                 <Bookproperty
-                  property={property.propertydata._id}
-                  user={props.user._id}
+                  property={property.propertydata}
+                  user={props.user}
+                  updateUser={props.updateUser}
+                  handleBookProperty={handleBookProperty}
                 />
               </Grid>
             )}
@@ -274,7 +285,7 @@ export default function PropertyContent(props) {
         </Grid>
         <div ref={myRef}></div>
         <Grid item xs={12} className={classes.reviewStyle}>
-          <Reviews />
+          <Reviews property={property} />
         </Grid>
       </Container>
     </React.Fragment>

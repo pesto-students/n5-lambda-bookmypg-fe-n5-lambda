@@ -1,4 +1,5 @@
 import React from "react";
+import { get } from "lodash";
 import {
   Button,
   Card,
@@ -65,7 +66,6 @@ export default function SimilarProperties(props) {
         >
           {props.title}
         </Typography>
-        {/*<Grid className={classes.responsivegrid}>*/}
         <Grid>
           <Swiper slidesPerView={4}>
             <Grid container spacing={4}>
@@ -80,49 +80,10 @@ export default function SimilarProperties(props) {
                     md={3}
                   >
                     <SwiperSlide style={{ height: "400px" }}>
-                      <PropertyCard property={property.propertydata} />
-                      {/*  <Card className={classes.card}>
-                        <CardMedia
-                          className={classes.cardMedia}
-                          image={`${S3_BUCKET_URL}/${property.photos[0]}`}
-                          title={property.photos[0]}
-                        />
-                        <CardContent className={classes.cardContent}>
-                          <div className={classes.propertynameStyle}>
-                            <Typography
-                              gutterBottom
-                              variant="h6"
-                              component="h2"
-                            >
-                              {property.name}
-                            </Typography>
-                            <Typography gutterBottom variant="caption">
-                              <LocationOnIcon />
-                              {property.location.name}
-                            </Typography>
-                          </div>
-                          <Typography gutterBottom variant="body2">
-                            {property.description}
-                          </Typography>
-                        </CardContent>
-                        <div className={classes.ratingboxStyle}>
-                          <Cardrating
-                            value={data.rating}
-                            number={property.numreviews || 0}
-                          />
-                          <Button
-                            size="small"
-                            variant="contained"
-                            color="ContainedSecondary"
-                            className={classes.buttonStyle}
-                            onClick={() =>
-                              history.push(`/property-details/${property._id}`)
-                            }
-                          >
-                            More Details
-                          </Button>
-                        </div>
-                          </Card>*/}
+                      <PropertyCard
+                        property={property.propertydata}
+                        reviewdata={property.reviewdata}
+                      />
                     </SwiperSlide>
                   </Grid>
                 ))}
@@ -158,43 +119,6 @@ export default function SimilarProperties(props) {
                 >
                   <SwiperSlide style={{ height: "400px" }}>
                     <PropertyCard property={property.propertydata} />
-                    {/* <Card className={classes.card}>
-                      <CardMedia
-                        className={classes.cardMedia}
-                        image={`${S3_BUCKET_URL}/${property.propertydata.photos[0]}`}
-                        title={property.propertydata.photos[0]}
-                      />
-                      <CardContent className={classes.cardContent}>
-                        <div className={classes.propertynameStyle}>
-                          <Typography gutterBottom variant="h6" component="h2">
-                            {property.propertydata.name}
-                          </Typography>
-                          <Typography gutterBottom variant="caption">
-                            <LocationOnIcon />
-                            {property.propertydata.location.name}
-                          </Typography>
-                        </div>
-                        <Typography gutterBottom variant="body2">
-                          {property.propertydata.description}
-                        </Typography>
-                      </CardContent>
-                      <div className={classes.ratingboxStyle}>
-                        <Cardrating value={data.rating} number={0} />
-                        <Button
-                          size="small"
-                          variant="contained"
-                          color="ContainedSecondary"
-                          className={classes.buttonStyle}
-                          onClick={() =>
-                            history.push(
-                              `/property-details/${property.propertydata._id}`
-                            )
-                          }
-                        >
-                          More Details
-                        </Button>
-                      </div>
-                        </Card>*/}
                   </SwiperSlide>
                 </Grid>
               ))}

@@ -26,6 +26,7 @@ export default function ButtonComponent(props) {
           key={props.text}
           onClick={props.handleClick}
           className={classes.payButton}
+          disabled={props.disabled}
         >
           {props.text}
         </Button>

@@ -1,4 +1,5 @@
 import React from "react";
+import { get } from "lodash";
 import useStyles from "./Card.styles";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -89,8 +90,8 @@ export default function ButtonComponent(props) {
           </div>
 
           <Rating
-            value={4}
-            number={props.property.numreviews || 0}
+            value={get(props,'reviewdata.avgratings') ? props.reviewdata.avgratings : 0}
+            number={get(props,'reviewdata.reviews.length') ? props.reviewdata.reviews.length : 0}
             mobileView={true}
           />
         </Card>
@@ -121,7 +122,10 @@ export default function ButtonComponent(props) {
                 </Typography>
               </Grid>
               <div className={classes.ratingStyle}>
-                <Rating value={4} number={props.property.numreviews || 0} />
+                <Rating 
+                  value={get(props,'reviewdata.avgratings') ? props.reviewdata.avgratings : 0}
+                  number={get(props,'reviewdata.reviews.length') ? props.reviewdata.reviews.length : 0}
+                />
               </div>
               <div className={classes.buttonsMobile}>
                 <Grid container spacing={2}>
@@ -174,8 +178,8 @@ export default function ButtonComponent(props) {
               ₹{props.property.propertydata.rent}
             </Typography>
             <Cardrating
-              //value={data.rating}
-              number={props.property.propertydata.numreviews || 0}
+              value={get(props,'reviewdata.avgratings') ? props.reviewdata.avgratings : 0}
+              number={get(props,'reviewdata.reviews.length') ? props.reviewdata.reviews.length : 0}
             />
           </div>
         </Card>
@@ -203,7 +207,10 @@ export default function ButtonComponent(props) {
             </Typography>
           </CardContent>
           <div className={classes.ratingboxStyle}>
-            <Cardrating value={4} number={props.property.numreviews || 0} />
+            <Cardrating 
+              value={get(props,'reviewdata.avgratings') ? props.reviewdata.avgratings : 0}
+              number={get(props,'reviewdata.reviews.length') ? props.reviewdata.reviews.length : 0}
+            />
             <Button
               size="small"
               variant="contained"
