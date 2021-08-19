@@ -152,7 +152,7 @@ const useStyles = makeStyles((theme) => ({
     wordWrap: "break-word",
   },
   buttonMarginStyle: {
-    paddingTop: "90px",
+    paddingTop: "70px",
   },
 }));
 
