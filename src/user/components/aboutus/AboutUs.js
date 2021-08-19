@@ -4,13 +4,14 @@ import Container from "@material-ui/core/Container";
 import useStyles from "./AboutUs.styles";
 import { S3_BUCKET_IMAGES_BASEURL } from "constant";
 import Card from "components/card/Card";
+import TypographyComponent from "components/typography/Typography";
 
 export function Content(props) {
   const classes = useStyles();
 
   return (
     <React.Fragment>
-      <Container className={classes.cardGrid} maxWidth="md">
+      <Container className={classes.cardGrid}>
         <Grid container className={classes.topPadding}>
           <Grid
             item
@@ -20,70 +21,44 @@ export function Content(props) {
               textAlign: "center",
             }}
           >
-            <Typography
-              component="h1"
-              variant="h5"
-              color="primary"
-              gutterBottom
-            >
-              Struggling to find a new accomodation??
-            </Typography>
-            <Typography
-              component="h1"
-              variant="h3"
-              color="primary"
-              gutterBottom
-            >
-              We are here to help you finding a Home
-            </Typography>
+            <TypographyComponent
+              type="ListTitle"
+              text="Struggling to find a new accomodation??"
+            />
+
+            <TypographyComponent
+              type="h3Title"
+              text="We are here to help you finding a Home"
+            />
             <img
               src={`${S3_BUCKET_IMAGES_BASEURL}/SearchImage.jpg`}
               alt={"Not available"}
               style={{ maxWidth: "300px" }}
             />
-            <div
-              style={
-                {
-                  //background: "linear-gradient(to bottom, #232526, #414345)",
-                }
-              }
-            ></div>
           </Grid>
         </Grid>
 
         <Grid container className={classes.paddingStyle}>
           <Grid item>
-            <Typography
-              component="h1"
-              variant="h6"
-              color="secondary"
-              paragraph
-              align="center"
-            >
-              BookMyPG is a platform to facilitate PG-Owner to advertise his
+            <TypographyComponent
+              type="FormTitle"
+              text="BookMyPG is a platform to facilitate PG-Owner to advertise his
               property and find easily paying guest for his property and Paying
               guests to find a home-like accomodation. We value our users and
               their needs. Our services are not only limited to finding an
               accomodation. We provide our users the platform to make payments
               every month, raise complaints while their stay and shar their
-              reviews and experience.
-            </Typography>
+              reviews and experience."
+              align="center"
+            />
           </Grid>
         </Grid>
-        <Container className={classes.cardGrid} maxWidth="md">
+        <Container className={classes.cardGrid}>
           <Grid container spacing={4}>
             <Grid item xs={12} sm={12}>
-              <Typography
-                component="h1"
-                variant="h4"
-                color="primary"
-                gutterBottom
-                align="center"
-              >
-                Our Services
-              </Typography>
+              <TypographyComponent type="h4Title" text="Our Service" />
               <Grid container spacing={5}>
-                <Grid item xs={12} sm={3}>
+                <Grid item xs={12} sm={6} md={3}>
                   <Card
                     type="AboutUs"
                     title="Post your Property"
@@ -91,7 +66,7 @@ export function Content(props) {
                     description="Share your property details with us and we will help you find the Paying guests for your property."
                   />
                 </Grid>
-                <Grid item xs={12} sm={3}>
+                <Grid item xs={12} sm={6} md={3}>
                   <Card
                     type="AboutUs"
                     title="Find a cozy Accomodation"
@@ -99,7 +74,7 @@ export function Content(props) {
                     description="Explore various properties available at your location. Schdule a visit and book it from our platform."
                   />
                 </Grid>
-                <Grid item xs={12} sm={3}>
+                <Grid item xs={12} sm={6} md={3}>
                   <Card
                     type="AboutUs"
                     title="One click Payments"
@@ -108,7 +83,7 @@ export function Content(props) {
                     color="secondary"
                   />
                 </Grid>
-                <Grid item xs={12} sm={3}>
+                <Grid item xs={12} sm={6} md={3}>
                   <Card
                     type="AboutUs"
                     title="We value our Users"
@@ -121,7 +96,7 @@ export function Content(props) {
           </Grid>
         </Container>
       </Container>
-      <Container className={classes.cardGrid} maxWidth="md">
+      <Container className={classes.cardGrid}>
         <Grid container spacing={4}>
           <Grid
             item
@@ -131,15 +106,11 @@ export function Content(props) {
               textAlign: "center",
             }}
           >
-            <Typography
-              component="h1"
-              variant="h4"
-              color="primary"
-              gutterBottom
+            <TypographyComponent
+              type="h4Title"
+              text="Our Vision"
               align="center"
-            >
-              Our Vision
-            </Typography>
+            />
 
             <img
               src={`${S3_BUCKET_IMAGES_BASEURL}/AboutusImg.jpg`}
@@ -149,20 +120,16 @@ export function Content(props) {
           </Grid>
 
           <Grid container className={classes.paddingStyle}>
-            <Typography
-              component="h1"
-              variant="h6"
-              color="secondary"
-              paragraph
-              align="center"
-            >
-              Our aim is to provide easy and hasselfree services to both
+            <TypographyComponent
+              type="FormTitle"
+              text="Our aim is to provide easy and hasselfree services to both
               PG-Owners and users. We are here to solve a most common problem of
               house hunting that a person faces when he moves in to a new
               location. We connect PG-Owners and users to solve their needs of
               finding paying guests for the property and finding a cozy
-              accomodation respectively.
-            </Typography>
+              accomodation respectively."
+              align="center"
+            />
           </Grid>
         </Grid>
       </Container>
