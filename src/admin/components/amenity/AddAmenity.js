@@ -7,16 +7,16 @@ import {
   DialogContent,
   DialogTitle,
 } from "@material-ui/core";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import ImageUpload from "./ImageUpload";
-import useStyles from "./styles/AddAmenity.styles";
 import Button from "components/button/Button";
 import CloseButton from "components/closebutton/CloseButton";
 import Link from "components/link/Link";
 import Typography from "components/typography/Typography";
 import TextField from "components/textfield/Textfield";
 import FormImage from "components/formimage/FormImage";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ImageUpload from "./ImageUpload";
+import useStyles from "./styles/AddAmenity.styles";
 
 export default function AddAmenity(props) {
   const classes = useStyles();

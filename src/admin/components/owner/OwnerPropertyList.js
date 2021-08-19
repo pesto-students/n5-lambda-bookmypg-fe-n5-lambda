@@ -1,27 +1,10 @@
 import React from "react";
-import {
-  Grid,
-  Box,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from "@material-ui/core";
-import { ToastContainer, toast } from "react-toastify";
+import { Grid, Dialog, DialogActions, DialogContent } from "@material-ui/core";
 import "react-toastify/dist/ReactToastify.css";
 import useStyles from "./styles/OwnerPropertyList.styles";
 import Button from "components/button/Button";
 import Link from "components/link/Link";
-import CloseButton from "components/closebutton/CloseButton";
-import Typography from "components/typography/Typography";
-import TextField from "components/textfield/Textfield";
-import FormImage from "components/formimage/FormImage";
 import PropertyCard from "components/card/Card";
-import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import { S3_BUCKET_URL } from "constant";
-import Rating from "user/components/rating/cardratings";
 
 const properties = [
   {
@@ -239,13 +222,9 @@ const properties = [
   },
 ];
 
-export default function AddOwner(props) {
+export default function OwnerPropertyList(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [firstName, setFirstName] = React.useState("");
-  const [lastName, setLastName] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [phone, setPhone] = React.useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
