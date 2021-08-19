@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { get } from "lodash";
 import { connect } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
-import ResponsiveDrawer from "admin/components/responsivedrawer/ResponsiveDrawer";
+import ResponsiveDrawer from "components/responsivedrawer/ResponsiveDrawer";
 import Typography from "@material-ui/core/Typography";
 import Complaint from "../complaint/RaiseComplaint";
 import ReviewProperty from "../review/ReviewProperty";

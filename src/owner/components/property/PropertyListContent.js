@@ -130,7 +130,8 @@ const mapDispatchToProps = (dispatch) => {
     getPropertiesByOwner: (payload) =>
       dispatch(propertiesActions.getPropertiesByOwner(payload)),
     addProperty: (payload) => dispatch(propertiesActions.addProperty(payload)),
-    updateProperty: (payload) => dispatch(propertiesActions.updateProperty(payload)),
+    updateProperty: (payload) =>
+      dispatch(propertiesActions.updateProperty(payload)),
     resetProperties: () => dispatch(propertiesActions.resetState()),
     resetAmenities: () => dispatch(amenitiesActions.resetState()),
   };

@@ -1,6 +1,5 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import theme from "theme/theme";
 import useStyles from "./Typography.styles";
 
 export default function TypographyComponent(props) {

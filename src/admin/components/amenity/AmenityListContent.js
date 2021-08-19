@@ -4,7 +4,7 @@ import { Grid } from "@material-ui/core";
 import { get } from "lodash";
 import Pagination from "../pagination/Pagination";
 import Addamenity from "./AddAmenity";
-import ResponsiveDrawer from "../responsivedrawer/ResponsiveDrawer";
+import ResponsiveDrawer from "admin/components/responsivedrawer/ResponsiveDrawer";
 import useStyles from "./styles/AmenityListContent.styles";
 import Typography from "components/typography/Typography";
 import TextField from "components/textfield/Textfield";
