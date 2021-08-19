@@ -61,7 +61,7 @@ export const getComponent = (emp, header, list_type) => {
       } else if (header === "switch") {
         return (
           <TableCell align="center">
-            <SwitchComponent />
+            <SwitchComponent checked={emp[header]} />
           </TableCell>
         );
       } else if (header === "logo") {
