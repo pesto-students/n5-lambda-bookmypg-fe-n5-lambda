@@ -54,3 +54,17 @@ export function* addPropertySaga(propertiesApi, action) {
     );
   }
 }
+
+export function* updatePropertySaga(propertiesApi, action) {
+  try {
+    const response = yield call(propertiesApi.updateProperty, action.payload);
+    yield put(propertiesActions.propertyUpdated(response));
+  } catch (e) {
+    yield put(
+      propertiesActions.updatePropertyFailed({
+        message: e.message,
+      })
+    );
+  }
+}
+

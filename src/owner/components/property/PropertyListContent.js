@@ -24,7 +24,8 @@ export function PropertyListContent(props) {
   const [countperpage, setCountperpage] = React.useState(10);
   const [search, setSearch] = React.useState("");
   const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC);
-  const [addPropertyState, setAddPropertyState] = React.useState(false);
+  const [refresh, setRefresh] = React.useState(false);
+
   useEffect(() => {
     props.resetProperties();
     props.resetAmenities();
@@ -38,16 +39,18 @@ export function PropertyListContent(props) {
   useEffect(() => {
     const extraParams = `${props.user._id}?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&columnname=createdAt&orderby=${order_by}`;
     props.getPropertiesByOwner({ extraParams });
-  }, [pagenumber, countperpage, search, order_by, addPropertyState]);
+  }, [pagenumber, countperpage, search, order_by, refresh]);
 
   let TableData = [];
   if (get(props, "properties.length")) {
     props.properties.map((property) => {
       TableData.push({
+        _id: property.propertydata._id,
         name: property.propertydata.name,
         location: property.propertydata.location.name,
         address: property.propertydata.address,
         freebeds: property.propertydata.totalbeds,
+        isactive: property.propertydata.isactive,
         createdAt: property.propertydata.createdAt,
       });
     });
@@ -76,8 +79,8 @@ export function PropertyListContent(props) {
                 addAmenity={props.addAmenity}
                 user={props.user}
                 addProperty={props.addProperty}
-                addPropertyState={addPropertyState}
-                setAddPropertyState={setAddPropertyState}
+                setRefresh={setRefresh}
+                refresh={refresh}
               />
             </Grid>
             <Tablecomponent
@@ -87,6 +90,10 @@ export function PropertyListContent(props) {
               sortingColumn="createdAt"
               order_by={order_by}
               setOrderBy={setOrderBy}
+              setRefresh={setRefresh}
+              refresh={refresh}
+              updateDocument={props.updateProperty}
+              user={props.user}
             />
             <Pagination
               pagenumber={pagenumber}
@@ -123,7 +130,7 @@ const mapDispatchToProps = (dispatch) => {
     getPropertiesByOwner: (payload) =>
       dispatch(propertiesActions.getPropertiesByOwner(payload)),
     addProperty: (payload) => dispatch(propertiesActions.addProperty(payload)),
-    // updateProperty: (id) => dispatch(propertiesActions.updateProperty(id)),
+    updateProperty: (payload) => dispatch(propertiesActions.updateProperty(payload)),
     resetProperties: () => dispatch(propertiesActions.resetState()),
     resetAmenities: () => dispatch(amenitiesActions.resetState()),
   };

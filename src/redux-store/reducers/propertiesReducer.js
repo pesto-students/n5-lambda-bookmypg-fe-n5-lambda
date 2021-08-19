@@ -13,6 +13,9 @@ import {
   ADD_PROPERTY_REQUEST_MADE,
   ADD_PROPERTY_REQUEST_RESOLVED,
   ADD_PROPERTY_REQUEST_FAILED,
+  UPDATE_PROPERTY_REQUEST_MADE,
+  UPDATE_PROPERTY_REQUEST_RESOLVED,
+  UPDATE_PROPERTY_REQUEST_FAILED,
 } from "../../constant";
 import requestState from "../utils/request";
 
@@ -148,6 +151,34 @@ const addPropertyRequestFailedResolver = (state = {}, payload = {}) => {
   };
 };
 
+const updatePropertyRequestMadeResolver = (state = {}, payload = {}) => {
+  return {
+    ...state,
+    updatePropertyRequestState: {
+      ...requestState.processing,
+    },
+  };
+};
+
+const updatePropertyRequestResolvedResolver = (state = {}, payload) => {
+  return {
+    ...state,
+    updatePropertyRequestState: {
+      ...requestState.resolved,
+    },
+  };
+};
+
+const updatePropertyRequestFailedResolver = (state = {}, payload = {}) => {
+  return {
+    ...state,
+    updatePropertyRequestState: {
+      ...requestState.failed,
+    },
+    ...payload,
+  };
+};
+
 const actionToResolverMap = {
   [GET_PROPERTIES_REQUEST_MADE]: getPropertiesRequestMadeResolver,
   [GET_PROPERTIES_REQUEST_RESOLVED]: getPropertiesRequestResolvedResolver,
@@ -168,6 +199,9 @@ const actionToResolverMap = {
   [ADD_PROPERTY_REQUEST_MADE]: addPropertyRequestMadeResolver,
   [ADD_PROPERTY_REQUEST_RESOLVED]: addPropertyRequestResolvedResolver,
   [ADD_PROPERTY_REQUEST_FAILED]: addPropertyRequestFailedResolver,
+  [UPDATE_PROPERTY_REQUEST_MADE]: updatePropertyRequestMadeResolver,
+  [UPDATE_PROPERTY_REQUEST_RESOLVED]: updatePropertyRequestResolvedResolver,
+  [UPDATE_PROPERTY_REQUEST_FAILED]: updatePropertyRequestFailedResolver,
 };
 
 export default (state = {}, action = {}) => {
