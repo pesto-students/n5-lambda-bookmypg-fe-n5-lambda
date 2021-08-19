@@ -16,7 +16,6 @@ import {
   MenuItem,
   Menu,
 } from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
 import { useTheme } from "@material-ui/core/styles";
 import SortIcon from "@material-ui/icons/Sort";
 import Propertylistcontent from "./PropertyListContent";
@@ -28,18 +27,13 @@ import useStyles from "./styles/PropertyFilters.styles";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import Typography from "components/typography/Typography";
+import { ORDER_BY } from "constant";
 
 function PropertyFilters(props) {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
-  const [sortvalue, setSortvalue] = React.useState("");
-
-  const handleClick = (event) => {
-    setSortvalue(event.target.value);
-  };
 
   const [gender, setGender] = React.useState({
     male: false,
@@ -61,6 +55,7 @@ function PropertyFilters(props) {
 
   const [pagenumber, setPagenumber] = React.useState(0);
   const [countperpage, setCountperpage] = React.useState(10);
+  const [order_by, setOrderBy] = React.useState("");
 
   useEffect(() => {
     const selectedGender = [];
@@ -83,9 +78,9 @@ function PropertyFilters(props) {
         ? ""
         : props.selectedLocation;
 
-    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&gender=${selectedGender}&rating=${selectedRating}&rent=${selectedRent}`;
+    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&gender=${selectedGender}&rating=${selectedRating}&rent=${selectedRent}&columnname=rent&orderby=${order_by}`;
     props.getProperties({ extraParams });
-  }, [pagenumber, countperpage, gender, rating, rent, props.selectedLocation]);
+  }, [pagenumber, countperpage, gender, rating, rent, order_by, props.selectedLocation]);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -100,11 +95,11 @@ function PropertyFilters(props) {
         <Select
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
-          value={sortvalue}
-          onChange={handleClick}
+          value={order_by}
+          onChange={(e) => setOrderBy(e.target.value)}
         >
-          <MenuItem>Price low to high</MenuItem>
-          <MenuItem>Price high to low</MenuItem>
+          <MenuItem value={ORDER_BY.ASC}>Price low to high</MenuItem>
+          <MenuItem value={ORDER_BY.DSC}>Price high to low</MenuItem>
         </Select>
       </FormControl>
       <div className={classes.typographyStyle}>

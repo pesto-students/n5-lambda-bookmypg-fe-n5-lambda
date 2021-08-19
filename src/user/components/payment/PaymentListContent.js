@@ -14,8 +14,6 @@ import { DATE, ORDER_BY } from "constant";
 
 export function PaymentContent(props) {
   const classes = useStyles();
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
-  const [enabled, setEnabled] = React.useState(false);
   const [from_date, setFromDate] = React.useState(DATE.FROM_DATE);
   const [to_date, setToDate] = React.useState(DATE.TO_DATE);
   const [pagenumber, setPagenumber] = React.useState(0);
