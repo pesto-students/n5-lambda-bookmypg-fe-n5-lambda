@@ -39,6 +39,7 @@ export function AmenityListContent(props) {
       TableData.push({
         name: amenity.name,
         logo: amenity.logo,
+        isactive: amenity.isactive,
         createdAt: amenity.createdAt,
       });
     });

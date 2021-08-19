@@ -9,6 +9,7 @@ import Ownertenantlist from "./owner/pages/Tenantlist";
 import Ownerpropertylist from "./owner/pages/Propertylist";
 import Ownercomplaintlist from "./owner/pages/Complaintlist";
 import OwnerHomepage from "./owner/pages/Homepage";
+import AdminHomepage from "./admin/pages/Homepage";
 import Ownerlist from "./admin/pages/Ownerlist";
 import Amenitylist from "./admin/pages/Amenitylist";
 import PaymentList from "./user/pages/myprofile/Paymentlist";
@@ -50,7 +51,8 @@ ReactDOM.render(
           component={Ownercomplaintlist}
         />
 
-        <Route exact path="/owner-list" component={Ownerlist} />
+        <Route path="/admin-home" component={AdminHomepage} />
+        <AdminProtectedRoute exact path="/owner-list" component={Ownerlist} />
         <AdminProtectedRoute
           exact
           path="/amenity-list"

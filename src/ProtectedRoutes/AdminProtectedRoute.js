@@ -19,7 +19,7 @@ export function AdminProtectedRoute(props) {
         return (
           <Redirect
             to={{
-              pathname: "/",
+              pathname: "/admin-home",
               state: { from: props.location },
             }}
           />

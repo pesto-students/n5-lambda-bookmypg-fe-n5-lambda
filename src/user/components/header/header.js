@@ -138,7 +138,7 @@ export function Header(props) {
       existingUser.role == "owner"
         ? history.push("/owner-home")
         : existingUser.role == "admin"
-        ? history.push("/owner-list")
+        ? history.push("/admin-home")
         : history.push("/");
     } else {
       history.push("/");
