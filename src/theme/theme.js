@@ -42,11 +42,7 @@ const theme = createTheme({
         height: "50px",
       },
     },
-    MuiSelect: {
-      icon: {
-        color: "white",
-      },
-    },
+
     MuiTableCell: {
       head: {
         fontWeight: 550,
@@ -79,12 +75,12 @@ const theme = createTheme({
         minHeight: "24px",
         lineHeight: "normal",
         "&$selected": {
-          backgroundColor: "#3f51b5",
-          color: "white",
+          backgroundColor: "#fff",
+          //color: "white",
         },
         "&$selected:hover": {
-          backgroundColor: "#3f51b5",
-          color: "white",
+          backgroundColor: "#F3F9FF",
+          //color: "white",
         },
         "&:hover": {
           backgroundColor: "#F3F9FF",

@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   paper: { height: "80%", width: "70%" },
 
   root: {
-    background: "linear-gradient(to bottom, #232526, #414345)",
+    background: "linear-gradient(to right, #005c97, #363795)",
   },
   titleStyle: {
     width: "70%",
