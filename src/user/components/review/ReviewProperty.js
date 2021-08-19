@@ -24,6 +24,7 @@ export default function ReviewProperty(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [description, setDescription] = React.useState("");
+  const [rating, setRating] = React.useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -36,7 +37,7 @@ export default function ReviewProperty(props) {
   const handleSubmit = async () => {
     const payload = {
       description,
-      rating: 4,
+      rating: parseInt(rating),
       reviewedby: props.user_id,
       property: props.property_id,
     };
@@ -93,7 +94,7 @@ export default function ReviewProperty(props) {
               </Typography>
             </Grid>
             <Grid item>
-              <Rating size="large" />
+              <Rating value={rating} onChange={(e)=>setRating(e.target.value)} size="large" />
             </Grid>
             <TextField
               id="outlined-basic"
