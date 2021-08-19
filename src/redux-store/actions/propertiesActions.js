@@ -14,6 +14,9 @@ import {
   ADD_PROPERTY_REQUEST_MADE,
   ADD_PROPERTY_REQUEST_RESOLVED,
   ADD_PROPERTY_REQUEST_FAILED,
+  UPDATE_PROPERTY_REQUEST_MADE,
+  UPDATE_PROPERTY_REQUEST_RESOLVED,
+  UPDATE_PROPERTY_REQUEST_FAILED,
 } from "../../constant";
 
 export default {
@@ -43,4 +46,8 @@ export default {
   addProperty: (payload) => action(ADD_PROPERTY_REQUEST_MADE, payload),
   propertyAdded: (payload) => action(ADD_PROPERTY_REQUEST_RESOLVED, payload),
   addPropertyFailed: (payload) => action(ADD_PROPERTY_REQUEST_FAILED, payload),
+
+  updateProperty: (payload) => action(UPDATE_PROPERTY_REQUEST_MADE, payload),
+  propertyUpdated: (payload) => action(UPDATE_PROPERTY_REQUEST_RESOLVED, payload),
+  updatePropertyFailed: (payload) => action(UPDATE_PROPERTY_REQUEST_FAILED, payload),
 };

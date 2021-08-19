@@ -61,5 +61,22 @@ const PropertiesService = {
     }
     throw new Error(response);
   },
+
+  updateProperty: async (payload) => {
+    const URL = `${SERVER_URL}/api/properties/${payload.id}`;
+    const response = await httpInterceptor({
+      url: URL,
+      method: "DELETE",
+      headers: {
+        "x-auth-token": payload.user.token,
+      },
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    }
+    throw new Error(response);
+  },
 };
 export default PropertiesService;
