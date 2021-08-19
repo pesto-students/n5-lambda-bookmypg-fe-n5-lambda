@@ -77,6 +77,11 @@ export const GET_COMPLAINTS_REQUEST_RESOLVED =
 export const GET_COMPLAINTS_REQUEST_FAILED = "GET_COMPLAINTS_REQUEST_FAILED";
 export const RESET_COMPLAINTS_STATE = "RESET_COMPLAINTS_STATE";
 
+export const GET_PAYMENTS_REQUEST_MADE = "GET_PAYMENTS_REQUEST_MADE";
+export const GET_PAYMENTS_REQUEST_RESOLVED =  "GET_PAYMENTS_REQUEST_RESOLVED";
+export const GET_PAYMENTS_REQUEST_FAILED = "GET_PAYMENTS_REQUEST_FAILED";
+export const RESET_PAYMENTS_STATE = "RESET_PAYMENTS_STATE";
+
 export const RAISE_COMPLAINT_REQUEST_MADE = "RAISE_COMPLAINT_REQUEST_MADE";
 export const RAISE_COMPLAINT_REQUEST_RESOLVED =
   "RAISE_COMPLAINT_REQUEST_RESOLVED";
@@ -106,6 +111,14 @@ export const COMPLAINT_LIST_HEADERS = {
   property: "Property Name",
   createdAt: "Complaint Date",
   status: "Status",
+};
+
+export const PAYMENT_LIST_HEADERS = {
+  name: "Tanant name",
+  property: "Property Name",
+  amount: "Amount",
+  charge_id: "Charge ID",
+  createdAt: "Paid On",
 };
 
 export const PROPERTY_LIST_HEADERS = {
@@ -140,13 +153,6 @@ export const TENANT_LIST_HEADERS = {
   phone: "Contact no",
   property: "Property Name",
   onboardedAt: "Onboarding Date",
-};
-
-export const PAYMENT_LIST_HEADERS = {
-  property: "Property name",
-  amount: "Amount",
-  charge_id: "Charge ID",
-  createdAt: "Payment Date",
 };
 
 export const EMAIL_TYPE = {

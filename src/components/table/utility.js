@@ -4,6 +4,7 @@ import {
   PROPERTY_LIST_HEADERS,
   OWNER_LIST_HEADERS,
   TENANT_LIST_HEADERS,
+  PAYMENT_LIST_HEADERS,
 } from "constant";
 import { TableCell } from "@material-ui/core";
 import Viewcomplaint from "owner/components/complaint/ViewComplaint";
@@ -25,6 +26,8 @@ export const getHeadersData = (list_type) => {
       return PROPERTY_LIST_HEADERS;
     case "Owners":
       return OWNER_LIST_HEADERS;
+    case "Payments":
+      return PAYMENT_LIST_HEADERS;
     default:
       return TENANT_LIST_HEADERS;
   }
@@ -126,6 +129,16 @@ export const getComponent = (emp, header, list_type) => {
         return (
           <TableCell align="center">
             <SwitchComponent />
+          </TableCell>
+        );
+      } else {
+        return <TableCell align="center">{emp[header]}</TableCell>;
+      }
+    case "Payments":
+      if (header === "name") {
+        return (
+          <TableCell align="center">
+            {emp[header]}
           </TableCell>
         );
       } else {

@@ -4,6 +4,7 @@ import TenantsService from "./tenantsService";
 import AmenitiesService from "./amenitiesService";
 import ComplaintsService from "./complaintsService";
 import LocationsService from "./locationsService";
+import PaymentsService from "./paymentsService";
 
 const AppService = {
   user: UserService,
@@ -12,6 +13,7 @@ const AppService = {
   complaints: ComplaintsService,
   locations: LocationsService,
   amenities: AmenitiesService,
+  payments: PaymentsService
 };
 
 export default AppService;
