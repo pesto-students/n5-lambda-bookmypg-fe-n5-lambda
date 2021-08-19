@@ -91,7 +91,11 @@ export function MyPropertiesContent(props) {
                       <Box display="flex">
                         <Typography gutterBottom variant="subtitle2">
                           You haven't reviewed this property yet. Please{" "}
-                          <ReviewProperty value={property.propertydata.name} />{" "}
+                          <ReviewProperty
+                            property_id={property.propertydata._id}
+                            user_id={props.user._id}
+                            value={property.propertydata.name}
+                          />{" "}
                           to review it.
                         </Typography>
                       </Box>
