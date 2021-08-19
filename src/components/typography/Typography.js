@@ -12,7 +12,6 @@ export default function TypographyComponent(props) {
           component="h1"
           variant="h6"
           align={props.align ? props.align : "left"}
-          //color="primary"
         >
           {props.text}
         </Typography>
@@ -45,7 +44,18 @@ export default function TypographyComponent(props) {
           {props.text}
         </Typography>
       );
-
+    case "h3Title":
+      return (
+        <Typography component="h1" variant="h3">
+          {props.text}
+        </Typography>
+      );
+    case "h4Title":
+      return (
+        <Typography component="h1" variant="h4" align="center">
+          {props.text}
+        </Typography>
+      );
     case "Caption":
       return (
         <Typography
