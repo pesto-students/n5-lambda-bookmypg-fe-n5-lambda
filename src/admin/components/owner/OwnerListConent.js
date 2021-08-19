@@ -143,7 +143,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getTenants: (payload) => dispatch(tenantsActions.getTenants(payload)),
-    updateTenant: (id) => dispatch(tenantsActions.updateTenant(id)),
+    updateTenant: (payload) => dispatch(tenantsActions.updateTenant(payload)),
     addOwner: (payload) => dispatch(tenantsActions.addTenant(payload)),
     resetTenants: () => dispatch(tenantsActions.resetState()),
   };

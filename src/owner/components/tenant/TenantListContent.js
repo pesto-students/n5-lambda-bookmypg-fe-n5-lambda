@@ -29,6 +29,7 @@ export function Tenantcontent(props) {
   const [countperpage, setCountperpage] = React.useState(10);
   const [search, setSearch] = React.useState("");
   const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC);
+  const [refresh, setRefresh] = React.useState(false);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -50,16 +51,19 @@ export function Tenantcontent(props) {
     from_date,
     to_date,
     order_by,
+    refresh,
   ]);
 
   let TableData = [];
   if (get(props, "tenants.length")) {
     props.tenants.map((tenant) => {
       TableData.push({
+        _id: tenant._id,
         name: tenant.firstName + " " + tenant.lastName,
         email: tenant.email,
         phone: tenant.phone,
         property: tenant.property ? tenant.property.name : "",
+        isactive: tenant.isactive,
         onboardedAt: tenant.onboardedAt,
       });
     });
@@ -106,6 +110,10 @@ export function Tenantcontent(props) {
               list_type="Tenants"
               order_by={order_by}
               setOrderBy={setOrderBy}
+              setRefresh={setRefresh}
+              refresh={refresh}
+              updateDocument={props.updateTenant}
+              user={props.user}
             />
             <Pagination
               pagenumber={pagenumber}
@@ -136,7 +144,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getTenantsByOwner: (payload) =>
       dispatch(tenantsActions.getTenantsByOwner(payload)),
-    updateTenant: (id) => dispatch(tenantsActions.updateTenant(id)),
+    updateTenant: (payload) => dispatch(tenantsActions.updateTenant(payload)),
     resetTenants: () => dispatch(tenantsActions.resetState()),
   };
 };
