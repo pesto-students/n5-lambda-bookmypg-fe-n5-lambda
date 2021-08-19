@@ -1,5 +1,5 @@
 import React from "react";
-import ResponsiveDrawer from "components/responsivedrawer/ResponsiveDrawer";
+import ResponsiveDrawer from "admin/components/responsivedrawer/ResponsiveDrawer";
 
 export default function Tablefile(props) {
   return (
