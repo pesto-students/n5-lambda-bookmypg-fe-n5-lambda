@@ -10,7 +10,6 @@ import {
   Typography,
   TextField,
 } from "@material-ui/core";
-import { get } from "lodash";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Rating from "@material-ui/lab/Rating";
@@ -50,8 +49,7 @@ export default function ReviewProperty(props) {
     });
     toast("Review has been posted successfully!");
     setOpen(false);
-  }
-
+  };
 
   const date = new Date();
   date.setDate(date.getDate() + 7);
@@ -94,7 +92,11 @@ export default function ReviewProperty(props) {
               </Typography>
             </Grid>
             <Grid item>
-              <Rating value={rating} onChange={(e)=>setRating(e.target.value)} size="large" />
+              <Rating
+                value={rating}
+                onChange={(e) => setRating(e.target.value)}
+                size="large"
+              />
             </Grid>
             <TextField
               id="outlined-basic"

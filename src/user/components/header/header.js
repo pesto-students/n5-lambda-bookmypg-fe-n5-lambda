@@ -61,16 +61,8 @@ const listitems = [
 ];
 
 export function Header(props) {
-  const {
-    header,
-    logo,
-    menuButton,
-    toolbar,
-    drawerContainer,
-    button,
-    buttonmargin,
-    mobileviewButton,
-  } = useStyles();
+  const { header, logo, toolbar, drawerContainer, button, mobileviewButton } =
+    useStyles();
   const [open, setOpen] = React.useState(false);
   const history = useHistory();
   const [state, setState] = useState({
@@ -134,9 +126,9 @@ export function Header(props) {
     )[0];
     setOpen(false);
     if (existingUser) {
-      existingUser.role == "owner"
+      existingUser.role === "owner"
         ? history.push("/owner-property-list")
-        : existingUser.role == "admin"
+        : existingUser.role === "admin"
         ? history.push("/owner-list")
         : history.push("/");
     } else {

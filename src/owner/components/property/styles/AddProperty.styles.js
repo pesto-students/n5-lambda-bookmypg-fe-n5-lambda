@@ -30,12 +30,10 @@ const useStyles = makeStyles((theme) => ({
     width: "calc(278px + 0.5vw)",
   },
   formControl: {
-    margin: theme.spacing(1),
     minWidth: 120,
     width: "100%",
     textAlign: "left",
     margin: "0px",
-    width: "100%",
   },
   selectEmpty: {
     marginTop: theme.spacing(2),

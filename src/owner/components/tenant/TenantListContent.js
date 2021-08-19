@@ -16,12 +16,6 @@ import { DATE, ORDER_BY } from "../../../constant";
 
 export function Tenantcontent(props) {
   const classes = useStyles();
-  const [state, setState] = React.useState({
-    checkedA: true,
-    checkedB: true,
-  });
-
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
   const [enabled, setEnabled] = React.useState(false);
   const [from_date, setFromDate] = React.useState(DATE.FROM_DATE);
   const [to_date, setToDate] = React.useState(DATE.TO_DATE);
@@ -30,10 +24,6 @@ export function Tenantcontent(props) {
   const [search, setSearch] = React.useState("");
   const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC);
   const [refresh, setRefresh] = React.useState(false);
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
 
   useEffect(() => {
     props.resetTenants();
