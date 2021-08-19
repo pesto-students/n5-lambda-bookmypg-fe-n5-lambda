@@ -5,6 +5,7 @@ import TenantsReducer from "./reducers/tenantsReducer";
 import AmenitiesReducer from "./reducers/amenitiesReducer";
 import ComplaintsReducer from "./reducers/complaintsReducer";
 import LocationsReducer from "./reducers/locationsReducer";
+import PaymentsReducer from "./reducers/paymentsReducer";
 
 export default combineReducers({
   user: UserReducer,
@@ -13,4 +14,5 @@ export default combineReducers({
   amenities: AmenitiesReducer,
   complaints: ComplaintsReducer,
   locations: LocationsReducer,
+  payments: PaymentsReducer,
 });

@@ -374,11 +374,8 @@ export function Header(props) {
                     alignItems="center"
                     className={classes.boxStyle}
                   >
-                    <img
-                      src="BookMyPG-Logo.jpg"
-                      alt="No image available"
-                      className={classes.imageStyle}
-                    />
+                    <FormImage imageName="BookMyPG-Logo.jpg" />
+
                     <Typography
                       component="paragraph"
                       variant="h6"
