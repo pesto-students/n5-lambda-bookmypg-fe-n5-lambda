@@ -13,6 +13,7 @@ import Button from "../../../components/button/Button";
 import CloseButton from "../../../components/closebutton/CloseButton";
 import Typography from "../../../components/typography/Typography";
 import Link from "../../../components/link/Link";
+import FormImage from "components/formimage/FormImage";
 
 export default function Ratetenant(props) {
   const classes = useStyles();
@@ -49,11 +50,7 @@ export default function Ratetenant(props) {
         <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
           <div>
             <Typography text={`Rate ${props.value}`} type="FormTitle" />
-            <img
-              src="ratetenant.png"
-              alt="No image available"
-              className={classes.imgStyle}
-            />
+            <FormImage imgName="Ratetenant.png" />
           </div>
         </DialogTitle>
 

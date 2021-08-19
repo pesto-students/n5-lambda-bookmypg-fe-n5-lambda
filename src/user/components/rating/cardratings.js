@@ -14,7 +14,7 @@ export default function CardRating(props) {
         paddingLeft="10px"
       >
         <Rating name="read-only" value={props.value} size="small" readOnly />
-        <Typography variant="body2" color="secondary">
+        <Typography variant="body2" color="primary">
           {props.number} Reviews
         </Typography>
       </Box>

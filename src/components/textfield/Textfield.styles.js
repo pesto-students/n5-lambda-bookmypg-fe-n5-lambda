@@ -7,12 +7,9 @@ const useStyles = makeStyles((theme) => ({
   disabledStyle: {
     root: {
       "&$disabled": {
-        color: "#616161",
+        color: theme.palette.secondary,
       },
-      "& > *": {
-        margin: theme.spacing(1),
-        width: "25ch",
-      },
+
       disabled: {},
       notchedOutline: {},
     },

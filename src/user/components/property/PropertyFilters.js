@@ -8,7 +8,6 @@ import {
   Hidden,
   IconButton,
   Toolbar,
-  Typography,
   FormLabel,
   FormControl,
   FormGroup,
@@ -17,7 +16,6 @@ import {
   MenuItem,
   Menu,
 } from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
 import { useTheme } from "@material-ui/core/styles";
 import SortIcon from "@material-ui/icons/Sort";
 import Propertylistcontent from "./PropertyListContent";
@@ -26,21 +24,16 @@ import propertiesActions from "../../../redux-store/actions/propertiesActions";
 import LocationsSelector from "../../helpers/LocationsSelector";
 import locationsActions from "../../../redux-store/actions/locationsActions";
 import useStyles from "./styles/PropertyFilters.styles";
+import Select from "@material-ui/core/Select";
+import InputLabel from "@material-ui/core/InputLabel";
+import Typography from "components/typography/Typography";
+import { ORDER_BY } from "constant";
 
 function PropertyFilters(props) {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   const [gender, setGender] = React.useState({
     male: false,
@@ -60,8 +53,9 @@ function PropertyFilters(props) {
     twoRent: false,
   });
 
-  const [pagenumber, setPagenumber] = React.useState(1);
+  const [pagenumber, setPagenumber] = React.useState(0);
   const [countperpage, setCountperpage] = React.useState(10);
+  const [order_by, setOrderBy] = React.useState("");
 
   useEffect(() => {
     const selectedGender = [];
@@ -84,22 +78,34 @@ function PropertyFilters(props) {
         ? ""
         : props.selectedLocation;
 
-    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&gender=${selectedGender}&rating=${selectedRating}&rent=${selectedRent}`;
-    console.log("extraParams", extraParams);
+    const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&gender=${selectedGender}&rating=${selectedRating}&rent=${selectedRent}&columnname=rent&orderby=${order_by}`;
     props.getProperties({ extraParams });
-  }, [pagenumber, countperpage, gender, rating, rent, props.selectedLocation]);
+  }, [pagenumber, countperpage, gender, rating, rent, order_by, props.selectedLocation]);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
   const drawer = (
-    <div>
-      <div className={classes.toolbar} />
-      <Typography component="body2" variant="h6" color="secondary">
-        Filter results
-      </Typography>
-      <Divider />
+    <div className={classes.toolbar}>
+      <FormControl className={classes.formControl}>
+        <InputLabel id="demo-simple-select-helper-label">
+          Sort by: Price
+        </InputLabel>
+        <Select
+          labelId="demo-simple-select-helper-label"
+          id="demo-simple-select-helper"
+          value={order_by}
+          onChange={(e) => setOrderBy(e.target.value)}
+        >
+          <MenuItem value={ORDER_BY.ASC}>Price low to high</MenuItem>
+          <MenuItem value={ORDER_BY.DSC}>Price high to low</MenuItem>
+        </Select>
+      </FormControl>
+      <div className={classes.typographyStyle}>
+        <Typography type="SubTitleText" text="Filter Results" />
+        <Divider />
+      </div>
 
       <FormControl component="fieldset" className={classes.formControl}>
         <FormLabel component="legend">Gender</FormLabel>
@@ -283,29 +289,8 @@ function PropertyFilters(props) {
               onClick={handleDrawerToggle}
               className={classes.menuButton}
             >
-              <MenuIcon />
+              <SortIcon />
             </IconButton>
-            <div className={classes.searchsortButtons}>
-              <div>
-                <IconButton
-                  aria-controls="simple-menu"
-                  aria-haspopup="true"
-                  onClick={handleClick}
-                >
-                  <SortIcon />
-                </IconButton>
-                <Menu
-                  id="simple-menu"
-                  anchorEl={anchorEl}
-                  keepMounted
-                  open={Boolean(anchorEl)}
-                  onClose={handleClose}
-                >
-                  <MenuItem onClick={handleClose}>Price low to high</MenuItem>
-                  <MenuItem onClick={handleClose}>Price high to low</MenuItem>
-                </Menu>
-              </div>
-            </div>
           </Toolbar>
         </AppBar>
         <nav className={classes.drawer} aria-label="mailbox folders">
@@ -320,7 +305,7 @@ function PropertyFilters(props) {
                 paper: classes.drawerPaper,
               }}
               ModalProps={{
-                keepMounted: true, // Better open performance on mobile.
+                keepMounted: true,
               }}
             >
               {drawer}
@@ -339,7 +324,6 @@ function PropertyFilters(props) {
           </Hidden>
         </nav>
         <main className={classes.content}>
-          <div className={classes.toolbar} />
           <Propertylistcontent
             getProperties={props.getProperties}
             pagenumber={pagenumber}

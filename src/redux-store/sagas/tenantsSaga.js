@@ -16,6 +16,19 @@ export function* getTenantsSaga(tenantsApi, action) {
   }
 }
 
+export function* getTenantsByOwnerSaga(tenantsApi, action) {
+  try {
+    const response = yield call(tenantsApi.getTenantsByOwner, action.payload);
+    yield put(tenantsActions.tenantsByOwnerReceived(response));
+  } catch (e) {
+    yield put(
+      tenantsActions.getTenantsByOwnerFailed({
+        message: e.message,
+      })
+    );
+  }
+}
+
 export function* updateTenantSaga(tenantsApi, action) {
   try {
     const response = yield call(tenantsApi.updateTenant, action.payload);
@@ -23,6 +36,20 @@ export function* updateTenantSaga(tenantsApi, action) {
   } catch (e) {
     yield put(
       tenantsActions.updateTenantFailed({
+        message: e.message,
+      })
+    );
+  }
+}
+
+export function* addTenantSaga(tenantsApi, action) {
+  try {
+
+    const response = yield call(tenantsApi.addTenant, action.payload);
+    yield put(tenantsActions.tenantAdded(response));
+  } catch (e) {
+    yield put(
+      tenantsActions.addTenantFailed({
         message: e.message,
       })
     );

@@ -1,5 +1,7 @@
 import React from "react";
+import { get } from "lodash";
 import {
+  Button,
   Card,
   CardContent,
   CardMedia,
@@ -13,7 +15,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
 import { S3_BUCKET_URL } from "../../../constant";
 import useStyles from "../similarproperties/similarproperties.styles";
-import Button from "../../../components/button/Button";
+import PropertyCard from "components/card/Card";
 
 const data = {
   propertyname: "Zolo House 1",
@@ -36,7 +38,7 @@ export default function SimilarProperties(props) {
   const { mobileView, drawerOpen } = state;
   React.useEffect(() => {
     const setResponsiveness = () => {
-      return window.innerWidth < 900
+      return window.innerWidth < 600
         ? setState((prevState) => ({ ...prevState, mobileView: true }))
         : setState((prevState) => ({ ...prevState, mobileView: false }));
     };
@@ -46,6 +48,12 @@ export default function SimilarProperties(props) {
       window.removeEventListener("resize", () => setResponsiveness());
     };
   }, []);
+
+  const handleMoreDetails = (property) => {
+    history.push(`/property-details/${property._id}`);
+  };
+
+  const latestProperties = props.latestProperties;
 
   const displayDesktop = () => {
     return (
@@ -58,54 +66,24 @@ export default function SimilarProperties(props) {
         >
           {props.title}
         </Typography>
-        <Grid className={classes.responsivegrid}>
+        <Grid>
           <Swiper slidesPerView={4}>
-            <Grid container spacing={5}>
-              {props.properties &&
-                props.properties.length &&
-                props.properties.map((property) => (
-                  <Grid item key={property._id} xs={12} sm={6} md={3}>
-                    <SwiperSlide>
-                      <Card className={classes.card}>
-                        <CardMedia
-                          className={classes.cardMedia}
-                          image={`${S3_BUCKET_URL}/${property.photos[0]}`}
-                          title={property.photos[0]}
-                        />
-                        <CardContent className={classes.cardContent}>
-                          <div className={classes.propertynameStyle}>
-                            <Typography
-                              gutterBottom
-                              variant="h6"
-                              component="h2"
-                            >
-                              {property.name}
-                            </Typography>
-                            <Typography gutterBottom variant="caption">
-                              <LocationOnIcon />
-                              {property.location.name}
-                            </Typography>
-                          </div>
-                          <Typography gutterBottom variant="body2">
-                            {property.description}
-                          </Typography>
-                        </CardContent>
-                        <div className={classes.ratingboxStyle}>
-                          <Cardrating
-                            value={data.rating}
-                            number={property.numreviews || 0}
-                          />
-                          <Button
-                            text="More Details"
-                            color="ContainedSecondary"
-                            handelClick={() =>
-                              history.push(`/property-details/${property._id}`)
-                            }
-                            text="More Details"
-                          />
-                        </div>
-                      </Card>
-                      <div></div>
+            <Grid container spacing={4}>
+              {latestProperties &&
+                latestProperties.length &&
+                latestProperties.map((property) => (
+                  <Grid
+                    item
+                    key={property.propertydata._id}
+                    xs={12}
+                    sm={6}
+                    md={3}
+                  >
+                    <SwiperSlide style={{ height: "400px" }}>
+                      <PropertyCard
+                        property={property.propertydata}
+                        reviewdata={property.reviewdata}
+                      />
                     </SwiperSlide>
                   </Grid>
                 ))}
@@ -127,55 +105,25 @@ export default function SimilarProperties(props) {
         >
           {props.title}
         </Typography>
-        <Grid className={classes.responsivegrid}>
-          <Grid container spacing={5}>
-            {props.properties &&
-              props.properties.length &&
-              props.properties.map((property) => (
-                <Grid item key={property._id} xs={12} sm={6} md={3}>
-                  <Card className={classes.card}>
-                    <CardMedia
-                      className={classes.cardMedia}
-                      image={`${S3_BUCKET_URL}/${property.photos[0]}`}
-                      title={property.photos[0]}
-                    />
-                    <CardContent className={classes.cardContent}>
-                      <div className={classes.propertynameStyle}>
-                        <Typography gutterBottom variant="h6" component="h2">
-                          {property.name}
-                        </Typography>
-                        <Typography gutterBottom variant="caption">
-                          <LocationOnIcon />
-                          {property.location.name}
-                        </Typography>
-                      </div>
-                      <Typography gutterBottom variant="body2">
-                        {property.description}
-                      </Typography>
-                    </CardContent>
-                    <div className={classes.ratingboxStyle}>
-                      <Cardrating
-                        value={data.rating}
-                        number={property.numreviews || 0}
-                      />
-
-                      <Button
-                        size="small"
-                        variant="contained"
-                        color="ContainedSecondary"
-                        className={classes.buttonStyle}
-                        onClick={() =>
-                          history.push(`/property-details/${property._id}`)
-                        }
-                      >
-                        More Details
-                      </Button>
-                    </div>
-                  </Card>
+        <Swiper slidesPerView={1}>
+          <Grid container spacing={4}>
+            {latestProperties &&
+              latestProperties.length &&
+              latestProperties.map((property) => (
+                <Grid
+                  item
+                  key={property.propertydata._id}
+                  xs={12}
+                  sm={6}
+                  md={3}
+                >
+                  <SwiperSlide style={{ height: "400px" }}>
+                    <PropertyCard property={property.propertydata} />
+                  </SwiperSlide>
                 </Grid>
               ))}
           </Grid>
-        </Grid>
+        </Swiper>
       </React.Fragment>
     );
   };

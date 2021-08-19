@@ -6,6 +6,10 @@ const useStyles = makeStyles((theme) => ({
       color: "#616161",
     },
   },
+  table: {
+    marginTop: "150px",
+    justifyContent: "center",
+  },
   disabled: {},
   notchedOutline: {},
   icon: {
@@ -15,9 +19,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(8, 0, 6),
     paddingTop: "100px",
-  },
-  buttonStyle: {
-    marginTop: theme.spacing(4),
   },
   cardGrid: {
     paddingTop: theme.spacing(8),
@@ -67,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   gridStyle: {
-    marginLeft: "0px",
+    justifyContent: "center",
   },
   textfieldStyle: {
     width: "100%",

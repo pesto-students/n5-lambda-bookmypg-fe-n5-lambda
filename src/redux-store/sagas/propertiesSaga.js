@@ -15,3 +15,56 @@ export function* getPropertiesSaga(propertiesApi, action) {
     );
   }
 }
+
+export function* getPropertiesByOwnerSaga(propertiesApi, action) {
+  try {
+    const response = yield call(propertiesApi.getPropertiesByOwner, action.payload);
+    yield put(propertiesActions.propertiesByOwnerReceived(response));
+  } catch (e) {
+    yield put(
+      propertiesActions.getPropetiesByOwnerFailed({
+        message: e.message,
+      })
+    );
+  }
+}
+
+export function* getLatestPropertiesSaga(propertiesApi, action) {
+  try {
+    const response = yield call(propertiesApi.getLatestProperties, action.payload);
+    yield put(propertiesActions.latestPropertiesReceived(response));
+  } catch (e) {
+    yield put(
+      propertiesActions.getLatestPropetiesFailed({
+        message: e.message,
+      })
+    );
+  }
+}
+
+export function* addPropertySaga(propertiesApi, action) {
+  try {
+    const response = yield call(propertiesApi.addProperty, action.payload);
+    yield put(propertiesActions.propertyAdded(response));
+  } catch (e) {
+    yield put(
+      propertiesActions.addPropertyFailed({
+        message: e.message,
+      })
+    );
+  }
+}
+
+export function* updatePropertySaga(propertiesApi, action) {
+  try {
+    const response = yield call(propertiesApi.updateProperty, action.payload);
+    yield put(propertiesActions.propertyUpdated(response));
+  } catch (e) {
+    yield put(
+      propertiesActions.updatePropertyFailed({
+        message: e.message,
+      })
+    );
+  }
+}
+

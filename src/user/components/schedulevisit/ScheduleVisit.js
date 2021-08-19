@@ -4,20 +4,28 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  TextField,
   FormLabel,
   FormControl,
-  Typography,
   Box,
 } from "@material-ui/core";
 import { Phone, AccountBox } from "@material-ui/icons";
 import EmailIcon from "@material-ui/icons/Email";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import useStyles from "./ScheduleVisit.styles";
 import Button from "../../../components/button/Button";
 import Datepicker from "../../../components/datepicker/Datepicker";
 import CloseButton from "../../../components/closebutton/CloseButton";
+import FormImage from "components/formimage/FormImage";
+import { EMAIL_TYPE } from "../../../constant";
+import TextField from "components/textfield/Textfield";
+import Typography from "../../../components/typography/Typography";
+import { SERVER_URL } from "constant";
 
-export default function ScheduleVisit() {
+const FROM_TIME = "10:00am";
+const TO_TIME = "06:00pm";
+
+export default function ScheduleVisit(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -29,6 +37,37 @@ export default function ScheduleVisit() {
     setOpen(false);
   };
   const [selectedDate, setSelectedDate] = React.useState(new Date());
+  const [name, setName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [phone, setPhone] = React.useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const payload = {
+      useremail: email,
+      type: EMAIL_TYPE.VISIT,
+      owneremail: props.owner,
+      property_name: props.property_name,
+      property_id: props.property_id,
+      date: selectedDate,
+      fromtime: FROM_TIME,
+      totime: TO_TIME,
+    };
+    fetch(`${SERVER_URL}/api/emails/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    })
+      .then((response) => response.json())
+      .catch((error) => {
+        console.error(error);
+      });
+    setOpen(false);
+    setName("");
+    setEmail("");
+    setPhone("");
+    toast("Visit has been scheduled successfully!");
+  };
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -36,7 +75,7 @@ export default function ScheduleVisit() {
   const date = new Date();
   date.setDate(date.getDate() + 7);
   return (
-    <div>
+    <React.Fragment>
       <Button text="Schedule Visit" handleClick={handleClickOpen} />
       <Dialog
         open={open}
@@ -56,69 +95,58 @@ export default function ScheduleVisit() {
         </Box>
         <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
           <div className={classes.textAlign}>
-            <Typography component="h1" variant="h6" color="primary">
-              Schedule Visit
-            </Typography>
+            <Typography type="FormTitle" text="Schedule Visit" />
 
-            <img
-              src="schedulevisit.png"
-              alt="Not available"
-              className={classes.imgStyle}
-            />
+            <FormImage imageName="Schedulevisit.png" />
           </div>
         </DialogTitle>
 
         <DialogContent className={classes.formAlign}>
-          <Typography
-            component="h1"
-            variant="subtitle1"
-            color="primary"
-            className={classes.textAlign}
-          >
-            Open from 10:00am to 06:00pm
-          </Typography>
+          <div className={classes.textAlign}>
+            <Typography
+              type="SubTitleText"
+              text="Open from 10:00am to 06:00pm"
+            />
+          </div>
           <FormControl component="fieldset">
             <FormLabel component="legend"></FormLabel>
             <Datepicker
               selectedDate={selectedDate}
               handleDateChange={handleDateChange}
               maxdate={date}
+              label="When you want to visit the place?"
             />
-
             <TextField
               id="standard-basic"
+              type="standardForm"
               label="Name"
-              defaultValue=""
-              fullwidth
-              InputProps={{
-                endAdornment: <AccountBox className={classes.iconStyle} />,
-              }}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              icon="Name"
             />
             <TextField
               id="standard-basic"
+              type="standardForm"
               label="Email"
-              defaultValue=""
-              fullwidth
-              InputProps={{
-                endAdornment: <EmailIcon className={classes.iconStyle} />,
-              }}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              icon="Email"
             />
             <TextField
-              id="standard-basic"
+              type="standardForm"
               label="Phone"
-              defaultValue=""
-              fullwidth
-              InputProps={{
-                endAdornment: <Phone className={classes.iconStyle} />,
-              }}
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              icon="Phone"
             />
           </FormControl>
         </DialogContent>
         <DialogActions className={classes.button}>
-          <Button text="Submit" />
-          <Button text="Cancel" />
+          <Button text="Submit" handleClick={handleSubmit} />
+          <Button text="Cancel" handleClick={handleClose} />
         </DialogActions>
       </Dialog>
-    </div>
+      <ToastContainer />
+    </React.Fragment>
   );
 }

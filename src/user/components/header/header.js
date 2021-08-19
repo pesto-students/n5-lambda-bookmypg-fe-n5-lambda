@@ -26,8 +26,13 @@ import LocationsSelector from "../../helpers/LocationsSelector";
 import locationsActions from "../../../redux-store/actions/locationsActions";
 import UserSelector from "../../helpers/UserSelector";
 import userActions from "../../../redux-store/actions/userActions";
-import Button from "../../../components/button/Button";
+import Button from "components/button/Button";
 import useStyles from "./header.styles";
+import TenantsSelector from "../../../owner/components/TenantsSelector";
+import tenantsActions from "../../../redux-store/actions/tenantsActions";
+import PopupMenu from "components/popupmenu/PopupMenu";
+import SigninButton from "@material-ui/core/Button";
+import FormImage from "components/formimage/FormImage";
 
 const headersData = [
   {
@@ -44,36 +49,20 @@ const headersData = [
   },
 ];
 
-const locationItems = [
+const listitems = [
   {
-    id: "0",
-    name: "None",
+    label: "My Profile",
+    href: "/myprofile",
   },
   {
-    id: "1",
-    name: "Delhi",
-  },
-  {
-    id: "2",
-    name: "Mumbai",
-  },
-  {
-    id: "3",
-    name: "Chennai",
+    label: "Logout",
+    href: "/",
   },
 ];
 
 export function Header(props) {
-  const {
-    header,
-    logo,
-    menuButton,
-    toolbar,
-    drawerContainer,
-    button,
-    buttonmargin,
-    mobileviewButton,
-  } = useStyles();
+  const { header, logo, toolbar, drawerContainer, button, mobileviewButton } =
+    useStyles();
   const [open, setOpen] = React.useState(false);
   const history = useHistory();
   const [state, setState] = useState({
@@ -112,6 +101,7 @@ export function Header(props) {
 
   useEffect(() => {
     props.getLocations();
+    props.verifyAdmin();
   }, []);
 
   const LoginPopup = () => {
@@ -119,7 +109,8 @@ export function Header(props) {
   };
 
   const handleLogout = () => {
-    props.setLoggedUser("");
+    props.logoutUser();
+    history.push("/");
   };
 
   const handleClose = () => {
@@ -129,10 +120,20 @@ export function Header(props) {
   const handleLogin = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     const response = await firebase.auth().signInWithPopup(provider);
-    props.setLoggedUser(response.user);
     props.getUser(response.user.email);
+    const existingUser = props.tenants.filter(
+      (tenant) => tenant.email === response.user.email
+    )[0];
     setOpen(false);
-    history.push("/");
+    if (existingUser) {
+      existingUser.role === "owner"
+        ? history.push("/owner-property-list")
+        : existingUser.role === "admin"
+        ? history.push("/owner-list")
+        : history.push("/");
+    } else {
+      history.push("/");
+    }
   };
 
   const locations = props.locations;
@@ -144,14 +145,17 @@ export function Header(props) {
         <div className={classes.contentStyle}>{searchBar}</div>
         <div>
           {getMenuButtons()}
-          {props.loggedUser == "" ? (
+          {!props.user || Object.keys(props.user).length === 0 ? (
             <Button text="Login" type="Menubutton" handleClick={LoginPopup} />
           ) : (
-            <Button
-              text="Logout"
-              type="Menubutton"
-              handleClick={handleLogout}
-            />
+            <>
+              <Button
+                text={props.user.firstName + " " + props.user.lastName}
+                type="Menubutton"
+                // handleClick={handleLogout}
+              />
+              <PopupMenu listitems={listitems} handleLogout={handleLogout} />
+            </>
           )}
         </div>
       </Toolbar>
@@ -187,7 +191,7 @@ export function Header(props) {
         >
           <div className={drawerContainer}>
             {getDrawerChoices()}
-            {props.loggedUser == "" ? (
+            {!props.user || Object.keys(props.user).length === 0 ? (
               <Link
                 key={"Login"}
                 {...{
@@ -199,16 +203,30 @@ export function Header(props) {
                 <MenuItem>{"Login"}</MenuItem>
               </Link>
             ) : (
-              <Link
-                key={"Logout"}
-                {...{
-                  color: "inherit",
-                  style: { textDecoration: "none" },
-                }}
-                onClick={handleLogout}
-              >
-                <MenuItem>{"Logout"}</MenuItem>
-              </Link>
+              <div>
+                <Link
+                  key={"MyProfile"}
+                  {...{
+                    color: "inherit",
+                    style: { textDecoration: "none" },
+                    component: RouterLink,
+                    to: "/myprofile",
+                  }}
+                  onClick={handleLogout}
+                >
+                  <MenuItem>{"My Profile"}</MenuItem>
+                </Link>
+                <Link
+                  key={"Logout"}
+                  {...{
+                    color: "inherit",
+                    style: { textDecoration: "none" },
+                  }}
+                  onClick={handleLogout}
+                >
+                  <MenuItem>{"Logout"}</MenuItem>
+                </Link>
+              </div>
             )}
           </div>
         </Drawer>
@@ -251,11 +269,7 @@ export function Header(props) {
   const searchBar = (
     <Container maxWidth="sm" component="main">
       <Grid container spacing={2} justifyContent="center">
-        <FormControl
-          variant="outlined"
-          className={classes.formControl}
-          style={{ width: "400px" }}
-        >
+        <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel
             id="demo-simple-select-outlined-label"
             style={{ color: "inherit" }}
@@ -268,8 +282,12 @@ export function Header(props) {
             value={location}
             onChange={handleChange}
             label="Location"
-            style={{ color: "inherit" }}
-            variant="outlined"
+            className={classes.textfieldStyle}
+            inputProps={{
+              classes: {
+                icon: classes.icon,
+              },
+            }}
           >
             <MenuItem value="All">
               <em>All</em>
@@ -328,7 +346,7 @@ export function Header(props) {
                 <Grid
                   item
                   xs={12}
-                  style={{ "justify-content": "center", display: "flex" }}
+                  style={{ justifyContent: "center", display: "flex" }}
                 >
                   <Box
                     p={2}
@@ -338,10 +356,15 @@ export function Header(props) {
                     textAlign="center"
                   >
                     <div className={mobileviewButton}>
-                      <Button
-                        text="Signin with Google"
-                        handelClick={handleLogin}
-                      />
+                      <SigninButton
+                        onClick={handleLogin}
+                        variant="contained"
+                        color="secondary"
+                        key="Signin"
+                      >
+                        <FormImage imageName="GoogleIcon.png" type="icon" />
+                        Signin with Google
+                      </SigninButton>
                       <Typography
                         variant="body2"
                         gutterBottom
@@ -396,7 +419,7 @@ export function Header(props) {
           >
             <DialogContent style={{ padding: "0px" }}>
               <Grid className={classes.responsivegrid}>
-                <Grid item xs={12} sm={6} className={classes.root}>
+                <Grid item xs={12} sm={6} className={classes.backgroundStyle}>
                   <Box
                     color="primary.contrastText"
                     height="100%"
@@ -406,10 +429,9 @@ export function Header(props) {
                     alignItems="center"
                     className={classes.boxStyle}
                   >
-                    <img
-                      src="BookMyPG-Logo.jpg"
-                      alt="No image available"
-                      className={classes.imageStyle}
+                    <FormImage
+                      imageName="BookMyPG-Logo.jpg"
+                      type="loginpageLogo"
                     />
                     <Typography
                       component="paragraph"
@@ -437,7 +459,7 @@ export function Header(props) {
                   item
                   xs={12}
                   sm={6}
-                  style={{ "justify-content": "center", display: "flex" }}
+                  style={{ justifyContent: "center", display: "flex" }}
                 >
                   <Box
                     p={2}
@@ -447,10 +469,16 @@ export function Header(props) {
                     textAlign="center"
                   >
                     <div className={button}>
-                      <Button
-                        text="Signin with Google"
-                        handelClick={handleLogin}
-                      />
+                      <SigninButton
+                        onClick={handleLogin}
+                        variant="contained"
+                        color="secondary"
+                        key="Signin"
+                      >
+                        {" "}
+                        <FormImage imageName="GoogleIcon.png" type="icon" />
+                        Signin with Google
+                      </SigninButton>
                       <Typography
                         variant="body2"
                         gutterBottom
@@ -509,11 +537,13 @@ export function Header(props) {
 const mapStateToProps = (state) => {
   const locationsSelector = LocationsSelector(state.locations);
   const userSelector = UserSelector(state.user);
+  const tenantsSelector = TenantsSelector(state.tenants);
 
   return {
     user: userSelector.getUserData().data,
     locations: locationsSelector.getLocationsData().data,
     selectedLocation: locationsSelector.getSelectedLocation().selectedLocation,
+    tenants: tenantsSelector.getTenantsData().data,
   };
 };
 
@@ -524,7 +554,9 @@ const mapDispatchToProps = (dispatch) => {
     setSelectedLocation: (payload) =>
       dispatch(locationsActions.setSelectedLocation(payload)),
     getSelectedLocation: () => dispatch(locationsActions.getSelectedLocation()),
+    verifyAdmin: () => dispatch(tenantsActions.getTenants()),
     resetLocations: () => dispatch(locationsActions.resetState()),
+    logoutUser: () => dispatch(userActions.resetState()),
   };
 };
 

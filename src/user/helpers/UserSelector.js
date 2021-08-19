@@ -1,7 +1,7 @@
 export const UserSelector = (state) => ({
   getUserData: () => {
     return {
-      data: state && state.user ? state.user : {},
+      data: state && state.user && state.user.data ? state.user.data : {},
     };
   },
   submitUserRequestState: () => {

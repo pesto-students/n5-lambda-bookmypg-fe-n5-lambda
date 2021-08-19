@@ -1,25 +1,20 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Drawer, Hidden, Link } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
-import MenuItem from "@material-ui/core/MenuItem";
 import useStyles from "./ResponsiveDrawer.styles";
-import theme from "../../theme/theme";
-
-const headersData = [
-  {
-    label: "Home",
-    href: "/admin-home",
-  },
-  {
-    label: "Owners",
-    href: "/owner-list",
-  },
-  {
-    label: "Amenities",
-    href: "/amenity-list",
-  },
-];
+import theme from "theme/theme";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import Icon from "components/icon/Icon";
+import {
+  AppBar,
+  Drawer,
+  Hidden,
+  IconButton,
+  Toolbar,
+  MenuItem,
+  Link,
+} from "@material-ui/core";
+import SortIcon from "@material-ui/icons/Sort";
 
 export default function ResponsiveDrawer(props) {
   const [mobileOpen, setmobileOpen] = useState(false);
@@ -29,18 +24,22 @@ export default function ResponsiveDrawer(props) {
 
   const classes = useStyles();
   const drawer = () => {
-    return headersData.map(({ label, href }) => {
+    return props.headersData.map(({ label, href, icon }) => {
       return (
         <Link
           key={label}
           {...{
             component: RouterLink,
             to: href,
-            color: "inherit",
             style: { textDecoration: "none" },
           }}
         >
-          <MenuItem>{label}</MenuItem>
+          <MenuItem>
+            <ListItemIcon>
+              <Icon type={icon} />
+            </ListItemIcon>
+            {label}
+          </MenuItem>
         </Link>
       );
     });
@@ -49,6 +48,20 @@ export default function ResponsiveDrawer(props) {
   return (
     <React.Fragment>
       <div className={classes.root}>
+        <AppBar className={classes.appBar}>
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              className={classes.menuButton}
+            >
+              <SortIcon />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+
         <nav className={classes.drawer}>
           <Hidden smUp implementation="css">
             <Drawer

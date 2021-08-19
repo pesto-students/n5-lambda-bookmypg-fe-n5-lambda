@@ -3,6 +3,7 @@ import useStyles from "./Datepicker.styles";
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
+  KeyboardTimePicker,
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 
@@ -18,13 +19,13 @@ export default function DatepickerComponent(props) {
             format="MM/dd/yyyy"
             margin="normal"
             id="date-picker-inline"
-            label="From Date:"
+            label={props.label}
             value={props.selectedDate}
             onChange={props.handleDateChange}
             KeyboardButtonProps={{
               "aria-label": "change date",
             }}
-            disableFuture={true}
+            // disableFuture={true}
           />
         </MuiPickersUtilsProvider>
       );
@@ -37,14 +38,30 @@ export default function DatepickerComponent(props) {
             format="MM/dd/yyyy"
             margin="normal"
             id="date-picker-inline"
-            label="From Date:"
+            label={props.label}
             value={props.selectedDate}
             onChange={props.handleDateChange}
             KeyboardButtonProps={{
               "aria-label": "change date",
             }}
-            disableFuture={true}
-            className={classes.paddingStyle}
+            className={classes.marginStyle}
+            // disableFuture={true}
+          />
+        </MuiPickersUtilsProvider>
+      );
+    case "TimePicker":
+      return (
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <KeyboardTimePicker
+            margin="normal"
+            id="time-picker"
+            label={props.label}
+            value={props.selectedDate}
+            onChange={props.handleDateChange}
+            KeyboardButtonProps={{
+              "aria-label": "change time",
+            }}
+            fullWidth
           />
         </MuiPickersUtilsProvider>
       );
@@ -57,7 +74,7 @@ export default function DatepickerComponent(props) {
             format="MM/dd/yyyy"
             margin="normal"
             id="date-picker-inline"
-            label="When you want to move in?"
+            label={props.label}
             value={props.selectedDate}
             onChange={props.handleDateChange}
             KeyboardButtonProps={{

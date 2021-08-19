@@ -15,3 +15,16 @@ export function* getComplaintsSaga(complaintsApi, action) {
     );
   }
 }
+
+export function* raiseComplaintSaga(complaintsApi, action) {
+  try {
+    const response = yield call(complaintsApi.raiseComplaint, action.payload);
+    yield put(complaintsActions.complaintRaised(response));
+  } catch (e) {
+    yield put(
+      complaintsActions.raiseComplaintFailed({
+        message: e.message,
+      })
+    );
+  }
+}

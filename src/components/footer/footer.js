@@ -41,22 +41,29 @@ const footers = [
   },
 ];
 
-export default function Footer() {
+export default function Footer(props) {
   const classes = useStyles();
 
   return (
-    <div className={classes.section}>
+    <div
+      className={props.type == "center" ? classes.nosection : classes.section}
+    >
       <Container maxWidth="md" component="footer" className={classes.footer}>
         <Grid container spacing={4} justifyContent="space-evenly">
           {footers.map((footer) => (
             <Grid item xs={6} sm={3} key={footer.title}>
               <Typography type="FormTitle" text={footer.title} />
+
               <ul>
                 {footer.description.map((item) => (
                   <li key={item}>
-                    <Link href="#" variant="subtitle2" color="textSecondary">
-                      {item}
-                    </Link>
+                    {footer.title == "Quick links" ? (
+                      <Link href="#" variant="subtitle2" color="textSecondary">
+                        {item}
+                      </Link>
+                    ) : (
+                      <Typography type="BodyText" text={item} />
+                    )}
                   </li>
                 ))}
               </ul>

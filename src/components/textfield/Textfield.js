@@ -1,12 +1,12 @@
 import React from "react";
 import useStyles from "./Textfield.styles";
 import TextField from "@material-ui/core/TextField";
+import Icon from "components/icon/Icon";
 
 export default function TextFieldComponent(props) {
   const classes = useStyles();
   switch (props.type) {
     case "standardForm":
-      console.log("here");
       return (
         <TextField
           id="standard-basic"
@@ -17,6 +17,11 @@ export default function TextFieldComponent(props) {
           multiline={props.multiline}
           maxRows={props.maxrows}
           value={props.value}
+          disabled={props.disabled}
+          onChange={props.onChange}
+          InputProps={{
+            endAdornment: <Icon type={props.icon} />,
+          }}
         />
       );
 
@@ -34,6 +39,7 @@ export default function TextFieldComponent(props) {
               root: classes.root,
               disabled: classes.disabled,
             },
+            endAdornment: <Icon type={props.icon} />,
           }}
           rows={props.rows}
           multiline={props.multiline}

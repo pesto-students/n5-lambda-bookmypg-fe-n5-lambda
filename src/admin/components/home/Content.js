@@ -1,11 +1,11 @@
 import React from "react";
-import ResponsiveDrawer from "../responsivedrawer/ResponsiveDrawer";
+import ResponsiveDrawer from "admin/components/responsivedrawer/ResponsiveDrawer";
 
-export default function Tablefile() {
+export default function Tablefile(props) {
   return (
-    <div className="Table">
-      <ResponsiveDrawer>
-        <h1>Hi</h1>
+    <div className="Table" data-testid="content">
+      <ResponsiveDrawer headersData={props.responsivedrawerData}>
+        <h1>Admin Dashboard</h1>
       </ResponsiveDrawer>
     </div>
   );

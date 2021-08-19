@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   header: {
-    backgroundColor: "#616161",
+    backgroundColor: theme.palette.secondary.main,
   },
   responsivegrid: {
     display: "flex",
@@ -41,8 +41,8 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: { height: "80%", width: "70%" },
 
-  root: {
-    background: "linear-gradient(to bottom, #232526, #414345)",
+  backgroundStyle: {
+    background: "linear-gradient(to right, #005c97, #363795)",
   },
   titleStyle: {
     width: "70%",
@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   formControl: {
-    margin: theme.spacing(2),
+    //margin: theme.spacing(2),
     minWidth: "80%",
   },
   selectEmpty: {
@@ -70,6 +70,31 @@ const useStyles = makeStyles((theme) => ({
   },
   contentStyle: {
     width: "250px",
+  },
+  root: {
+    "& $notchedOutline": {
+      borderColor: "red",
+    },
+    "&:hover $notchedOutline": {
+      borderColor: "blue",
+    },
+    "&$focused $notchedOutline": {
+      borderColor: "green",
+    },
+  },
+  focused: {},
+  notchedOutline: {},
+  icon: {
+    fill: "white",
+  },
+
+  textfieldStyle: {
+    "& .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#fff",
+    },
+    icon: {
+      color: "white",
+    },
   },
 }));
 

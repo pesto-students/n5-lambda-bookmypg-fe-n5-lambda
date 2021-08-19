@@ -53,6 +53,10 @@ const useStyles = makeStyles((theme) => ({
       paddingLeft: "190px",
     },
   },
+  nosection: {
+    alignContent: "center",
+    width: "calc(100% + 0.5vw)",
+  },
 }));
 
 export default useStyles;

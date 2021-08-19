@@ -12,8 +12,9 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: drawerWidth,
     [theme.breakpoints.up("sm")]: {
       width: `calc(100% - ${drawerWidth}px)`,
+      height: "0px",
     },
-    marginTop: "65px",
+    marginTop: "56px",
     backgroundColor: "white",
     color: "black",
   },
@@ -26,14 +27,18 @@ const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
-    marginTop: "65px",
+    marginTop: "58px",
+    paddingTop: "40px",
+    [theme.breakpoints.up("sm")]: {
+      marginTop: "65px",
+    },
   },
   content: {
     [theme.breakpoints.up("sm")]: {
       marginLeft: drawerWidth,
       width: `calc(100% - ${drawerWidth}px)`,
     },
-    marginTop: "40px",
+    marginTop: "50px",
   },
   menuitemStyle: {
     textDecoration: "none",

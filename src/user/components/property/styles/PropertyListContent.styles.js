@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(8, 0, 6),
     paddingTop: "100px",
   },
-  buttonStyle: {
+  buttonMarginStyle: {
     paddingTop: "80px",
   },
   buttonsMobile: {
@@ -22,17 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     display: "flex",
-    [theme.breakpoints.down("md")]: {
-      flexDirection: "column",
-      height: "100%",
-      padding: "10px",
-    },
     [theme.breakpoints.up("sm")]: {
-      flexDirection: "column",
-      height: "100%",
-      padding: "10px",
-    },
-    [theme.breakpoints.up("lg")]: {
       flexDirection: "column",
       height: "100%",
       padding: "10px",
@@ -91,6 +81,10 @@ const useStyles = makeStyles((theme) => ({
   },
   descriptionStyle: {
     wordWrap: "break-word",
+  },
+  containerStyle: {
+    width: "100%",
+    margin: "0px",
   },
 }));
 

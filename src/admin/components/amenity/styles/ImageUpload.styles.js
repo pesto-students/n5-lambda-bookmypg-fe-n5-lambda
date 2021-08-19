@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   imgStyle: {
-    width: "30px",
+    //width: "30px",
   },
   labelStyle: {
     paddingTop: "14px",
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
   divStyle: {
     display: "flex",
-    margin: "auto",
+    marginTop: "20px",
     flexWrap: "wrap",
   },
   inputStyle: {

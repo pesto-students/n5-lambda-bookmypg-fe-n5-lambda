@@ -1,8 +1,9 @@
 import httpInterceptor from "../network/interceptor";
+import { SERVER_URL } from "constant";
 
 const LocationsService = {
   getLocations: async (payload) => {
-    const URL = "http://localhost:4000/api/locations";
+    const URL = `${SERVER_URL}/api/locations`;
     const response = await httpInterceptor({
       url: `${URL}${payload && payload.extraParams ? payload.extraParams : ""}`,
       method: "GET",

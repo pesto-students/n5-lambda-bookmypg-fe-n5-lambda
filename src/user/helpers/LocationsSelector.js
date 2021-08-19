@@ -8,12 +8,10 @@ export const LocationsSelector = (state) => ({
     };
   },
   getSelectedLocation: () => {
-      return {
-        selectedLocation:
-          state && state.selectedLocation
-            ? state.selectedLocation
-            : {},
-      };
+    return {
+      selectedLocation:
+        state && state.selectedLocation ? state.selectedLocation : {},
+    };
   },
   getLocationsRequestState: () => {
     return state.getLocationsRequestState || {};

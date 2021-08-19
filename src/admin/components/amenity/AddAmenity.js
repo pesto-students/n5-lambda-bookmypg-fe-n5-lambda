@@ -7,17 +7,23 @@ import {
   DialogContent,
   DialogTitle,
 } from "@material-ui/core";
+import Button from "components/button/Button";
+import CloseButton from "components/closebutton/CloseButton";
+import Link from "components/link/Link";
+import Typography from "components/typography/Typography";
+import TextField from "components/textfield/Textfield";
+import FormImage from "components/formimage/FormImage";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import ImageUpload from "./ImageUpload";
 import useStyles from "./styles/AddAmenity.styles";
-import Button from "../../../components/button/Button";
-import CloseButton from "../../../components/closebutton/CloseButton";
-import Link from "../../../components/link/Link";
-import Typography from "../../../components/typography/Typography";
-import TextField from "../../../components/textfield/Textfield";
 
 export default function AddAmenity(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+
+  const [name, setName] = React.useState("");
+  const [logo, setLogo] = React.useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -27,13 +33,23 @@ export default function AddAmenity(props) {
     setOpen(false);
   };
 
-  const date = new Date();
-  date.setDate(date.getDate() + 7);
+  const handleSubmit = () => {
+    const params = { name, logo, isactive: true };
+    const user = props.user;
+    props.addAmenity({ params, user });
+    setOpen(false);
+    toast("Amenity has been added successfully!");
+    setName("");
+    setLogo("");
+    setTimeout(() => {
+      props.setRefresh(!props.refresh);
+    }, 500);
+  };
 
   return (
     <div className={classes.buttonStyle}>
       {props.mode === "Edit" ? (
-        <Link text={props.value} handelClick={handleClickOpen} href="#" />
+        <Link text={props.name} handelClick={handleClickOpen} href="#" />
       ) : (
         <Button text="Add Amenity" handleClick={handleClickOpen} />
       )}
@@ -43,7 +59,7 @@ export default function AddAmenity(props) {
         aria-labelledby="form-dialog-title"
         PaperProps={{
           style: {
-            width: "calc(478px + 0.5vw)",
+            width: "calc(378px + 0.5vw)",
           },
         }}
       >
@@ -59,27 +75,30 @@ export default function AddAmenity(props) {
               type="FormTitle"
               text={props.mode === "Edit" ? "Edit Amenity" : "Add New Amenity"}
             />
-            <img
-              src="addamenity.png"
-              alt="No image available"
-              className={classes.imgStyle}
-            />
+            <FormImage imageName="Addamenity.png" />
           </div>
         </DialogTitle>
 
         <DialogContent className={classes.formAlign}>
           <Grid container spacing={3} className={classes.containerStyle}>
             <Grid item>
-              <TextField type="standardForm" label="Name" />
-              <ImageUpload />
+              <TextField
+                type="standardForm"
+                label="Name"
+                icon="Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+              <ImageUpload setLogo={setLogo} />
             </Grid>
           </Grid>
         </DialogContent>
         <DialogActions className={classes.button}>
-          <Button text="Submit" />
-          <Button text="Cancel" />
+          <Button text="Submit" handleClick={handleSubmit} />
+          <Button text="Cancel" handleClick={handleClose} />
         </DialogActions>
       </Dialog>
+      <ToastContainer />
     </div>
   );
 }

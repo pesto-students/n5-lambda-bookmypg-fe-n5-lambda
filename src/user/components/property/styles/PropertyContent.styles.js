@@ -23,9 +23,17 @@ const useStyles = makeStyles((theme) => ({
       color: "#40a9ff",
     },
   },
+  wrapStyle: {
+    flexFlow: "nowrap",
+  },
   cardGrid: {
-    paddingTop: theme.spacing(10),
+    paddingTop: theme.spacing(25),
     paddingBottom: theme.spacing(8),
+    maxWidth: "1400px",
+  },
+  SimilarpropertiesStyle: {
+    paddingTop: theme.spacing(4),
+    //paddingBottom: theme.spacing(8),
     maxWidth: "1400px",
   },
   card: {

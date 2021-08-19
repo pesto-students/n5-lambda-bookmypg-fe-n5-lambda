@@ -2,10 +2,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    "& > *": {
-      margin: theme.spacing(1),
-      width: "25ch",
-    },
     "&$disabled": {
       color: "#616161",
     },
@@ -34,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: "35px",
   },
   formControl: {
-    margin: theme.spacing(1),
     minWidth: 120,
     width: "100%",
     textAlign: "left",
@@ -45,6 +40,11 @@ const useStyles = makeStyles((theme) => ({
   },
   textfieldStyle: {
     width: "280px",
+  },
+  gridStyle: {
+    textAlign: "center",
+    borderRadius: "10px",
+    padding: "10px",
   },
 }));
 

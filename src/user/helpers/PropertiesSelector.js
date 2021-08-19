@@ -7,8 +7,31 @@ export const PropertiesSelector = (state) => ({
           : {},
     };
   },
+
+  getPropertiesCount: () => {
+    return {
+      count:
+        state && state.properties && state.properties.data
+          ? state.properties.total_count
+          : {},
+    };
+  },
+
+  getLatestPropertiesData: () => {
+    return {
+      data:
+        state && state.latestProperties && state.latestProperties.data
+          ? state.latestProperties.data
+          : {},
+    };
+  },
+
   getPropertiesRequestState: () => {
     return state.getPropertiesRequestState || {};
+  },
+
+  getLatestPropertiesRequestState: () => {
+    return state.getLatestPropertiesRequestState || {};
   },
 });
 
