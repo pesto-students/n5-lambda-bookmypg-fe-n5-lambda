@@ -55,12 +55,16 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "20px",
   },
   propertycard: {
-    //height: "350px",
     height: "90%",
     display: "flex",
     flexDirection: "column",
     padding: "10px",
-    //marginRight: "20px",
+  },
+  ownerCardStyle: {
+    height: "97%",
+    display: "flex",
+    flexDirection: "column",
+    margin: "5px",
   },
   cardMedia: {
     paddingTop: "56.25%", // 16:9
