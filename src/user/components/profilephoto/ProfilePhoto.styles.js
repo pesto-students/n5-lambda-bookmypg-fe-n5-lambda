@@ -6,8 +6,8 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
   },
   largeStyle: {
-    width: theme.spacing(48),
-    height: theme.spacing(48),
+    width: "192px",
+    height: "192px",
 
     [theme.breakpoints.down("xs")]: {
       marginLeft: "40px",
