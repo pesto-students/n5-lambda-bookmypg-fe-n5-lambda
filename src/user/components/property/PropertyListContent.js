@@ -1,16 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
 import { useHistory } from "react-router-dom";
-import Rating from "../rating/rating";
 import Pagination from "../pagination/pagination";
 import useStyles from "./styles/PropertyListContent.styles";
-import Button from "../../../components/button/Button";
-import ScheduleVisit from "../schedulevisit/ScheduleVisit";
 import PropertyCard from "components/card/Card";
 
 export default function PropertyListContent(props) {

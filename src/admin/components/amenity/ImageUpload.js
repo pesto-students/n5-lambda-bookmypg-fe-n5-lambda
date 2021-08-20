@@ -7,8 +7,12 @@ const ImageUpload = (props) => {
 
   const handleChange = async (e) => {
     const dirName = "amenity-logos/";
-    const response = await uploadImage(e.target.files[0], dirName);
-    props.setLogo(response);
+    if (e.target.files.length > 0) {
+      const response = await uploadImage(e.target.files[0], dirName);
+      props.setLogo(response);
+    } else {
+      props.setLogo("");
+    }
   };
 
   return (
@@ -18,7 +22,15 @@ const ImageUpload = (props) => {
         id="icon-button-file"
         type="file"
         onChange={handleChange}
+        onFocus={() => props.setIconError({ helperText: "", error: false })}
+        onBlur={() =>
+          props.setIconError({
+            helperText: "Logo is required",
+            error: props.logo.trim() === "",
+          })
+        }
       />
+      <br></br>
     </div>
   );
 };

@@ -39,6 +39,7 @@ export default function ButtonComponent(props) {
           color={props.color ? props.color : "secondary"}
           key={props.text}
           onClick={props.handleClick}
+          disabled={props.disabled ? true : false}
         >
           {props.text}
         </Button>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Dialog,
   DialogActions,
@@ -11,12 +11,12 @@ import { isEmpty, get } from "lodash";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useStyles from "./styles/AddProperty.styles";
-import Button from "../../../components/button/Button";
-import CloseButton from "../../../components/closebutton/CloseButton";
-import Typography from "../../../components/typography/Typography";
-import TextField from "../../../components/textfield/Textfield";
+import Button from "components/button/Button";
+import CloseButton from "components/closebutton/CloseButton";
+import Typography from "components/typography/Typography";
+import TextField from "components/textfield/Textfield";
 import FormImage from "components/formimage/FormImage";
-import Link from "../../../components/link/Link";
+import Link from "components/link/Link";
 import MultiSelect from "components/multiselect/Multiselect";
 import Select from "components/select/Select";
 import UploadPhotos from "components/multipleimageupload/MultipleImageUpload";
@@ -35,6 +35,32 @@ export default function AddProperty(props) {
   const [rent, setRent] = React.useState("");
   const [photos, setPhotos] = React.useState([]);
   const [gender, setGender] = React.useState("");
+
+  const [nameError, setNameError] = useState({
+    helperText: "",
+    error: false,
+  });
+  const [totalbedsError, setTotalBedsError] = useState({
+    helperText: "",
+    error: false,
+  });
+  const [addressError, setAddressError] = useState({
+    helperText: "",
+    error: false,
+  });
+  const [descriptionError, setDescriptionError] = useState({
+    helperText: "",
+    error: false,
+  });
+  const [rentError, setRentError] = useState({
+    helperText: "",
+    error: false,
+  });
+
+  const [locationError, setLocationError] = useState({
+    helperText: "",
+    error: false,
+  });
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -119,6 +145,38 @@ export default function AddProperty(props) {
     setTimeout(() => {
       props.setRefresh(!props.refresh);
     }, 500);
+  };
+
+  const validateNumbers = (type) => {
+    if (type === "Beds") {
+      if (totalbeds) {
+        if (isNaN(totalbeds) || totalbeds < 1 || totalbeds > 50) {
+          setTotalBedsError({
+            helperText: "Must be valid numeric between 1-50",
+            error: true,
+          });
+        }
+      } else {
+        setTotalBedsError({
+          helperText: "Must be valid numeric between 1-50",
+          error: true,
+        });
+      }
+    } else {
+      if (rent) {
+        if (isNaN(rent) || rent < 500 || rent > 100000) {
+          setRentError({
+            helperText: "Must be valid numeric",
+            error: true,
+          });
+        }
+      } else {
+        setRentError({
+          helperText: "Must be valid numeric",
+          error: true,
+        });
+      }
+    }
   };
 
   return (
@@ -241,25 +299,65 @@ export default function AddProperty(props) {
               <Grid container spacing={3} className={classes.containerStyle}>
                 <Grid item xs={12} sm={6}>
                   <TextField
-                    type="standardForm"
+                    type="standardFormValidation"
                     label="Name"
                     value={name}
+                    error={nameError.error}
+                    onFocus={() =>
+                      setNameError({ helperText: "", error: false })
+                    }
+                    onBlur={() =>
+                      setNameError({
+                        helperText: "Name is required",
+                        error: name.trim() === "",
+                      })
+                    }
                     onChange={(e) => setName(e.target.value)}
+                    helperText={nameError.error ? nameError.helperText : ""}
                   />
 
                   <TextField
-                    type="standardForm"
+                    type="standardFormValidation"
                     label="Address"
                     multiline={true}
                     rows={4}
                     value={address}
+                    error={addressError.error}
+                    onFocus={() =>
+                      setAddressError({ helperText: "", error: false })
+                    }
+                    onBlur={() =>
+                      setAddressError({
+                        helperText: "Address is required",
+                        error: name.trim() === "",
+                      })
+                    }
                     onChange={(e) => setAddress(e.target.value)}
+                    helperText={
+                      addressError.error ? addressError.helperText : ""
+                    }
                   />
+
                   <Select
                     name="Location"
                     value={location}
                     setValue={setLocation}
                     listitems={locationsList.map((l) => l.label)}
+                    type="SelectValidation"
+                    error={addressError}
+                    onFocus={() =>
+                      setLocationError({ helperText: "", error: false })
+                    }
+                    onBlur={() =>
+                      setLocationError({
+                        helperText: "Location is required",
+                        error: name.trim() === "",
+                      })
+                    }
+                    onChange={(e) => setLocation(e.target.value)}
+                    helperText={
+                      addressError.error ? addressError.helperText : ""
+                    }
                   />
                   <Select
                     name="Gender"
@@ -271,18 +369,39 @@ export default function AddProperty(props) {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField
-                    type="standardForm"
+                    type="standardFormValidation"
                     label="Total Beds"
                     value={totalbeds}
                     onChange={(e) => setTotalBeds(e.target.value)}
+                    error={totalbedsError.error}
+                    onFocus={() =>
+                      setTotalBedsError({ helperText: "", error: false })
+                    }
+                    onBlur={() => validateNumbers("Beds")}
+                    helperText={
+                      totalbedsError.error ? totalbedsError.helperText : ""
+                    }
                   />
                   <TextField
-                    type="standardForm"
+                    type="standardFormValidation"
                     label="Description"
                     multiline={true}
                     rows={4}
                     value={description}
+                    error={descriptionError.error}
+                    onFocus={() =>
+                      setDescriptionError({ helperText: "", error: false })
+                    }
+                    onBlur={() =>
+                      setDescriptionError({
+                        helperText: "Description is required",
+                        error: name.trim() === "",
+                      })
+                    }
                     onChange={(e) => setDescription(e.target.value)}
+                    helperText={
+                      descriptionError.error ? descriptionError.helperText : ""
+                    }
                   />
                   <MultiSelect
                     name="Amenities"
@@ -291,10 +410,16 @@ export default function AddProperty(props) {
                     setValue={setAmenitis}
                   />
                   <TextField
-                    type="standardForm"
+                    type="standardFormValidation"
                     label="Rent"
                     value={rent}
                     onChange={(e) => setRent(e.target.value)}
+                    error={rentError.error}
+                    onFocus={() =>
+                      setRentError({ helperText: "", error: false })
+                    }
+                    onBlur={() => validateNumbers("Rent")}
+                    helperText={rentError.error ? rentError.helperText : ""}
                   />
 
                   <TimePicker type="TimePicker" label="Visit Open Till:" />

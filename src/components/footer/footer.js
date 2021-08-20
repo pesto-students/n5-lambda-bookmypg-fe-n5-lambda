@@ -46,7 +46,7 @@ export default function Footer(props) {
 
   return (
     <div
-      className={props.type == "center" ? classes.nosection : classes.section}
+      className={props.type === "center" ? classes.nosection : classes.section}
     >
       <Container maxWidth="md" component="footer" className={classes.footer}>
         <Grid container spacing={4} justifyContent="space-evenly">
@@ -57,7 +57,7 @@ export default function Footer(props) {
               <ul>
                 {footer.description.map((item) => (
                   <li key={item}>
-                    {footer.title == "Quick links" ? (
+                    {footer.title === "Quick links" ? (
                       <Link href="#" variant="subtitle2" color="textSecondary">
                         {item}
                       </Link>

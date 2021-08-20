@@ -1,19 +1,8 @@
 import React from "react";
-import { get } from "lodash";
-import {
-  Button,
-  Card,
-  CardContent,
-  CardMedia,
-  Grid,
-  Typography,
-} from "@material-ui/core";
-import Cardrating from "../../components/rating/cardratings";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
+import { Grid, Typography } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
-import { S3_BUCKET_URL } from "../../../constant";
 import useStyles from "../similarproperties/similarproperties.styles";
 import PropertyCard from "components/card/Card";
 

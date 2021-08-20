@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Grid,
   Box,
@@ -32,6 +32,15 @@ export default function AddAmenity(props) {
   const handleClose = () => {
     setOpen(false);
   };
+  const [nameError, setNameError] = useState({
+    helperText: "",
+    error: false,
+  });
+
+  const [iconError, setIconError] = useState({
+    helperText: "",
+    error: false,
+  });
 
   const handleSubmit = () => {
     const params = { name, logo, isactive: true };
@@ -44,6 +53,15 @@ export default function AddAmenity(props) {
     setTimeout(() => {
       props.setRefresh(!props.refresh);
     }, 500);
+  };
+
+  const hasError = () => {
+    return (
+      name.trim() === "" ||
+      logo.trim() === "" ||
+      iconError.error ||
+      nameError.error
+    );
   };
 
   return (
@@ -83,18 +101,35 @@ export default function AddAmenity(props) {
           <Grid container spacing={3} className={classes.containerStyle}>
             <Grid item>
               <TextField
-                type="standardForm"
+                type="standardFormValidation"
                 label="Name"
                 icon="Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                error={nameError.error}
+                onFocus={() => setNameError({ helperText: "", error: false })}
+                onBlur={() =>
+                  setNameError({
+                    helperText: "Name is required",
+                    error: name.trim() === "",
+                  })
+                }
+                helperText={nameError.error ? nameError.helperText : ""}
               />
-              <ImageUpload setLogo={setLogo} />
+              <ImageUpload
+                setLogo={setLogo}
+                setIconError={setIconError}
+                logo={logo}
+              />
             </Grid>
           </Grid>
         </DialogContent>
         <DialogActions className={classes.button}>
-          <Button text="Submit" handleClick={handleSubmit} />
+          <Button
+            text="Submit"
+            handleClick={handleSubmit}
+            disabled={hasError()}
+          />
           <Button text="Cancel" handleClick={handleClose} />
         </DialogActions>
       </Dialog>

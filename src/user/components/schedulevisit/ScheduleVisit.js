@@ -8,8 +8,6 @@ import {
   FormControl,
   Box,
 } from "@material-ui/core";
-import { Phone, AccountBox } from "@material-ui/icons";
-import EmailIcon from "@material-ui/icons/Email";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useStyles from "./ScheduleVisit.styles";

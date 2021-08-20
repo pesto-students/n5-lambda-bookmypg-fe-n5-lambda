@@ -15,6 +15,7 @@ import {
   TrendingUp,
   AccountCircle,
   Payment,
+  Hotel,
 } from "@material-ui/icons";
 
 export default function TextFieldComponent(props) {
@@ -48,6 +49,8 @@ export default function TextFieldComponent(props) {
       return <AccountCircle className={classes.iconStyle} />;
     case "Payment":
       return <Payment className={classes.iconStyle} />;
+    case "Bed":
+      return <Hotel className={classes.iconStyle} />;
     default:
       return <div></div>;
   }
