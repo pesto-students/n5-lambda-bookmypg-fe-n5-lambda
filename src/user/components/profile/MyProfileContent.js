@@ -10,6 +10,7 @@ import ProfilePhoto from "../profilephoto/ProfilePhoto";
 import UserSelector from "../../helpers/UserSelector";
 import userActions from "../../../redux-store/actions/userActions";
 import TextField from "components/textfield/Textfield";
+import Typography from "components/typography/Typography";
 
 export function MyProfileContent(props) {
   const classes = useStyles();
@@ -39,6 +40,7 @@ export function MyProfileContent(props) {
             <ProfilePhoto imageName="DefaultPic.png" />
           </Grid>
           <Grid item xs={10} md={4} sm={10}>
+            <Typography type="ListTitle" text="Update Profile" />
             <Grid item>
               <TextField
                 type="standardForm"

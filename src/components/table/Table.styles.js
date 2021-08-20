@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     overflowX: "auto",
   },
   paperStyle: {
-    //  height: "100%",
+    maxHeight: "400px",
     overflowX: "auto",
     border: "none",
   },
