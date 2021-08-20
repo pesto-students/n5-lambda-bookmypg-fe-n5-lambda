@@ -56,11 +56,7 @@ export const getComponent = (emp, header, list_type, refresh, setRefresh, update
       }
     case "Amenities":
       if (header === "name") {
-        return (
-          <TableCell align="center">
-            <AddAmenity mode="Edit" name={emp[header]} />
-          </TableCell>
-        );
+        return <TableCell align="center">{emp[header]}</TableCell>;
       } else if (header === "isactive") {
         return (
           <TableCell align="center">
@@ -90,19 +86,7 @@ export const getComponent = (emp, header, list_type, refresh, setRefresh, update
       }
     case "Properties":
       if (header === "name") {
-        return (
-          <TableCell align="center">
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <AddProperty mode="Edit" name={emp[header]} />
-            </div>
-          </TableCell>
-        );
+        return <TableCell align="center">{emp[header]}</TableCell>;
       } else if (header === "isactive") {
         return (
           <TableCell align="center">
@@ -123,11 +107,7 @@ export const getComponent = (emp, header, list_type, refresh, setRefresh, update
       }
     case "Owners":
       if (header === "name") {
-        return (
-          <TableCell align="center">
-            <AddOwner mode="Edit" name={emp[header]} />
-          </TableCell>
-        );
+        return <TableCell align="center">{emp[header]}</TableCell>;
       } else if (header === "isactive") {
         return (
           <TableCell align="center">
