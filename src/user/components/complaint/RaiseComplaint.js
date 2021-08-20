@@ -25,6 +25,11 @@ export default function FormDialog(props) {
   const [phone, setPhone] = React.useState(props.user ? props.user.phone : "");
   const [details, setDetails] = React.useState("");
 
+  const [detailsError, setDetailsError] = React.useState({
+    helperText: "",
+    error: false,
+  });
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const params = {
@@ -138,12 +143,20 @@ export default function FormDialog(props) {
                 multiline
                 rows="4"
                 className={classes.textfieldStyle}
+                error={detailsError.error}
+                onFocus={() => setDetailsError({ helperText: "", error: false })}
+                onBlur={() =>
+                  setDetailsError({
+                    helperText: "Details are required",
+                    error: details.trim() === "",
+                  })
+                }
               />
             </Grid>
           </Grid>
         </DialogContent>
         <DialogActions className={classes.button}>
-          <Button text="Submit" handleClick={handleSubmit} />
+          <Button text="Submit" disabled={detailsError.error || details.trim() === ""} handleClick={handleSubmit} />
           <Button text="Cancel" handleClick={handleClose} />
         </DialogActions>
       </Dialog>
