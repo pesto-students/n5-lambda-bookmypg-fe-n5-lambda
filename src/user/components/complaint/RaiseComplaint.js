@@ -10,6 +10,7 @@ import {
   IconButton,
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
+import { get } from "lodash";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useStyles from "./RaiseComplaint.styles";
@@ -82,7 +83,7 @@ export default function FormDialog(props) {
                 disabled
                 id="standard-disabled"
                 label="Property Name"
-                defaultValue={props.property.name}
+                value={get(props,'property.name')?props.property.name:""}
                 fullwidth
                 className={classes.textfieldStyle}
                 InputProps={{
