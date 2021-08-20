@@ -57,6 +57,11 @@ export default function AddProperty(props) {
     error: false,
   });
 
+  const [locationError, setLocationError] = useState({
+    helperText: "",
+    error: false,
+  });
+
   const handleClickOpen = () => {
     setOpen(true);
   };
