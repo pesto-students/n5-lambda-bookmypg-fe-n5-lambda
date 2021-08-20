@@ -40,7 +40,7 @@ export function MyProfileContent(props) {
             <ProfilePhoto imageName="DefaultPic.png" />
           </Grid>
           <Grid item xs={10} md={4} sm={10}>
-            <Typography type="ListTitle" text="Update Profile" />
+            <Typography type="ListTitle" text="Basic Details" />
             <Grid item>
               <TextField
                 type="standardForm"
