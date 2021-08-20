@@ -57,12 +57,26 @@ export default function AddProperty(props) {
     error: false,
   });
 
+  const [locationError, setLocationError] = useState({
+    helperText: "",
+    error: false,
+  });
+
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
+    setName("");
+    setTotalBeds("");
+    setLocation("");
+    setAddress("");
+    setDescription("");
+    setRent("");
+    setGender("");
+    setAmenitis([]);
+    setPhotos([]);
   };
 
   const [openEdit, setOpenEdit] = React.useState(false);
@@ -140,6 +154,27 @@ export default function AddProperty(props) {
     setTimeout(() => {
       props.setRefresh(!props.refresh);
     }, 500);
+  };
+
+  const submitDisabled = () => {
+    let flag = false;
+    if (
+      nameError.error ||
+      totalbedsError.error ||
+      addressError.error ||
+      descriptionError.error ||
+      rentError.error ||
+      name.trim() === "" ||
+      address.trim() === "" ||
+      location.trim() === "" ||
+      totalbeds.trim() === "" ||
+      description.trim() === "" ||
+      gender.trim() === "" ||
+      isEmpty(amenities) ||
+      isEmpty(photos)
+    )
+      flag = true;
+    return flag;
   };
 
   const validateNumbers = (type) => {
@@ -334,11 +369,10 @@ export default function AddProperty(props) {
                   />
                   <Select
                     name="Location"
+                    listitems={locationsList.map((l) => l.label)}
                     value={location}
                     setValue={setLocation}
-                    listitems={locationsList.map((l) => l.label)}
                   />
-
                   <Select
                     name="Gender"
                     listitems={genderlist}
@@ -412,7 +446,11 @@ export default function AddProperty(props) {
               </Grid>
             </DialogContent>
             <DialogActions className={classes.button}>
-              <Button text="Submit" handleClick={handleSubmit} />
+              <Button
+                text="Submit"
+                disabled={submitDisabled()}
+                handleClick={handleSubmit}
+              />
               <Button text="Cancel" handleClick={handleClose} />
             </DialogActions>
           </Dialog>

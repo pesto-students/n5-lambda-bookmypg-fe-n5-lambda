@@ -40,7 +40,7 @@ export default function ButtonComponent(props) {
       );
     case "PropertyList":
       return (
-        <Card className={classes.propertylistRoot} style={{ height: "230px" }}>
+        <Card className={classes.propertylistRoot} style={{ height: "100%" }}>
           <Box>
             <CardMedia
               className={classes.cover}
@@ -49,7 +49,10 @@ export default function ButtonComponent(props) {
             />
           </Box>
           <div className={classes.details}>
-            <CardContent className={classes.content}>
+            <CardContent
+              className={classes.content}
+              style={{ paddingBottom: "8px" }}
+            >
               <Typography component="h5" variant="h5">
                 {props.property.name}
               </Typography>

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { get } from "lodash";
 import ResponsiveDrawer from "admin/components/responsivedrawer/ResponsiveDrawer";
-import { Grid, Typography, TextField } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import Tablecomponent from "components/table/Table";
 import Pagination from "components/tablepagination/tablepagination";
 import useStyles from "./styles/PaymentListContent.styles";
@@ -11,6 +11,8 @@ import PaymentsSelector from "../../helpers/PaymentsSelector";
 import paymentsActions from "../../../redux-store/actions/paymentsActions";
 import UserSelector from "../../helpers/UserSelector";
 import userActions from "../../../redux-store/actions/userActions";
+import Typography from "components/typography/Typography";
+import TextField from "components/textfield/Textfield";
 
 import { DATE, ORDER_BY } from "constant";
 
@@ -55,19 +57,15 @@ export function PaymentContent(props) {
       <ResponsiveDrawer headersData={props.responsivedrawerData}>
         <Grid container justify={"center"}>
           <Grid item xs={12} md={10} className={classes.gridStyle}>
-            <Typography
-              type="ListTitle"
-              text="Payment History"
-              align="center"
-            />
+            <Typography type="ListTitle" text="Payment List" align="center" />
             <Grid container justify={"space-between"}>
               <Grid item xs={12} md={4} className={classes.textfieldStyle}>
                 <TextField
                   type="standardForm"
                   label="Search by property name"
-                  icon="Search"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
+                  icon="Search"
                 />
               </Grid>
               <Grid item xs={12} md={6} className={classes.datepickerStyle}>

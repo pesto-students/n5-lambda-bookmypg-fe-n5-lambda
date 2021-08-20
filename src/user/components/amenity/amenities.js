@@ -15,7 +15,7 @@ export default function CenteredGrid(props) {
           props.amenities.length &&
           props.amenities.map((amenity) => (
             <Grid item xs={6}>
-              <Box display="flex" p={2} pt={0}>
+              <Box display="flex" p={1} pt={0}>
                 <FormImage
                   imageName={`${S3_BUCKET_URL}/${amenity.logo}`}
                   type="logo"
