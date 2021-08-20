@@ -57,6 +57,7 @@ export default function PropertyListContent(props) {
               getProperties={props.getProperties}
               pagenumber={props.pagenumber}
               setPagenumber={props.setPagenumber}
+              total_properties={props.total_properties}
             />
           </Grid>
         </Grid>
@@ -84,6 +85,7 @@ export default function PropertyListContent(props) {
           getProperties={props.getProperties}
           pagenumber={props.pagenumber}
           setPagenumber={props.setPagenumber}
+          total_properties={props.total_properties}
         />
       </React.Fragment>
     );

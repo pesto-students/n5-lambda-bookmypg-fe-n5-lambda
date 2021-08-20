@@ -18,6 +18,8 @@ export default function PaginationControlled(props) {
     props.setPagenumber(value);
   };
 
+  // const total_properties = Math.round((props.total_properties/10));
+
   return (
     <div className={classes.root}>
       <Pagination count={10} page={props.pagenumber} onChange={handleChange} />
