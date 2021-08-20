@@ -1,11 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  display: "flex",
-  "& > *": {
-    margin: theme.spacing(1),
-  },
-  largeStyle: {
+  avatarStyle: {
     width: "192px",
     height: "192px",
 
