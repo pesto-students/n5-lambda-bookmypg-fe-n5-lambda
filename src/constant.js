@@ -112,16 +112,16 @@ export const S3_BUCKET_IMAGES_BASEURL =
   "https://bookmypg-public.s3.us-east-2.amazonaws.com/images";
 
 export const COMPLAINT_LIST_HEADERS = {
-  name: "Tanant name",
+  name: "Tanant Name",
   email: "Email",
-  phone: "Contact no",
+  phone: "Contact No",
   property: "Property Name",
   createdAt: "Complaint Date",
   status: "Status",
 };
 
 export const PAYMENT_LIST_HEADERS = {
-  name: "Tanant name",
+  name: "Tanant Name",
   property: "Property Name",
   amount: "Amount",
   charge_id: "Charge ID",
@@ -129,7 +129,7 @@ export const PAYMENT_LIST_HEADERS = {
 };
 
 export const PROPERTY_LIST_HEADERS = {
-  name: "Property name",
+  name: "Property Name",
   isactive: "Status",
   location: "Location",
   address: "Address",
@@ -138,26 +138,26 @@ export const PROPERTY_LIST_HEADERS = {
 };
 
 export const OWNER_LIST_HEADERS = {
-  name: "Owner name",
+  name: "Owner Name",
   isactive: "Status",
   email: "Email",
-  phone: "Contact no",
+  phone: "Contact No",
   property: "Property Names",
   createdAt: "Registered Date",
 };
 
 export const AMENITY_LIST_HEADERS = {
-  name: "Amenity name",
+  name: "Amenity Name",
   isactive: "Status",
   logo: "Logo",
   createdAt: "Registered Date",
 };
 
 export const TENANT_LIST_HEADERS = {
-  name: "Tenant name",
+  name: "Tenant Name",
   isactive: "Status",
   email: "Email",
-  phone: "Contact no",
+  phone: "Contact No",
   property: "Property Name",
   onboardedAt: "Onboarding Date",
 };
@@ -179,7 +179,8 @@ export const ORDER_BY = {
   ASC: "asc",
 };
 
-export const SERVER_URL =
-  // "http://bookmypglambdabackend-env.eba-pxbzun3k.us-east-2.elasticbeanstalk.com";
-  "http://localhost:4000";
+export const LOCALE = "en-IN";
+export const TIMEZONE = { timeZone: "Asia/Kolkata" };
+
+export const SERVER_URL = "http://bookmypglambdabackend-env.eba-pxbzun3k.us-east-2.elasticbeanstalk.com";
 
