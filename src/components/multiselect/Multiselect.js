@@ -39,6 +39,7 @@ export default function MultipleSelect(props) {
           input={<Input />}
           renderValue={(selected) => selected.join(", ")}
           MenuProps={MenuProps}
+          align="left"
         >
           {props.listitems.map((name) => (
             <MenuItem key={name} value={name}>

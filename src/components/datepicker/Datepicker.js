@@ -62,6 +62,7 @@ export default function DatepickerComponent(props) {
               "aria-label": "change time",
             }}
             fullWidth
+            disabled
           />
         </MuiPickersUtilsProvider>
       );

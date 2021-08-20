@@ -379,7 +379,11 @@ export default function AddProperty(props) {
                     value={gender}
                     setValue={setGender}
                   />
-                  <TimePicker type="TimePicker" label="Visit Open From:" />
+                  <TimePicker
+                    type="TimePicker"
+                    label="Visit Open From:"
+                    selectedDate={new Date("2014-08-18T10:00:00")}
+                  />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField
@@ -436,7 +440,11 @@ export default function AddProperty(props) {
                     helperText={rentError.error ? rentError.helperText : ""}
                   />
 
-                  <TimePicker type="TimePicker" label="Visit Open Till:" />
+                  <TimePicker
+                    type="TimePicker"
+                    label="Visit Open Till:"
+                    selectedDate={new Date("2014-08-18T18:00:00")}
+                  />
                 </Grid>
 
                 <UploadPhotos
