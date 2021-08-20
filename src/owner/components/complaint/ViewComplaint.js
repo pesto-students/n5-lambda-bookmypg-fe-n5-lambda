@@ -73,7 +73,7 @@ export function ViewComplaint(props) {
     setTimeout(() => {
       props.setRefresh(!props.refresh);
     }, 500);
-  }
+  };
 
   const disableSubmit = () => {
     let flag = false;
@@ -127,14 +127,20 @@ export function ViewComplaint(props) {
               id="standard-disabled"
               value={complaint.email}
               icon="Email"
+              label="Email"
             />
 
-            <TextField value={complaint.phone} icon="Phone" />
+            <TextField
+              value={complaint.phone}
+              icon="Phone"
+              label="Contact no"
+            />
 
             <TextField
               id="standard-disabled"
               value={new Date(complaint.createdAt).toLocaleString(LOCALE,TIMEZONE)}
               icon="Event"
+              label="Complaint Date"
             />
 
             <TextField
@@ -143,6 +149,7 @@ export function ViewComplaint(props) {
               maxrows={2}
               multiline={true}
               icon="Description"
+              label="Description"
             />
 
             <TextField
@@ -211,7 +218,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getComplaints: (payload) =>
       dispatch(complainsActions.getComplaints(payload)),
-    updateComplaint: (payload) => dispatch(complainsActions.updateComplaint(payload)),
+    updateComplaint: (payload) =>
+      dispatch(complainsActions.updateComplaint(payload)),
     resetComplaints: () => dispatch(complainsActions.resetState()),
   };
 };
