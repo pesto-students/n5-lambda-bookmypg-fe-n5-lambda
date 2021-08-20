@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "1400px",
   },
   SimilarpropertiesStyle: {
-    paddingTop: theme.spacing(4),
+    marginTop: theme.spacing(4),
     //paddingBottom: theme.spacing(8),
     maxWidth: "1400px",
   },

@@ -22,11 +22,6 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: theme.spacing(2),
   },
-  contentStyle: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
-    paddingTop: "100px",
-  },
   buttonStyle: {
     textTransform: "none",
   },
@@ -51,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     padding: "10px",
     marginRight: "20px",
+    overflowY: "auto",
   },
   aboutusCard: {
     height: "100%",
@@ -107,7 +103,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cover: {
     width: 351,
-    height: 210,
+    height: "100%",
   },
   buttonStyle: {
     marginLeft: "10px",

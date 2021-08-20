@@ -187,4 +187,4 @@ export const LOCALE = "en-IN";
 export const TIMEZONE = { timeZone: "Asia/Kolkata" };
 
 export const SERVER_URL =
-  "http://lambdan5bookmypgbe-env.eba-v2uxrhmp.us-east-2.elasticbeanstalk.com/";
+  "http://lambdan5bookmypgbe-env.eba-v2uxrhmp.us-east-2.elasticbeanstalk.com";
