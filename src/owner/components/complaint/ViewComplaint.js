@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { get } from "lodash";
 import {
   Dialog,
   DialogActions,
@@ -37,12 +38,24 @@ export function ViewComplaint(props) {
   };
   const date = new Date();
 
-  const [remark, setRemark] = React.useState("");
-  const [status, setStatus] = React.useState("");
+  const [remark, setRemark] = React.useState(props.complaint?props.complaint.remark:"");
+  const [status, setStatus] = React.useState(props.complaint?props.complaint.status:"");
+
+  const [remarkError, setRemarkError] = React.useState({
+    helperText: "",
+    error: false,
+  });
+
+  const [statusError, setStatusError] = React.useState({
+    helperText: "",
+    error: false,
+  });
 
   date.setDate(date.getDate() + 7);
 
   const complaint = props.complaint;
+
+  console.log("props.complaint",props.complaint)
 
   const handleSubmit = () => {
     const params = {
@@ -55,13 +68,26 @@ export function ViewComplaint(props) {
     const user = props.user;
     props.updateComplaint({ params, user });
     setOpen(false);
-    toast("Property has been added successfully!");
+    toast("Complaint has been addressed successfully!");
     setRemark("");
     setStatus("");
     setTimeout(() => {
       props.setRefresh(!props.refresh);
     }, 500);
   };
+
+  const disableSubmit = () => {
+    let flag = false;
+    if (
+      statusError.error ||
+      status.trim() === "" ||
+      remarkError.error ||
+      // remark.trim() === "" ||
+      (get(props, "complaint.status") && props.complaint.status === "Resolved")
+    )
+      flag = true;
+    return flag;
+  }
 
   return (
     <div>
@@ -135,6 +161,16 @@ export function ViewComplaint(props) {
               multiline={true}
               icon="Comment"
               type="standardForm"
+              error={remarkError.error}
+              disabled={complaint.status === "Resolved"}
+              onFocus={() => setRemarkError({ helperText: "", error: false })}
+              onBlur={() =>
+                setRemarkError({
+                  helperText: "Remark is required",
+                  error: remark.trim() === "",
+                })
+              }
+              helperText={remarkError.error ? remarkError.helperText : ""}
             />
 
             <Select
@@ -142,11 +178,25 @@ export function ViewComplaint(props) {
               value={status}
               setValue={setStatus}
               listitems={listitems}
+              error={statusError.error}
+              disabled={complaint.status === "Resolved"}
+              onFocus={() => setStatusError({ helperText: "", error: false })}
+              onBlur={() =>
+                setStatusError({
+                  helperText: "Status is required",
+                  error: status.trim() === "",
+                })
+              }
+              helperText={statusError.error ? statusError.helperText : ""}
             />
           </Grid>
         </DialogContent>
         <DialogActions className={classes.button}>
-          <Button text="Submit" handleClick={handleSubmit} />
+          <Button
+            text="Submit"
+            disabled={disableSubmit()}
+            handleClick={handleSubmit}
+          />
           <Button text="Cancel" handleClick={handleClose} />
         </DialogActions>
       </Dialog>

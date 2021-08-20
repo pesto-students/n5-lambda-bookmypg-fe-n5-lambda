@@ -23,6 +23,7 @@ export default function SimpleSelect(props) {
               id="simple-select"
               value={props.value}
               onChange={props.onChange}
+              disabled={props.disabled}
             >
               {props.listitems &&
                 props.listitems.length &&
@@ -45,6 +46,7 @@ export default function SimpleSelect(props) {
               id="simple-select"
               value={props.value}
               onChange={handleChange}
+              disabled={props.disabled}
             >
               {props.listitems.map((name) => (
                 <MenuItem key={name} value={name}>
