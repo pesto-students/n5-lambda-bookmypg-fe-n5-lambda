@@ -8,9 +8,6 @@ import {
 } from "constant";
 import { TableCell } from "@material-ui/core";
 import Viewcomplaint from "owner/components/complaint/ViewComplaint";
-import AddProperty from "owner/components/property/AddProperty";
-import AddAmenity from "admin/components/amenity/AddAmenity";
-import AddOwner from "admin/components/owner/AddOwner";
 import SwitchComponent from "components/switch/Switch";
 import FormImage from "components/formimage/FormImage";
 import OwnerPropertyList from "admin/components/owner/OwnerPropertyList";
