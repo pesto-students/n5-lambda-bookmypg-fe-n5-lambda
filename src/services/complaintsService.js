@@ -3,7 +3,7 @@ import { SERVER_URL } from "constant";
 
 const ComplaintsService = {
   getComplaints: async (payload) => {
-    const URL = `${SERVER_URL}/api/complaints/owner/`;
+    const URL = `${SERVER_URL}/api/complaints/owner`;
     const response = await httpInterceptor({
       url: `${URL}${payload && payload.extraParams ? payload.extraParams : ""}`,
       method: "GET",
