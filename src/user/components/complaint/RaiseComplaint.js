@@ -144,19 +144,26 @@ export default function FormDialog(props) {
                 rows="4"
                 className={classes.textfieldStyle}
                 error={detailsError.error}
-                onFocus={() => setDetailsError({ helperText: "", error: false })}
+                onFocus={() =>
+                  setDetailsError({ helperText: "", error: false })
+                }
                 onBlur={() =>
                   setDetailsError({
                     helperText: "Details are required",
                     error: details.trim() === "",
                   })
                 }
+                helperText={detailsError.error ? detailsError.helperText : ""}
               />
             </Grid>
           </Grid>
         </DialogContent>
         <DialogActions className={classes.button}>
-          <Button text="Submit" disabled={detailsError.error || details.trim() === ""} handleClick={handleSubmit} />
+          <Button
+            text="Submit"
+            disabled={detailsError.error || details.trim() === ""}
+            handleClick={handleSubmit}
+          />
           <Button text="Cancel" handleClick={handleClose} />
         </DialogActions>
       </Dialog>

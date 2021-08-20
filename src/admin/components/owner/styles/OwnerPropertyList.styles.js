@@ -58,10 +58,10 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(8),
   },
   card: {
-    height: "90%",
+    height: "100%",
     display: "flex",
     flexDirection: "column",
-    padding: "10px",
+    margin: "10px",
   },
   cardMedia: {
     paddingTop: "56.25%", // 16:9
