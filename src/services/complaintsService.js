@@ -37,5 +37,24 @@ const ComplaintsService = {
     }
     throw new Error(response);
   },
+
+  updateComplaint: async (payload) => {
+    const URL = `${SERVER_URL}/api/complaints/${payload.params._id}`;
+    const response = await httpInterceptor({
+      url: URL,
+      method: "PUT",
+      body: JSON.stringify(payload.params),
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": payload.user.token,
+      },
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    }
+    throw new Error(response);
+  },
 };
 export default ComplaintsService;

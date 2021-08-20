@@ -7,6 +7,9 @@ import {
   RAISE_COMPLAINT_REQUEST_MADE,
   RAISE_COMPLAINT_REQUEST_RESOLVED,
   RAISE_COMPLAINT_REQUEST_FAILED,
+  UPDATE_COMPLAINT_REQUEST_MADE,
+  UPDATE_COMPLAINT_REQUEST_RESOLVED,
+  UPDATE_COMPLAINT_REQUEST_FAILED,
 } from "../../constant";
 
 export default {
@@ -22,4 +25,10 @@ export default {
     action(RAISE_COMPLAINT_REQUEST_RESOLVED, payload),
   raiseComplaintFailed: (payload) =>
     action(RAISE_COMPLAINT_REQUEST_FAILED, payload),
+
+  updateComplaint: (payload) => action(UPDATE_COMPLAINT_REQUEST_MADE, payload),
+  complaintUpdated: (payload) =>
+    action(UPDATE_COMPLAINT_REQUEST_RESOLVED, payload),
+  updateComplaintFailed: (payload) =>
+    action(UPDATE_COMPLAINT_REQUEST_FAILED, payload),
 };

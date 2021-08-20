@@ -34,6 +34,7 @@ export const getHeadersData = (list_type) => {
 };
 
 export const getComponent = (emp, header, list_type, refresh, setRefresh, updateDocument, user) => {
+  const complaint = {...emp};
   switch (list_type) {
     case "Complaints":
       if (header === "name") {
@@ -45,7 +46,11 @@ export const getComponent = (emp, header, list_type, refresh, setRefresh, update
       } else if (header === "status") {
         return (
           <TableCell align="center">
-            <Viewcomplaint value={emp[header]} />
+            <Viewcomplaint
+              complaint={complaint}
+              refresh={refresh}
+              setRefresh={setRefresh}
+            />
           </TableCell>
         );
       } else {

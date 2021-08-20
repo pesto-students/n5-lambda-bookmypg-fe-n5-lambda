@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import {
   Dialog,
   DialogActions,
@@ -7,6 +8,8 @@ import {
   Box,
   Grid,
 } from "@material-ui/core";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import useStyles from "./styles/ViewComplaint.styles";
 import CloseButton from "components/closebutton/CloseButton";
 import Button from "components/button/Button";
@@ -15,10 +18,13 @@ import Typography from "components/typography/Typography";
 import TextField from "components/textfield/Textfield";
 import FormImage from "components/formimage/FormImage";
 import Select from "components/select/Select";
+import ComplaintsSelector from "../ComplaintsSelector";
+import complainsActions from "../../../redux-store/actions/complaintsActions";
+import UserSelector from "../../../user/helpers/UserSelector";
 
 const listitems = ["Pending", "Resolved"];
 
-export default function FormDialog(props) {
+export function ViewComplaint(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -31,15 +37,35 @@ export default function FormDialog(props) {
   };
   const date = new Date();
 
+  const [remark, setRemark] = React.useState("");
   const [status, setStatus] = React.useState("");
 
-  const handleChange = (event) => {
-    setStatus(event.target.value);
-  };
   date.setDate(date.getDate() + 7);
+
+  const complaint = props.complaint;
+
+  const handleSubmit = () => {
+    const params = {
+      _id: complaint._id,
+      raisedby: complaint.raisedby,
+      property: complaint.property_id,
+      status,
+      remark,
+    };
+    const user = props.user;
+    props.updateComplaint({ params, user });
+    setOpen(false);
+    toast("Property has been added successfully!");
+    setRemark("");
+    setStatus("");
+    setTimeout(() => {
+      props.setRefresh(!props.refresh);
+    }, 500);
+  }
+
   return (
     <div>
-      <Link text={props.value} handelClick={handleClickOpen} href="#" />
+      <Link text={complaint.status} handelClick={handleClickOpen} href="#" />
       <Dialog
         open={open}
         onClose={handleClose}
@@ -66,28 +92,29 @@ export default function FormDialog(props) {
         <DialogContent className={classes.formAlign}>
           <Grid spacing={3} className={classes.containerStyle}>
             <TextField
+              id="standard-disabled"
               label="Complaint Raisedby"
-              defaultValue="Monali"
+              value={complaint.name}
               icon="Name"
             />
 
             <TextField
-              label="Email"
-              defaultValue="abc@gmail.com"
+              id="standard-disabled"
+              value={complaint.email}
               icon="Email"
             />
 
-            <TextField label="Phone" defaultValue="12345" icon="Phone" />
+            <TextField value={complaint.phone} icon="Phone" />
 
             <TextField
-              label="Complaint Date"
-              defaultValue="12/07/2021"
+              id="standard-disabled"
+              value={complaint.createdAt}
               icon="Event"
             />
 
             <TextField
-              label="Description"
-              value="Air conditioner is not working."
+              id="standard-disabled"
+              value={complaint.description}
               maxrows={2}
               multiline={true}
               icon="Description"
@@ -95,7 +122,8 @@ export default function FormDialog(props) {
 
             <TextField
               label="Remarks"
-              defaultValue="-"
+              value={remark}
+              onChange={(e) => setRemark(e.target.value)}
               maxrows={4}
               multiline={true}
               icon="Comment"
@@ -111,10 +139,32 @@ export default function FormDialog(props) {
           </Grid>
         </DialogContent>
         <DialogActions className={classes.button}>
-          <Button text="Submit" />
-          <Button text="Cancel" />
+          <Button text="Submit" handleClick={handleSubmit} />
+          <Button text="Cancel" handleClick={handleClose} />
         </DialogActions>
       </Dialog>
+      <ToastContainer />
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  const complaintsSelector = ComplaintsSelector(state.complaints);
+  const userSelector = UserSelector(state.user);
+
+  return {
+    user: userSelector.getUserData().data,
+    complaints: complaintsSelector.getComplaintsData().data,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getComplaints: (payload) =>
+      dispatch(complainsActions.getComplaints(payload)),
+    updateComplaint: (payload) => dispatch(complainsActions.updateComplaint(payload)),
+    resetComplaints: () => dispatch(complainsActions.resetState()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ViewComplaint);

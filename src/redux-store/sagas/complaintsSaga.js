@@ -28,3 +28,16 @@ export function* raiseComplaintSaga(complaintsApi, action) {
     );
   }
 }
+
+export function* updateComplaintSaga(complaintsApi, action) {
+  try {
+    const response = yield call(complaintsApi.updateComplaint, action.payload);
+    yield put(complaintsActions.complaintUpdated(response));
+  } catch (e) {
+    yield put(
+      complaintsActions.updateComplaintFailed({
+        message: e.message,
+      })
+    );
+  }
+}
