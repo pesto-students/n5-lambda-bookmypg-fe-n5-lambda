@@ -9,10 +9,6 @@ const headersData = [
     label: "About us",
     href: "/about",
   },
-  {
-    label: "Contact us",
-    href: "/contact",
-  },
 ];
 
 const responsiveHeaderData = [
@@ -31,10 +27,6 @@ const responsiveHeaderData = [
   {
     label: "About us",
     href: "/about",
-  },
-  {
-    label: "Contact us",
-    href: "/contact",
   },
 ];
 

@@ -161,7 +161,7 @@ export default function AddProperty(props) {
       if (rent) {
         if (isNaN(rent) || rent < 500 || rent > 100000) {
           setRentError({
-            helperText: "Must be valid numeric",
+            helperText: "Must be valid numeric between 500-100000",
             error: true,
           });
         }
@@ -324,7 +324,7 @@ export default function AddProperty(props) {
                     onBlur={() =>
                       setAddressError({
                         helperText: "Address is required",
-                        error: name.trim() === "",
+                        error: address.trim() === "",
                       })
                     }
                     onChange={(e) => setAddress(e.target.value)}
@@ -375,7 +375,7 @@ export default function AddProperty(props) {
                     onBlur={() =>
                       setDescriptionError({
                         helperText: "Description is required",
-                        error: name.trim() === "",
+                        error: description.trim() === "",
                       })
                     }
                     onChange={(e) => setDescription(e.target.value)}
