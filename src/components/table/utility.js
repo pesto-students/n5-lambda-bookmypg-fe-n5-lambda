@@ -149,6 +149,9 @@ export const getComponent = (emp, header, list_type, refresh, setRefresh, update
         return <TableCell align="center">{emp[header]}</TableCell>;
       }
     case "Payments":
+      if (header === "createdAt") {
+        return <TableCell align="center">{new Date(emp[header]).toLocaleString(LOCALE,TIMEZONE)}</TableCell>;
+      }
       return <TableCell align="center">{emp[header]}</TableCell>;
     default:
       if (header === "name") {
