@@ -3,7 +3,7 @@ import { SERVER_URL } from "constant";
 
 const TenantsService = {
   getTenants: async (payload) => {
-    const URL = `${SERVER_URL}/api/users/`;
+    const URL = `${SERVER_URL}/api/users`;
     const response = await httpInterceptor({
       url: `${URL}${payload && payload.extraParams ? payload.extraParams : ""}`,
       method: "GET",
@@ -17,7 +17,7 @@ const TenantsService = {
   },
 
   getTenantsByOwner: async (payload) => {
-    const URL = `${SERVER_URL}/api/users/owner/`;
+    const URL = `${SERVER_URL}/api/users/owner`;
     const response = await httpInterceptor({
       url: `${URL}${payload && payload.extraParams ? payload.extraParams : ""}`,
       method: "GET",
