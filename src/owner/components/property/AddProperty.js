@@ -57,11 +57,6 @@ export default function AddProperty(props) {
     error: false,
   });
 
-  const [locationError, setLocationError] = useState({
-    helperText: "",
-    error: false,
-  });
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -337,28 +332,13 @@ export default function AddProperty(props) {
                       addressError.error ? addressError.helperText : ""
                     }
                   />
-
                   <Select
                     name="Location"
                     value={location}
                     setValue={setLocation}
                     listitems={locationsList.map((l) => l.label)}
-                    type="SelectValidation"
-                    error={addressError}
-                    onFocus={() =>
-                      setLocationError({ helperText: "", error: false })
-                    }
-                    onBlur={() =>
-                      setLocationError({
-                        helperText: "Location is required",
-                        error: name.trim() === "",
-                      })
-                    }
-                    onChange={(e) => setLocation(e.target.value)}
-                    helperText={
-                      addressError.error ? addressError.helperText : ""
-                    }
                   />
+
                   <Select
                     name="Gender"
                     listitems={genderlist}

@@ -92,18 +92,18 @@ export default function ScheduleVisit(props) {
   };
 
   const validateEmail = () => {
-    // regular rexpression to validate the email for gmail address
-    const regex = new RegExp("^[a-z0-9](.?[a-z0-9]){5,}@g(oogle)?mail.com$");
+    // regular rexpression to validate the email address
+    const regex = new RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$");
     if (email) {
       if (!regex.test(email.trim())) {
         setEmailError({
-          helperText: "Invalid gmail address",
+          helperText: "Invalid email address",
           error: true,
         });
       }
     } else {
       setEmailError({
-        helperText: "Invalid gmail address",
+        helperText: "Invalid email address",
         error: true,
       });
     }

@@ -15,10 +15,6 @@ const headersData = [
     label: "About us",
     href: "/about",
   },
-  {
-    label: "Contact us",
-    href: "/contact",
-  },
 ];
 
 const locationItems = [

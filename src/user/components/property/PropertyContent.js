@@ -191,12 +191,26 @@ export default function PropertyContent(props) {
                 {props.user && props.user._id ? (
                   <>
                     <Grid item xl={12} sm={6} md={4}>
+                      <ScheduleVisit
+                        owner={property.propertydata.owner.email}
+                        property_name={property.propertydata.name}
+                        property_id={property.propertydata._id}
+                      />
+                    </Grid>
+                    <Grid item xl={12} sm={6} md={4}>
                       <ButtonComponent
                         text="Book Property"
                         handleClick={handleBookProperty}
                       />
                     </Grid>
-                    <Grid item xl={12} sm={6} md={4}>
+                  </>
+                ) : (
+                  <>
+                    <Grid item xl={12} sm={6} md={8}>
+                      <Typography
+                        type="BodyText"
+                        text="**Please login to book the property"
+                      />
                       <ScheduleVisit
                         owner={property.propertydata.owner.email}
                         property_name={property.propertydata.name}
@@ -204,11 +218,6 @@ export default function PropertyContent(props) {
                       />
                     </Grid>
                   </>
-                ) : (
-                  <Typography
-                    type="BodyText"
-                    text="**Please login to book property or schedule visit"
-                  />
                 )}
                 <Grid item xl={12} sm={6} md={4}>
                   <div>
