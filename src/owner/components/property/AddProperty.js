@@ -159,7 +159,6 @@ export default function AddProperty(props) {
       addressError.error ||
       descriptionError.error ||
       rentError.error ||
-      locationError.error ||
       name.trim() === "" ||
       address.trim() === "" ||
       location.trim() === "" ||
@@ -365,26 +364,10 @@ export default function AddProperty(props) {
                   />
                   <Select
                     name="Location"
+                    listitems={locationsList.map((l) => l.label)}
                     value={location}
                     setValue={setLocation}
-                    listitems={locationsList.map((l) => l.label)}
-                    type="SelectValidation"
-                    error={locationError.error}
-                    onFocus={() =>
-                      setLocationError({ helperText: "", error: false })
-                    }
-                    onBlur={() =>
-                      setLocationError({
-                        helperText: "Location is required",
-                        error: location.trim() === "",
-                      })
-                    }
-                    onChange={(e) => setLocation(e.target.value)}
-                    helperText={
-                      locationError.error ? locationError.helperText : ""
-                    }
                   />
-
                   <Select
                     name="Gender"
                     listitems={genderlist}
@@ -458,7 +441,11 @@ export default function AddProperty(props) {
               </Grid>
             </DialogContent>
             <DialogActions className={classes.button}>
-              <Button text="Submit" disabled={submitDisabled()} handleClick={handleSubmit} />
+              <Button
+                text="Submit"
+                disabled={submitDisabled()}
+                handleClick={handleSubmit}
+              />
               <Button text="Cancel" handleClick={handleClose} />
             </DialogActions>
           </Dialog>
