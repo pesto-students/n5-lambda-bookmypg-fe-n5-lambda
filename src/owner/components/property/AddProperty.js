@@ -68,6 +68,15 @@ export default function AddProperty(props) {
 
   const handleClose = () => {
     setOpen(false);
+    setName("");
+    setTotalBeds("");
+    setLocation("");
+    setAddress("");
+    setDescription("");
+    setRent("");
+    setGender("");
+    setAmenitis([]);
+    setPhotos([]);
   };
 
   const [openEdit, setOpenEdit] = React.useState(false);
@@ -145,6 +154,28 @@ export default function AddProperty(props) {
     setTimeout(() => {
       props.setRefresh(!props.refresh);
     }, 500);
+  };
+
+  const submitDisabled = () => {
+    let flag = false;
+    if (
+      nameError.error ||
+      totalbedsError.error ||
+      addressError.error ||
+      descriptionError.error ||
+      rentError.error ||
+      locationError.error ||
+      name.trim() === "" ||
+      address.trim() === "" ||
+      location.trim() === "" ||
+      totalbeds.trim() === "" ||
+      description.trim() === "" ||
+      gender.trim() === "" ||
+      isEmpty(amenities) ||
+      isEmpty(photos)
+    )
+      flag = true;
+    return flag;
   };
 
   const validateNumbers = (type) => {
@@ -329,7 +360,7 @@ export default function AddProperty(props) {
                     onBlur={() =>
                       setAddressError({
                         helperText: "Address is required",
-                        error: name.trim() === "",
+                        error: address.trim() === "",
                       })
                     }
                     onChange={(e) => setAddress(e.target.value)}
@@ -344,19 +375,19 @@ export default function AddProperty(props) {
                     setValue={setLocation}
                     listitems={locationsList.map((l) => l.label)}
                     type="SelectValidation"
-                    error={addressError}
+                    error={locationError.error}
                     onFocus={() =>
                       setLocationError({ helperText: "", error: false })
                     }
                     onBlur={() =>
                       setLocationError({
                         helperText: "Location is required",
-                        error: name.trim() === "",
+                        error: location.trim() === "",
                       })
                     }
                     onChange={(e) => setLocation(e.target.value)}
                     helperText={
-                      addressError.error ? addressError.helperText : ""
+                      locationError.error ? locationError.helperText : ""
                     }
                   />
                   <Select
@@ -395,7 +426,7 @@ export default function AddProperty(props) {
                     onBlur={() =>
                       setDescriptionError({
                         helperText: "Description is required",
-                        error: name.trim() === "",
+                        error: description.trim() === "",
                       })
                     }
                     onChange={(e) => setDescription(e.target.value)}
@@ -432,7 +463,7 @@ export default function AddProperty(props) {
               </Grid>
             </DialogContent>
             <DialogActions className={classes.button}>
-              <Button text="Submit" handleClick={handleSubmit} />
+              <Button text="Submit" disabled={submitDisabled()} handleClick={handleSubmit} />
               <Button text="Cancel" handleClick={handleClose} />
             </DialogActions>
           </Dialog>
