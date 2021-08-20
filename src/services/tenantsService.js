@@ -17,7 +17,7 @@ const TenantsService = {
   },
 
   getTenantsByOwner: async (payload) => {
-    const URL = `${SERVER_URL}/api/users/owner`;
+    const URL = `${SERVER_URL}/api/users/owner/`;
     const response = await httpInterceptor({
       url: `${URL}${payload && payload.extraParams ? payload.extraParams : ""}`,
       method: "GET",

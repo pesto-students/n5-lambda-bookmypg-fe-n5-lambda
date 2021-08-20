@@ -3,7 +3,7 @@ import { SERVER_URL } from "constant";
 
 const PaymentsService = {
   getPayments: async (payload) => {
-    const URL = `${SERVER_URL}/api/payments/tenant`;
+    const URL = `${SERVER_URL}/api/payments/tenant/`;
     const response = await httpInterceptor({
       url: `${URL}${payload && payload.extraParams ? payload.extraParams : ""}`,
       method: "GET",
