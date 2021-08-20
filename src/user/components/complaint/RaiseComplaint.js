@@ -83,7 +83,7 @@ export default function FormDialog(props) {
                 disabled
                 id="standard-disabled"
                 label="Property Name"
-                value={get(props,'property.name')?props.property.name:""}
+                value={get(props, "property.name") ? props.property.name : ""}
                 fullwidth
                 className={classes.textfieldStyle}
                 InputProps={{
@@ -96,22 +96,36 @@ export default function FormDialog(props) {
             </Grid>
             <Grid item>
               <TextField
-                id="standard-basic"
+                disabled
+                id="standard-disabled"
                 label="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 fullwidth
                 className={classes.textfieldStyle}
+                InputProps={{
+                  classes: {
+                    root: classes.root,
+                    disabled: classes.disabled,
+                  },
+                }}
               />
             </Grid>
             <Grid item>
               <TextField
-                id="standard-basic"
+                disabled
+                id="standard-disabled"
                 label="Contact no"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 fullwidth
                 className={classes.textfieldStyle}
+                InputProps={{
+                  classes: {
+                    root: classes.root,
+                    disabled: classes.disabled,
+                  },
+                }}
               />
             </Grid>
             <Grid item>
