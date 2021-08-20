@@ -61,7 +61,7 @@ export default function PropertyContent(props) {
       <Container className={classes.cardGrid} maxWidth="md">
         {property && (
           <Grid container spacing={4}>
-            <Grid item xs={12} sm={5}>
+            <Grid item xs={12} sm={5} md={5}>
               <div className={classes.imgboxStyle}>
                 <img
                   src={MyCollection[activeStep].imgPath}
@@ -119,7 +119,7 @@ export default function PropertyContent(props) {
                 />
               </div>
             </Grid>
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={4} md={4}>
               <div>
                 <Typography
                   type="Caption"
@@ -188,6 +188,28 @@ export default function PropertyContent(props) {
               </Grid>
 
               <Grid container alignItems="center" spacing={2}>
+                {props.user && props.user._id ? (
+                  <>
+                    <Grid item xl={12} sm={6} md={4}>
+                      <ButtonComponent
+                        text="Book Property"
+                        handleClick={handleBookProperty}
+                      />
+                    </Grid>
+                    <Grid item xl={12} sm={6} md={4}>
+                      <ScheduleVisit
+                        owner={property.propertydata.owner.email}
+                        property_name={property.propertydata.name}
+                        property_id={property.propertydata._id}
+                      />
+                    </Grid>
+                  </>
+                ) : (
+                  <Typography
+                    type="BodyText"
+                    text="**Please login to book property or schedule visit"
+                  />
+                )}
                 <Grid item xl={12} sm={6} md={4}>
                   <div>
                     <Box
@@ -220,28 +242,6 @@ export default function PropertyContent(props) {
                     </Box>
                   </div>
                 </Grid>
-                {props.user && props.user._id ? (
-                  <>
-                    <Grid item xl={12} sm={6} md={4}>
-                      <ButtonComponent
-                        text="Book Property"
-                        handleClick={handleBookProperty}
-                      />
-                    </Grid>
-                    <Grid item xl={12} sm={6} md={4}>
-                      <ScheduleVisit
-                        owner={property.propertydata.owner.email}
-                        property_name={property.propertydata.name}
-                        property_id={property.propertydata._id}
-                      />
-                    </Grid>
-                  </>
-                ) : (
-                  <Typography
-                    type="BodyText"
-                    text="**Please login to book property or schedule visit"
-                  />
-                )}
               </Grid>
             </Grid>
             {bookProperty && (
