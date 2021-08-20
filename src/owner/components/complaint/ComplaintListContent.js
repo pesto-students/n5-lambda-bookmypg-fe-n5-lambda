@@ -48,6 +48,7 @@ export function ComplaintsContent(props) {
         description: complaint.description,
         createdAt: complaint.createdAt,
         status: complaint.status,
+        remark: complaint.remark
       });
     });
   }
