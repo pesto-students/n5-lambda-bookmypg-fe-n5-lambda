@@ -63,6 +63,15 @@ export default function AddProperty(props) {
 
   const handleClose = () => {
     setOpen(false);
+    setName("");
+    setTotalBeds("");
+    setLocation("");
+    setAddress("");
+    setDescription("");
+    setRent("");
+    setGender("");
+    setAmenitis([]);
+    setPhotos([]);
   };
 
   const [openEdit, setOpenEdit] = React.useState(false);
@@ -140,6 +149,28 @@ export default function AddProperty(props) {
     setTimeout(() => {
       props.setRefresh(!props.refresh);
     }, 500);
+  };
+
+  const submitDisabled = () => {
+    let flag = false;
+    if (
+      nameError.error ||
+      totalbedsError.error ||
+      addressError.error ||
+      descriptionError.error ||
+      rentError.error ||
+      locationError.error ||
+      name.trim() === "" ||
+      address.trim() === "" ||
+      location.trim() === "" ||
+      totalbeds.trim() === "" ||
+      description.trim() === "" ||
+      gender.trim() === "" ||
+      isEmpty(amenities) ||
+      isEmpty(photos)
+    )
+      flag = true;
+    return flag;
   };
 
   const validateNumbers = (type) => {
@@ -337,6 +368,21 @@ export default function AddProperty(props) {
                     value={location}
                     setValue={setLocation}
                     listitems={locationsList.map((l) => l.label)}
+                    type="SelectValidation"
+                    error={locationError.error}
+                    onFocus={() =>
+                      setLocationError({ helperText: "", error: false })
+                    }
+                    onBlur={() =>
+                      setLocationError({
+                        helperText: "Location is required",
+                        error: location.trim() === "",
+                      })
+                    }
+                    onChange={(e) => setLocation(e.target.value)}
+                    helperText={
+                      locationError.error ? locationError.helperText : ""
+                    }
                   />
 
                   <Select
@@ -412,7 +458,7 @@ export default function AddProperty(props) {
               </Grid>
             </DialogContent>
             <DialogActions className={classes.button}>
-              <Button text="Submit" handleClick={handleSubmit} />
+              <Button text="Submit" disabled={submitDisabled()} handleClick={handleSubmit} />
               <Button text="Cancel" handleClick={handleClose} />
             </DialogActions>
           </Dialog>
