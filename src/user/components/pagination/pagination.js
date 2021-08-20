@@ -23,7 +23,7 @@ export default function PaginationControlled(props) {
     <div className={classes.root}>
       <Pagination
         count={page_count || 0}
-        page={props.pagenumber}
+        page={props.pagenumber + 1}
         onChange={handleChange}
       />
     </div>
