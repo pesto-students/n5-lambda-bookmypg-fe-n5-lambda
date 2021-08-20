@@ -14,11 +14,12 @@ export default function CenteredGrid(props) {
   };
 
   return (
-    <div>
+    <>
       <Avatar
         src={imageUrl}
         onClick={handleClick}
-        className={classes.largeStyle}
+        style={{ height: "192px", width: "192px" }}
+        className={classes.avatarStyle}
       />
       <input
         ref={imageRef}
@@ -26,6 +27,6 @@ export default function CenteredGrid(props) {
         style={{ display: "none" }}
         accept="image/*"
       />
-    </div>
+    </>
   );
 }

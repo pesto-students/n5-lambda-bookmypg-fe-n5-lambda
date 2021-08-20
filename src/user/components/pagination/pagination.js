@@ -22,7 +22,7 @@ export default function PaginationControlled(props) {
   return (
     <div className={classes.root}>
       <Pagination
-        count={page_count}
+        count={page_count || 0}
         page={props.pagenumber}
         onChange={handleChange}
       />

@@ -58,10 +58,14 @@ export default function ReviewProperty(props) {
 
   const submitDisabled = () => {
     let flag = false;
-    if (descriptionError.error || description.trim() === "") 
+    if (
+      descriptionError.error ||
+      description.trim() === "" ||
+      rating.trim() === ""
+    )
       flag = true;
     return flag;
-  }
+  };
 
   const date = new Date();
   date.setDate(date.getDate() + 7);
@@ -120,18 +124,27 @@ export default function ReviewProperty(props) {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               error={descriptionError.error}
-              onFocus={() => setDescriptionError({ helperText: "", error: false })}
+              onFocus={() =>
+                setDescriptionError({ helperText: "", error: false })
+              }
               onBlur={() =>
                 setDescriptionError({
                   helperText: "Description is required",
                   error: description.trim() === "",
                 })
               }
+              helperText={
+                descriptionError.error ? descriptionError.helperText : ""
+              }
             />
           </Grid>
         </DialogContent>
         <DialogActions className={classes.button}>
-          <Button text="Submit" disabled={submitDisabled} handleClick={handleSubmit} />
+          <Button
+            text="Submit"
+            disabled={submitDisabled()}
+            handleClick={handleSubmit}
+          />
           <Button text="Cancel" handleClick={handleClose} />
         </DialogActions>
       </Dialog>
