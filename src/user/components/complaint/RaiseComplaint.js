@@ -25,6 +25,11 @@ export default function FormDialog(props) {
   const [phone, setPhone] = React.useState(props.user ? props.user.phone : "");
   const [details, setDetails] = React.useState("");
 
+  const [detailsError, setDetailsError] = React.useState({
+    helperText: "",
+    error: false,
+  });
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const params = {
@@ -83,7 +88,41 @@ export default function FormDialog(props) {
                 disabled
                 id="standard-disabled"
                 label="Property Name"
-                value={get(props,'property.name')?props.property.name:""}
+                value={get(props, "property.name") ? props.property.name : ""}
+                fullwidth
+                className={classes.textfieldStyle}
+                InputProps={{
+                  classes: {
+                    root: classes.root,
+                    disabled: classes.disabled,
+                  },
+                }}
+              />
+            </Grid>
+            <Grid item>
+              <TextField
+                disabled
+                id="standard-disabled"
+                label="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                fullwidth
+                className={classes.textfieldStyle}
+                InputProps={{
+                  classes: {
+                    root: classes.root,
+                    disabled: classes.disabled,
+                  },
+                }}
+              />
+            </Grid>
+            <Grid item>
+              <TextField
+                disabled
+                id="standard-disabled"
+                label="Contact no"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
                 fullwidth
                 className={classes.textfieldStyle}
                 InputProps={{
@@ -97,26 +136,6 @@ export default function FormDialog(props) {
             <Grid item>
               <TextField
                 id="standard-basic"
-                label="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                fullwidth
-                className={classes.textfieldStyle}
-              />
-            </Grid>
-            <Grid item>
-              <TextField
-                id="standard-basic"
-                label="Contact no"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                fullwidth
-                className={classes.textfieldStyle}
-              />
-            </Grid>
-            <Grid item>
-              <TextField
-                id="standard-basic"
                 label="Details"
                 value={details}
                 onChange={(e) => setDetails(e.target.value)}
@@ -124,12 +143,20 @@ export default function FormDialog(props) {
                 multiline
                 rows="4"
                 className={classes.textfieldStyle}
+                error={detailsError.error}
+                onFocus={() => setDetailsError({ helperText: "", error: false })}
+                onBlur={() =>
+                  setDetailsError({
+                    helperText: "Details are required",
+                    error: details.trim() === "",
+                  })
+                }
               />
             </Grid>
           </Grid>
         </DialogContent>
         <DialogActions className={classes.button}>
-          <Button text="Submit" handleClick={handleSubmit} />
+          <Button text="Submit" disabled={detailsError.error || details.trim() === ""} handleClick={handleSubmit} />
           <Button text="Cancel" handleClick={handleClose} />
         </DialogActions>
       </Dialog>

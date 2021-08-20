@@ -25,6 +25,11 @@ export default function ReviewProperty(props) {
   const [description, setDescription] = React.useState("");
   const [rating, setRating] = React.useState("");
 
+  const [descriptionError, setDescriptionError] = React.useState({
+    helperText: "",
+    error: false,
+  });
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -50,6 +55,13 @@ export default function ReviewProperty(props) {
     toast("Review has been posted successfully!");
     setOpen(false);
   };
+
+  const submitDisabled = () => {
+    let flag = false;
+    if (descriptionError.error || description.trim() === "") 
+      flag = true;
+    return flag;
+  }
 
   const date = new Date();
   date.setDate(date.getDate() + 7);
@@ -107,11 +119,19 @@ export default function ReviewProperty(props) {
               fullWidth
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+              error={descriptionError.error}
+              onFocus={() => setDescriptionError({ helperText: "", error: false })}
+              onBlur={() =>
+                setDescriptionError({
+                  helperText: "Description is required",
+                  error: description.trim() === "",
+                })
+              }
             />
           </Grid>
         </DialogContent>
         <DialogActions className={classes.button}>
-          <Button text="Submit" handleClick={handleSubmit} />
+          <Button text="Submit" disabled={submitDisabled} handleClick={handleSubmit} />
           <Button text="Cancel" handleClick={handleClose} />
         </DialogActions>
       </Dialog>
