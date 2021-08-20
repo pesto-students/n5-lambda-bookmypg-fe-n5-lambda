@@ -30,9 +30,12 @@ export function OwnerPropertyList(props) {
     }
   }, [ownerId, props.owner._id]);
 
-
-  if (get(props, 'properties.length') && isEmpty(ownerProperties) && props.owner._id) {
-    setOwnerProperties(props.properties)
+  if (
+    get(props, "properties.length") &&
+    isEmpty(ownerProperties) &&
+    props.owner._id
+  ) {
+    setOwnerProperties(props.properties);
   }
 
   const handleClickOpen = () => {
@@ -57,20 +60,22 @@ export function OwnerPropertyList(props) {
         aria-labelledby="form-dialog-title"
         PaperProps={{
           style: {
-            width: "calc(578px + 0.5vw)",
+            width: "calc(80vw)",
+            maxWidth: "none",
           },
         }}
       >
         <DialogContent>
           <Grid container spacing={2}>
-            {get(ownerProperties, "length") && get(props, "properties.length")? (
+            {get(ownerProperties, "length") &&
+            get(props, "properties.length") ? (
               ownerProperties.map((property) => (
                 <Grid
                   item
                   key={property.propertydata._id}
                   xs={12}
                   sm={6}
-                  md={6}
+                  md={4}
                 >
                   <PropertyCard type="OwnerProperty" property={property} />
                 </Grid>

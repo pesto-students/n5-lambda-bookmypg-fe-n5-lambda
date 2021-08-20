@@ -56,7 +56,11 @@ export default function SimilarProperties(props) {
           {props.title}
         </Typography>
         <Grid>
-          <Swiper slidesPerView={4}>
+          <Swiper
+            slidesPerView={
+              window.innerWidth > 600 && window.innerWidth < 900 ? 3 : 4
+            }
+          >
             <Grid container spacing={4}>
               {latestProperties &&
                 latestProperties.length &&

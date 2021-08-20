@@ -35,29 +35,6 @@ export default function SimpleSelect(props) {
           </FormControl>
         </div>
       );
-    case "SelectValidation":
-      return (
-        <div>
-          <FormControl className={classes.formControl} error={props.error}>
-            <InputLabel id="simple-select-label">{props.name}</InputLabel>
-            <Select
-              labelId="simple-select-label"
-              id="simple-select"
-              value={props.value}
-              onChange={handleChange}
-            >
-              {props.listitems.map((name) => (
-                <MenuItem key={name} value={name}>
-                  {name}
-                </MenuItem>
-              ))}
-            </Select>
-            {props.error && (
-              <FormHelperText>{props.error.helperText}</FormHelperText>
-            )}
-          </FormControl>
-        </div>
-      );
     default:
       return (
         <div>

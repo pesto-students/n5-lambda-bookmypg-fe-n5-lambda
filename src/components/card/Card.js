@@ -90,8 +90,16 @@ export default function ButtonComponent(props) {
           </div>
 
           <Rating
-            value={get(props,'reviewdata.avgratings') ? props.reviewdata.avgratings : 0}
-            number={get(props,'reviewdata.reviews.length') ? props.reviewdata.reviews.length : 0}
+            value={
+              get(props, "reviewdata.avgratings")
+                ? props.reviewdata.avgratings
+                : 0
+            }
+            number={
+              get(props, "reviewdata.reviews.length")
+                ? props.reviewdata.reviews.length
+                : 0
+            }
             mobileView={true}
           />
         </Card>
@@ -122,9 +130,17 @@ export default function ButtonComponent(props) {
                 </Typography>
               </Grid>
               <div className={classes.ratingStyle}>
-                <Rating 
-                  value={get(props,'reviewdata.avgratings') ? props.reviewdata.avgratings : 0}
-                  number={get(props,'reviewdata.reviews.length') ? props.reviewdata.reviews.length : 0}
+                <Rating
+                  value={
+                    get(props, "reviewdata.avgratings")
+                      ? props.reviewdata.avgratings
+                      : 0
+                  }
+                  number={
+                    get(props, "reviewdata.reviews.length")
+                      ? props.reviewdata.reviews.length
+                      : 0
+                  }
                 />
               </div>
               <div className={classes.buttonsMobile}>
@@ -172,15 +188,36 @@ export default function ButtonComponent(props) {
             <Typography type="subtitle1" color="textSecondary">
               {props.property.propertydata.description}
             </Typography>
-          </CardContent>
-          <div className={classes.ratingboxStyle}>
             <Typography type="subtitle1">
               ₹{props.property.propertydata.rent}
             </Typography>
+          </CardContent>
+          <div className={classes.ratingboxStyle}>
             <Cardrating
-              value={get(props,'reviewdata.avgratings') ? props.reviewdata.avgratings : 0}
-              number={get(props,'reviewdata.reviews.length') ? props.reviewdata.reviews.length : 0}
+              value={
+                get(props, "reviewdata.avgratings")
+                  ? props.reviewdata.avgratings
+                  : 0
+              }
+              number={
+                get(props, "reviewdata.reviews.length")
+                  ? props.reviewdata.reviews.length
+                  : 0
+              }
             />
+            <Button
+              size="small"
+              variant="contained"
+              color="secondary"
+              className={classes.buttonStyle}
+              onClick={() =>
+                history.push(
+                  `/property-details/${props.property.propertydata._id}`
+                )
+              }
+            >
+              More Details
+            </Button>
           </div>
         </Card>
       );
@@ -207,14 +244,22 @@ export default function ButtonComponent(props) {
             </Typography>
           </CardContent>
           <div className={classes.ratingboxStyle}>
-            <Cardrating 
-              value={get(props,'reviewdata.avgratings') ? props.reviewdata.avgratings : 0}
-              number={get(props,'reviewdata.reviews.length') ? props.reviewdata.reviews.length : 0}
+            <Cardrating
+              value={
+                get(props, "reviewdata.avgratings")
+                  ? props.reviewdata.avgratings
+                  : 0
+              }
+              number={
+                get(props, "reviewdata.reviews.length")
+                  ? props.reviewdata.reviews.length
+                  : 0
+              }
             />
             <Button
               size="small"
               variant="contained"
-              color="ContainedSecondary"
+              color="secondary"
               className={classes.buttonStyle}
               onClick={() =>
                 history.push(`/property-details/${props.property._id}`)

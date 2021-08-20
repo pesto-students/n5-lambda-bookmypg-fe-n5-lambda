@@ -6,7 +6,7 @@ export default function Paginationcomponent(props) {
     <TablePagination
       rowsPerPageOptions={[5, 10]}
       component="div"
-      count={props.count}
+      count={props.count || 0}
       rowsPerPage={props.countperpage}
       page={props.pagenumber}
       onPageChange={(event, value) => props.setPagenumber(value)}

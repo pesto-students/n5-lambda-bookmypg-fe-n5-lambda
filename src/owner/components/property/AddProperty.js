@@ -57,11 +57,6 @@ export default function AddProperty(props) {
     error: false,
   });
 
-  const [locationError, setLocationError] = useState({
-    helperText: "",
-    error: false,
-  });
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -197,7 +192,7 @@ export default function AddProperty(props) {
       if (rent) {
         if (isNaN(rent) || rent < 500 || rent > 100000) {
           setRentError({
-            helperText: "Must be valid numeric",
+            helperText: "Must be valid numeric between 500-100000",
             error: true,
           });
         }
@@ -368,7 +363,6 @@ export default function AddProperty(props) {
                       addressError.error ? addressError.helperText : ""
                     }
                   />
-
                   <Select
                     name="Location"
                     value={location}
@@ -390,6 +384,7 @@ export default function AddProperty(props) {
                       locationError.error ? locationError.helperText : ""
                     }
                   />
+
                   <Select
                     name="Gender"
                     listitems={genderlist}
