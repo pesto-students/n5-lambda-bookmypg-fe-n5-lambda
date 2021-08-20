@@ -22,6 +22,7 @@ import Select from "components/select/Select";
 import ComplaintsSelector from "../ComplaintsSelector";
 import complainsActions from "../../../redux-store/actions/complaintsActions";
 import UserSelector from "../../../user/helpers/UserSelector";
+import { LOCALE, TIMEZONE } from "constant";
 
 const listitems = ["Pending", "Resolved"];
 
@@ -54,8 +55,6 @@ export function ViewComplaint(props) {
   date.setDate(date.getDate() + 7);
 
   const complaint = props.complaint;
-
-  console.log("props.complaint",props.complaint)
 
   const handleSubmit = () => {
     const params = {
@@ -139,7 +138,7 @@ export function ViewComplaint(props) {
 
             <TextField
               id="standard-disabled"
-              value={complaint.createdAt}
+              value={new Date(complaint.createdAt).toLocaleString(LOCALE,TIMEZONE)}
               icon="Event"
               label="Complaint Date"
             />

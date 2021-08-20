@@ -4,6 +4,7 @@ import Rating from "@material-ui/lab/Rating";
 import useStyles from "./styles/DisplayReview.styles";
 import Typography from "components/typography/Typography";
 import ReviewBar from "components/progressbar/Progressbar";
+import { LOCALE, TIMEZONE } from "constant";
 
 export default function DisplayReviewContent(props) {
   const reviews = props.property.reviewdata.reviews || [];
@@ -55,7 +56,7 @@ export default function DisplayReviewContent(props) {
                   <Typography
                     type="CaptionText"
                     text={review.description}
-                    captiontext={"Reviewed on " + review.createdAt}
+                    captiontext={"Reviewed on " + new Date(review.createdAt).toLocaleString(LOCALE,TIMEZONE)}
                   />
                 </Box>
               </Grid>

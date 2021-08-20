@@ -20,7 +20,7 @@ import Box from "@material-ui/core/Box";
 import Link from "@material-ui/core/Link";
 import Amenities from "../amenity/amenities";
 import Reviews from "../review/DisplayReviews";
-import { S3_BUCKET_URL } from "../../../constant";
+import { S3_BUCKET_URL } from "constant";
 import useStyles from "./styles/PropertyContent.styles";
 import ButtonComponent from "components/button/Button";
 import Typography from "components/typography/Typography";
