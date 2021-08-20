@@ -6,6 +6,9 @@ import {
   RAISE_COMPLAINT_REQUEST_MADE,
   RAISE_COMPLAINT_REQUEST_RESOLVED,
   RAISE_COMPLAINT_REQUEST_FAILED,
+  UPDATE_COMPLAINT_REQUEST_MADE,
+  UPDATE_COMPLAINT_REQUEST_RESOLVED,
+  UPDATE_COMPLAINT_REQUEST_FAILED,
 } from "../../constant";
 import requestState from "../utils/request";
 
@@ -74,6 +77,34 @@ const raiseComplaintRequestFailedResolver = (state = {}, payload = {}) => {
   };
 };
 
+const updateComplaintRequestMadeResolver = (state = {}, payload = {}) => {
+  return {
+    ...state,
+    updateComplaintRequestState: {
+      ...requestState.processing,
+    },
+  };
+};
+
+const updateComplaintRequestResolvedResolver = (state = {}, payload) => {
+  return {
+    ...state,
+    updateComplaintRequestState: {
+      ...requestState.resolved,
+    },
+  };
+};
+
+const updateComplaintRequestFailedResolver = (state = {}, payload = {}) => {
+  return {
+    ...state,
+    updateComplaintRequestState: {
+      ...requestState.failed,
+    },
+    ...payload,
+  };
+};
+
 const actionToResolverMap = {
   [GET_COMPLAINTS_REQUEST_MADE]: getComplaintsRequestMadeResolver,
   [GET_COMPLAINTS_REQUEST_RESOLVED]: getComplaintsRequestResolvedResolver,
@@ -81,6 +112,9 @@ const actionToResolverMap = {
   [RAISE_COMPLAINT_REQUEST_MADE]: raiseComplaintRequestMadeResolver,
   [RAISE_COMPLAINT_REQUEST_RESOLVED]: raiseComplaintRequestResolvedResolver,
   [RAISE_COMPLAINT_REQUEST_FAILED]: raiseComplaintRequestFailedResolver,
+  [UPDATE_COMPLAINT_REQUEST_MADE]: updateComplaintRequestMadeResolver,
+  [UPDATE_COMPLAINT_REQUEST_RESOLVED]: updateComplaintRequestResolvedResolver,
+  [UPDATE_COMPLAINT_REQUEST_FAILED]: updateComplaintRequestFailedResolver,
   [RESET_COMPLAINTS_STATE]: resetState,
 };
 

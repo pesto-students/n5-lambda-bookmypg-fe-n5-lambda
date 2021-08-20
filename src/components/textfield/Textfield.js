@@ -24,13 +24,35 @@ export default function TextFieldComponent(props) {
           }}
         />
       );
-
+    case "standardFormValidation":
+      return (
+        <TextField
+          id="standard-basic"
+          label={props.label}
+          defaultValue={props.defaultvalue}
+          className={classes.widthStyle}
+          rows={props.rows}
+          multiline={props.multiline}
+          maxRows={props.maxrows}
+          value={props.value}
+          disabled={props.disabled}
+          onChange={props.onChange}
+          onBlur={props.onBlur}
+          onFocus={props.onFocus}
+          error={props.error}
+          helperText={props.helperText}
+          InputProps={{
+            endAdornment: <Icon type={props.icon} />,
+          }}
+        />
+      );
     default:
       return (
         <TextField
           disabled
           id="standard-disabled"
           label={props.label}
+          value={props.value}
           defaultValue={props.defaultvalue}
           fullwidth
           className={classes.disabledStyle}

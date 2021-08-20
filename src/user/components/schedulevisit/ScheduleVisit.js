@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Dialog,
   DialogActions,
@@ -8,8 +8,6 @@ import {
   FormControl,
   Box,
 } from "@material-ui/core";
-import { Phone, AccountBox } from "@material-ui/icons";
-import EmailIcon from "@material-ui/icons/Email";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useStyles from "./ScheduleVisit.styles";
@@ -28,6 +26,19 @@ const TO_TIME = "06:00pm";
 export default function ScheduleVisit(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+
+  const [nameError, setNameError] = useState({
+    helperText: "",
+    error: false,
+  });
+  const [emailError, setEmailError] = useState({
+    helperText: "",
+    error: false,
+  });
+  const [phoneError, setPhoneError] = useState({
+    helperText: "",
+    error: false,
+  });
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -69,6 +80,52 @@ export default function ScheduleVisit(props) {
     toast("Visit has been scheduled successfully!");
   };
 
+  const hasError = () => {
+    return (
+      name.trim() === "" ||
+      (phone.length >= 0 && phone.length < 10) ||
+      email.length === 0 ||
+      nameError.error ||
+      phoneError.error ||
+      emailError.error
+    );
+  };
+
+  const validateEmail = () => {
+    // regular rexpression to validate the email address
+    const regex = new RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$");
+    if (email) {
+      if (!regex.test(email.trim())) {
+        setEmailError({
+          helperText: "Invalid email address",
+          error: true,
+        });
+      }
+    } else {
+      setEmailError({
+        helperText: "Invalid email address",
+        error: true,
+      });
+    }
+  };
+
+  const validatePhone = () => {
+    // regular rexpression to validate the phone number
+    const regex = new RegExp("^[0-9]{10}$");
+    if (phone) {
+      if (!regex.test(phone.trim())) {
+        setPhoneError({
+          helperText: "Invalid phone number",
+          error: true,
+        });
+      }
+    } else {
+      setPhoneError({
+        helperText: "Invalid phone number",
+        error: true,
+      });
+    }
+  };
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
@@ -117,32 +174,51 @@ export default function ScheduleVisit(props) {
               label="When you want to visit the place?"
             />
             <TextField
-              id="standard-basic"
-              type="standardForm"
+              type="standardFormValidation"
               label="Name"
               value={name}
+              error={nameError.error}
+              onFocus={() => setNameError({ helperText: "", error: false })}
+              onBlur={() =>
+                setNameError({
+                  helperText: "Name is required",
+                  error: name.trim() === "",
+                })
+              }
               onChange={(e) => setName(e.target.value)}
+              helperText={nameError.error ? nameError.helperText : ""}
               icon="Name"
             />
             <TextField
-              id="standard-basic"
-              type="standardForm"
+              type="standardFormValidation"
               label="Email"
               value={email}
+              error={emailError.error}
+              onFocus={() => setEmailError({ helperText: "", error: false })}
+              onBlur={validateEmail}
               onChange={(e) => setEmail(e.target.value)}
+              helperText={emailError.error ? emailError.helperText : ""}
               icon="Email"
             />
             <TextField
-              type="standardForm"
-              label="Phone"
+              type="standardFormValidation"
+              label="Contact no"
               value={phone}
+              error={phoneError.error}
+              onFocus={() => setPhoneError({ helperText: "", error: false })}
+              onBlur={validatePhone}
               onChange={(e) => setPhone(e.target.value)}
+              helperText={phoneError.error ? phoneError.helperText : ""}
               icon="Phone"
             />
           </FormControl>
         </DialogContent>
         <DialogActions className={classes.button}>
-          <Button text="Submit" handleClick={handleSubmit} />
+          <Button
+            text="Submit"
+            handleClick={handleSubmit}
+            disabled={hasError()}
+          />
           <Button text="Cancel" handleClick={handleClose} />
         </DialogActions>
       </Dialog>

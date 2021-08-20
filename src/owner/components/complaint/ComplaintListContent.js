@@ -21,6 +21,7 @@ export function ComplaintsContent(props) {
   const [countperpage, setCountperpage] = React.useState(10);
   const [search, setSearch] = React.useState("");
   const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC);
+  const [refresh, setRefresh] = React.useState(false);
 
   const classes = useStyles();
   useEffect(() => {
@@ -31,16 +32,20 @@ export function ComplaintsContent(props) {
     const user = props.user;
     const extraParams = `${user._id}?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&from_date=${from_date}&to_date=${to_date}&columnname=createdAt&orderby=${order_by}`;
     props.getComplaints({ extraParams, user });
-  }, [pagenumber, countperpage, search, from_date, to_date, order_by]);
+  }, [pagenumber, countperpage, search, from_date, to_date, order_by, refresh]);
 
   let TableData = [];
   if (get(props, "complaints.length")) {
     props.complaints.map((complaint) => {
       TableData.push({
+        _id: complaint._id,
         name: complaint.raisedby.firstName + " " + complaint.raisedby.lastName,
         email: complaint.raisedby.email,
         phone: complaint.raisedby.phone,
         property: complaint.property.name,
+        property_id: complaint.property._id,
+        raisedby: complaint.raisedby._id,
+        description: complaint.description,
         createdAt: complaint.createdAt,
         status: complaint.status,
       });
@@ -83,6 +88,8 @@ export function ComplaintsContent(props) {
               list_type="Complaints"
               order_by={order_by}
               setOrderBy={setOrderBy}
+              setRefresh={setRefresh}
+              refresh={refresh}
             />
             <Pagination
               pagenumber={pagenumber}

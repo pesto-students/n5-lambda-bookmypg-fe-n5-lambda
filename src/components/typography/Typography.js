@@ -85,6 +85,10 @@ export default function TypographyComponent(props) {
           </Typography>
         </>
       );
+    case "ErrorCaption":
+      <Typography variant="caption" display="block" gutterBottom>
+        {props.text}
+      </Typography>;
     default:
       return (
         <Typography component="h1" variant="h6">

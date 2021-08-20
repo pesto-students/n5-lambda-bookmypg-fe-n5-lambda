@@ -1,6 +1,7 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Link from "@material-ui/core/Link";
+import { Link as RouterLink, useHistory } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import useStyles from "./footer.styles";
@@ -20,7 +21,7 @@ function Copyright() {
 const footers = [
   {
     title: "Quick links",
-    description: ["About Us", "Contact Us"],
+    description: ["About Us"],
   },
   {
     title: "Features",
@@ -46,7 +47,7 @@ export default function Footer(props) {
 
   return (
     <div
-      className={props.type == "center" ? classes.nosection : classes.section}
+      className={props.type === "center" ? classes.nosection : classes.section}
     >
       <Container maxWidth="md" component="footer" className={classes.footer}>
         <Grid container spacing={4} justifyContent="space-evenly">
@@ -57,8 +58,18 @@ export default function Footer(props) {
               <ul>
                 {footer.description.map((item) => (
                   <li key={item}>
-                    {footer.title == "Quick links" ? (
-                      <Link href="#" variant="subtitle2" color="textSecondary">
+                    {footer.title === "Quick links" ? (
+                      <Link
+                        href="#"
+                        variant="subtitle2"
+                        color="textSecondary"
+                        key={item}
+                        {...{
+                          component: RouterLink,
+                          to: "/about",
+                          color: "inherit",
+                        }}
+                      >
                         {item}
                       </Link>
                     ) : (

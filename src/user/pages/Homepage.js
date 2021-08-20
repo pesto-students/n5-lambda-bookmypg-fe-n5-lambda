@@ -15,15 +15,9 @@ const headersData = [
     label: "About us",
     href: "/about",
   },
-  {
-    label: "Contact us",
-    href: "/contact",
-  },
 ];
 
-
 export default function HomePage() {
-
   return (
     <div>
       <MuiThemeProvider theme={Theme}>

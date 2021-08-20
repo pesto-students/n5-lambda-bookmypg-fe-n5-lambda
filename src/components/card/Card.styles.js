@@ -39,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(6),
   },
   card: {
-    //height: "350px",
     height: "100%",
     display: "flex",
     flexDirection: "column",
@@ -47,7 +46,6 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "20px",
   },
   similarPropertyCard: {
-    //height: "350px",
     height: "90%",
     display: "flex",
     flexDirection: "column",

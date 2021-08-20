@@ -19,7 +19,7 @@ export function OwnerProtectedRoute(props) {
         return (
           <Redirect
             to={{
-              pathname: "/owner-home",
+              pathname: "/",
               state: { from: props.location },
             }}
           />

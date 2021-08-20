@@ -329,6 +329,7 @@ function PropertyFilters(props) {
             pagenumber={pagenumber}
             setPagenumber={setPagenumber}
             properties={props.properties}
+            total_properties={props.total_properties}
           />
         </main>
       </div>
@@ -342,6 +343,7 @@ const mapStateToProps = (state) => {
 
   return {
     properties: propertiesSelector.getPropertiesData().data,
+    total_properties: propertiesSelector.getPropertiesCount().count,
     selectedLocation: locationsSelector.getSelectedLocation().selectedLocation,
   };
 };
