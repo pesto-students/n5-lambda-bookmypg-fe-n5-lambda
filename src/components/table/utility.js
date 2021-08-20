@@ -144,7 +144,7 @@ export const getComponent = (emp, header, list_type, refresh, setRefresh, update
       } else if (header === "property") {
         return (
           <TableCell align="center">
-            <OwnerPropertyList />
+            <OwnerPropertyList owner={emp} />
           </TableCell>
         );
       } else if (header === "createdAt") {
