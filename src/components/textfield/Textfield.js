@@ -52,6 +52,7 @@ export default function TextFieldComponent(props) {
           disabled
           id="standard-disabled"
           label={props.label}
+          value={props.value}
           defaultValue={props.defaultvalue}
           fullwidth
           className={classes.disabledStyle}

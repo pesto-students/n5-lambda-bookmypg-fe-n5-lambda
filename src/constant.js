@@ -87,9 +87,12 @@ export const GET_PAYMENTS_REQUEST_FAILED = "GET_PAYMENTS_REQUEST_FAILED";
 export const RESET_PAYMENTS_STATE = "RESET_PAYMENTS_STATE";
 
 export const RAISE_COMPLAINT_REQUEST_MADE = "RAISE_COMPLAINT_REQUEST_MADE";
-export const RAISE_COMPLAINT_REQUEST_RESOLVED =
-  "RAISE_COMPLAINT_REQUEST_RESOLVED";
+export const RAISE_COMPLAINT_REQUEST_RESOLVED = "RAISE_COMPLAINT_REQUEST_RESOLVED";
 export const RAISE_COMPLAINT_REQUEST_FAILED = "RAISE_COMPLAINT_REQUEST_FAILED";
+
+export const UPDATE_COMPLAINT_REQUEST_MADE = "UPDATE_COMPLAINT_REQUEST_MADE";
+export const UPDATE_COMPLAINT_REQUEST_RESOLVED = "UPDATE_COMPLAINT_REQUEST_RESOLVED";
+export const UPDATE_COMPLAINT_REQUEST_FAILED = "UPDATE_COMPLAINT_REQUEST_FAILED";
 
 export const GET_LOCATIONS_REQUEST_MADE = "GET_LOCATIONS_REQUEST_MADE";
 export const GET_LOCATIONS_REQUEST_RESOLVED = "GET_LOCATIONS_REQUEST_RESOLVED";
@@ -109,16 +112,16 @@ export const S3_BUCKET_IMAGES_BASEURL =
   "https://bookmypg-public.s3.us-east-2.amazonaws.com/images";
 
 export const COMPLAINT_LIST_HEADERS = {
-  name: "Tanant name",
+  name: "Tanant Name",
   email: "Email",
-  phone: "Contact no",
+  phone: "Contact No",
   property: "Property Name",
   createdAt: "Complaint Date",
   status: "Status",
 };
 
 export const PAYMENT_LIST_HEADERS = {
-  name: "Tanant name",
+  name: "Tanant Name",
   property: "Property Name",
   amount: "Amount",
   charge_id: "Charge ID",
@@ -126,7 +129,7 @@ export const PAYMENT_LIST_HEADERS = {
 };
 
 export const PROPERTY_LIST_HEADERS = {
-  name: "Property name",
+  name: "Property Name",
   isactive: "Status",
   location: "Location",
   address: "Address",
@@ -135,26 +138,26 @@ export const PROPERTY_LIST_HEADERS = {
 };
 
 export const OWNER_LIST_HEADERS = {
-  name: "Owner name",
+  name: "Owner Name",
   isactive: "Status",
   email: "Email",
-  phone: "Contact no",
+  phone: "Contact No",
   property: "Property Names",
   createdAt: "Registered Date",
 };
 
 export const AMENITY_LIST_HEADERS = {
-  name: "Amenity name",
+  name: "Amenity Name",
   isactive: "Status",
   logo: "Logo",
   createdAt: "Registered Date",
 };
 
 export const TENANT_LIST_HEADERS = {
-  name: "Tenant name",
+  name: "Tenant Name",
   isactive: "Status",
   email: "Email",
-  phone: "Contact no",
+  phone: "Contact No",
   property: "Property Name",
   onboardedAt: "Onboarding Date",
 };
@@ -176,5 +179,8 @@ export const ORDER_BY = {
   ASC: "asc",
 };
 
-export const SERVER_URL =
-  "http://bookmypglambdabackend-env.eba-pxbzun3k.us-east-2.elasticbeanstalk.com";
+export const LOCALE = "en-IN";
+export const TIMEZONE = { timeZone: "Asia/Kolkata" };
+
+export const SERVER_URL = "http://bookmypglambdabackend-env.eba-pxbzun3k.us-east-2.elasticbeanstalk.com";
+
