@@ -61,7 +61,7 @@ export function ViewComplaint(props) {
     setTimeout(() => {
       props.setRefresh(!props.refresh);
     }, 500);
-  }
+  };
 
   return (
     <div>
@@ -102,14 +102,20 @@ export function ViewComplaint(props) {
               id="standard-disabled"
               value={complaint.email}
               icon="Email"
+              label="Email"
             />
 
-            <TextField value={complaint.phone} icon="Phone" />
+            <TextField
+              value={complaint.phone}
+              icon="Phone"
+              label="Contact no"
+            />
 
             <TextField
               id="standard-disabled"
               value={complaint.createdAt}
               icon="Event"
+              label="Complaint Date"
             />
 
             <TextField
@@ -118,6 +124,7 @@ export function ViewComplaint(props) {
               maxrows={2}
               multiline={true}
               icon="Description"
+              label="Description"
             />
 
             <TextField
@@ -162,7 +169,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getComplaints: (payload) =>
       dispatch(complainsActions.getComplaints(payload)),
-    updateComplaint: (payload) => dispatch(complainsActions.updateComplaint(payload)),
+    updateComplaint: (payload) =>
+      dispatch(complainsActions.updateComplaint(payload)),
     resetComplaints: () => dispatch(complainsActions.resetState()),
   };
 };
