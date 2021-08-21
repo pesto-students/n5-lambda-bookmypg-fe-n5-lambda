@@ -46,7 +46,14 @@ export function MyProfileContent(props) {
         <ResponsiveDrawer headersData={props.responsivedrawerData}>
           <Grid container spacing={2}>
             <Grid item xs={12} md={3} sm={12}>
-              <ProfilePhoto imageName="DefaultPic.png" />
+              <ProfilePhoto
+                defaultImage="DefaultPic.png"
+                setImage={setImage}
+                image={image}
+                handleSubmit={handleSubmit}
+                refresh={refresh}
+                setRefresh={setRefresh}
+              />
             </Grid>
             <Grid item xs={10} md={4} sm={10}>
               <Typography type="ListTitle" text="Basic Details" />
