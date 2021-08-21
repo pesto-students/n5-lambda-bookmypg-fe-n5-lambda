@@ -13,8 +13,6 @@ import {
   FormGroup,
   FormControlLabel,
   Checkbox,
-  MenuItem,
-  Menu,
 } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
 import SortIcon from "@material-ui/icons/Sort";
@@ -24,10 +22,7 @@ import propertiesActions from "../../../redux-store/actions/propertiesActions";
 import LocationsSelector from "../../helpers/LocationsSelector";
 import locationsActions from "../../../redux-store/actions/locationsActions";
 import useStyles from "./styles/PropertyFilters.styles";
-import Select from "@material-ui/core/Select";
-import InputLabel from "@material-ui/core/InputLabel";
 import Typography from "components/typography/Typography";
-import { ORDER_BY } from "constant";
 
 function PropertyFilters(props) {
   const { window } = props;
@@ -80,7 +75,15 @@ function PropertyFilters(props) {
 
     const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&gender=${selectedGender}&rating=${selectedRating}&rent=${selectedRent}&columnname=rent&orderby=${order_by}`;
     props.getProperties({ extraParams });
-  }, [pagenumber, countperpage, gender, rating, rent, order_by, props.selectedLocation]);
+  }, [
+    pagenumber,
+    countperpage,
+    gender,
+    rating,
+    rent,
+    order_by,
+    props.selectedLocation,
+  ]);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -88,25 +91,10 @@ function PropertyFilters(props) {
 
   const drawer = (
     <div className={classes.toolbar}>
-      <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-helper-label">
-          Sort by: Price
-        </InputLabel>
-        <Select
-          labelId="demo-simple-select-helper-label"
-          id="demo-simple-select-helper"
-          value={order_by}
-          onChange={(e) => setOrderBy(e.target.value)}
-        >
-          <MenuItem value={ORDER_BY.ASC}>Price low to high</MenuItem>
-          <MenuItem value={ORDER_BY.DSC}>Price high to low</MenuItem>
-        </Select>
-      </FormControl>
       <div className={classes.typographyStyle}>
         <Typography type="SubTitleText" text="Filter Results" />
-        <Divider />
       </div>
-
+      <Divider />
       <FormControl component="fieldset" className={classes.formControl}>
         <FormLabel component="legend">Gender</FormLabel>
         <FormGroup>
