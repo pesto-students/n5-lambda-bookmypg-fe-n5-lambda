@@ -212,7 +212,7 @@ Owners are added by the administrator manually.
 
 This page lets users know more about our application.
 
-![image](https://drive.google.com/uc?export=view&id=pp1EBtVgTVPrWGlVmf9SFAezjol0
+![image](https://drive.google.com/uc?export=view&id=pp1EBtVgTVPrWGlVmf9SFAezjol0)
 
 ### Login
 
