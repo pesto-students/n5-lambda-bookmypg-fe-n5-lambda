@@ -148,7 +148,7 @@ npm run start
 -   [User
     Flow](https://bookmypg.atlassian.net/wiki/spaces/BOOKMYPG/pages/327681/BookMyPG+-+Product+Requirement+Document#User-Flows)
 
--   [PRD](file:///D:\wiki\spaces\BOOKMYPG\pages\327681\BookMyPG+-+Product+Requirement+Document)
+-   [PRD](https://bookmypg.atlassian.net/wiki/spaces/BOOKMYPG/pages/327681/BookMyPG+-+Product+Requirement+Document)
 
 -   [High Level
     Design](https://drive.google.com/file/d/1VF9GqN0jKFuclq5QZTl3fMsL_w0-qoBo/view?usp=sharing)
