@@ -8,7 +8,7 @@ README
 ---------------------
 
 1.  [About The
-    Project](https://bookmypg.atlassian.net/wiki/spaces/BOOKMYPG/pages/12615699/README#About-The-Project)
+    Project](#about-the-project)
 
 2.  [Getting
     Started](https://bookmypg.atlassian.net/wiki/spaces/BOOKMYPG/pages/12615699/README#Getting-Started)
