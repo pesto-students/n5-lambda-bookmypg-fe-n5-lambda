@@ -167,20 +167,7 @@ and how to install them.
 **Out of Scope**
 ----------------
 
-1.  Custom amenity request by owner.
-2.  Payment release from Admin to PG-Owner
-3.  User wallet
-4.  Dynamic dashboard with real time analytics.
-5.  Contact us form to contact admin
-6.  User can track the complaints raised by him, receive updates from PG-Owner
-7.  Allow owner to edit property details
-8.  Owner can rate the tenant
-9.  ID verification of tenants at the time of booking
-10. Filters can be improved with more options like, amenities, most reviewed, highly rated proeprties etc
-11. Location based property search
-12. Reviews can be fetched in limit and on clicking the button view more it should be fetching all reviews and display
-13. Monthly Payment reminders, auto payments, cashbacks, refunds, deposits, etc
-
+<https://docs.google.com/document/d/1ovEBByL7V7BoiSYdcjl_cotPAzQ-NG9bKxnZX_6Rae8/edit?usp=sharing>
 
 **Working & UI Screens**
 ------------------------
