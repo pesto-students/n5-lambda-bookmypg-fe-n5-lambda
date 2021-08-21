@@ -212,9 +212,7 @@ Owners are added by the administrator manually.
 
 This page lets users know more about our application.
 
-![](media/image3.png){width="4.875in"
-height="2.283333333333333in"}![](media/image4.tmp){width="4.875in"
-height="2.2583333333333333in"}
+![image](https://drive.google.com/uc?export=view&id=pp1EBtVgTVPrWGlVmf9SFAezjol0
 
 ### Login
 
