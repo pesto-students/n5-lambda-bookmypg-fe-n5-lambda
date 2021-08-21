@@ -185,7 +185,7 @@ Working of the Application:
 
 ### Landing Page
 
-![](media/image1.png){width="4.875in" height="2.1416666666666666in"}
+![alt text](blob:https://bookmypg.atlassian.net/5525d6b9-b478-4107-9821-715ac2f2c71c#media-blob-url=true&id=b316d538-a519-424f-885c-229c24703dab&collection=contentId-12615699&contextId=12615699&mimeType=image%2Fpng&name=Homepage1.PNG&size=1039449&width=1151&height=508)
 
 This is the Landing page of our application. You can navigate to the
 below mentioned links from the homepage.
