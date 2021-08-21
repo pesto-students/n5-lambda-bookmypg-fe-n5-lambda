@@ -19,9 +19,6 @@ export default function CenteredGrid(props) {
       const response = await uploadImage(e.target.files[0], dirName);
       props.setImage(response);
       props.handleSubmit(response);
-      setTimeout(() => {
-        props.setRefresh(!props.refresh);
-      }, 1000);
     } else {
       props.setImage([]);
     }
