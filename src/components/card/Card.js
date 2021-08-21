@@ -15,6 +15,7 @@ import Box from "@material-ui/core/Box";
 import MoreButton from "@material-ui/core/Button";
 import Rating from "user/components/rating/rating";
 import ScheduleVisit from "user/components/schedulevisit/ScheduleVisit";
+import LinesEllipsis from "react-lines-ellipsis";
 
 export default function ButtonComponent(props) {
   const classes = useStyles();
