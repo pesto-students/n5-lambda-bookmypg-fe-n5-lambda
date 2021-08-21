@@ -323,7 +323,7 @@ User Payment history to keep track of payments.
 
 ### My Properties
 
-User booked properties. He/she can raise complaints or review the proerty from here.
+User booked properties. He/she can raise complaints or review the property from here.
 
 ![image](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/My%20properties.png)
 
