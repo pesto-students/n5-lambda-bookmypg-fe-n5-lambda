@@ -168,10 +168,19 @@ and how to install them.
 ----------------
 
 1.  Custom amenity request by owner.
+2.  Payment release from Admin to PG-Owner
+3.  User wallet
+4.  Dynamic dashboard with real time analytics.
+5.  Contact us form to contact admin
+6.  User can track the complaints raised by him, receive updates from PG-Owner
+7.  Allow owner to edit property details
+8.  Owner can rate the tenant
+9.  ID verification of tenants at the time of booking
+10. Filters can be improved with more options like, amenities, most reviewed, highly rated proeprties etc
+11. Location based property search
+12. Reviews can be fetched in limit and on clicking the button view more it should be fetching all reviews and display
+13. Monthly Payment reminders, auto payments, cashbacks, refunds, deposits, etc
 
-2.  User wallet
-
-3.  Dynamic dashboard with real time analytics.
 
 **Working & UI Screens**
 ------------------------
@@ -185,7 +194,7 @@ Working of the Application:
 
 ### Landing Page
 
-![alt text](blob:https://bookmypg.atlassian.net/5525d6b9-b478-4107-9821-715ac2f2c71c#media-blob-url=true&id=b316d538-a519-424f-885c-229c24703dab&collection=contentId-12615699&contextId=12615699&mimeType=image%2Fpng&name=Homepage1.PNG&size=1039449&width=1151&height=508)
+![](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/Home.png)
 
 This is the Landing page of our application. You can navigate to the
 below mentioned links from the homepage.
@@ -196,7 +205,7 @@ below mentioned links from the homepage.
 
 3.  Login
 
-![](https://drive.google.com/file/d/1RQW7pp1EBtVgTVPrWGlVmf9SFAezjol0/view?usp=sharing"}
+![](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/Home%202.png)
 
 We have also implemented a dynamic slider to showcase the recently added
 properties. This gets update after new properties are added by the owner
@@ -212,13 +221,15 @@ Owners are added by the administrator manually.
 
 This page lets users know more about our application.
 
-![image](https://drive.google.com/uc?export=view&id=pp1EBtVgTVPrWGlVmf9SFAezjol0)
+![image](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/Abou.png)
+
+![image](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/Abou%202.png)
 
 ### Login
 
 Google Login pops up when you click on login.
 
-![](media/image5.png){width="4.875in" height="2.283333333333333in"}
+![image](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/Login.png)
 
 ### Search by Location 
 
@@ -241,14 +252,14 @@ We have currently added seven major locations. They are
 
 7.  Kolkata
 
-![](media/image6.png){width="4.875in" height="2.283333333333333in"}
+![image](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/Search%20by%20location.png)
 
 ### Location wise property list
 
 Location wise property list is fetched on selecting any of the
 locations.
 
-![](media/image7.png){width="4.875in" height="2.4583333333333335in"}
+![image](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/Location%20details.png)
 
 The user can directly schedule visit from here or he/she can view more
 details about the Property. The details are as follows:
@@ -266,7 +277,10 @@ details about the Property. The details are as follows:
 More details about the property can be found on clicking ‘**More
 details’** button.
 
-![](media/image8.png){width="4.875in" height="2.441666666666667in"}
+![image](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/More%20details.png)
+
+![image](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/User%20reviews.png)
+
 
 ### Schedule visit
 
@@ -274,51 +288,86 @@ Users can schedule visit to the properties if he/she would like to check
 out the property before moving in. They can do so on clicking
 “**Schedule visit**” button.
 
-![](media/image9.png){width="4.875in" height="2.45in"}
+![image](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/Schedule%20visit.png)
+
 
 Basic details are required to schedule a visit. The user may select date
 within a Seven day (One week) range.
 
-![](media/image10.png){width="4.875in" height="2.4583333333333335in"}
+
 
 ### Book property
 
 Users can book property on clicking the “**Book Property**” button.
 
-![](media/image11.png){width="4.875in" height="2.441666666666667in"}
+![image](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/Book%20property.png)
 
 Users may select the preferred date to move in and complete the payment
 via stripe payment gateway. This online transaction is completely
 trusted and secure.
 
-![](media/image12.png){width="4.875in" height="2.441666666666667in"}
+![image](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/Stripe.png)
+
+
+### User Profile
+
+User profile where users can update their details.
+
+![image](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/User%20profile.png)
+
+### Payment history
+
+User Payment history to keep track of payments.
+
+![image](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/Payment%20list.png)
+
+### My Properties
+
+User booked properties. He/she can raise complaints or review the proerty from here.
+
+![image](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/My%20properties.png)
+
+![image](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/Review.png)
+
+![image](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/Raise%20complaint.png)
+
+
+
+
+
+
 
 **Admin Screens**
 -----------------
 
+### Owners list
 Admin logs in using his/her Gmail account.
 
 Admin is able to Add/Enable/Disable owners from the owners list.
 
-![](media/image13.png){width="4.875in" height="2.0833333333333335in"}
+![image](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/Admin%20owner%20list.png)
+
+![image](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/Add%20new%20owner.png)
 
 Admin can also search for owner. This search can be further simplified
 through the registration date.
 
-![](media/image14.png){width="4.875in"
-height="1.9583333333333333in"}![](media/image15.tmp){width="4.875in"
-height="2.45in"}
+### Owner properties
+Admin can check for owner properties.
 
-Enable/Disable owner.
+![image](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/Admin%20owner%20property%20list.png)
 
-![](media/image16.png){width="4.875in" height="2.1in"}
+### Amenity list
 
 The admin also has access to the Amenity list. He/she can
 add/enable/disable amenities.
 
-![](media/image17.png){width="4.875in"
-height="2.4166666666666665in"}![](media/image18.png){width="4.875in"
-height="2.408333333333333in"}
+![image](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/Amenity%20list.png)
+
+Adding new amenity
+
+![image](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/Add%20new%20amenity.png)
+
 
 **Owner Screens**
 -----------------
@@ -331,9 +380,12 @@ Owners have access to the property list. He/she can add/enable/disable a
 property. An owner can own more than one property. He/she may list their
 properties.
 
-![](media/image19.tmp){width="4.875in"
-height="2.3833333333333333in"}![](media/image20.png){width="4.875in"
-height="2.45in"}
+
+![image](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/Owner%20property.png)
+
+
+![image](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/Add%20new%20property.png)
+
 
 The owner has to fill in the required form in order to be able to add
 the property he/she wishes to list.
@@ -367,13 +419,17 @@ the beds.
 The owner has access to the list of tenants. He/she may enable/disable
 the tenant.
 
-![](media/image21.png){width="4.875in" height="2.2916666666666665in"}
+![image](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/Tenant%20list.png)
 
 ### Complaints list
 
 Owners have access to the complaints list. He/she can click on the
 active status of the Complaint to get more details about the complaint.
 
-![](media/image22.png){width="4.875in" height="2.2916666666666665in"}
+![image](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/Complaint%20list.png)
 
-![](media/image23.png){width="4.875in" height="2.3666666666666667in"}
+Owners can check the complaint and update the status after being addressed.
+
+![image](https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/blob/readme/images/Complaint%20details.png)
+
+
