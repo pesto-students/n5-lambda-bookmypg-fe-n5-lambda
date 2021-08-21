@@ -64,51 +64,51 @@ and how to install them.
 
 1.  Clone the repos backend & frontend
 
-2.  git clone
-    https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/tree/master
+ >  git clone https://github.com/pesto-students/n5-lambda-bookmypg-fe-n5-lambda/tree/master
 
-> git clone
-> https://github.com/pesto-students/n5-lambda-bookMyPg-backend/tree/master
+    
+ >  git clone  https://github.com/pesto-students/n5-lambda-bookMyPg-backend/tree/master
 
-1.  Install NPM packages in both
 
-> npm install
+2.  Install NPM packages in both
 
-1.  Add the .env file in the root for backend app.
+    > npm install
 
-2.  PORT=4000
+3.  Add the .env file in the root for backend app.
 
-3.  MONGODB\_URL="mongo\_URL"
+ >  PORT=4000
 
-4.  JWT\_SECRET\_KEY="jwt\_secret\_key"
+ >  MONGODB\_URL="mongo\_URL"
 
-5.  ADMIN\_EMAIL="admin\_email"
+ >  JWT\_SECRET\_KEY="jwt\_secret\_key"
 
-6.  ADMIN\_PASSWORD="admin\_password"
+ >  ADMIN\_EMAIL="admin\_email"
 
-7.  SENDER\_EMAIL="sender\_email"
+ >  ADMIN\_PASSWORD="admin\_password"
 
-8.  \#ADMIN\_EMAIL="admin\_email"
+ >  SENDER\_EMAIL="sender\_email"
 
-9.  \#ADMIN\_PAS123"SWORD="password
+ > \#ADMIN\_EMAIL="admin\_email"
 
-10. \#JWT\_SECRET="jwt\_secret"
+ > \#ADMIN\_PAS123"SWORD="password
 
-11. TEST\_CASE\_EMAIL = 'testemail'
+ > \#JWT\_SECRET="jwt\_secret"
 
-12. S3\_DEPLOYMENT\_LINK\_DEV =
+ > TEST\_CASE\_EMAIL = 'testemail'
+
+ > S3\_DEPLOYMENT\_LINK\_DEV =
     "http://bookmypg-lambda-frontend.s3-website.us-east-2.amazonaws.com"
 
-> S3\_PUBLIC\_IMAGES\_LINK =
-> "https://bookmypg-public.s3.us-east-2.amazonaws.com/images"
+ > S3\_PUBLIC\_IMAGES\_LINK =
+ > "https://bookmypg-public.s3.us-east-2.amazonaws.com/images"
 
-1.  Run the backend server
+4.  Run the backend server
 
-npm run dev
+ > npm run dev
 
-1.  Run the frontend app
+5.  Run the frontend app
 
-npm run start
+ > npm run start
 
 ### **Tech Stack**
 
@@ -196,7 +196,7 @@ below mentioned links from the homepage.
 
 3.  Login
 
-![](media/image2.png){width="4.875in" height="2.2583333333333333in"}
+![](https://drive.google.com/file/d/1RQW7pp1EBtVgTVPrWGlVmf9SFAezjol0/view?usp=sharing"}
 
 We have also implemented a dynamic slider to showcase the recently added
 properties. This gets update after new properties are added by the owner
