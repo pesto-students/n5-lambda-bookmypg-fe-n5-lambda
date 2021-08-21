@@ -17,28 +17,31 @@ import PropertiesSelector from "../../helpers/PropertiesSelector";
 import propertiesActions from "../../../redux-store/actions/propertiesActions";
 import { S3_BUCKET_URL } from "constant";
 
-const data = {
-  property: "Zolo House 1",
-  rent: "15000/month",
-  owner: "Mr. Agarwal",
-  review: {},
-  numratings: 10,
-};
-
 export function MyPropertiesContent(props) {
   const classes = useStyles();
+  const [refresh, setRefresh] = React.useState(false);
 
   useEffect(() => {
     props.getUser(props.user.email);
   }, []);
 
+  useEffect(() => {
+    props.getProperties();
+  }, [refresh]);
+
   let property;
-  if (!property && get(props, "user.property._id")) {
+  let review;
+  if (!property && get(props, "user.property._id") && get(props, "properties.length")) {
     property =
       props.properties.filter(
         (p) => p.propertydata._id === props.user.property._id
       )[0] || "";
+    if(get(property, 'reviewdata.reviews.length'))
+      review = property.reviewdata.reviews.filter((re) => re.reviewedby._id === props.user._id)[0];
   }
+  console.log("property", property);
+  console.log("review", review);
+  
   return (
     <div className="Table">
       {property && (
@@ -69,11 +72,11 @@ export function MyPropertiesContent(props) {
                     </Typography>
                   </div>
 
-                  {data.review.rating ? (
+                  {review ? (
                     <div className={classes.ratingboxStyle}>
                       <Box display="flex" p={1}>
                         <Rating
-                          value={data.review.rating}
+                          value={review.rating}
                           type="Large"
                           readonly={true}
                         />
@@ -83,7 +86,7 @@ export function MyPropertiesContent(props) {
                         variant="subtitle2"
                         className={classes.descriptionStyle}
                       >
-                        {data.review.description}
+                        {review.description}
                       </Typography>
                     </div>
                   ) : (
@@ -95,6 +98,8 @@ export function MyPropertiesContent(props) {
                             property_id={property.propertydata._id}
                             user_id={props.user._id}
                             value={property.propertydata.name}
+                            setRefresh={setRefresh}
+                            refresh={refresh}
                           />{" "}
                           to review it.
                         </Typography>
@@ -136,6 +141,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getUser: (payload) => dispatch(userActions.getUser(payload)),
+    getProperties: () => dispatch(propertiesActions.getProperties()),
     raiseComplaint: (payload) =>
       dispatch(complaintsActions.raiseComplaint(payload)),
     resetProperties: () => dispatch(propertiesActions.resetState()),

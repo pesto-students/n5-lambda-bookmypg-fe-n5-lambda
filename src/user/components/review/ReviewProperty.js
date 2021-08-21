@@ -54,6 +54,9 @@ export default function ReviewProperty(props) {
     });
     toast("Review has been posted successfully!");
     setOpen(false);
+    setTimeout(() => {
+      props.setRefresh(true);
+    }, 100);
   };
 
   const submitDisabled = () => {

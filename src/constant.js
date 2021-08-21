@@ -137,8 +137,8 @@ export const PROPERTY_LIST_HEADERS = {
   isactive: "Status",
   location: "Location",
   address: "Address",
-  freebeds: "Free Beds",
-  createdAt: "Registered On",
+  freebeds: "Total Beds",
+  createdAt: "Registered Date",
 };
 
 export const OWNER_LIST_HEADERS = {
