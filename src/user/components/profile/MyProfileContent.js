@@ -13,6 +13,7 @@ import TextField from "components/textfield/Textfield";
 import Typography from "components/typography/Typography";
 
 export function MyProfileContent(props) {
+  console.log(props);
   const classes = useStyles();
 
   const user = props.user;
@@ -34,8 +35,54 @@ export function MyProfileContent(props) {
 
   return (
     <div className="Table">
-      <ResponsiveDrawer headersData={props.responsivedrawerData}>
-        <Grid container spacing={2}>
+      {user.role === "user" ? (
+        <ResponsiveDrawer headersData={props.responsivedrawerData}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={3} sm={12}>
+              <ProfilePhoto imageName="DefaultPic.png" />
+            </Grid>
+            <Grid item xs={10} md={4} sm={10}>
+              <Typography type="ListTitle" text="Basic Details" />
+              <Grid item>
+                <TextField
+                  type="standardForm"
+                  label="First Name"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  icon="Name"
+                />
+                <TextField
+                  type="standardForm"
+                  label="Last Name"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  icon="Name"
+                />
+
+                <TextField
+                  label="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  icon="Email"
+                />
+              </Grid>
+              <Grid item>
+                <TextField
+                  type="standardForm"
+                  label="Contact No"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  icon="Phone"
+                />
+              </Grid>
+              <Grid item className={classes.buttonSpacing}>
+                <Button text="Update" handleClick={handleSubmit} />
+              </Grid>
+            </Grid>
+          </Grid>
+        </ResponsiveDrawer>
+      ) : (
+        <Grid container spacing={2} className={classes.basicdetailsStyle}>
           <Grid item xs={12} md={3} sm={12}>
             <ProfilePhoto imageName="DefaultPic.png" />
           </Grid>
@@ -78,7 +125,7 @@ export function MyProfileContent(props) {
             </Grid>
           </Grid>
         </Grid>
-      </ResponsiveDrawer>
+      )}
       <ToastContainer />
     </div>
   );
