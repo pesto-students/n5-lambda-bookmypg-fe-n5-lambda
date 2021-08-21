@@ -89,6 +89,10 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: "10px",
     fontSize: "smaller",
   },
+  basicdetailsStyle: {
+    placeContent: "center",
+    marginTop: "100px",
+  },
 }));
 
 export default useStyles;
