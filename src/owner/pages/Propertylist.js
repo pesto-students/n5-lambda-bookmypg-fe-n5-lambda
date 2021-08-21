@@ -16,22 +16,27 @@ const responsiveHeaderData = [
   {
     label: "Home",
     href: "/home",
+    icon: "Home",
   },
   {
     label: "My Properties",
-    href: "/owner-property-list",
+    href: "/myproperties",
+    icon: "Property",
   },
   {
     label: "Tenants",
-    href: "/tenant-list",
+    href: "/tenants-list",
+    icon: "People",
   },
   {
     label: "Complaints",
-    href: "/owner-complaint-list",
+    href: "/complaints",
+    icon: "Comment",
   },
   {
     label: "About us",
     href: "/about",
+    icon: "About",
   },
 ];
 

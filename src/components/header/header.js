@@ -11,6 +11,7 @@ import {
   Grid,
   Box,
   Typography,
+  ListItemIcon,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import Dialog from "@material-ui/core/Dialog";
@@ -27,6 +28,7 @@ import UserSelector from "../../user/helpers/UserSelector";
 import userActions from "../../redux-store/actions/userActions";
 import FormImage from "components/formimage/FormImage";
 import { useAuth } from "../../contexts/AuthContext";
+import Icon from "components/icon/Icon";
 
 export function Header(props) {
   const { header, logo, toolbar, drawerContainer, button, mobileviewButton } =
@@ -147,7 +149,12 @@ export function Header(props) {
                 }}
                 onClick={LoginPopup}
               >
-                <MenuItem>{"Login"}</MenuItem>
+                <MenuItem className={classes.menuitemStyle}>
+                  <ListItemIcon className={classes.listitemStyle}>
+                    <Icon type="Login" />
+                  </ListItemIcon>
+                  {"Login"}
+                </MenuItem>
               </Link>
             ) : (
               <div>
@@ -161,7 +168,12 @@ export function Header(props) {
                   }}
                   onClick={handleLogout}
                 >
-                  <MenuItem>{"My Profile"}</MenuItem>
+                  <MenuItem className={classes.menuitemStyle}>
+                    <ListItemIcon className={classes.listitemStyle}>
+                      <Icon type="Profile" />
+                    </ListItemIcon>
+                    {"My Profile"}
+                  </MenuItem>
                 </Link>
                 <Link
                   key={"Logout"}
@@ -171,7 +183,12 @@ export function Header(props) {
                   }}
                   onClick={handleLogout}
                 >
-                  <MenuItem>{"Logout"}</MenuItem>
+                  <MenuItem className={classes.menuitemStyle}>
+                    <ListItemIcon className={classes.listitemStyle}>
+                      <Icon type="Login" />
+                    </ListItemIcon>
+                    {"Logout"}
+                  </MenuItem>
                 </Link>
               </div>
             )}
@@ -203,7 +220,7 @@ export function Header(props) {
   };
 
   const getresDrawerChoices = () => {
-    return props.responsiveHeaderData.map(({ label, href }) => {
+    return props.responsiveHeaderData.map(({ label, href, icon }) => {
       return (
         <Link
           key={label}
@@ -214,7 +231,12 @@ export function Header(props) {
             style: { textDecoration: "none" },
           }}
         >
-          <MenuItem>{label}</MenuItem>
+          <MenuItem className={classes.menuitemStyle}>
+            <ListItemIcon className={classes.listitemStyle}>
+              <Icon type={icon} />
+            </ListItemIcon>
+            {label}
+          </MenuItem>
         </Link>
       );
     });

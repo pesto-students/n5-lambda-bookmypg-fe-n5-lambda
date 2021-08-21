@@ -15,6 +15,7 @@ import {
   Grid,
   Box,
   Container,
+  ListItemIcon,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import Dialog from "@material-ui/core/Dialog";
@@ -33,15 +34,18 @@ import tenantsActions from "../../../redux-store/actions/tenantsActions";
 import PopupMenu from "components/popupmenu/PopupMenu";
 import SigninButton from "@material-ui/core/Button";
 import FormImage from "components/formimage/FormImage";
+import Icon from "components/icon/Icon";
 
 const headersData = [
   {
     label: "Home",
     href: "/",
+    icon: "Home",
   },
   {
     label: "About us",
     href: "/about",
+    icon: "About",
   },
 ];
 
@@ -49,6 +53,7 @@ const listitems = [
   {
     label: "My Profile",
     href: "/myprofile",
+    icon: "Profile",
   },
   {
     label: "Logout",
@@ -196,7 +201,12 @@ export function Header(props) {
                 }}
                 onClick={LoginPopup}
               >
-                <MenuItem>{"Login"}</MenuItem>
+                <MenuItem className={classes.menuitemStyle}>
+                  <ListItemIcon className={classes.listitemStyle}>
+                    <Icon type="Login" />
+                  </ListItemIcon>
+                  {"Login"}
+                </MenuItem>
               </Link>
             ) : (
               <div>
@@ -210,7 +220,13 @@ export function Header(props) {
                   }}
                   onClick={handleLogout}
                 >
-                  <MenuItem>{"My Profile"}</MenuItem>
+                  {" "}
+                  <MenuItem className={classes.menuitemStyle}>
+                    <ListItemIcon className={classes.listitemStyle}>
+                      <Icon type="Profile" />
+                    </ListItemIcon>
+                    {"My Profile"}
+                  </MenuItem>
                 </Link>
                 <Link
                   key={"Logout"}
@@ -220,7 +236,12 @@ export function Header(props) {
                   }}
                   onClick={handleLogout}
                 >
-                  <MenuItem>{"Logout"}</MenuItem>
+                  <MenuItem className={classes.menuitemStyle}>
+                    <ListItemIcon className={classes.listitemStyle}>
+                      <Icon type="Login" />
+                    </ListItemIcon>
+                    {"Logout"}
+                  </MenuItem>
                 </Link>
               </div>
             )}
@@ -234,7 +255,7 @@ export function Header(props) {
   };
 
   const getDrawerChoices = () => {
-    return headersData.map(({ label, href }) => {
+    return headersData.map(({ label, href, icon }) => {
       return (
         <Link
           key={label}
@@ -245,7 +266,12 @@ export function Header(props) {
             style: { textDecoration: "none" },
           }}
         >
-          <MenuItem>{label}</MenuItem>
+          <MenuItem className={classes.menuitemStyle}>
+            <ListItemIcon className={classes.listitemStyle}>
+              <Icon type={icon} />
+            </ListItemIcon>
+            {label}
+          </MenuItem>
         </Link>
       );
     });

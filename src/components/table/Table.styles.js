@@ -48,6 +48,9 @@ const useStyles = makeStyles((theme) => ({
     overflowX: "auto",
     border: "none",
   },
+  tablecellStyle: {
+    padding: "4px 14px 4px 14px",
+  },
 }));
 
 export default useStyles;

@@ -16,18 +16,22 @@ const responsiveHeaderData = [
   {
     label: "Home",
     href: "/home",
+    icon: "Home",
   },
   {
     label: "Owners",
     href: "/owner-list",
+    icon: "People",
   },
   {
     label: "Amenities",
     href: "/amenity-list",
+    icon: "Amenity",
   },
   {
     label: "About us",
     href: "/about",
+    icon: "About",
   },
 ];
 

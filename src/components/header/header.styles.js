@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
   },
   drawerContainer: {
-    padding: "20px 30px",
+    paddingTop: "20px",
   },
   button: {
     justifyContent: "center",
@@ -91,6 +91,13 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "center",
     textAlign: "center",
+  },
+  listitemStyle: {
+    minWidth: "unset",
+  },
+  menuitemStyle: {
+    fontWeight: 600,
+    padding: "4px 8px",
   },
 }));
 
