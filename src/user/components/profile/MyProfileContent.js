@@ -13,7 +13,6 @@ import TextField from "components/textfield/Textfield";
 import Typography from "components/typography/Typography";
 
 export function MyProfileContent(props) {
-  console.log(props);
   const classes = useStyles();
 
   const user = props.user;
