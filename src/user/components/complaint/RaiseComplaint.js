@@ -4,7 +4,6 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  TextField,
   Grid,
   Box,
   IconButton,
@@ -17,6 +16,7 @@ import useStyles from "./RaiseComplaint.styles";
 import Button from "components/button/Button";
 import FormImage from "components/formimage/FormImage";
 import Typography from "components/typography/Typography";
+import TextField from "components/textfield/Textfield";
 
 export default function FormDialog(props) {
   const classes = useStyles();
@@ -81,68 +81,29 @@ export default function FormDialog(props) {
           </div>
         </DialogTitle>
 
-        <DialogContent className={classes.formAlign}>
+        <DialogContent>
           <Grid spacing={2} className={classes.gridStyle}>
             <Grid item>
               <TextField
-                disabled
-                id="standard-disabled"
-                label="Property Name"
                 value={get(props, "property.name") ? props.property.name : ""}
-                fullwidth
-                className={classes.textfieldStyle}
-                InputProps={{
-                  classes: {
-                    root: classes.root,
-                    disabled: classes.disabled,
-                  },
-                }}
+                icon="Name"
+                label="Property Name"
               />
             </Grid>
             <Grid item>
-              <TextField
-                disabled
-                id="standard-disabled"
-                label="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                fullwidth
-                className={classes.textfieldStyle}
-                InputProps={{
-                  classes: {
-                    root: classes.root,
-                    disabled: classes.disabled,
-                  },
-                }}
-              />
+              <TextField label="Email" value={email} icon="Email" />
+            </Grid>
+            <Grid item>
+              <TextField label="Contact no" value={phone} icon="Phone" />
             </Grid>
             <Grid item>
               <TextField
-                disabled
-                id="standard-disabled"
-                label="Contact no"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                fullwidth
-                className={classes.textfieldStyle}
-                InputProps={{
-                  classes: {
-                    root: classes.root,
-                    disabled: classes.disabled,
-                  },
-                }}
-              />
-            </Grid>
-            <Grid item>
-              <TextField
-                id="standard-basic"
+                type="standardFormValidation"
                 label="Details"
                 value={details}
                 onChange={(e) => setDetails(e.target.value)}
-                fullwidth
-                multiline
-                rows="4"
-                className={classes.textfieldStyle}
+                multiline={true}
+                rows={4}
                 error={detailsError.error}
                 onFocus={() =>
                   setDetailsError({ helperText: "", error: false })
