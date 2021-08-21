@@ -36,7 +36,7 @@ import SigninButton from "@material-ui/core/Button";
 import FormImage from "components/formimage/FormImage";
 import Icon from "components/icon/Icon";
 
-const headersData = [
+let UserHeadersData = [
   {
     label: "Home",
     href: "/",
@@ -46,6 +46,28 @@ const headersData = [
     label: "About us",
     href: "/about",
     icon: "About",
+  },
+];
+
+const OwnerHeadersData = [
+  {
+    label: "Dashboards",
+    href: "/owner-property-list",
+  },
+  {
+    label: "About us",
+    href: "/about",
+  },
+];
+
+const AdminHeadersData = [
+  {
+    label: "Dashboards",
+    href: "/owner-list",
+  },
+  {
+    label: "About us",
+    href: "/about",
   },
 ];
 
@@ -255,7 +277,13 @@ export function Header(props) {
   };
 
   const getDrawerChoices = () => {
-    return headersData.map(({ label, href, icon }) => {
+    let HeadersData;
+    if (props.user && props.user.role === "owner")
+      HeadersData = OwnerHeadersData;
+    else if (props.user && props.user.role === "admin")
+      HeadersData = AdminHeadersData;
+    else  HeadersData = UserHeadersData;
+    return HeadersData.map(({ label, href, icon }) => {
       return (
         <Link
           key={label}
@@ -326,7 +354,13 @@ export function Header(props) {
   );
 
   const getMenuButtons = () => {
-    return headersData.map(({ label, href }) => {
+    let HeadersData;
+    if (props.user && props.user.role === "owner")
+      HeadersData = OwnerHeadersData;
+    else if (props.user && props.user.role === "admin")
+      HeadersData = AdminHeadersData;
+    else HeadersData = UserHeadersData;
+    return HeadersData.map(({ label, href }) => {
       return (
         <Button
           text={label}
