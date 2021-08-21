@@ -1,22 +1,36 @@
 import React, { useRef } from "react";
 import useStyles from "./ProfilePhoto.styles";
 import Avatar from "@material-ui/core/Avatar";
+import { uploadImage } from "../../../aws";
 import { S3_BUCKET_URL } from "constant";
 
 export default function CenteredGrid(props) {
   const classes = useStyles();
-
-  const imageUrl = `${S3_BUCKET_URL}/profile-photos/profile_pic.jpg`;
+  const imageUrl = `${S3_BUCKET_URL}/${props.image}`;
 
   const imageRef = useRef();
   const handleClick = () => {
     imageRef.current.click();
   };
 
+  const handleChange = async (e) => {
+    const dirName = "profile-photos/";
+    if (e.target.files) {
+      const response = await uploadImage(e.target.files[0], dirName);
+      props.setImage(response);
+      props.handleSubmit(response);
+      setTimeout(() => {
+        props.setRefresh(!props.refresh);
+      }, 1000);
+    } else {
+      props.setImage([]);
+    }
+  };
+
   return (
     <>
       <Avatar
-        src={imageUrl}
+        src={props.image?imageUrl:props.defaultImage}
         onClick={handleClick}
         style={{ height: "192px", width: "192px" }}
         className={classes.avatarStyle}
@@ -26,6 +40,7 @@ export default function CenteredGrid(props) {
         type="file"
         style={{ display: "none" }}
         accept="image/*"
+        onChange={handleChange}
       />
     </>
   );

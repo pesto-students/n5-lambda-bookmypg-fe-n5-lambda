@@ -16,6 +16,7 @@ export default function CheckoutWithStripe(props) {
     token.property_id = props.property._id;
     token.property = props.property._id;
     token.charge_id = token.id;
+    token.owneremail = props.property.owner.email;
     await fetch(`${SERVER_URL}/api/payments/`, {
       method: "POST",
       body: JSON.stringify(token),

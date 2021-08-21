@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Grid } from "@material-ui/core";
 import { ToastContainer, toast } from "react-toastify";
@@ -21,12 +21,20 @@ export function MyProfileContent(props) {
   const [lastName, setLastName] = React.useState(user ? user.lastName : "");
   const [email, setEmail] = React.useState(user ? user.email : "");
   const [phone, setPhone] = React.useState(user ? user.phone : "");
+  const [image, setImage] = React.useState(user ? user.image : "");
+  const [refresh, setRefresh] = React.useState(false);
 
-  const handleSubmit = () => {
+  useEffect(() => {
+    if (user.email) props.getUser(user.email);
+  }, [refresh]);
+
+  const handleSubmit = (uploadedImage) => {
     let params = {
       firstName,
       lastName,
       phone,
+      email,
+      image: uploadedImage,
     };
     props.updateUser({ id: user._id, params });
     toast("Profile has been updated successfully!");
@@ -83,7 +91,14 @@ export function MyProfileContent(props) {
       ) : (
         <Grid container spacing={2} className={classes.basicdetailsStyle}>
           <Grid item xs={12} md={3} sm={12}>
-            <ProfilePhoto imageName="DefaultPic.png" />
+            <ProfilePhoto
+              defaultImage="DefaultPic.png"
+              setImage={setImage}
+              image={image}
+              handleSubmit={handleSubmit}
+              refresh={refresh}
+              setRefresh={setRefresh}
+            />
           </Grid>
           <Grid item xs={10} md={4} sm={10}>
             <Typography type="ListTitle" text="Basic Details" />
