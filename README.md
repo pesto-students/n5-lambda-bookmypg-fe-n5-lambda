@@ -11,24 +11,24 @@ README
     Project](#about-the-project)
 
 2.  [Getting
-    Started](https://bookmypg.atlassian.net/wiki/spaces/BOOKMYPG/pages/12615699/README#Getting-Started)
+    Started](#getting-started)
 
-    1.  [Prerequisites](https://bookmypg.atlassian.net/wiki/spaces/BOOKMYPG/pages/12615699/README#Prerequisites)
+    1.  [Prerequisites](#Prerequisites)
 
-    2.  [Installation](https://bookmypg.atlassian.net/wiki/spaces/BOOKMYPG/pages/12615699/README#Installation)
+    2.  [Installation](#installation)
 
 3.  [Tech
-    Stack](https://bookmypg.atlassian.net/wiki/spaces/BOOKMYPG/pages/12615699/README#Tech-Stack)
+    Stack](#tech-stack)
 
 4.  [Tools and
-    Integration](https://bookmypg.atlassian.net/wiki/spaces/BOOKMYPG/pages/12615699/README#Tools)
+    Integration](#tools)
 
-5.  [Resources](https://bookmypg.atlassian.net/wiki/spaces/BOOKMYPG/pages/12615699/README#Resources)
+5.  [Resources](#resources)
 
-6.  [Developers](https://bookmypg.atlassian.net/wiki/spaces/BOOKMYPG/pages/12615699/README#Developers)
+6.  [Developers](#developers)
 
 7.  [Working & UI
-    Screens](https://bookmypg.atlassian.net/wiki/spaces/BOOKMYPG/pages/12615699/README#Working-%26-UI-Screens)
+    Screens](#working--ui-screens)
 
 **About The Project**
 ---------------------
