@@ -10,6 +10,8 @@ import Link from "components/link/Link";
 import PropertyCard from "components/card/Card";
 import PropertiesSelector from "../../../user/helpers/PropertiesSelector";
 import propertiesActions from "../../../redux-store/actions/propertiesActions";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper.min.css";
 
 export function OwnerPropertyList(props) {
   const classes = useStyles();
@@ -38,6 +40,11 @@ export function OwnerPropertyList(props) {
     setOwnerProperties(props.properties);
   }
 
+  const [state, setState] = React.useState({
+    mobileView: false,
+    drawerOpen: false,
+  });
+
   const handleClickOpen = () => {
     setOwnerId(props.owner._id);
     setOpen(true);
@@ -49,6 +56,18 @@ export function OwnerPropertyList(props) {
     setOwnerId("");
     setOpen(false);
   };
+  React.useEffect(() => {
+    const setResponsiveness = () => {
+      return window.innerWidth < 600
+        ? setState((prevState) => ({ ...prevState, mobileView: true }))
+        : setState((prevState) => ({ ...prevState, mobileView: false }));
+    };
+    setResponsiveness();
+    window.addEventListener("resize", () => setResponsiveness());
+    return () => {
+      window.removeEventListener("resize", () => setResponsiveness());
+    };
+  }, []);
 
   return (
     <div className={classes.buttonStyle}>
@@ -66,24 +85,36 @@ export function OwnerPropertyList(props) {
         }}
       >
         <DialogContent>
-          <Grid container spacing={2}>
-            {get(ownerProperties, "length") &&
-            get(props, "properties.length") ? (
-              ownerProperties.map((property) => (
-                <Grid
-                  item
-                  key={property.propertydata._id}
-                  xs={12}
-                  sm={6}
-                  md={4}
-                >
-                  <PropertyCard type="OwnerProperty" property={property} />
-                </Grid>
-              ))
-            ) : (
-              <Grid>{"No Properties Available"}</Grid>
-            )}
-          </Grid>
+          <Swiper
+            slidesPerView={
+              window.innerWidth > 600 && window.innerWidth < 900
+                ? 2
+                : window.innerWidth <= 600
+                ? 1
+                : 3
+            }
+          >
+            <Grid container spacing={2}>
+              {get(ownerProperties, "length") &&
+              get(props, "properties.length") ? (
+                ownerProperties.map((property) => (
+                  <Grid
+                    item
+                    key={property.propertydata._id}
+                    xs={12}
+                    sm={6}
+                    md={4}
+                  >
+                    <SwiperSlide style={{ height: "400px" }}>
+                      <PropertyCard type="OwnerProperty" property={property} />
+                    </SwiperSlide>
+                  </Grid>
+                ))
+              ) : (
+                <Grid>{"No Properties Available"}</Grid>
+              )}
+            </Grid>
+          </Swiper>
         </DialogContent>
         <DialogActions className={classes.button}>
           <Button text="Close" handleClick={handleClose} />

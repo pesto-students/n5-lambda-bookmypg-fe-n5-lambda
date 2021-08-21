@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { get } from "lodash";
 import {
   Dialog,
   DialogActions,
@@ -21,6 +22,7 @@ import Select from "components/select/Select";
 import ComplaintsSelector from "../ComplaintsSelector";
 import complainsActions from "../../../redux-store/actions/complaintsActions";
 import UserSelector from "../../../user/helpers/UserSelector";
+import { LOCALE, TIMEZONE } from "constant";
 
 const listitems = ["Pending", "Resolved"];
 
@@ -37,8 +39,18 @@ export function ViewComplaint(props) {
   };
   const date = new Date();
 
-  const [remark, setRemark] = React.useState("");
-  const [status, setStatus] = React.useState("");
+  const [remark, setRemark] = React.useState(props.complaint?props.complaint.remark:"");
+  const [status, setStatus] = React.useState(props.complaint?props.complaint.status:"");
+
+  const [remarkError, setRemarkError] = React.useState({
+    helperText: "",
+    error: false,
+  });
+
+  const [statusError, setStatusError] = React.useState({
+    helperText: "",
+    error: false,
+  });
 
   date.setDate(date.getDate() + 7);
 
@@ -55,12 +67,25 @@ export function ViewComplaint(props) {
     const user = props.user;
     props.updateComplaint({ params, user });
     setOpen(false);
-    toast("Property has been added successfully!");
+    toast("Complaint has been addressed successfully!");
     setRemark("");
     setStatus("");
     setTimeout(() => {
       props.setRefresh(!props.refresh);
     }, 500);
+  };
+
+  const disableSubmit = () => {
+    let flag = false;
+    if (
+      statusError.error ||
+      status.trim() === "" ||
+      remarkError.error ||
+      // remark.trim() === "" ||
+      (get(props, "complaint.status") && props.complaint.status === "Resolved")
+    )
+      flag = true;
+    return flag;
   }
 
   return (
@@ -102,14 +127,20 @@ export function ViewComplaint(props) {
               id="standard-disabled"
               value={complaint.email}
               icon="Email"
+              label="Email"
             />
 
-            <TextField value={complaint.phone} icon="Phone" />
+            <TextField
+              value={complaint.phone}
+              icon="Phone"
+              label="Contact no"
+            />
 
             <TextField
               id="standard-disabled"
-              value={complaint.createdAt}
+              value={new Date(complaint.createdAt).toLocaleString(LOCALE,TIMEZONE)}
               icon="Event"
+              label="Complaint Date"
             />
 
             <TextField
@@ -118,6 +149,7 @@ export function ViewComplaint(props) {
               maxrows={2}
               multiline={true}
               icon="Description"
+              label="Description"
             />
 
             <TextField
@@ -128,6 +160,16 @@ export function ViewComplaint(props) {
               multiline={true}
               icon="Comment"
               type="standardForm"
+              error={remarkError.error}
+              disabled={complaint.status === "Resolved"}
+              onFocus={() => setRemarkError({ helperText: "", error: false })}
+              onBlur={() =>
+                setRemarkError({
+                  helperText: "Remark is required",
+                  error: remark.trim() === "",
+                })
+              }
+              helperText={remarkError.error ? remarkError.helperText : ""}
             />
 
             <Select
@@ -135,11 +177,25 @@ export function ViewComplaint(props) {
               value={status}
               setValue={setStatus}
               listitems={listitems}
+              error={statusError.error}
+              disabled={complaint.status === "Resolved"}
+              onFocus={() => setStatusError({ helperText: "", error: false })}
+              onBlur={() =>
+                setStatusError({
+                  helperText: "Status is required",
+                  error: status.trim() === "",
+                })
+              }
+              helperText={statusError.error ? statusError.helperText : ""}
             />
           </Grid>
         </DialogContent>
         <DialogActions className={classes.button}>
-          <Button text="Submit" handleClick={handleSubmit} />
+          <Button
+            text="Submit"
+            disabled={disableSubmit()}
+            handleClick={handleSubmit}
+          />
           <Button text="Cancel" handleClick={handleClose} />
         </DialogActions>
       </Dialog>
@@ -162,7 +218,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getComplaints: (payload) =>
       dispatch(complainsActions.getComplaints(payload)),
-    updateComplaint: (payload) => dispatch(complainsActions.updateComplaint(payload)),
+    updateComplaint: (payload) =>
+      dispatch(complainsActions.updateComplaint(payload)),
     resetComplaints: () => dispatch(complainsActions.resetState()),
   };
 };

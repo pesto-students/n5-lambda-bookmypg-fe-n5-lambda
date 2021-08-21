@@ -1,5 +1,4 @@
 import { createTheme } from "@material-ui/core/styles";
-import { responsiveFontSizes, colors } from "@material-ui/core";
 
 const theme = createTheme({
   palette: {
@@ -48,7 +47,6 @@ const theme = createTheme({
         fontWeight: 550,
         fontSize: "1.00rem",
         lineHeight: "normal",
-        //color: "#fff",
       },
       root: {
         padding: "4px 16px 4px 24px",
@@ -76,15 +74,12 @@ const theme = createTheme({
         lineHeight: "normal",
         "&$selected": {
           backgroundColor: "#fff",
-          //color: "white",
         },
         "&$selected:hover": {
           backgroundColor: "#F3F9FF",
-          //color: "white",
         },
         "&:hover": {
           backgroundColor: "#F3F9FF",
-          //color: "white",
         },
       },
     },

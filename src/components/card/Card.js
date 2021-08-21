@@ -172,7 +172,7 @@ export default function ButtonComponent(props) {
       );
     case "OwnerProperty":
       return (
-        <Card className={classes.propertycard}>
+        <Card className={classes.ownerCardStyle}>
           <CardMedia
             className={classes.cardMedia}
             image={`${S3_BUCKET_URL}/${props.property.propertydata.photos[0]}`}
@@ -188,7 +188,7 @@ export default function ButtonComponent(props) {
                 {props.property.propertydata.location.name}
               </Typography>
             </div>
-            <Typography type="subtitle1" color="textSecondary">
+            <Typography type="subtitle1" color="textSecondary" noWrap>
               {props.property.propertydata.description}
             </Typography>
             <Typography type="subtitle1">
@@ -242,7 +242,7 @@ export default function ButtonComponent(props) {
                 {props.property.location.name}
               </Typography>
             </div>
-            <Typography gutterBottom variant="body2">
+            <Typography gutterBottom variant="body2" noWrap>
               {props.property.description}
             </Typography>
           </CardContent>

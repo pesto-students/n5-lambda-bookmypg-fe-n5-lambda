@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
-import { useHistory } from "react-router-dom";
 import Pagination from "../pagination/pagination";
 import useStyles from "./styles/PropertyListContent.styles";
 import PropertyCard from "components/card/Card";
@@ -10,9 +9,8 @@ export default function PropertyListContent(props) {
 
   const [state, setState] = useState({
     mobileView: false,
-    drawerOpen: false,
   });
-  const { mobileView, drawerOpen } = state;
+  const { mobileView } = state;
   useEffect(() => {
     const setResponsiveness = () => {
       return window.innerWidth < 900
@@ -56,7 +54,6 @@ export default function PropertyListContent(props) {
       </React.Fragment>
     );
   };
-  const history = useHistory();
 
   const displayMobile = () => {
     return (
