@@ -22,7 +22,7 @@ export function OwnerlistContent(props) {
   const [from_date, setFromDate] = React.useState(DATE.FROM_DATE);
   const [to_date, setToDate] = React.useState(DATE.TO_DATE);
   const [pagenumber, setPagenumber] = React.useState(0);
-  const [countperpage, setCountperpage] = React.useState(10);
+  const [countperpage, setCountperpage] = React.useState(15);
   const [search, setSearch] = React.useState("");
   const [order_by, setOrderBy] = React.useState(ORDER_BY.DSC);
   const [owner, setOwner] = React.useState(false);

@@ -138,7 +138,7 @@ export const PROPERTY_LIST_HEADERS = {
   location: "Location",
   address: "Address",
   freebeds: "Total Beds",
-  createdAt: "Registered Date",
+  createdAt: "Registered On",
 };
 
 export const OWNER_LIST_HEADERS = {
@@ -147,14 +147,14 @@ export const OWNER_LIST_HEADERS = {
   email: "Email",
   phone: "Contact No",
   property: "Property Names",
-  createdAt: "Registered Date",
+  createdAt: "Registered On",
 };
 
 export const AMENITY_LIST_HEADERS = {
   name: "Amenity Name",
   isactive: "Status",
   logo: "Logo",
-  createdAt: "Registered Date",
+  createdAt: "Registered On",
 };
 
 export const TENANT_LIST_HEADERS = {

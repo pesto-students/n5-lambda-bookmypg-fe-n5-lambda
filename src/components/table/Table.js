@@ -27,11 +27,11 @@ export default function TableComponent(props) {
   return (
     <Paper variant="outlined" square className={classes.paperStyle}>
       <Table style={{ minWidth: "340px" }} stickyHeader>
-        <TableHead>
+        <TableHead className={classes.tablecellStyle}>
           <TableRow>
             {Object.keys(headersData).map((header) =>
               header === props.sortingColumn ? (
-                <TableCell align="center">
+                <TableCell align="center" className={classes.tablecellStyle}>
                   {headersData[header]}
                   <span className={classes.sorting}>
                     <span>
@@ -49,9 +49,13 @@ export default function TableComponent(props) {
                   </span>
                 </TableCell>
               ) : header === "isactive" ? (
-                <TableCell align="center">Status</TableCell>
+                <TableCell align="center" className={classes.tablecellStyle}>
+                  Status
+                </TableCell>
               ) : (
-                <TableCell align="center">{headersData[header]}</TableCell>
+                <TableCell align="center" className={classes.tablecellStyle}>
+                  {headersData[header]}
+                </TableCell>
               )
             )}
           </TableRow>

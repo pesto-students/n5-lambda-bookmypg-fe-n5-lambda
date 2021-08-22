@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 const useStyles = makeStyles((theme) => ({
   drawer: {
     [theme.breakpoints.up("sm")]: {
@@ -26,10 +26,11 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
-    width: drawerWidth,
+    width: "auto",
     marginTop: "58px",
     paddingTop: "40px",
     [theme.breakpoints.up("sm")]: {
+      width: drawerWidth,
       marginTop: "65px",
     },
   },
@@ -42,6 +43,13 @@ const useStyles = makeStyles((theme) => ({
   },
   menuitemStyle: {
     textDecoration: "none",
+  },
+  listitemStyle: {
+    minWidth: "unset",
+  },
+  menuitemStyle: {
+    fontWeight: 600,
+    padding: "4px 8px",
   },
 }));
 

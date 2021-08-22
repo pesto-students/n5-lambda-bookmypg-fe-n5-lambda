@@ -88,6 +88,7 @@ const theme = createTheme({
         paddingTop: "8px",
         paddingBottom: "8px",
       },
+
       hover: {
         "&$hover:hover": {
           backgroundColor: "#F3F9FF",

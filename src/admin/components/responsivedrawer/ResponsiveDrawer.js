@@ -34,8 +34,8 @@ export default function ResponsiveDrawer(props) {
             style: { textDecoration: "none" },
           }}
         >
-          <MenuItem>
-            <ListItemIcon>
+          <MenuItem className={classes.menuitemStyle}>
+            <ListItemIcon className={classes.listitemStyle}>
               <Icon type={icon} />
             </ListItemIcon>
             {label}
