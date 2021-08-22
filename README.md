@@ -88,12 +88,6 @@ and how to install them.
 
  >  SENDER\_EMAIL="sender\_email"
 
- > \#ADMIN\_EMAIL="admin\_email"
-
- > \#ADMIN\_PAS123"SWORD="password
-
- > \#JWT\_SECRET="jwt\_secret"
-
  > TEST\_CASE\_EMAIL = 'testemail'
 
  > S3\_DEPLOYMENT\_LINK\_DEV =
@@ -126,6 +120,8 @@ and how to install them.
 
 -   [AWS S3](https://aws.amazon.com/)
 
+-   [Firebase](https://firebase.google.com/)
+
 ### **Tools**
 
 -   [AWS](https://aws.amazon.com/)
@@ -152,8 +148,16 @@ and how to install them.
 
 -   [High Level
     Design](https://drive.google.com/file/d/1VF9GqN0jKFuclq5QZTl3fMsL_w0-qoBo/view?usp=sharing)
+    
+    ***Wireframes***
+    
+    ****Desktop****
 
--   [Wireframes](https://balsamiq.cloud/seg1rg9/pgbqrby/r890A)
+-   [Wireframe Desktop](https://balsamiq.cloud/seg1rg9/pgbqrby/r2278?f=N4IgUiBcCMA0IDkoAZ4GEpxAGU%2FAQniALJEBaRA0lANoC6AvkA%3D%3D)
+
+    ****Mobile****
+
+-   [Wireframe Mobile](https://balsamiq.cloud/seg1rg9/pp0tty4/rB1AF?f=N4IgUiBcCMA0IDkpxAYWfAMhkAhHAsjgFo4DSUA2gLoC%2BQA%3D)
 
 **Developers**
 --------------
