@@ -39,8 +39,12 @@ export function ViewComplaint(props) {
   };
   const date = new Date();
 
-  const [remark, setRemark] = React.useState(props.complaint?props.complaint.remark:"");
-  const [status, setStatus] = React.useState(props.complaint?props.complaint.status:"");
+  const [remark, setRemark] = React.useState(
+    props.complaint ? props.complaint.remark : ""
+  );
+  const [status, setStatus] = React.useState(
+    props.complaint ? props.complaint.status : ""
+  );
 
   const [remarkError, setRemarkError] = React.useState({
     helperText: "",
@@ -68,8 +72,6 @@ export function ViewComplaint(props) {
     props.updateComplaint({ params, user });
     setOpen(false);
     toast("Complaint has been addressed successfully!");
-    setRemark("");
-    setStatus("");
     setTimeout(() => {
       props.setRefresh(!props.refresh);
     }, 500);
@@ -86,7 +88,7 @@ export function ViewComplaint(props) {
     )
       flag = true;
     return flag;
-  }
+  };
 
   return (
     <div>
@@ -138,7 +140,10 @@ export function ViewComplaint(props) {
 
             <TextField
               id="standard-disabled"
-              value={new Date(complaint.createdAt).toLocaleString(LOCALE,TIMEZONE)}
+              value={new Date(complaint.createdAt).toLocaleString(
+                LOCALE,
+                TIMEZONE
+              )}
               icon="Event"
               label="Complaint Date"
             />

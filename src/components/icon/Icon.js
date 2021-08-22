@@ -19,6 +19,7 @@ import {
   Info,
   ExitToApp,
   Person,
+  Dashboard,
 } from "@material-ui/icons";
 
 export default function TextFieldComponent(props) {
@@ -60,6 +61,8 @@ export default function TextFieldComponent(props) {
       return <ExitToApp className={classes.iconStyle} />;
     case "Tenant":
       return <Person className={classes.iconStyle} />;
+    case "Dashboard":
+      return <Dashboard className={classes.iconStyle} />;
     default:
       return <div></div>;
   }

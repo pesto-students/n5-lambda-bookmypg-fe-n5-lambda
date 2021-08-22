@@ -24,10 +24,6 @@ export function AmenityListContent(props) {
   const [refresh, setRefresh] = React.useState(false);
 
   useEffect(() => {
-    props.resetAmenities();
-  }, []);
-
-  useEffect(() => {
     const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&columnname=createdAt&orderby=${order_by}`;
     const user = props.user;
     props.getAmenities({ extraParams, user });
