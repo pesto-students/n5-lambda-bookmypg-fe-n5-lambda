@@ -29,6 +29,10 @@ export function OwnerlistContent(props) {
   const [refresh, setRefresh] = React.useState(false);
 
   useEffect(() => {
+    props.resetTenants();
+  }, [refresh]);
+
+  useEffect(() => {
     const extraParams = `?pagenumber=${pagenumber}&countperpage=${countperpage}&search=${search}&from_date=${from_date}&to_date=${to_date}&columnname=onboardedAt&orderby=${order_by}`;
     props.getTenants({ extraParams });
   }, [
