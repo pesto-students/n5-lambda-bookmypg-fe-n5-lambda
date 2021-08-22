@@ -34,7 +34,7 @@ export function MyProfileContent(props) {
       lastName,
       phone,
       email,
-      image: image?image:uploadedImage,
+      image: uploadedImage ? uploadedImage : image,
     };
     props.updateUser({ id: user._id, params });
     toast("Profile has been updated successfully!");
@@ -54,6 +54,7 @@ export function MyProfileContent(props) {
                 setImage={setImage}
                 image={image}
                 handleSubmit={handleSubmit}
+                userId={user._id}
               />
             </Grid>
             <Grid item xs={10} md={4} sm={10}>
@@ -104,6 +105,7 @@ export function MyProfileContent(props) {
               setImage={setImage}
               image={image}
               handleSubmit={handleSubmit}
+              userId={user._id}
             />
           </Grid>
           <Grid item xs={10} md={4} sm={10}>

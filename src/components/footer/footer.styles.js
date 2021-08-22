@@ -41,16 +41,16 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "960px",
   },
   section: {
-    paddingLeft: "190px",
+    paddingLeft: "170px",
     [theme.breakpoints.down("md")]: {
       paddingLeft: "0px",
     },
     [theme.breakpoints.up("md")]: {
-      paddingLeft: "190px",
+      paddingLeft: "170px",
       width: "calc(90% + 0.5vw)",
     },
     [theme.breakpoints.up("lg")]: {
-      paddingLeft: "190px",
+      paddingLeft: "170px",
     },
   },
   nosection: {

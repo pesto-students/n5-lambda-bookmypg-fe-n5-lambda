@@ -14,7 +14,7 @@ export default function CenteredGrid(props) {
   };
 
   const handleChange = async (e) => {
-    const dirName = "profile-photos/";
+    const dirName = `profile-photos/${props.userId}/`;
     if (e.target.files) {
       const response = await uploadImage(e.target.files[0], dirName);
       props.setImage(response);
@@ -27,7 +27,7 @@ export default function CenteredGrid(props) {
   return (
     <>
       <Avatar
-        src={props.image?imageUrl:props.defaultImage}
+        src={props.image ? imageUrl : props.defaultImage}
         onClick={handleClick}
         style={{ height: "192px", width: "192px" }}
         className={classes.avatarStyle}

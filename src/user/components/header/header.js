@@ -53,10 +53,12 @@ const OwnerHeadersData = [
   {
     label: "Dashboards",
     href: "/owner-property-list",
+    icon: "Dashboard",
   },
   {
     label: "About us",
     href: "/about",
+    icon: "About",
   },
 ];
 
@@ -64,10 +66,12 @@ const AdminHeadersData = [
   {
     label: "Dashboards",
     href: "/owner-list",
+    icon: "Dashboard",
   },
   {
     label: "About us",
     href: "/about",
+    icon: "About",
   },
 ];
 
@@ -282,7 +286,7 @@ export function Header(props) {
       HeadersData = OwnerHeadersData;
     else if (props.user && props.user.role === "admin")
       HeadersData = AdminHeadersData;
-    else  HeadersData = UserHeadersData;
+    else HeadersData = UserHeadersData;
     return HeadersData.map(({ label, href, icon }) => {
       return (
         <Link
