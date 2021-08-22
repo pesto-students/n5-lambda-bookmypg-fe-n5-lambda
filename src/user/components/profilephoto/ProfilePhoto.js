@@ -17,8 +17,10 @@ export default function CenteredGrid(props) {
     const dirName = `profile-photos/${props.userId}/`;
     if (e.target.files) {
       const response = await uploadImage(e.target.files[0], dirName);
-      props.setImage(response);
-      props.handleSubmit(response);
+      setTimeout(() => {
+        props.setImage(response);
+        props.handleSubmit(response);
+      }, 500);
     } else {
       props.setImage([]);
     }
