@@ -26,7 +26,7 @@ export function ComplaintsContent(props) {
   const classes = useStyles();
   useEffect(() => {
     props.resetComplaints();
-  }, []);
+  }, [refresh]);
 
   useEffect(() => {
     const user = props.user;
