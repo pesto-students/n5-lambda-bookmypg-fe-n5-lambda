@@ -1,10 +1,10 @@
 const aws = require("aws-sdk");
 
 const config = {
-  bucketName: "bookmypg-photos",
-  region: "us-east-2",
-  accessKeyId: "AKIAQBHIL4ZTAYRVKU7M",
-  secretAccessKey: "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"
+  bucketName: process.env.bucketName,
+  region: process.env.region,
+  accessKeyId: process.env.accessKeyId,
+  secretAccessKey: process.env.secretAccessKey
 }
 
 export async function getImages() {
