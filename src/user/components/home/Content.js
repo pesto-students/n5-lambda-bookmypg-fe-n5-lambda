@@ -36,9 +36,9 @@ export function Content(props) {
             <TypographyComponent
               type="FormTitle"
               align="center"
-              text="We provide a common platform for both a property owner to share his property details and Paying Guest to find suitable property
+              text="We provide a common platform for both property owners to share their property details and Paying Guests to find suitable property
               and make monthly rent payments with one-click hassle-free payment
-              facility. We also allow paying guests to share his reviews and
+              facility. We also allow Paying Guests to share their reviews and
               raise complaints from our platform."
             />
           </Grid>
@@ -75,10 +75,10 @@ export function Content(props) {
             <TypographyComponent
               type="FormTitle"
               align="center"
-              text="Our aim is to allow Paying guest to search properties available in
+              text="Our aim is to allow Paying Guests to search properties available in
               more than 15 cities of India and explore all the amenities
               available at the properties along with the photos and find a cozy
-              home. We allow Paying guests to schedule a visit to the property
+              home. We allow Paying Guests to schedule a visit to the property
               before booking it and once booked they can make monthly rent
               payments from the platform."
             />
