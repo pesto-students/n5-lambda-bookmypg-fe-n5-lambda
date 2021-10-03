@@ -173,6 +173,12 @@ export const EMAIL_TYPE = {
   QUERY: "Query",
 };
 
+export const GUEST_EMAIL = {
+  USER: "bookmypgu@gmail.com",
+  OWNER: "bookmypgo@gmail.com",
+  ADMIN: "bookmypga@gmail.com"
+}
+
 export const DATE = {
   FROM_DATE: "2021-06-25T16:00:00.000Z",
   TO_DATE: "2021-12-31T16:00:00.000Z",
