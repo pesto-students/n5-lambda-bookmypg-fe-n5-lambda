@@ -352,7 +352,7 @@ export function Header(props) {
   const searchBar = (
     <Container maxWidth="sm" component="main">
       <Grid container spacing={2} justifyContent="center">
-        <FormControl variant="outlined" className={classes.formControl}>
+        <FormControl className={classes.formControl}>
           <InputLabel
             id="demo-simple-select-outlined-label"
             style={{ color: "inherit" }}
@@ -371,6 +371,7 @@ export function Header(props) {
                 icon: classes.icon,
               },
             }}
+            style={{ color: "inherit" }}
           >
             <MenuItem value="All">
               <em>All</em>
