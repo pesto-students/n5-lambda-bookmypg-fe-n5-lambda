@@ -17,6 +17,8 @@ import {
   Container,
   ListItemIcon,
 } from "@material-ui/core";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import MenuIcon from "@material-ui/icons/Menu";
 import Dialog from "@material-ui/core/Dialog";
 import { Link as RouterLink, useHistory } from "react-router-dom";
@@ -35,6 +37,7 @@ import PopupMenu from "components/popupmenu/PopupMenu";
 import SigninButton from "@material-ui/core/Button";
 import FormImage from "components/formimage/FormImage";
 import Icon from "components/icon/Icon";
+import { GUEST_EMAIL } from "../../../constant";
 
 let UserHeadersData = [
   {
@@ -162,6 +165,32 @@ export function Header(props) {
       history.push("/");
     }
   };
+
+  const handleGuestLogin = async (userType) => {
+    let email;
+    if(userType === "owner"){
+      email = GUEST_EMAIL.OWNER;
+    } else if(userType === "admin"){
+      email = GUEST_EMAIL.ADMIN;
+    } else {
+      email = GUEST_EMAIL.USER;
+    }
+    props.getUser(email);
+    const existingUser = props.tenants.filter(
+      (tenant) => tenant.email === email
+    )[0];
+    setOpen(false);
+    if (existingUser) {
+      existingUser.role === "owner"
+        ? history.push("/owner-property-list")
+        : existingUser.role === "admin"
+        ? history.push("/owner-list")
+        : history.push("/");
+      toast("You have logged in successfully!!");
+    } else {
+      history.push("/");
+    }
+  }
 
   const locations = props.locations;
 
@@ -323,7 +352,7 @@ export function Header(props) {
   const searchBar = (
     <Container maxWidth="sm" component="main">
       <Grid container spacing={2} justifyContent="center">
-        <FormControl variant="outlined" className={classes.formControl}>
+        <FormControl className={classes.formControl}>
           <InputLabel
             id="demo-simple-select-outlined-label"
             style={{ color: "inherit" }}
@@ -342,6 +371,7 @@ export function Header(props) {
                 icon: classes.icon,
               },
             }}
+            style={{ color: "inherit" }}
           >
             <MenuItem value="All">
               <em>All</em>
@@ -416,6 +446,36 @@ export function Header(props) {
                     textAlign="center"
                   >
                     <div className={mobileviewButton}>
+                    <SigninButton
+                        onClick={()=>handleGuestLogin("user")}
+                        variant="contained"
+                        color="secondary"
+                        key="Signin"
+                      >
+                        {" "}
+                        Signin with Guest User
+                      </SigninButton>
+                      &nbsp;&nbsp;
+                      <SigninButton
+                        onClick={()=>handleGuestLogin("owner")}
+                        variant="contained"
+                        color="secondary"
+                        key="Signin"
+                      >
+                        {" "}
+                        Signin with Guest Owner
+                      </SigninButton>
+                      &nbsp;&nbsp;
+                      <SigninButton
+                        onClick={()=>handleGuestLogin("admin")}
+                        variant="contained"
+                        color="secondary"
+                        key="Signin"
+                      >
+                        {" "}
+                        Signin with Guest Admin
+                      </SigninButton>
+                      &nbsp;&nbsp;
                       <SigninButton
                         onClick={handleLogin}
                         variant="contained"
@@ -530,6 +590,36 @@ export function Header(props) {
                   >
                     <div className={button}>
                       <SigninButton
+                        onClick={()=>handleGuestLogin("user")}
+                        variant="contained"
+                        color="secondary"
+                        key="Signin"
+                      >
+                        {" "}
+                        Signin with Guest User
+                      </SigninButton>
+                      &nbsp;&nbsp;
+                      <SigninButton
+                        onClick={()=>handleGuestLogin("owner")}
+                        variant="contained"
+                        color="secondary"
+                        key="Signin"
+                      >
+                        {" "}
+                        Signin with Guest Owner
+                      </SigninButton>
+                      &nbsp;&nbsp;
+                      <SigninButton
+                        onClick={()=>handleGuestLogin("admin")}
+                        variant="contained"
+                        color="secondary"
+                        key="Signin"
+                      >
+                        {" "}
+                        Signin with Guest Admin
+                      </SigninButton>
+                      &nbsp;&nbsp;
+                      <SigninButton
                         onClick={handleLogin}
                         variant="contained"
                         color="secondary"
@@ -590,6 +680,7 @@ export function Header(props) {
           </Dialog>
         </div>
       )}
+      <ToastContainer />
     </>
   );
 }
