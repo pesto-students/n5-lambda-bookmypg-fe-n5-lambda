@@ -6,7 +6,7 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import PropertyContent from "../components/property/PropertyFilters";
 import Theme from "theme/theme";
 
-export default function PropertyList() {
+export default React.memo(function PropertyList() {
   return (
     <div>
       <MuiThemeProvider theme={Theme}>
@@ -18,4 +18,4 @@ export default function PropertyList() {
       </MuiThemeProvider>
     </div>
   );
-}
+})

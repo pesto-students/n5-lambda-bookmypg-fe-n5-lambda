@@ -68,7 +68,7 @@ const responsivedrawerData = [
   },
 ];
 
-export default function TenantList() {
+export default React.memo(function TenantList() {
   const [loggedUser, setLoggedUser] = React.useState("");
 
   return (
@@ -86,4 +86,4 @@ export default function TenantList() {
       </MuiThemeProvider>
     </div>
   );
-}
+})

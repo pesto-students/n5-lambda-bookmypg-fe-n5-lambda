@@ -36,7 +36,7 @@ const locationItems = [
   },
 ];
 
-export default function HomePage() {
+export default React.memo(function HomePage() {
   const [loggedUser, setLoggedUser] = React.useState("");
 
   return (
@@ -55,4 +55,4 @@ export default function HomePage() {
       </MuiThemeProvider>
     </div>
   );
-}
+})

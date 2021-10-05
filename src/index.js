@@ -1,32 +1,36 @@
-import reportWebVitals from "./reportWebVitals";
-import React from "react";
+import React, { lazy, Suspense } from "react";
+import _env from "dotenv";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
+import reportWebVitals from "./reportWebVitals";
 import { store } from "./redux-store/Store";
-import Ownertenantlist from "./owner/pages/Tenantlist";
-import Ownerpropertylist from "./owner/pages/Propertylist";
-import Ownercomplaintlist from "./owner/pages/Complaintlist";
-import OwnerHomepage from "./owner/pages/Homepage";
-import AdminHomepage from "./admin/pages/Homepage";
-import Ownerlist from "./admin/pages/Ownerlist";
-import Amenitylist from "./admin/pages/Amenitylist";
-import PaymentList from "./user/pages/myprofile/Paymentlist";
-import MyPropertyDetails from "./user/pages/myprofile/Mypropertydetails";
-import MyProfile from "./user/pages/myprofile/Myprofile";
-import PropertyDetails from "./user/pages/Propertydetails";
-import PropertyList from "./user/pages/Propertylist";
-import HomePage from "./user/pages/Homepage";
-import AboutUs from "./user/pages/AboutUs";
-import OwnerProtectedRoute from "./ProtectedRoutes/OwnerProtectedRoute";
-import AdminProtectedRoute from "./ProtectedRoutes/AdminProtectedRoute";
-import _env from "dotenv";
-_env.config();
+import Loader from "../src/components/loader/Loader";
+
+const Ownertenantlist = lazy(()=> import("./owner/pages/Tenantlist"));
+const Ownerpropertylist = lazy(()=> import("./owner/pages/Propertylist"));
+const Ownercomplaintlist = lazy(()=> import("./owner/pages/Complaintlist"));
+const OwnerHomepage = lazy(()=> import("./owner/pages/Homepage"));
+const AdminHomepage = lazy(()=> import("./admin/pages/Homepage"));
+const Ownerlist = lazy(()=> import("./admin/pages/Ownerlist"));
+const Amenitylist = lazy(()=> import("./admin/pages/Amenitylist"));
+const PaymentList = lazy(()=> import("./user/pages/myprofile/Paymentlist"));
+const MyPropertyDetails = lazy(()=> import("./user/pages/myprofile/Mypropertydetails"));
+const MyProfile = lazy(()=> import("./user/pages/myprofile/Myprofile"));
+const PropertyDetails = lazy(()=> import("./user/pages/Propertydetails"));
+const PropertyList = lazy(()=> import("./user/pages/Propertylist"));
+const HomePage = lazy(()=> import("./user/pages/Homepage"));
+const AboutUs = lazy(()=> import("./user/pages/AboutUs"));
+const OwnerProtectedRoute = lazy(()=> import("./ProtectedRoutes/OwnerProtectedRoute"));
+const AdminProtectedRoute = lazy(()=> import("./ProtectedRoutes/AdminProtectedRoute"));
+
 const hist = createBrowserHistory();
+_env.config();
 
 ReactDOM.render(
   <Provider store={store}>
+    <Suspense fallback={<Loader align="30vh 90vh"/>}>
     <BrowserRouter history={hist}>
       <Switch>
         <Route exact path="/mypropertydetails" component={MyPropertyDetails} />
@@ -64,6 +68,7 @@ ReactDOM.render(
         <Route exact path="/" component={HomePage} />
       </Switch>
     </BrowserRouter>
+    </Suspense>
   </Provider>,
   document.getElementById("root")
 );

@@ -17,7 +17,7 @@ const headersData = [
   },
 ];
 
-export default function HomePage() {
+export default React.memo(function HomePage() {
   return (
     <div>
       <MuiThemeProvider theme={Theme}>
@@ -29,4 +29,4 @@ export default function HomePage() {
       </MuiThemeProvider>
     </div>
   );
-}
+})

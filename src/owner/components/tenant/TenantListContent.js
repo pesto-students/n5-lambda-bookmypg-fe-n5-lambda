@@ -104,6 +104,7 @@ export function Tenantcontent(props) {
               refresh={refresh}
               updateDocument={props.updateTenant}
               user={props.user}
+              requestState={props.getTenantsByOwnerRequestState}
             />
             <Pagination
               pagenumber={pagenumber}
@@ -125,6 +126,7 @@ const mapStateToProps = (state) => {
 
   return {
     tenants: tenantsSelector.getTenantsData().data,
+    getTenantsByOwnerRequestState: tenantsSelector.getTenantsByOwnerRequestState(),
     total_tenants: tenantsSelector.getTenantsCount().count,
     user: userSelector.getUserData().data,
   };
@@ -139,4 +141,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Tenantcontent);
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Tenantcontent));

@@ -22,7 +22,7 @@ const responsivedrawerData = [
     icon: "Payment",
   },
 ];
-export default function PaymentListContent() {
+export default React.memo(function PaymentListContent() {
   const [loggedUser, setLoggedUser] = React.useState("");
 
   return (
@@ -34,4 +34,4 @@ export default function PaymentListContent() {
       </MuiThemeProvider>
     </div>
   );
-}
+})
