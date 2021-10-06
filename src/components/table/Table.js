@@ -79,8 +79,8 @@ export default function TableComponent(props) {
             </TableRow>
           ))}
         </TableBody>
-        {props.requestState && props.requestState.requestProcessing && <Loader align="5vh 55vh"/>}
       </Table>
+      {props.requestState && props.requestState.requestProcessing && <Loader align="5vh 55vh"/>}
     </Paper>
   );
 }
