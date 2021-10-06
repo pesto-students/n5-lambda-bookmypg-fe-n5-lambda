@@ -50,7 +50,7 @@ export function Content(props) {
         <Container className={classes.cardGrid}>
           <Grid container spacing={4}>
             <Grid item xs={12} sm={12}>
-              <TypographyComponent type="h4Title" text="Our Service" />
+              <TypographyComponent type="h4Title" text="Our Services" />
               <Grid container spacing={5}>
                 <Grid item xs={12} sm={6} md={3}>
                   <Card
@@ -124,6 +124,51 @@ export function Content(props) {
               accomodation respectively."
               align="center"
             />
+          </Grid>
+        </Grid>
+      </Container>
+      <Container className={classes.cardGrid}>
+        <Grid container spacing={4}>
+          <Grid
+            item
+            xs={12}
+            sm={12}
+            style={{
+              textAlign: "center",
+            }}
+          >
+            <TypographyComponent
+              type="h4Title"
+              text="Our Team"
+              align="center"
+            />
+          </Grid>
+
+          <Grid container spacing={8}>
+            <Grid item xs={12} sm={6} md={4}>
+              <Card
+                type="OurTeam"
+                title="Monali Doshi"
+                imageName="Dev_Monali_Doshi.jpg"
+                description="Fullstack Developer"
+              />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+              <Card
+                type="OurTeam"
+                title="Hari Dhole"
+                imageName="Dev_Hari_Dhole.jpg"
+                description="Fullstack Developer"
+              />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+              <Card
+                type="OurTeam"
+                title="Vignesh Shenoy"
+                imageName="Dev_Vignesh_Shenoy.jpg"
+                description="Fullstack Developer"
+              />
+            </Grid>
           </Grid>
         </Grid>
       </Container>
