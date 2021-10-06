@@ -54,7 +54,7 @@ export default function ButtonComponent(props) {
             <div className={classes.teamDescription}>
               <Typography color="#fff">{props.description}</Typography>
 
-              <Icon type="Linkedin" />
+              <Icon link={props.link} type="Linkedin" />
             </div>
           </CardContent>
         </Card>

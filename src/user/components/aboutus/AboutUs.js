@@ -150,7 +150,8 @@ export function Content(props) {
                 type="OurTeam"
                 title="Monali Doshi"
                 imageName="Dev_Monali_Doshi.jpg"
-                description="Fullstack Developer"
+                description="Full-Stack Developer"
+                link="https://www.linkedin.com/in/monalidoshi"
               />
             </Grid>
             <Grid item xs={12} sm={6} md={4}>
@@ -158,7 +159,8 @@ export function Content(props) {
                 type="OurTeam"
                 title="Hari Dhole"
                 imageName="Dev_Hari_Dhole.jpg"
-                description="Fullstack Developer"
+                description="Full-Stack Developer"
+                link="https://www.linkedin.com/in/haridhole/"
               />
             </Grid>
             <Grid item xs={12} sm={6} md={4}>
@@ -166,7 +168,8 @@ export function Content(props) {
                 type="OurTeam"
                 title="Vignesh Shenoy"
                 imageName="Dev_Vignesh_Shenoy.jpg"
-                description="Fullstack Developer"
+                description="Full-Stack Developer"
+                link="https://www.linkedin.com/in/vignesh-shenoy-3a7aa2141/"
               />
             </Grid>
           </Grid>
