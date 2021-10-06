@@ -30,7 +30,7 @@ _env.config();
 
 ReactDOM.render(
   <Provider store={store}>
-    <Suspense fallback={<Loader align="30vh 90vh"/>}>
+    <Suspense fallback={<Loader align="35vh 95vh"/>}>
     <BrowserRouter history={hist}>
       <Switch>
         <Route exact path="/mypropertydetails" component={MyPropertyDetails} />
