@@ -25,6 +25,10 @@ const useStyles = makeStyles((theme) => ({
   buttonStyle: {
     textTransform: "none",
   },
+  teamDescription: {
+    display: "inline-flex",
+    margin: "0px",
+  },
   cardGrid: {
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
@@ -54,6 +58,13 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     marginRight: "20px",
   },
+  ourTeamCard: {
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    marginRight: "20px",
+    boxShadow: "none",
+  },
   propertycard: {
     height: "90%",
     display: "flex",
@@ -69,8 +80,17 @@ const useStyles = makeStyles((theme) => ({
   cardMedia: {
     paddingTop: "56.25%", // 16:9
   },
+
+  cardPhoto: {
+    padding: "140px", // 16:9
+    margin: "0px 55px",
+  },
   cardContent: {
     flexGrow: 1,
+  },
+  cardText: {
+    flexGrow: 1,
+    textAlign: "center",
   },
   iconbuttons: {
     display: "flex",

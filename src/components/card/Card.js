@@ -15,6 +15,7 @@ import Box from "@material-ui/core/Box";
 import MoreButton from "@material-ui/core/Button";
 import Rating from "user/components/rating/rating";
 import ScheduleVisit from "user/components/schedulevisit/ScheduleVisit";
+import Icon from "components/icon/Icon";
 
 export default function ButtonComponent(props) {
   const classes = useStyles();
@@ -35,6 +36,26 @@ export default function ButtonComponent(props) {
             <Typography className={classes.pos} color="#fff">
               {props.description}
             </Typography>
+          </CardContent>
+        </Card>
+      );
+    case "OurTeam":
+      return (
+        <Card className={classes.ourTeamCard}>
+          <CardMedia
+            className={classes.cardPhoto}
+            image={`${S3_BUCKET_IMAGES_BASEURL}/${props.imageName}`}
+            title="Image_title"
+          />
+          <CardContent className={classes.cardText}>
+            <Typography variant="h6" component="h2">
+              {props.title}
+            </Typography>
+            <div className={classes.teamDescription}>
+              <Typography color="#fff">{props.description}</Typography>
+
+              <Icon link={props.link} type="Linkedin" />
+            </div>
           </CardContent>
         </Card>
       );

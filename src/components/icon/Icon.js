@@ -20,7 +20,9 @@ import {
   ExitToApp,
   Person,
   Dashboard,
+  LinkedIn,
 } from "@material-ui/icons";
+import Link from "@material-ui/core/Link";
 
 export default function TextFieldComponent(props) {
   const classes = useStyles();
@@ -63,6 +65,12 @@ export default function TextFieldComponent(props) {
       return <Person className={classes.iconStyle} />;
     case "Dashboard":
       return <Dashboard className={classes.iconStyle} />;
+    case "Linkedin":
+      return (
+        <Link href={props.link} target="_blank">
+          <LinkedIn className={classes.iconStyle} />
+        </Link>
+      );
     default:
       return <div></div>;
   }
