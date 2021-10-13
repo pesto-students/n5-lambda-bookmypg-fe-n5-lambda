@@ -60,7 +60,7 @@ const responsivedrawerData = [
   },
 ];
 
-export default function AmenityList() {
+export default React.memo(function AmenityList() {
   const [loggedUser, setLoggedUser] = React.useState("");
 
   return (
@@ -102,4 +102,4 @@ export default function AmenityList() {
       </MuiThemeProvider>
     </div>
   );
-}
+})

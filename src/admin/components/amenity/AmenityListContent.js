@@ -79,6 +79,7 @@ export function AmenityListContent(props) {
               refresh={refresh}
               updateDocument={props.updateAmenity}
               user={props.user}
+              requestState={props.getAmenitiesRequestState}
             />
             <Pagination
               pagenumber={pagenumber}
@@ -101,6 +102,7 @@ const mapStateToProps = (state) => {
   return {
     user: userSelector.getUserData().data,
     amenities: amenitiesSelector.getAmenitiesData().data,
+    getAmenitiesRequestState: amenitiesSelector.getAmenitiesRequestState(),
     total_amenities: amenitiesSelector.getAmenitiesCount().count,
     addAmenityRequestState: amenitiesSelector.addAmenityRequestState(),
   };
@@ -115,4 +117,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AmenityListContent);
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(AmenityListContent));

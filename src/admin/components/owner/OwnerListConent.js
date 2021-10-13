@@ -115,6 +115,7 @@ export function OwnerlistContent(props) {
               refresh={refresh}
               updateDocument={props.updateTenant}
               user={props.user}
+              requestState={props.getTenantsRequestState}
             />
             <Pagination
               pagenumber={pagenumber}
@@ -137,6 +138,7 @@ const mapStateToProps = (state) => {
   return {
     user: userSelector.getUserData().data,
     tenants: tenantsSelector.getTenantsData().data,
+    getTenantsRequestState: tenantsSelector.getTenantsRequestState()
   };
 };
 
@@ -149,4 +151,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OwnerlistContent);
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(OwnerlistContent));

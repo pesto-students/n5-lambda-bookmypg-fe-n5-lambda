@@ -52,6 +52,7 @@ export function ComplaintsContent(props) {
       });
     });
   }
+  console.log(" dd",props.getComplaintsRequestState)
 
   return (
     <div className="Table">
@@ -91,6 +92,7 @@ export function ComplaintsContent(props) {
               setOrderBy={setOrderBy}
               setRefresh={setRefresh}
               refresh={refresh}
+              requestState={props.getComplaintsRequestState}
             />
             <Pagination
               pagenumber={pagenumber}
@@ -113,6 +115,7 @@ const mapStateToProps = (state) => {
   return {
     user: userSelector.getUserData().data,
     complaints: complaintsSelector.getComplaintsData().data,
+    getComplaintsRequestState: complaintsSelector.getComplaintsRequestState(),
     total_complaints: complaintsSelector.getComplaintsCount().count,
   };
 };
@@ -126,4 +129,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ComplaintsContent);
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(ComplaintsContent));

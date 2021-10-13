@@ -94,6 +94,7 @@ export function PropertyListContent(props) {
               refresh={refresh}
               updateDocument={props.updateProperty}
               user={props.user}
+              requestState={props.getPropertiesByOwnerRequestState}
             />
             <Pagination
               pagenumber={pagenumber}
@@ -118,6 +119,7 @@ const mapStateToProps = (state) => {
   return {
     user: userSelector.getUserData().data,
     properties: propertiesSelector.getPropertiesData().data,
+    getPropertiesByOwnerRequestState: propertiesSelector.getPropertiesByOwnerRequestState(),
     amenities: amenitiesSelector.getAmenitiesData().data,
     locations: locationsSelector.getLocationsData().data,
     total_properties: propertiesSelector.getPropertiesCount().count,
@@ -140,4 +142,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PropertyListContent);
+)(React.memo(PropertyListContent));

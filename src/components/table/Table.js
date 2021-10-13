@@ -1,5 +1,6 @@
 import React from "react";
 import useStyles from "./Table.styles";
+import Loader from "../../components/loader/Loader";
 import { ReactComponent as SortingUpIcon } from "assets/svg/sortingUp.svg";
 import { ReactComponent as SortingDownIcon } from "assets/svg/sortingDown.svg";
 import {
@@ -79,6 +80,7 @@ export default function TableComponent(props) {
           ))}
         </TableBody>
       </Table>
+      {props.requestState && props.requestState.requestProcessing && <Loader align="5vh 55vh"/>}
     </Paper>
   );
 }

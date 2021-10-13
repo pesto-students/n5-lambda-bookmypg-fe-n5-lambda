@@ -30,6 +30,10 @@ export const PropertiesSelector = (state) => ({
     return state.getPropertiesRequestState || {};
   },
 
+  getPropertiesByOwnerRequestState: () => {
+    return state.getPropertiesByOwnerRequestState || {};
+  },
+
   getLatestPropertiesRequestState: () => {
     return state.getLatestPropertiesRequestState || {};
   },

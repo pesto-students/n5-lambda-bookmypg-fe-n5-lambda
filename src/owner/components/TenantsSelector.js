@@ -14,6 +14,9 @@ export const TenantsSelector = (state) => ({
   getTenantsRequestState: () => {
     return state.getTenantsRequestState || {};
   },
+  getTenantsByOwnerRequestState: () => {
+    return state.getTenantsByOwnerRequestState || {};
+  },
 });
 
 export default TenantsSelector;

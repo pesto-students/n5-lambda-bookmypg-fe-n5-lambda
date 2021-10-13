@@ -23,7 +23,7 @@ const responsivedrawerData = [
   },
 ];
 
-export default function MyProfile() {
+export default React.memo(function MyProfile() {
   const [loggedUser, setLoggedUser] = React.useState("");
 
   return (
@@ -35,4 +35,4 @@ export default function MyProfile() {
       </MuiThemeProvider>
     </div>
   );
-}
+})
